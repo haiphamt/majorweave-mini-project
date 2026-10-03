@@ -1,0 +1,53 @@
+const { chromium } = require(process.env.MAJORWEAVE_PLAYWRIGHT_MODULE || 'playwright');
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+(async () => {
+  const browser = await chromium.launch({ channel: 'msedge', headless: true });
+  const page = await browser.newPage({ viewport: { width: 1440, height: 1000 } });
+  const checks = [];
+  const check = (name, result) => { assert.ok(result, name); checks.push(name); };
+  try {
+    await page.goto('http://127.0.0.1:5173/#/roadmap');
+    await page.getByRole('button', { name: 'Tạo kế hoạch của tôi', exact: true }).click();
+    await page.getByRole('checkbox', { name: /Hoàn thành:/ }).first().check();
+    await page.getByRole('link', { name: 'Xem nhịp học', exact: true }).click();
+    await page.locator('.activity-day-detail').filter({ hasText: '1 việc hoàn thành' }).waitFor();
+    check('Profile has 84 day cells and includes today completion', await page.locator('button.activity-cell[data-date]').count() === 84 && await page.locator('button.activity-cell.selected.level-1').count() === 1);
+    await page.getByRole('link', { name: 'Mở My Plan', exact: true }).click();
+    const saved = () => page.evaluate(() => JSON.parse(localStorage.getItem('majorweave.prototype.v1')));
+    const timestamp = (await saved()).tasks[0].completedAt;
+    await page.getByRole('link', { name: 'Chỉnh roadmap', exact: true }).click();
+    await page.getByRole('button', { name: 'Tạo kế hoạch của tôi', exact: true }).click();
+    await page.getByRole('dialog').getByRole('button', { name: 'Tạo lại kế hoạch', exact: true }).click();
+    await page.getByRole('link', { name: 'Xem nhịp học', exact: true }).click();
+    await page.locator('.study-activity').waitFor();
+    check('Regenerating a plan preserves the completion date', (await saved()).tasks[0].completedAt === timestamp);
+    await page.evaluate(() => document.fonts.ready);
+    await page.locator('.study-activity').screenshot({ path: 'artifacts/study-activity-desktop.png' });
+    await page.evaluate(() => {
+      const state = JSON.parse(localStorage.getItem('majorweave.prototype.v1'));
+      delete state.tasks[0].completedAt;
+      localStorage.setItem('majorweave.prototype.v1', JSON.stringify(state));
+    });
+    await page.reload();
+    await page.locator('.study-activity').waitFor();
+    check('Legacy completed tasks keep progress without inventing a date', (await saved()).tasks[0].completed && !(await saved()).tasks[0].completedAt);
+    check('Legacy tasks have an explicit explanation and no fabricated activity', (await page.locator('.study-activity').innerText()).includes('1 việc đã hoàn thành chưa có ngày ghi nhận') && await page.locator('button.activity-cell.level-1').count() === 0);
+    const todayDate = await page.locator('button.activity-cell.selected').getAttribute('data-date');
+    await page.locator('button.activity-cell.selected').focus();
+    await page.keyboard.press('ArrowLeft');
+    check('Profile activity supports arrow-key navigation', await page.locator('button.activity-cell[aria-pressed="true"]').getAttribute('data-date') !== todayDate);
+    await page.getByRole('link', { name: 'Mở My Plan', exact: true }).click();
+    await page.getByRole('checkbox', { name: /Hoàn thành:/ }).first().uncheck();
+    await page.getByRole('checkbox', { name: /Hoàn thành:/ }).first().check();
+    await page.getByRole('link', { name: 'Xem nhịp học', exact: true }).click();
+    await page.locator('.activity-day-detail').filter({ hasText: '1 việc hoàn thành' }).waitFor();
+    await page.getByRole('link', { name: 'Mở My Plan', exact: true }).click();
+    await page.getByRole('checkbox', { name: /Hoàn thành:/ }).first().uncheck();
+    await page.getByRole('link', { name: 'Xem nhịp học', exact: true }).click();
+    await page.locator('.activity-day-detail').filter({ hasText: '0 việc hoàn thành' }).waitFor();
+    check('Undo completion updates Profile activity', await page.locator('button.activity-cell.level-1').count() === 0);
+    fs.writeFileSync('artifacts/activity-verification.json', JSON.stringify({ passed: checks.length, checks, date: new Date().toISOString() }, null, 2));
+    console.log(`PASS: ${checks.length} activity migration and regeneration checks.`);
+  } finally { await browser.close(); }
+})().catch(error => { console.error(error); process.exitCode = 1; });

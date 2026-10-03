@@ -1,0 +1,854 @@
+{
+  "checkedAt": "03/10/2026",
+  "relationshipType": "Curated exploration suggestions, not official specializations or suitability scores",
+  "faculties": [
+    {
+      "id": "se",
+      "name": "Công nghệ Phần mềm",
+      "majors": [
+        {
+          "id": "software",
+          "name": "Kỹ thuật Phần mềm"
+        },
+        {
+          "id": "multimedia",
+          "name": "Truyền thông Đa phương tiện"
+        }
+      ]
+    },
+    {
+      "id": "cs",
+      "name": "Khoa học Máy tính",
+      "majors": [
+        {
+          "id": "cs",
+          "name": "Khoa học Máy tính"
+        },
+        {
+          "id": "ai",
+          "name": "Trí tuệ Nhân tạo"
+        }
+      ]
+    },
+    {
+      "id": "is",
+      "name": "Hệ thống Thông tin",
+      "majors": [
+        {
+          "id": "is",
+          "name": "Hệ thống Thông tin"
+        },
+        {
+          "id": "ecommerce",
+          "name": "Thương mại Điện tử"
+        }
+      ]
+    },
+    {
+      "id": "ise",
+      "name": "Khoa học & Kỹ thuật Thông tin",
+      "majors": [
+        {
+          "id": "it",
+          "name": "Công nghệ Thông tin"
+        },
+        {
+          "id": "data",
+          "name": "Khoa học Dữ liệu"
+        }
+      ]
+    },
+    {
+      "id": "nc",
+      "name": "Mạng máy tính & Truyền thông",
+      "majors": [
+        {
+          "id": "networks",
+          "name": "Mạng máy tính & Truyền thông Dữ liệu"
+        },
+        {
+          "id": "security",
+          "name": "An toàn Thông tin"
+        }
+      ]
+    },
+    {
+      "id": "ce",
+      "name": "Kỹ thuật Máy tính",
+      "majors": [
+        {
+          "id": "computer",
+          "name": "Kỹ thuật Máy tính"
+        },
+        {
+          "id": "chip",
+          "name": "Thiết kế Vi mạch"
+        }
+      ]
+    }
+  ],
+  "majors": [
+    {
+      "id": "software",
+      "name": "Kỹ thuật Phần mềm",
+      "faculty": "Công nghệ Phần mềm",
+      "foundation": "Vòng đời phần mềm, lập trình, yêu cầu, thiết kế, kiểm thử và phát triển game.",
+      "sourceUrl": "https://tuyensinh.uit.edu.vn/nganh-dao-tao/nganh-ky-thuat-phan-mem",
+      "coverageNote": "",
+      "primaryPathIds": [
+        "backend",
+        "frontend",
+        "fullstack",
+        "mobile",
+        "game",
+        "qa",
+        "devops"
+      ],
+      "relatedPathIds": [
+        "analyst",
+        "bi",
+        "engineer",
+        "ml",
+        "mlops",
+        "network",
+        "security",
+        "ux"
+      ]
+    },
+    {
+      "id": "multimedia",
+      "name": "Truyền thông Đa phương tiện",
+      "faculty": "Công nghệ Phần mềm",
+      "foundation": "Truyền thông, thiết kế, trải nghiệm số, dữ liệu truyền thông và công nghệ marketing.",
+      "sourceUrl": "https://tuyensinh.uit.edu.vn/nganh-dao-tao/nganh-truyen-thong-da-phuong-tien",
+      "coverageNote": "",
+      "primaryPathIds": [
+        "analyst",
+        "ux"
+      ],
+      "relatedPathIds": [
+        "frontend",
+        "mobile",
+        "game",
+        "bi",
+        "scientist",
+        "ml"
+      ]
+    },
+    {
+      "id": "cs",
+      "name": "Khoa học Máy tính",
+      "faculty": "Khoa học Máy tính",
+      "foundation": "Toán, cấu trúc dữ liệu, giải thuật, hệ thống và các hướng AI / tính toán.",
+      "sourceUrl": "https://tuyensinh.uit.edu.vn/nganh-dao-tao/nganh-khoa-hoc-may-tinh",
+      "coverageNote": "",
+      "primaryPathIds": [
+        "backend",
+        "frontend",
+        "fullstack",
+        "mobile",
+        "game",
+        "scientist",
+        "engineer",
+        "ml",
+        "mlops"
+      ],
+      "relatedPathIds": [
+        "qa",
+        "devops",
+        "analyst",
+        "bi",
+        "network",
+        "security"
+      ]
+    },
+    {
+      "id": "ai",
+      "name": "Trí tuệ Nhân tạo",
+      "faculty": "Khoa học Máy tính",
+      "foundation": "Toán, lập trình, học máy, học sâu và các ứng dụng trí tuệ nhân tạo.",
+      "sourceUrl": "https://tuyensinh.uit.edu.vn/nganh-dao-tao/nganh-tri-tue-nhan-tao",
+      "coverageNote": "",
+      "primaryPathIds": [
+        "scientist",
+        "ml",
+        "mlops"
+      ],
+      "relatedPathIds": [
+        "backend",
+        "fullstack",
+        "game",
+        "devops",
+        "analyst",
+        "engineer"
+      ]
+    },
+    {
+      "id": "is",
+      "name": "Hệ thống Thông tin",
+      "faculty": "Hệ thống Thông tin",
+      "foundation": "Dữ liệu, hệ thống thông tin, quy trình nghiệp vụ và giải pháp cho tổ chức.",
+      "sourceUrl": "https://tuyensinh.uit.edu.vn/nganh-dao-tao/nganh-he-thong-thong-tin",
+      "coverageNote": "",
+      "primaryPathIds": [
+        "backend",
+        "fullstack",
+        "mobile",
+        "qa",
+        "analyst",
+        "bi",
+        "engineer"
+      ],
+      "relatedPathIds": [
+        "frontend",
+        "devops",
+        "scientist",
+        "ml",
+        "security",
+        "ux"
+      ]
+    },
+    {
+      "id": "ecommerce",
+      "name": "Thương mại Điện tử",
+      "faculty": "Hệ thống Thông tin",
+      "foundation": "Thương mại, nền tảng số, marketing, dữ liệu và trải nghiệm khách hàng.",
+      "sourceUrl": "https://tuyensinh.uit.edu.vn/nganh-dao-tao/nganh-thuong-mai-dien-tu",
+      "coverageNote": "",
+      "primaryPathIds": [
+        "analyst",
+        "bi"
+      ],
+      "relatedPathIds": [
+        "backend",
+        "frontend",
+        "fullstack",
+        "mobile",
+        "qa",
+        "scientist",
+        "engineer",
+        "ux"
+      ]
+    },
+    {
+      "id": "it",
+      "name": "Công nghệ Thông tin",
+      "faculty": "Khoa học & Kỹ thuật Thông tin",
+      "foundation": "Nền tảng CNTT rộng: phần mềm, dữ liệu, hệ thống, hạ tầng và ứng dụng công nghệ.",
+      "sourceUrl": "https://tuyensinh.uit.edu.vn/nganh-dao-tao/nganh-cong-nghe-thong-tin",
+      "coverageNote": "",
+      "primaryPathIds": [
+        "backend",
+        "frontend",
+        "fullstack",
+        "mobile",
+        "qa",
+        "devops",
+        "analyst",
+        "bi",
+        "engineer",
+        "network"
+      ],
+      "relatedPathIds": [
+        "game",
+        "scientist",
+        "ml",
+        "mlops",
+        "security",
+        "ux"
+      ]
+    },
+    {
+      "id": "data",
+      "name": "Khoa học Dữ liệu",
+      "faculty": "Khoa học & Kỹ thuật Thông tin",
+      "foundation": "Thống kê, lập trình, xử lý dữ liệu, mô hình hóa, học máy và trực quan hóa.",
+      "sourceUrl": "https://tuyensinh.uit.edu.vn/nganh-dao-tao/nganh-khoa-hoc-du-lieu",
+      "coverageNote": "",
+      "primaryPathIds": [
+        "analyst",
+        "bi",
+        "scientist",
+        "engineer",
+        "ml",
+        "mlops"
+      ],
+      "relatedPathIds": [
+        "backend",
+        "fullstack",
+        "devops"
+      ]
+    },
+    {
+      "id": "networks",
+      "name": "Mạng máy tính & Truyền thông Dữ liệu",
+      "faculty": "Mạng máy tính & Truyền thông",
+      "foundation": "Mạng máy tính, giao thức, dịch vụ mạng, hệ thống và hạ tầng.",
+      "sourceUrl": "https://tuyensinh.uit.edu.vn/nganh-dao-tao/nganh-mang-may-tinh-truyen-thong-du-lieu",
+      "coverageNote": "",
+      "primaryPathIds": [
+        "devops",
+        "network",
+        "security"
+      ],
+      "relatedPathIds": [
+        "backend",
+        "analyst",
+        "engineer",
+        "mlops"
+      ]
+    },
+    {
+      "id": "security",
+      "name": "An toàn Thông tin",
+      "faculty": "Mạng máy tính & Truyền thông",
+      "foundation": "Mạng, hệ thống, bảo vệ dữ liệu, ứng dụng và quản trị an toàn thông tin.",
+      "sourceUrl": "https://tuyensinh.uit.edu.vn/nganh-dao-tao/nganh-an-toan-thong-tin",
+      "coverageNote": "",
+      "primaryPathIds": [
+        "security"
+      ],
+      "relatedPathIds": [
+        "backend",
+        "qa",
+        "devops",
+        "network"
+      ]
+    },
+    {
+      "id": "computer",
+      "name": "Kỹ thuật Máy tính",
+      "faculty": "Kỹ thuật Máy tính",
+      "foundation": "Kiến trúc máy tính, điện tử số, hệ thống nhúng, giao tiếp và phần cứng.",
+      "sourceUrl": "https://tuyensinh.uit.edu.vn/nganh-dao-tao/nganh-ky-thuat-may-tinh",
+      "coverageNote": "",
+      "primaryPathIds": [
+        "network"
+      ],
+      "relatedPathIds": [
+        "backend",
+        "mobile",
+        "game",
+        "devops",
+        "ml",
+        "mlops",
+        "security"
+      ]
+    },
+    {
+      "id": "chip",
+      "name": "Thiết kế Vi mạch",
+      "faculty": "Kỹ thuật Máy tính",
+      "foundation": "Mạch điện, logic số, thiết kế, kiểm chứng và triển khai vật lý vi mạch.",
+      "sourceUrl": "https://tuyensinh.uit.edu.vn/nganh-dao-tao/nganh-thiet-ke-vi-mach",
+      "coverageNote": "Chưa tìm thấy roadmap chuyên biệt về Thiết kế Vi mạch trong danh mục chính thức đã đối chiếu. Bạn vẫn có thể khám phá hướng khác và tham khảo thông tin ngành tại UIT.",
+      "primaryPathIds": [],
+      "relatedPathIds": []
+    }
+  ],
+  "paths": [
+    {
+      "id": "backend",
+      "name": "Backend Developer",
+      "category": "SOFTWARE",
+      "icon": "server",
+      "summary": "Xây API, xử lý dữ liệu và phát triển phần máy chủ của ứng dụng.",
+      "tags": [
+        "API",
+        "Database",
+        "Logic"
+      ],
+      "majors": [
+        "software",
+        "cs",
+        "it",
+        "is"
+      ],
+      "relatedMajors": [
+        "ai",
+        "data",
+        "ecommerce",
+        "networks",
+        "security",
+        "computer"
+      ],
+      "foundations": "Lập trình, OOP, DSA, mạng, OS, nguyên lý hệ thống, Git, HTTP, cơ sở dữ liệu và kiểm thử; chọn Node.js / Express, Python / FastAPI hoặc Java / Spring Boot để làm kế hoạch thực hành.",
+      "sample": true,
+      "roadmaps": [
+        {
+          "label": "Backend",
+          "url": "https://roadmap.sh/backend"
+        }
+      ]
+    },
+    {
+      "id": "frontend",
+      "name": "Frontend Developer",
+      "category": "SOFTWARE",
+      "icon": "layout",
+      "summary": "Xây giao diện web có tương tác, dễ sử dụng và phù hợp nhiều màn hình.",
+      "tags": [
+        "Web",
+        "UI",
+        "Interaction"
+      ],
+      "majors": [
+        "software",
+        "cs",
+        "it"
+      ],
+      "relatedMajors": [
+        "multimedia",
+        "is",
+        "ecommerce"
+      ],
+      "foundations": "HTML, CSS, JavaScript, khả năng truy cập và giao tiếp với API; thiết kế giao diện chưa thay cho nền tảng lập trình.",
+      "sample": false,
+      "roadmaps": [
+        {
+          "label": "Frontend",
+          "url": "https://roadmap.sh/frontend"
+        }
+      ]
+    },
+    {
+      "id": "fullstack",
+      "name": "Full-stack Developer",
+      "category": "SOFTWARE",
+      "icon": "server",
+      "summary": "Kết nối giao diện, API và dữ liệu thành một ứng dụng hoàn chỉnh.",
+      "tags": [
+        "Frontend",
+        "Backend",
+        "Database"
+      ],
+      "majors": [
+        "software",
+        "cs",
+        "it",
+        "is"
+      ],
+      "relatedMajors": [
+        "ecommerce",
+        "ai",
+        "data"
+      ],
+      "foundations": "Học từng phần frontend và backend trước, sau đó tích hợp và triển khai một dự án nhỏ.",
+      "sample": false,
+      "roadmaps": [
+        {
+          "label": "Full Stack",
+          "url": "https://roadmap.sh/full-stack"
+        }
+      ]
+    },
+    {
+      "id": "mobile",
+      "name": "Mobile Developer",
+      "category": "SOFTWARE",
+      "icon": "layout",
+      "summary": "Khám phá hai lộ trình riêng cho Android và iOS; chọn một nền tảng để bắt đầu.",
+      "tags": [
+        "Mobile",
+        "UI",
+        "API"
+      ],
+      "majors": [
+        "software",
+        "it",
+        "cs",
+        "is"
+      ],
+      "relatedMajors": [
+        "ecommerce",
+        "multimedia",
+        "computer"
+      ],
+      "foundations": "Lập trình, quản lý trạng thái, vòng đời ứng dụng, lưu dữ liệu và API.",
+      "sample": false,
+      "roadmaps": [
+        {
+          "label": "Android",
+          "url": "https://roadmap.sh/android"
+        },
+        {
+          "label": "iOS",
+          "url": "https://roadmap.sh/ios"
+        }
+      ]
+    },
+    {
+      "id": "game",
+      "name": "Game Developer",
+      "category": "SOFTWARE",
+      "icon": "game",
+      "summary": "Lập trình cơ chế chơi, tương tác và các hệ thống của một trò chơi.",
+      "tags": [
+        "Game logic",
+        "Engine",
+        "2D / 3D"
+      ],
+      "majors": [
+        "software",
+        "cs"
+      ],
+      "relatedMajors": [
+        "multimedia",
+        "it",
+        "ai",
+        "computer"
+      ],
+      "foundations": "Lập trình, toán cho game, một game engine và tổ chức dự án; đồ họa game là một hướng riêng.",
+      "sample": false,
+      "roadmaps": [
+        {
+          "label": "Game Developer",
+          "url": "https://roadmap.sh/game-developer"
+        }
+      ]
+    },
+    {
+      "id": "qa",
+      "name": "QA / Test Automation",
+      "category": "SOFTWARE",
+      "icon": "shield",
+      "summary": "Thiết kế kiểm thử và tự động hóa việc kiểm tra chất lượng phần mềm.",
+      "tags": [
+        "Test cases",
+        "API tests",
+        "Automation"
+      ],
+      "majors": [
+        "software",
+        "it",
+        "is"
+      ],
+      "relatedMajors": [
+        "cs",
+        "ecommerce",
+        "security"
+      ],
+      "foundations": "Phân tích yêu cầu, thiết kế ca kiểm thử, API, SQL và lập trình khi làm kiểm thử tự động.",
+      "sample": false,
+      "roadmaps": [
+        {
+          "label": "QA",
+          "url": "https://roadmap.sh/qa"
+        }
+      ]
+    },
+    {
+      "id": "devops",
+      "name": "DevOps / SRE",
+      "category": "INFRASTRUCTURE",
+      "icon": "cloud",
+      "summary": "Tự động hóa triển khai, quan sát và duy trì độ tin cậy của dịch vụ.",
+      "tags": [
+        "CI / CD",
+        "Linux",
+        "Observability"
+      ],
+      "majors": [
+        "software",
+        "networks",
+        "it"
+      ],
+      "relatedMajors": [
+        "cs",
+        "computer",
+        "security",
+        "is",
+        "ai",
+        "data"
+      ],
+      "foundations": "Linux, mạng, Git, scripting, container và triển khai; SRE mở rộng thêm vận hành và độ tin cậy.",
+      "sample": false,
+      "roadmaps": [
+        {
+          "label": "DevOps",
+          "url": "https://roadmap.sh/devops"
+        }
+      ]
+    },
+    {
+      "id": "analyst",
+      "name": "Data Analyst",
+      "category": "DATA",
+      "icon": "chart",
+      "summary": "Phân tích và trực quan hóa dữ liệu để hỗ trợ quyết định.",
+      "tags": [
+        "SQL",
+        "Dashboard",
+        "Insights"
+      ],
+      "majors": [
+        "data",
+        "is",
+        "ecommerce",
+        "it",
+        "multimedia"
+      ],
+      "relatedMajors": [
+        "cs",
+        "ai",
+        "software",
+        "networks"
+      ],
+      "foundations": "SQL, bảng tính, thống kê, làm sạch dữ liệu và diễn giải kết quả theo bối cảnh nghiệp vụ.",
+      "sample": false,
+      "roadmaps": [
+        {
+          "label": "Data Analyst",
+          "url": "https://roadmap.sh/data-analyst"
+        }
+      ]
+    },
+    {
+      "id": "bi",
+      "name": "BI Analyst",
+      "category": "DATA",
+      "icon": "chart",
+      "summary": "Phân tích dữ liệu kinh doanh và xây dashboard phục vụ quyết định của tổ chức.",
+      "tags": [
+        "Data model",
+        "BI",
+        "Reporting"
+      ],
+      "majors": [
+        "is",
+        "data",
+        "it",
+        "ecommerce"
+      ],
+      "relatedMajors": [
+        "software",
+        "cs",
+        "multimedia"
+      ],
+      "foundations": "SQL, mô hình dữ liệu, ETL và một công cụ BI; chú trọng nhu cầu báo cáo của người dùng.",
+      "sample": false,
+      "roadmaps": [
+        {
+          "label": "BI Analyst",
+          "url": "https://roadmap.sh/bi-analyst"
+        }
+      ]
+    },
+    {
+      "id": "scientist",
+      "name": "Data Scientist",
+      "category": "DATA",
+      "icon": "brain",
+      "summary": "Kết hợp thống kê, thử nghiệm và mô hình dự báo để khai thác dữ liệu.",
+      "tags": [
+        "Statistics",
+        "Experiments",
+        "Models"
+      ],
+      "majors": [
+        "data",
+        "cs",
+        "ai"
+      ],
+      "relatedMajors": [
+        "is",
+        "it",
+        "ecommerce",
+        "multimedia"
+      ],
+      "foundations": "Python, xác suất thống kê, đại số tuyến tính, đánh giá mô hình và kiến thức của lĩnh vực ứng dụng.",
+      "sample": false,
+      "roadmaps": [
+        {
+          "label": "AI and Data Scientist",
+          "url": "https://roadmap.sh/ai-data-scientist"
+        }
+      ]
+    },
+    {
+      "id": "engineer",
+      "name": "Data Engineer",
+      "category": "DATA",
+      "icon": "database",
+      "summary": "Xây pipeline thu thập, lưu trữ và xử lý dữ liệu đáng tin cậy.",
+      "tags": [
+        "Python",
+        "SQL",
+        "Pipeline"
+      ],
+      "majors": [
+        "data",
+        "is",
+        "it",
+        "cs"
+      ],
+      "relatedMajors": [
+        "software",
+        "ai",
+        "networks",
+        "ecommerce"
+      ],
+      "foundations": "Lập trình, SQL, cơ sở dữ liệu, ETL, chất lượng dữ liệu và nền tảng xử lý dữ liệu.",
+      "sample": false,
+      "roadmaps": [
+        {
+          "label": "Data Engineer",
+          "url": "https://roadmap.sh/data-engineer"
+        }
+      ]
+    },
+    {
+      "id": "ml",
+      "name": "Machine Learning",
+      "category": "AI",
+      "icon": "brain",
+      "summary": "Xây, đánh giá và tích hợp mô hình học máy vào ứng dụng.",
+      "tags": [
+        "Python",
+        "Math",
+        "Models"
+      ],
+      "majors": [
+        "ai",
+        "cs",
+        "data"
+      ],
+      "relatedMajors": [
+        "it",
+        "software",
+        "is",
+        "computer",
+        "multimedia"
+      ],
+      "foundations": "Toán, thống kê, lập trình, xử lý dữ liệu, học máy và đánh giá mô hình; dùng API AI chưa tương đương huấn luyện mô hình.",
+      "sample": false,
+      "roadmaps": [
+        {
+          "label": "Machine Learning",
+          "url": "https://roadmap.sh/machine-learning"
+        }
+      ]
+    },
+    {
+      "id": "mlops",
+      "name": "MLOps Engineer",
+      "category": "AI",
+      "icon": "cloud",
+      "summary": "Đưa mô hình vào vận hành và quản lý dữ liệu, phiên bản, chất lượng mô hình.",
+      "tags": [
+        "Model lifecycle",
+        "Deployment",
+        "Monitoring"
+      ],
+      "majors": [
+        "ai",
+        "data",
+        "cs"
+      ],
+      "relatedMajors": [
+        "software",
+        "networks",
+        "it",
+        "computer"
+      ],
+      "foundations": "Học máy cùng Linux, container, CI / CD, phục vụ mô hình và quan sát; là bước mở rộng sau nền tảng ML.",
+      "sample": false,
+      "roadmaps": [
+        {
+          "label": "MLOps",
+          "url": "https://roadmap.sh/mlops"
+        }
+      ]
+    },
+    {
+      "id": "network",
+      "name": "Network Engineer",
+      "category": "INFRASTRUCTURE",
+      "icon": "cloud",
+      "summary": "Thiết kế, cấu hình và xử lý sự cố kết nối, routing và dịch vụ mạng.",
+      "tags": [
+        "TCP / IP",
+        "Routing",
+        "Troubleshooting"
+      ],
+      "majors": [
+        "networks",
+        "it",
+        "computer"
+      ],
+      "relatedMajors": [
+        "security",
+        "cs",
+        "software"
+      ],
+      "foundations": "Mạng máy tính, giao thức, Linux, cấu hình thiết bị và thực hành mô phỏng mạng.",
+      "sample": false,
+      "roadmaps": [
+        {
+          "label": "Network Engineer",
+          "url": "https://roadmap.sh/network-engineer"
+        }
+      ]
+    },
+    {
+      "id": "security",
+      "name": "Cyber Security",
+      "category": "SECURITY",
+      "icon": "shield",
+      "summary": "Xây nền tảng bảo vệ hệ thống trước khi chọn chuyên sâu phòng thủ hoặc kiểm thử.",
+      "tags": [
+        "Systems",
+        "Threats",
+        "Security labs"
+      ],
+      "majors": [
+        "security",
+        "networks"
+      ],
+      "relatedMajors": [
+        "cs",
+        "it",
+        "software",
+        "computer",
+        "is"
+      ],
+      "foundations": "Mạng, hệ điều hành, lập trình và nguyên tắc an toàn thông tin; thực hành trong môi trường được phép.",
+      "sample": false,
+      "roadmaps": [
+        {
+          "label": "Cyber Security",
+          "url": "https://roadmap.sh/cyber-security"
+        }
+      ]
+    },
+    {
+      "id": "ux",
+      "name": "UX Design",
+      "category": "DESIGN",
+      "icon": "pen",
+      "summary": "Nghiên cứu người dùng, thiết kế luồng và giao diện dễ sử dụng.",
+      "tags": [
+        "Research",
+        "Prototype",
+        "Usability"
+      ],
+      "majors": [
+        "multimedia"
+      ],
+      "relatedMajors": [
+        "software",
+        "is",
+        "ecommerce",
+        "it"
+      ],
+      "foundations": "Nghiên cứu người dùng, bố cục, tương tác, prototype và đánh giá khả năng sử dụng.",
+      "sample": false,
+      "roadmaps": [
+        {
+          "label": "UX Design",
+          "url": "https://roadmap.sh/ux-design"
+        }
+      ]
+    }
+  ]
+}

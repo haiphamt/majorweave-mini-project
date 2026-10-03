@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MajorWeave — Luồng sự kiện Backend</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600&family=Newsreader:ital,wght@0,400;0,500;1,400&family=JetBrains+Mono:wght@400;500&display=swap">
+  <style>
+    *,*::before,*::after{box-sizing:border-box} :root{--paper:#f4f1ea;--surface:#fbfaf6;--ink:#1c1a17;--muted:#56514a;--rule:#d2ccbe;--accent:#a74127;--sans:'Be Vietnam Pro',system-ui,sans-serif;--serif:'Newsreader',Georgia,serif;--mono:'JetBrains Mono',monospace}
+    body{margin:0;padding:40px 24px;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:13px;line-height:1.8}.frame{max-width:1280px;width:100%;min-width:0;margin:auto}a{color:var(--accent);text-underline-offset:4px}a:focus-visible{outline:2px solid var(--accent);outline-offset:4px}.back{font-size:12px}h1,h2{font-family:var(--serif);font-weight:400;line-height:1.15;letter-spacing:-.8px}h1{font-size:40px;margin:16px 0 12px}h1 em{color:var(--accent)}h2{font-size:32px;margin:36px 0 10px}h3{font-size:16px;font-weight:600;margin:0 0 8px}p{margin:0 0 12px}.eyebrow{font:500 10px/1.6 var(--mono);letter-spacing:.16em;color:var(--muted);margin:28px 0 8px}.intro{max-width:900px;color:var(--muted)}.scenario{padding:16px 0;border-block:1px solid var(--rule);margin:24px 0}.scenario strong{color:var(--accent)}.diagram-container{width:100%;overflow-x:auto;margin:16px 0 12px}.diagram-container svg{display:block;width:100%;min-width:1280px}.diagram-caption{font-size:12px;color:var(--muted)}.table-container{width:100%;overflow-x:auto;margin:20px 0}table{width:100%;border-collapse:collapse;font-size:12px;min-width:680px}th,td{padding:13px 14px;text-align:left;vertical-align:top;border-bottom:1px solid var(--rule)}th{font-weight:600;background:var(--surface)}td:first-child{width:5%;font-family:var(--mono);color:var(--accent)}td:nth-child(2){width:34%}.note{border-left:2px solid var(--accent);padding:8px 16px;margin:24px 0;max-width:960px}.receipt{border-top:1px solid var(--rule);padding-top:20px;margin-top:36px;color:var(--muted);font-size:11px}.receipt p{margin-bottom:6px}footer{margin-top:28px;font:400 10px var(--mono);color:var(--muted)}
+    @media(max-width:600px){body{padding:24px 16px}h1{font-size:32px}h2{font-size:28px}}
+    @media print{body{padding:0}.back{display:none}.diagram-container{overflow-x:visible}.diagram-container svg{min-width:0}section{break-inside:avoid}h2{break-after:avoid}table{min-width:0}.table-container{overflow:visible}}
+  </style>
+</head>
+<body>
+<main class="frame">
+  <a class="back" href="./#/path">← Thử luồng Backend trên MajorWeave</a>
+  <p class="eyebrow">MAJORWEAVE / BACKEND WALKTHROUGH</p>
+  <h1>Luồng sự kiện: <em>từ khám phá đến học thử.</em></h1>
+  <p class="intro">Luồng sự kiện mô tả người dùng làm gì, website phản hồi ra sao, điều kiện để đi tiếp và các nhánh phát sinh. Bốn tên trang chỉ cho biết cấu trúc website; các bước và nhánh dưới đây mới thể hiện cách website hoạt động.</p>
+  <div class="scenario"><strong>Tình huống mẫu.</strong> Sinh viên Kỹ thuật phần mềm đã biết JavaScript, muốn xây API quản lý công việc, dành 5 giờ mỗi tuần, bắt đầu 05/10/2026. Chọn W3Schools làm nguồn cho Node.js; các chặng khác giữ nguồn mặc định. Đây là kế hoạch tự học của sinh viên, tách biệt với lịch làm đồ án của nhóm.</div>
+  <section aria-labelledby="overview-heading">
+    <h2 id="overview-heading">01. Luồng sử dụng chính</h2>
+    <p class="intro">Liên kết ngoài mở tab mới. Sinh viên quay lại MajorWeave với các lựa chọn đã giữ nguyên; website không tự đánh dấu hoàn thành khi người dùng mở tài liệu.</p>
+    <div class="diagram-container">
+      <svg viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="backend-overview-title backend-overview-desc" id="backend-overview">
+        <title id="backend-overview-title">Luồng sự kiện học Backend trên MajorWeave</title>
+        <desc id="backend-overview-desc">Sinh viên chọn Backend, xem roadmap ngoài nếu muốn, chọn kỹ năng và nguồn học, tùy chỉnh lộ trình, tạo kế hoạch tuần, học trên nguồn ngoài rồi tự đánh dấu hoàn thành để lưu tiến độ.</desc>
+        <defs>
+          <marker id="overview-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#56514a"/></marker>
+          <marker id="overview-arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#a74127"/></marker>
+          <marker id="overview-arrow-link" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#56514a"/></marker>
+        </defs>
+        <rect width="1280" height="720" fill="#f4f1ea"/>
+        <g fill="none" stroke="#56514a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#overview-arrow)">
+          <path d="M440 112V136"/><path d="M440 200V224"/><path d="M440 288V312"/><path d="M440 376V400"/><path d="M440 464V488"/><path d="M440 552V576"/>
+          <path d="M640 156H840" stroke-dasharray="5,4" marker-end="url(#overview-arrow-link)"/>
+          <path d="M840 180H640" stroke-dasharray="5,4"/>
+          <path d="M640 420H840" marker-end="url(#overview-arrow-link)"/>
+          <path d="M840 444H768Q760 444 760 452V512Q760 520 752 520H640" stroke-dasharray="5,4"/>
+        </g>
+        <g font-family="'Be Vietnam Pro',sans-serif" font-size="12" fill="#56514a" text-anchor="middle">
+          <rect x="688" y="124" width="104" height="24" fill="#f4f1ea"/><text x="740" y="141">XEM THÊM</text>
+          <rect x="688" y="188" width="104" height="24" fill="#f4f1ea"/><text x="740" y="205">QUAY LẠI</text>
+          <rect x="680" y="388" width="120" height="24" fill="#f4f1ea"/><text x="740" y="405">MỞ TAB MỚI</text>
+          <rect x="770" y="480" width="108" height="24" fill="#f4f1ea"/><text x="824" y="497">HỌC XONG</text>
+        </g>
+        <g font-family="'Be Vietnam Pro',sans-serif" text-anchor="middle">
+          <g><rect x="240" y="48" width="400" height="64" rx="20" fill="#fbfaf6" stroke="#1c1a17"/><text x="440" y="74" font-size="16" font-weight="600" fill="#1c1a17">Sinh viên chọn Backend</text><text x="440" y="96" font-size="12" fill="#56514a">Explore · ngành hiện tại hoặc khám phá khoa khác</text></g>
+          <g><rect x="240" y="136" width="400" height="64" rx="6" fill="#fbfaf6" stroke="#1c1a17"/><text x="440" y="162" font-size="16" font-weight="600" fill="#1c1a17">Website hiển thị chi tiết hướng học</text><text x="440" y="184" font-size="12" fill="#56514a">Path Detail · kỹ năng, nguồn học, chứng nhận</text></g>
+          <g><rect x="840" y="136" width="344" height="64" rx="6" fill="#fbfaf6" stroke="#56514a" stroke-dasharray="5,4"/><text x="1012" y="162" font-size="16" font-weight="600" fill="#1c1a17">Xem bản đồ tổng quan</text><text x="1012" y="184" font-family="'JetBrains Mono',monospace" font-size="12" fill="#56514a">roadmap.sh/backend · /nodejs</text></g>
+          <g><rect x="240" y="224" width="400" height="64" rx="6" fill="#fbfaf6" stroke="#1c1a17"/><text x="440" y="250" font-size="16" font-weight="600" fill="#1c1a17">Chọn chặng và một nguồn học</text><text x="440" y="272" font-size="12" fill="#56514a">Bấm kỹ năng → xem tài liệu → chọn nguồn</text></g>
+          <g><rect x="240" y="312" width="400" height="64" rx="6" fill="#fbfaf6" stroke="#a74127" stroke-width="1.8"/><text x="440" y="338" font-size="16" font-weight="600" fill="#1c1a17">Tùy chỉnh My Roadmap</text><text x="440" y="360" font-size="12" fill="#56514a">Bỏ qua JavaScript · mục tiêu · 5 giờ/tuần</text></g>
+          <g><rect x="240" y="400" width="400" height="64" rx="6" fill="#fbfaf6" stroke="#1c1a17"/><text x="440" y="426" font-size="16" font-weight="600" fill="#1c1a17">Tạo và mở My Plan</text><text x="440" y="448" font-size="12" fill="#56514a">Kiểm tra đầu vào → chia việc theo tuần (hình 02)</text></g>
+          <g><rect x="840" y="400" width="344" height="64" rx="6" fill="#fbfaf6" stroke="#56514a" stroke-dasharray="5,4"/><text x="1012" y="426" font-size="16" font-weight="600" fill="#1c1a17">Học trên website nguồn</text><text x="1012" y="448" font-size="12" fill="#56514a">Ví dụ: W3Schools, MDN, F8…</text></g>
+          <g><rect x="240" y="488" width="400" height="64" rx="6" fill="#fbfaf6" stroke="#1c1a17"/><text x="440" y="514" font-size="16" font-weight="600" fill="#1c1a17">Sinh viên đánh dấu hoàn thành</text><text x="440" y="536" font-size="12" fill="#56514a">Có thể sửa việc, ghi chú hoặc chuyển tuần</text></g>
+          <g><rect x="240" y="576" width="400" height="64" rx="20" fill="#efe0d9" stroke="#a74127" stroke-width="1.8"/><text x="440" y="602" font-size="16" font-weight="600" fill="#1c1a17">Website lưu và cập nhật tiến độ</text><text x="440" y="624" font-size="12" fill="#56514a">Tải lại trang vẫn giữ việc đã hoàn thành</text></g>
+        </g>
+        <line x1="64" y1="664" x2="1216" y2="664" stroke="#d2ccbe"/>
+        <g font-family="'Be Vietnam Pro',sans-serif" font-size="11" fill="#56514a"><rect x="88" y="684" width="24" height="16" rx="6" fill="none" stroke="#1c1a17"/><text x="124" y="697">Thao tác / phản hồi</text><rect x="328" y="684" width="24" height="16" rx="6" fill="none" stroke="#56514a" stroke-dasharray="5,4"/><text x="364" y="697">Website ngoài</text><path d="M552 692H592" stroke="#56514a" stroke-dasharray="5,4"/><text x="604" y="697">Nhánh tùy chọn / quay lại</text><rect x="928" y="684" width="24" height="16" rx="8" fill="none" stroke="#1c1a17"/><text x="964" y="697">Bắt đầu / kết thúc</text></g>
+      </svg>
+    </div>
+    <p class="diagram-caption">9 bước chính, 10 mũi tên. Trên điện thoại, kéo ngang trong khung để xem toàn bộ sơ đồ.</p>
+  </section>
+  <section aria-labelledby="validation-heading">
+    <h2 id="validation-heading">02. Nhánh tạo kế hoạch</h2>
+    <p class="intro">Đầu vào hợp lệ: có mục tiêu, ngày bắt đầu hợp lệ và ít nhất một chặng chưa biết. Nếu đã có kế hoạch, website hỏi trước khi sắp lại lịch.</p>
+    <div class="diagram-container">
+      <svg viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="backend-validation-title backend-validation-desc" id="backend-validation">
+        <title id="backend-validation-title">Kiểm tra và tạo kế hoạch học Backend</title>
+        <desc id="backend-validation-desc">Khi tạo kế hoạch, website kiểm tra đầu vào, báo lỗi để sửa nếu thiếu thông tin, yêu cầu xác nhận khi đã có kế hoạch, rồi chia việc theo tuần và lưu hoặc giữ nguyên kế hoạch nếu sinh viên hủy.</desc>
+        <defs>
+          <marker id="validation-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#56514a"/></marker>
+          <marker id="validation-arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#a74127"/></marker>
+          <marker id="validation-arrow-link" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#56514a"/></marker>
+        </defs>
+        <rect width="1280" height="720" fill="#f4f1ea"/>
+        <g fill="none" stroke="#56514a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#validation-arrow)">
+          <path d="M232 128V176"/><path d="M352 240H584"/><path d="M232 304V352"/>
+          <path d="M64 392H48Q40 392 40 384V104Q40 96 48 96H64" stroke-dasharray="5,4"/>
+          <path d="M824 240H952"/><path d="M704 304V456"/>
+          <path d="M952 256H928Q920 256 920 264V488Q920 496 912 496H872"/>
+          <path d="M1084 280V384" stroke-dasharray="5,4"/>
+          <path d="M704 536V584"/>
+        </g>
+        <g font-family="'Be Vietnam Pro',sans-serif" font-size="12" fill="#56514a" text-anchor="middle">
+          <rect x="432" y="208" width="72" height="24" fill="#f4f1ea"/><text x="468" y="225">HỢP LỆ</text>
+          <rect x="242" y="316" width="88" height="24" fill="#f4f1ea"/><text x="286" y="333">CHƯA ĐỦ</text>
+          <rect x="50" y="316" width="88" height="24" fill="#f4f1ea"/><text x="94" y="333">SỬA LẠI</text>
+          <rect x="844" y="208" width="88" height="24" fill="#f4f1ea"/><text x="888" y="225">ĐÃ CÓ</text>
+          <rect x="714" y="356" width="108" height="24" fill="#f4f1ea"/><text x="768" y="373">CHƯA CÓ</text>
+          <rect x="930" y="340" width="104" height="24" fill="#f4f1ea"/><text x="982" y="357">ĐỒNG Ý</text>
+          <rect x="1094" y="316" width="104" height="24" fill="#f4f1ea"/><text x="1146" y="333">HỦY</text>
+        </g>
+        <g font-family="'Be Vietnam Pro',sans-serif" text-anchor="middle">
+          <g><rect x="64" y="64" width="336" height="64" rx="20" fill="#fbfaf6" stroke="#1c1a17"/><text x="232" y="90" font-size="16" font-weight="600" fill="#1c1a17">Bấm “Tạo kế hoạch của tôi”</text><text x="232" y="112" font-size="12" fill="#56514a">Tại trang My Roadmap</text></g>
+          <g><polygon points="232,176 352,240 232,304 112,240" fill="#fbfaf6" stroke="#a74127" stroke-width="1.8"/><text x="232" y="236" font-size="16" font-weight="600" fill="#1c1a17">Thông tin hợp lệ?</text><text x="232" y="258" font-size="12" fill="#56514a">Mục tiêu · ngày · chặng học</text></g>
+          <g><rect x="64" y="352" width="336" height="80" rx="6" fill="#fbfaf6" stroke="#1c1a17"/><text x="232" y="382" font-size="16" font-weight="600" fill="#1c1a17">Báo lỗi tại My Roadmap</text><text x="232" y="406" font-size="12" fill="#56514a">Giữ lựa chọn để sinh viên sửa dữ liệu</text></g>
+          <g><polygon points="704,176 824,240 704,304 584,240" fill="#fbfaf6" stroke="#1c1a17"/><text x="704" y="236" font-size="16" font-weight="600" fill="#1c1a17">Đã có kế hoạch?</text><text x="704" y="258" font-size="12" fill="#56514a">Kiểm tra các việc hiện tại</text></g>
+          <g><rect x="952" y="200" width="264" height="80" rx="6" fill="#fbfaf6" stroke="#1c1a17"/><text x="1084" y="230" font-size="16" font-weight="600" fill="#1c1a17">Yêu cầu xác nhận</text><text x="1084" y="254" font-size="12" fill="#56514a">Tạo lại hay giữ kế hoạch?</text></g>
+          <g><rect x="952" y="384" width="264" height="80" rx="20" fill="#fbfaf6" stroke="#1c1a17"/><text x="1084" y="414" font-size="16" font-weight="600" fill="#1c1a17">Giữ kế hoạch cũ</text><text x="1084" y="438" font-size="12" fill="#56514a">Không thay đổi lịch và tiến độ</text></g>
+          <g><rect x="536" y="456" width="336" height="80" rx="6" fill="#fbfaf6" stroke="#1c1a17"/><text x="704" y="486" font-size="16" font-weight="600" fill="#1c1a17">Chia việc theo giờ mỗi tuần</text><text x="704" y="510" font-size="12" fill="#56514a">Bỏ qua kỹ năng đã biết · dùng nguồn đã chọn</text></g>
+          <g><rect x="536" y="584" width="336" height="64" rx="20" fill="#efe0d9" stroke="#a74127" stroke-width="1.8"/><text x="704" y="610" font-size="16" font-weight="600" fill="#1c1a17">Lưu và mở My Plan</text><text x="704" y="632" font-size="12" fill="#56514a">Xem tuần đầu tiên và bắt đầu học</text></g>
+        </g>
+        <line x1="64" y1="664" x2="1216" y2="664" stroke="#d2ccbe"/>
+        <g font-family="'Be Vietnam Pro',sans-serif" font-size="11" fill="#56514a"><rect x="88" y="684" width="24" height="16" rx="6" fill="none" stroke="#1c1a17"/><text x="124" y="697">Xử lý</text><polygon points="292,684 304,692 292,700 280,692" fill="none" stroke="#1c1a17"/><text x="316" y="697">Điều kiện</text><rect x="488" y="684" width="24" height="16" rx="8" fill="none" stroke="#1c1a17"/><text x="524" y="697">Bắt đầu / kết thúc</text><path d="M796 692H836" stroke="#56514a" stroke-dasharray="5,4"/><text x="848" y="697">Sửa lại / hủy</text></g>
+      </svg>
+    </div>
+    <p class="diagram-caption">Ví dụ nhánh lỗi: để trống mục tiêu → báo “Bạn hãy đặt một mục tiêu cho kế hoạch.” → điền mục tiêu → bấm tạo lại.</p>
+  </section>
+  <section aria-labelledby="steps-heading">
+    <h2 id="steps-heading">03. Bấm thử từng bước</h2>
+    <div class="table-container"><table><thead><tr><th>#</th><th>Sinh viên thực hiện</th><th>Website phản hồi / kết quả quan sát</th></tr></thead><tbody>
+      <tr><td>1</td><td>Ở Explore, chọn ngành Kỹ thuật phần mềm → mở Backend.</td><td>Path Detail hiển thị 9 chặng, thư viện nguồn học và mục tiêu chứng nhận. Khám phá khoa khác vẫn giữ ngành hiện tại.</td></tr>
+      <tr><td>2</td><td>Bấm “Backend trên roadmap.sh”.</td><td>Mở roadmap.sh/backend trong tab mới. Quay lại tab MajorWeave để tiếp tục; không nhập lại lựa chọn.</td></tr>
+      <tr><td>3</td><td>Bấm “Node.js essentials” → chọn nguồn W3Schools.</td><td>Khung nguồn học mở ra, nguồn được chọn có trạng thái đã chọn. Có thể mở tài liệu để xem trước, lọc miễn phí / tiếng Việt.</td></tr>
+      <tr><td>4</td><td>Bấm “Tùy chỉnh roadmap”; giữ JavaScript là “Đã biết”.</td><td>My Roadmap hiển thị các chặng, nguồn đã chọn và kỹ năng sẽ được bỏ qua. Có thể sắp xếp hoặc bỏ chặng.</td></tr>
+      <tr><td>5</td><td>Nhập mục tiêu “Xây API quản lý công việc”, 5 giờ/tuần, 05/10/2026 → bấm tạo.</td><td>Website kiểm tra dữ liệu rồi tạo kế hoạch thực hành. Với bộ dữ liệu mẫu: 8 chặng cần học, khoảng 30 giờ, 7 tuần, 21 việc. Đây là ước lượng cho dự án đầu tiên.</td></tr>
+      <tr><td>6</td><td>Ở My Plan, bấm “Mở nguồn học” trên việc của Node.js.</td><td>Mở nguồn W3Schools đã chọn. Mỗi việc dùng nguồn của đúng chặng; mở tài liệu chưa làm tiến độ tăng.</td></tr>
+      <tr><td>7</td><td>Quay lại, đánh dấu hoàn thành một việc; tải lại trang.</td><td>Tiến độ tăng và việc vẫn được đánh dấu. Có thể sửa tên, ghi chú hoặc chuyển sang tuần khác. Bản thử lưu trên trình duyệt của thiết bị này.</td></tr>
+    </tbody></table></div>
+    <div class="note"><h3>Hai nhánh để trình bày với thầy</h3><p><strong>Thiếu thông tin:</strong> xóa mục tiêu rồi bấm tạo. Website báo lỗi ngay tại My Roadmap, giữ các lựa chọn để sửa.</p><p><strong>Đã có kế hoạch:</strong> quay lại My Roadmap và bấm tạo. Chọn “Giữ kế hoạch hiện tại” thì lịch không thay đổi. Nếu xác nhận tạo lại, giữ trạng thái hoàn thành và ghi chú của các bài còn trong roadmap; việc tự thêm và chỉnh sửa tên / thời lượng được thay theo kế hoạch mới.</p></div>
+  </section>
+  <aside class="receipt" aria-label="Ghi chú thiết kế và phạm vi">
+    <p><strong>Tham chiếu thiết kế:</strong> Beaver Plans (https://beaverplans.com/), đối chiếu ngày 02/10/2026: nền #f4f1ea, giấy #fbfaf6, chữ #1c1a17, chữ phụ #56514a, nhấn #a74127. Be Vietnam Pro và JetBrains Mono được xác nhận từ kiểu chữ đang hiển thị trên trang tham chiếu.</p>
+    <p>Newsreader được dùng cho tiêu đề riêng của MajorWeave; không coi đây là tiêu đề giống hệt màn hình Beaver vừa kiểm tra. Google Fonts tải khi có mạng; ngoại tuyến dùng system sans / Georgia / monospace. Sơ đồ dùng bảng màu và font theo yêu cầu của người dùng, thay cho skin mặc định của plugin.</p>
+    <p><strong>Phạm vi minh họa:</strong> Backend là tình huống hoàn chỉnh hiện có. Các hướng khác đang ở mức giới thiệu. Liên kết roadmap.sh là tài liệu tham khảo ngoài, không phải nội dung nhập tự động hay đồng bộ tiến độ.</p>
+    <p><strong>Quy cách:</strong> flowchart, khung 1280 × 720 (slide 16:9), tĩnh; một sơ đồ tổng quan và một sơ đồ nhánh điều kiện. Các quy tắc điều kiện / ghi nhớ dựa trên hành vi đã triển khai trong bản thử.</p>
+  </aside>
+  <footer>MAJORWEAVE · Explore paths. Build your plan. · Backend event flow v1</footer>
+</main>
+</body>
+</html>
