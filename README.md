@@ -7,6 +7,12 @@ Mini Project môn **Phát triển ứng dụng web — IS207.R11**, nhóm **PHP 
 - [Repository đồ án chính](https://github.com/haiphamt/is207-main-project)
 - Hạn nộp mini: **12/10/2026**. Bản hiện tại là prototype, URL demo online sẽ cập nhật sau triển khai.
 
+## Phạm vi đích đang chờ nhóm trưởng duyệt
+
+[Bảng phạm vi MajorWeave — 04/10/2026](docs/PHAM_VI_MAJORWEAVE.md) đề xuất đầy đủ ngành → hướng → nhánh, chức năng và tiêu chí nghiệm thu. Bản này có 18 hướng và 50 cấu hình kế hoạch đề xuất; Backend ba stack và việc thêm BA đã được xác nhận, các nhánh còn lại chờ duyệt.
+
+Danh mục 16 hướng và hành trình Backend mô tả phía dưới là **tình trạng prototype hiện tại**. Nội dung trong bảng phạm vi đích chưa được triển khai vào app. Phân công dưới đây thuộc đợt chuẩn bị prototype; phân công triển khai mới sẽ lập sau khi duyệt phạm vi, prototype và kiến trúc.
+
 ## Nhóm thực hiện
 
 | Thành viên | Phần phụ trách trong đợt chuẩn bị nộp |
