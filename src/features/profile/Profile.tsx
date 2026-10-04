@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Check, GraduationCap, UserRound } from 'lucide-react';
-import { faculties, majorName, stacks } from './data';
-import { StudyActivity } from './StudyActivity';
-import type { State } from './state';
+import { faculties, majorName, stacks } from '../../data';
+import { StudyActivity } from '../../components/StudyActivity';
+import type { State } from '../../state';
 
 export function Profile({ state, update, toast }: { state: State; update: (patch: Partial<State>) => void; toast: (text: string) => void }) {
   const [name, setName] = useState(state.profileName);

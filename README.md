@@ -11,7 +11,9 @@ Mini Project môn **Phát triển ứng dụng web — IS207.R11**, nhóm **PHP 
 
 **Mở bản đã chọn:** http://127.0.0.1:5173/#/explore sau khi chạy `npm run dev`. Hải yêu cầu dùng lại bản cũ có sidebar ngày 04/10/2026; đây là nền giao diện cho phần triển khai tiếp theo.
 
-[Kiến trúc triển khai — bước 3, đang giao Hải duyệt](docs/KIEN_TRUC_MAJORWEAVE.md): mô hình chung cho mọi hướng, nhiều kế hoạch, lưu trên thiết bị, lịch sử và xuất/nhập. [Hợp đồng dữ liệu](docs/architecture/contracts.ts), [hướng dẫn biên soạn](docs/architecture/HUONG_DAN_DU_LIEU.md) và [mẫu ba nhánh Backend](docs/architecture/backend.example.ts).
+[Kiến trúc triển khai — bước 3, nền cho bộ khung](docs/KIEN_TRUC_MAJORWEAVE.md): mô hình chung cho mọi hướng, nhiều kế hoạch, lưu trên thiết bị, lịch sử và xuất/nhập. [Hợp đồng dữ liệu chuẩn](src/domain/contracts.ts), [hướng dẫn biên soạn](docs/architecture/HUONG_DAN_DU_LIEU.md) và [mẫu ba nhánh Backend](src/content/paths/backend.ts).
+
+**Bước 4 — đang giao kiểm tra:** [bộ khung và ranh giới file](docs/BUOC_4_BO_KHUNG_VA_QUY_TAC.md), [luật chung cho AI](AGENTS.md), [quy trình Antigravity](docs/team/QUY_TRINH_ANTIGRAVITY.md) và [mẫu task](docs/templates/TASK.md). Các trang đã tách thành module; v2/IndexedDB chưa tích hợp. Phân công năm người là bước sau.
 
 **Quyết định mới:** làm chế độ không đăng nhập trước; Profile là hồ sơ học tập trên thiết bị. Tài khoản/Google login là giai đoạn sau, chưa chọn backend/nhà cung cấp. Kiến trúc đề xuất IndexedDB và file sao lưu; bản chạy hiện tại vẫn giữ localStorage và chưa được chuyển cấu trúc.
 
@@ -43,7 +45,7 @@ Bản thử một hành trình hoàn chỉnh: chọn ngành → khám phá Backe
 Yêu cầu Node.js 20.19+ hoặc 22.12+.
 
 ```powershell
-npm install
+npm ci
 npm run dev
 ```
 
@@ -51,6 +53,7 @@ Mở địa chỉ mà máy chủ hiển thị, mặc định `http://127.0.0.1:5
 
 ```powershell
 npm run build
+npm run check
 npm run preview
 ```
 
@@ -111,15 +114,19 @@ Khi build, hai tài liệu công khai và bản Markdown được tạo lại t�
 
 - `src/data.ts`: danh mục ngành, hướng học, chặng, tài nguyên, chứng nhận. Nội dung tóm tắt được biên soạn riêng, có liên kết nguồn.
 - `src/state.ts`: lưu/đọc lựa chọn và thuật toán phân chia công việc theo quỹ thời gian tuần.
-- `src/main.tsx`: giao diện, điều hướng và tương tác.
-- `src/StackChooser.tsx`: ba nhánh Backend.
-- `src/Profile.tsx`, `src/StudyActivity.tsx`: hồ sơ và nhịp học.
+- `src/main.tsx`, `src/app/`: entry, sidebar, routes và context v1 đang dùng.
+- `src/features/`: năm trang và tương tác riêng.
+- `src/components/`: UI dùng chung, bộ chọn stack và nhịp học.
+- `src/domain/contracts.ts`, `src/content/`: hợp đồng/gói nội dung v2 chuẩn, chưa nối UI.
+- `src/persistence/legacy.ts`: ghi v1; đọc v1 còn ở `state.ts`. IndexedDB chưa triển khai.
 - `src/styles.css`: giao diện giấy màu kem, điểm nhấn màu gạch, responsive.
 - `scripts/verify.cjs`: kiểm tra hành trình, lưu dữ liệu, chỉnh/chuyển việc, nguồn học và bố cục.
 
 ## Kiểm tra
 
 Build: `npm run build`. Các kiểm tra trình duyệt nằm tại `scripts/verify.cjs`, `scripts/verify-stacks.cjs`, `scripts/verify-catalog.cjs`, `scripts/verify-activity.cjs`; đặt `MAJORWEAVE_PLAYWRIGHT_MODULE` nếu dùng Playwright từ runtime riêng. Báo cáo và ảnh lưu tại `artifacts/`.
+
+`npm run check` kiểm tra gói nội dung đã đăng ký, nguồn/tiên quyết, ranh giới module và vòng import. GitHub workflow chạy check/build; chưa cấu hình branch protection/CODEOWNERS. [Luồng mẫu](docs/templates/FLOW.md), [test case và AI log mẫu](docs/templates/QA_AI_LOG.md). Nội dung mẫu chưa đồng nghĩa nghiệm thu mọi hướng.
 
 ## Nguồn tham khảo
 

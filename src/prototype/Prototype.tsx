@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { NavLink, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { ArrowDown, ArrowRight, ArrowUp, ArrowUpRight, BookOpen, CalendarDays, Check, ChevronLeft, ChevronRight, Compass, Menu, Pencil, Plus, Search, UserRound, X } from 'lucide-react';
-import { StudyActivity } from '../StudyActivity';
+import { StudyActivity } from '../components/StudyActivity';
 import { nextMonday } from '../state';
 import { configKey, contentNote, credentialsFor, faculties, majorLabel, majorProfiles, pathById, paths, relation, stagesFor, trackById, tracks, type Source, type Stage } from './fixtures';
 import './prototype.css';

@@ -1,4 +1,4 @@
-import { stacks, type BackendStack } from './data';
+import { stacks, type BackendStack } from '../data';
 
 export function StackChooser({ value, onChange }: { value: BackendStack; onChange: (stack: BackendStack) => void }) {
   return <section className="stack-chooser" aria-labelledby="stack-heading">

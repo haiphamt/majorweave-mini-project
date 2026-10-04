@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { localISO, shortDate, type Task } from './state';
+import { localISO, shortDate, type Task } from '../state';
 
 export function StudyActivity({ tasks }: { tasks: Task[] }) {
   const today = new Date(); today.setHours(0, 0, 0, 0);

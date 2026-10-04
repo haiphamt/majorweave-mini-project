@@ -1,0 +1,31 @@
+{
+  "date": "2026-10-04",
+  "beforeCommit": "601a4ec",
+  "comparison": [
+    {
+      "route": "explore",
+      "unchanged": true
+    },
+    {
+      "route": "path",
+      "unchanged": true
+    },
+    {
+      "route": "roadmap",
+      "unchanged": true
+    },
+    {
+      "route": "plan",
+      "unchanged": true
+    },
+    {
+      "route": "profile",
+      "unchanged": true
+    }
+  ],
+  "branch": "Java",
+  "resources": 22,
+  "credentials": 6,
+  "drawerOpenClose": true,
+  "errorsSinceReload": 0
+}

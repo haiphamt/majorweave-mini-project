@@ -2,7 +2,7 @@
 
 **Phiên bản:** 0.3 · **Ngày đối chiếu:** 04/10/2026 · **Hạn nộp:** 12/10/2026.
 
-**Điều chỉnh mới nhất:** Hải chọn lại giao diện cũ có sidebar và yêu cầu làm không đăng nhập trước. Profile hiện là hồ sơ học tập cục bộ; tài khoản/Google login ở giai đoạn sau, chưa chọn nhà cung cấp. Giữ nhiều kế hoạch và phạm vi mọi hướng được duyệt. Kiến trúc đề xuất để kiểm tra nằm tại [KIEN_TRUC_MAJORWEAVE.md](KIEN_TRUC_MAJORWEAVE.md); chưa chuyển đổi code đang chạy.
+**Điều chỉnh mới nhất:** Hải chọn lại giao diện cũ có sidebar và yêu cầu làm không đăng nhập trước. Profile hiện là hồ sơ học tập cục bộ; tài khoản/Google login ở giai đoạn sau, chưa chọn nhà cung cấp. Giữ nhiều kế hoạch và phạm vi mọi hướng được duyệt. Sau yêu cầu tiếp tục, [bộ khung/quy tắc bước 4](BUOC_4_BO_KHUNG_VA_QUY_TAC.md) đã tách các trang; UI vẫn lưu v1, workspace v2 chưa tích hợp.
 
 **Trạng thái:** Đã soạn để Hải kiểm tra. Đây là phạm vi đích đề xuất; chưa phải danh sách tính năng đã triển khai hoặc bản đã được Hải duyệt toàn bộ.
 
@@ -288,8 +288,8 @@ Các sơ đồ luồng chi tiết sẽ thực hiện sau khi nghiệp vụ đư�
 |---|---|---|
 | 1 — đã gửi | Bảng phạm vi này: ngành → hướng → nhánh, chức năng và tiêu chí | Hải yêu cầu tiếp tục prototype; còn có thể sửa chi tiết danh mục |
 | 2 — đã chọn lại nền giao diện | Giữ sidebar và style bản cũ; thành phần mới sẽ ghép vào và duyệt trước tích hợp | Không dùng bố cục ngang Prototype 02 làm nền |
-| 3 — đang giao kiểm tra | [Kiến trúc](KIEN_TRUC_MAJORWEAVE.md), hợp đồng dữ liệu, lưu/migrate, planner chung và mẫu ba nhánh Backend đã kiểm tra cấu trúc | Hải duyệt; có ví dụ để các bạn triển khai cùng một cấu trúc |
-| 4 | Quy tắc Antigravity, quyền sửa thư mục, Git/PR, mẫu story/flow/test và tiêu chí bàn giao | Hải duyệt quy trình và hợp đồng giữa các phần |
+| 3 — đã gửi, Hải yêu cầu tiếp tục | [Kiến trúc](KIEN_TRUC_MAJORWEAVE.md), hợp đồng dữ liệu, lưu/migrate, planner chung và mẫu ba nhánh Backend đã kiểm tra cấu trúc | Làm bộ khung theo kiến trúc; không coi mọi nhánh đề xuất đã được duyệt |
+| 4 — đang giao kiểm tra | [Bộ khung/quy tắc](BUOC_4_BO_KHUNG_VA_QUY_TAC.md): module riêng, luật Antigravity, ranh giới file, Git/PR, mẫu story/flow/test và kiểm tra tự động | Hải kiểm tra trước khi gắn tên năm người và giao task |
 | 5 | Gói giao việc cho năm bạn: phạm vi, file/module sở hữu, phụ thuộc, người review, nghiệm thu, mốc tích hợp | Hải giao việc và nhóm xác nhận đầu ra |
 
 Hải không cần tự biên soạn toàn bộ nguồn học hoặc viết xong mọi module trước khi giao việc. Hải cần chốt danh mục, cấu trúc và các ví dụ chuẩn; năm bạn thực hiện nội dung/chức năng theo chuẩn đó.
@@ -304,7 +304,7 @@ Hải không cần tự biên soạn toàn bộ nguồn học hoặc viết xong
 - [x] Làm không đăng nhập trước; nhiều kế hoạch, một kế hoạch đang xem. Tài khoản/Google login ở giai đoạn sau, chưa chọn nhà cung cấp.
 - [ ] Chốt cách giữ lịch sử khi tạo lại và migrate dữ liệu khách ở phần kiến trúc.
 
-Hải đã chọn lại sidebar cũ và yêu cầu bước tiếp theo. [Kiến trúc bước 3](KIEN_TRUC_MAJORWEAVE.md), hợp đồng dữ liệu và mẫu ba nhánh Backend đang giao kiểm tra; dừng trước bộ khung và quy tắc giao việc. Không coi việc commit tài liệu hoặc fixtures là phê duyệt toàn bộ nhánh hay bằng chứng đã hoàn thiện thư viện học.
+Hải đã chọn lại sidebar cũ và yêu cầu tiếp tục sau kiến trúc. [Bộ khung/quy tắc bước 4](BUOC_4_BO_KHUNG_VA_QUY_TAC.md) đang giao kiểm tra; dừng trước phân công cụ thể năm người. Không coi việc commit tài liệu hoặc fixtures là phê duyệt toàn bộ nhánh hay bằng chứng đã hoàn thiện thư viện học.
 
 ## 13. Nguồn đối chiếu và cách sử dụng
 

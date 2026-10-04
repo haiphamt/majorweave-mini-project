@@ -2,7 +2,9 @@
 
 **Phiên bản:** 0.1 · **Ngày:** 04/10/2026 · **Bước:** 3 — kiến trúc, hợp đồng dữ liệu và mẫu chuẩn.
 
-**Trạng thái:** Tài liệu đề xuất có mẫu dữ liệu đã kiểm tra cấu trúc. Chưa chuyển đổi ứng dụng đang chạy, chưa tạo backend/CSDL server. Phân công năm thành viên và bộ quy tắc Antigravity đầy đủ là bước sau khi Hải duyệt phần này.
+**Trạng thái:** Tài liệu kiến trúc đích có mẫu dữ liệu đã kiểm tra cấu trúc. UI chưa chuyển sang workspace v2, chưa tạo backend/CSDL server. Phân công năm thành viên thuộc bước tiếp theo sau bộ khung/quy tắc.
+
+**Tiếp nối bước 4:** Hải yêu cầu tiếp tục. [Bộ khung/quy tắc](BUOC_4_BO_KHUNG_VA_QUY_TAC.md) đã tách module theo sidebar cũ và đưa contracts/content chuẩn vào `src`; UI vẫn dùng State/localStorage v1. IndexedDB, planner/workspace v2 và các chức năng mở rộng dưới đây chưa được tích hợp. Các nhánh ngoài Backend vẫn theo trạng thái duyệt trong bảng phạm vi.
 
 ## 1. Quyết định đang áp dụng
 
@@ -65,7 +67,7 @@ MajorWeave liên kết tài liệu bên ngoài. Website không biết sinh viên
 
 ## 4. Cấu trúc code đích và ranh giới module
 
-Đây là cấu trúc sẽ dựng sau khi duyệt. Không yêu cầu các bạn tự tạo thư mục khác trước khi có bộ khung chung.
+Đây là cấu trúc đích. Bộ khung đã có ở bước 4; đối chiếu [cấu trúc thực tế](BUOC_4_BO_KHUNG_VA_QUY_TAC.md#3-cấu-trúc-thực-tế-sau-bước-4) để biết file nào còn phải triển khai. Không tự tạo cấu trúc khác khi làm task.
 
 ```text
 src/
@@ -108,7 +110,7 @@ Tách module để năm bạn triển khai phần riêng theo cùng hợp đồn
 
 ## 5. Mô hình dữ liệu
 
-Hợp đồng đầy đủ: [contracts.ts](architecture/contracts.ts). Bài mẫu chuyển từ Backend đang có: [backend.example.ts](architecture/backend.example.ts). Quy tắc nội dung: [HUONG_DAN_DU_LIEU.md](architecture/HUONG_DAN_DU_LIEU.md).
+Hợp đồng đầy đủ: [contracts.ts chuẩn](../src/domain/contracts.ts). Gói chuyển từ Backend đang có: [backend.ts](../src/content/paths/backend.ts). Đường dẫn tài liệu cũ re-export từ các file này. Quy tắc nội dung: [HUONG_DAN_DU_LIEU.md](architecture/HUONG_DAN_DU_LIEU.md).
 
 ```mermaid
 flowchart LR
