@@ -1,6 +1,6 @@
 # Kiểm thử và AI log — MW-SETUP-04
 
-**Ngày:** 04/10/2026. **Môi trường:** Windows, Node runtime sẵn có, Chrome, Vite local `http://127.0.0.1:5173`. **Baseline:** `601a4ec`. **Bản sau:** nội dung code trong commit bàn giao task này. Không xóa/ghi đè browser storage để chuẩn bị test.
+**Ngày:** 04/10/2026. **Môi trường:** Windows, Node runtime sẵn có, Chrome, Vite local `http://127.0.0.1:5173`. **Baseline:** `601a4ec`. **Bản sau:** `2e2ec62`. Không xóa/ghi đè browser storage để chuẩn bị test.
 
 ## Kết quả đã chạy
 
@@ -13,10 +13,11 @@
 | TC-05 | Chạy prebuild, TypeScript `-b` và Vite `build` | Sinh catalog 12 ngành/16 hướng và 28 luồng prototype; build cả entry thành công | Pass; môi trường này không có npm executable, chạy trực tiếp ba bước tương ứng script build qua Node |
 | TC-06 | Mock storage chỉ trong process test Node; ghi thành công rồi ném lỗi quota | Đúng key v1 và JSON; trả true khi ghi, false khi ném lỗi, input không đổi | Pass; check-project; không thao tác dữ liệu trình duyệt thật |
 | TC-07 | Chrome: mở tab nguồn Java, chứng nhận, Java foundations, đóng drawer | 22 thẻ nguồn, 6 chứng nhận, dialog mở/đóng; không có lỗi console từ lần reload kiểm tra cuối | Pass; file so sánh và thao tác được quan sát |
+| TC-08 | Đọc kết quả GitHub Actions cho SHA `2e2ec62` sau push | Ubuntu / Node 22: `npm ci`, `npm run check`, `npm run build` đều thành công | Pass; [run 37200798257](https://github.com/haiphamt/majorweave-mini-project/actions/runs/37200798257) |
 
 Lỗi dev server xuất hiện trong lúc chuyển file đã được sửa trước lần reload cuối; không gọi log cả phiên là “không có lỗi”. Không thay đổi CSS/HTML thiết kế. Chưa chạy lại toàn bộ bộ test v1 hoặc ma trận mobile; so DOM năm trang và kiểm tra các thành phần được tách là phạm vi kiểm thử bước này.
 
-**Chưa chạy/chưa tích hợp:** planner v2, IndexedDB, migration/import, nhiều plan/lịch sử v2, toàn bộ hướng mới. Check/build xanh không chứng minh các phần đó đã xong. Workflow GitHub được thêm, kết quả run trên GitHub cần đọc sau push; chưa bật branch protection.
+**Chưa chạy/chưa tích hợp:** planner v2, IndexedDB, migration/import, nhiều plan/lịch sử v2, toàn bộ hướng mới. Check/build xanh không chứng minh các phần đó đã xong. Workflow GitHub đã chạy thành công trên SHA ở TC-08; chưa bật branch protection.
 
 ## BUG-MW-SETUP-04-01 — Import chưa đổi đúng sau chuyển file
 
