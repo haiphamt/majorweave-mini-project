@@ -17,6 +17,8 @@ Mini Project môn **Phát triển ứng dụng web — IS207.R11**, nhóm **PHP 
 
 **Bước 5 — đã lập phân công theo yêu cầu của Hải:** [bảng phân công mini](docs/team/PHAN_CONG_MINI_PROJECT.md) có năm task cá nhân, allowlist, nội dung toàn danh mục, dependency, AC, luồng/test phải viết và mốc tới 12/10. Chưa triển khai code của các task hoặc ghi kết quả kiểm thử thay thành viên.
 
+**Dùng trong buổi hướng dẫn nhóm:** [kịch bản trình bày và checklist bắt đầu](docs/team/HUONG_DAN_HOP_NHOM.md), gồm lời nói/demo, cách chạy repo, prompt Antigravity, story/flow/test/PR và lựa chọn skill tùy nhu cầu.
+
 **Quyết định mới:** làm chế độ không đăng nhập trước; Profile là hồ sơ học tập trên thiết bị. Tài khoản/Google login là giai đoạn sau, chưa chọn backend/nhà cung cấp. Kiến trúc đề xuất IndexedDB và file sao lưu; bản chạy hiện tại vẫn giữ localStorage và chưa được chuyển cấu trúc.
 
 Prototype 02 được giữ để đối chiếu lịch sử, không phải giao diện nền đang được chọn: [tài liệu thử nghiệm](docs/PROTOTYPE_02.md). Nội dung mẫu 18 hướng / 50 cấu hình trong đó chưa phải thư viện học hoàn chỉnh. Phạm vi hoàn thiện mọi hướng được duyệt vẫn giữ nguyên.

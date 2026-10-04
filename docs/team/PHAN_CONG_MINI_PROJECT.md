@@ -5,6 +5,8 @@
 
 Danh sách tên/username lấy từ ảnh Hải cung cấp. Không đưa MSSV, email hoặc thông tin liên hệ vào phân công repo. Phân công này thay đợt chuẩn bị prototype trong README; chỉ áp dụng mini, không phải project chính.
 
+Để hướng dẫn các bạn trong buổi họp: [kịch bản trình bày và checklist](HUONG_DAN_HOP_NHOM.md).
+
 ## 1. Phạm vi làm việc và điểm cần chốt đầu buổi
 
 Dùng [bảng phạm vi](../PHAM_VI_MAJORWEAVE.md) làm baseline tổ chức công việc: **12 ngành gốc, 18 hướng, 50 cấu hình**, năm trang. 50 gồm chín Full-stack ghép FE × BE; không phải 50 ứng dụng hoặc 50 roadmap chép riêng.
