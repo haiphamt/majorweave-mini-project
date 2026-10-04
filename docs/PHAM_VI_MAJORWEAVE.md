@@ -1,6 +1,8 @@
 # MajorWeave — Bảng phạm vi để nhóm trưởng duyệt
 
-**Phiên bản:** 0.2 · **Ngày đối chiếu:** 04/10/2026 · **Hạn nộp:** 12/10/2026.
+**Phiên bản:** 0.3 · **Ngày đối chiếu:** 04/10/2026 · **Hạn nộp:** 12/10/2026.
+
+**Điều chỉnh mới nhất:** Hải chọn lại giao diện cũ có sidebar và yêu cầu làm không đăng nhập trước. Profile hiện là hồ sơ học tập cục bộ; tài khoản/Google login ở giai đoạn sau, chưa chọn nhà cung cấp. Giữ nhiều kế hoạch và phạm vi mọi hướng được duyệt. Kiến trúc đề xuất để kiểm tra nằm tại [KIEN_TRUC_MAJORWEAVE.md](KIEN_TRUC_MAJORWEAVE.md); chưa chuyển đổi code đang chạy.
 
 **Trạng thái:** Đã soạn để Hải kiểm tra. Đây là phạm vi đích đề xuất; chưa phải danh sách tính năng đã triển khai hoặc bản đã được Hải duyệt toàn bộ.
 
@@ -19,7 +21,7 @@
 | Mức hoàn thành | Mỗi hướng và mỗi nhánh được duyệt đều có nền tảng, các chặng học, nguồn học, bài thực hành, mục tiêu bổ trợ và kế hoạch sử dụng được |
 | Số trang chính | 5: Explore, Path detail, My roadmap, My plan, Profile |
 | Giao diện | Kế thừa phong cách prototype hiện có, lấy cảm hứng từ BeaverPlans; chi tiết và các trạng thái sẽ được duyệt ở phần prototype |
-| Tình trạng repo | Prototype 01: 16 hướng, Backend ba stack. Prototype 02: giao diện 18 hướng / 50 cấu hình mẫu để duyệt; nội dung ngoài Backend chưa hoàn chỉnh |
+| Tình trạng repo | Prototype 01: giao diện sidebar được chọn, 16 hướng, Backend ba stack. Prototype 02: thử nghiệm lịch sử với 18 hướng / 50 cấu hình mẫu; nội dung ngoài Backend chưa hoàn chỉnh |
 
 **Cách đọc:** Duyệt bảng ngành ở mục 3, các nhánh ở mục 4, chức năng ở mục 7 và tiêu chí hoàn thành ở mục 8. Các mục sau giúp kiểm tra khối lượng và chuẩn bị bước tiếp theo.
 
@@ -34,8 +36,9 @@
 7. Bổ sung **Business Analyst** từ nguồn khác roadmap.sh. Không bổ sung SEO/MarTech và Multimedia Design theo trả lời ngày 04/10/2026.
 8. Sáu thành viên: Hải chuẩn bị kiến trúc, prototype, thiết kế và duyệt cuối; năm bạn còn lại thực hiện chính. Mỗi bạn sẽ viết user story, luồng chi tiết, test case và ghi bằng chứng kiểm thử cho phần mình.
 9. Hoàn thành từng phần rồi Hải kiểm tra trước khi bắt đầu phần mới. Sau bảng phạm vi, Hải đã yêu cầu tiếp tục prototype; không cập nhật Notion.
-10. **Có Google login/đồng bộ; vẫn cho khám phá khi chưa đăng nhập**, xác nhận ngày 04/10/2026. Prototype 02 mới có giao diện tài khoản; chưa kết nối OAuth.
+10. Quyết định ban đầu: **có Google login/đồng bộ; vẫn cho khách khám phá**. Điều chỉnh sau trong ngày 04/10/2026: **làm không đăng nhập trước**, giữ tài khoản/Google login cho giai đoạn sau; chưa chọn backend hoặc dịch vụ xác thực. Nút tài khoản thử nghiệm của Prototype 02 không phải tính năng đăng nhập đã chạy.
 11. **Giữ nhiều kế hoạch, chọn một kế hoạch đang xem**, xác nhận ngày 04/10/2026. Prototype 02 cho thử bằng dữ liệu lưu trên trình duyệt.
+12. Hải yêu cầu **“Dùng bản cũ đi”** và cho tiếp tục bước sau. Giữ sidebar/style bản cũ; Prototype 02 được lưu để đối chiếu, không coi điều hướng ngang đã được duyệt.
 
 **Phạm vi được giới hạn bằng danh mục cụ thể dưới đây.** “Đầy đủ” nghĩa là hoàn thiện tất cả hướng/nhánh trong danh mục đã duyệt. Không tuyên bố 18 hướng này là toàn bộ nghề nghiệp IT hoặc toàn bộ đầu ra của 12 ngành. Chẳng hạn Truyền thông Đa phương tiện còn có các hướng sáng tạo/truyền thông ngoài phạm vi đã chọn. [Thông tin ngành tại UIT](https://tuyensinh.uit.edu.vn/nganh-dao-tao/nganh-truyen-thong-da-phuong-tien).
 
@@ -219,7 +222,7 @@ Các chức năng này chưa được coi là đã giống hoặc đã hoàn thi
 - Nhịp học dựa trên ngày thực sự đánh dấu hoàn thành. Không tự tạo dữ liệu cũ để heatmap trông đầy.
 - Tải lại giữ dữ liệu đã lưu; dữ liệu lỗi phải được xử lý với thông báo rõ ràng, không âm thầm báo thành công.
 
-**Đã chốt với Hải:** Google login/đồng bộ, cho khách khám phá, giữ nhiều kế hoạch và chọn một kế hoạch đang xem. **Còn cần chốt ở kiến trúc:** migrate dữ liệu khách, chính sách giữ lịch sử khi tạo lại kế hoạch và xử lý xung đột đồng bộ. Prototype 02 dùng localStorage riêng và có nhiều kế hoạch; nút Google chỉ là giao diện để duyệt, chưa có OAuth.
+**Quyết định hiện tại:** làm không đăng nhập trước, giữ nhiều kế hoạch và chọn một kế hoạch đang xem. Kiến trúc bước 3 đề xuất lưu cục bộ bằng IndexedDB, migrate bản cũ, giữ lịch sử khi tạo lại và xuất/nhập file; đang giao Hải duyệt. Tài khoản/Google login/đồng bộ online thuộc giai đoạn sau, chưa chọn stack. Prototype 02 là thử nghiệm lịch sử, dùng localStorage riêng; chưa có OAuth.
 
 ## 8. Tiêu chí hoàn thành — áp dụng cho tất cả hướng được duyệt
 
@@ -265,7 +268,7 @@ Các sơ đồ luồng chi tiết sẽ thực hiện sau khi nghiệp vụ đư�
 | Nội dung học | Backend có ba stack; 15 hướng khác chủ yếu tổng quan | Hoàn thiện mọi hướng/nhánh được duyệt, theo mục 5–6 |
 | Cấu trúc dữ liệu | `BackendStack`, `PlanMeta.stack` và planner phụ thuộc Backend trong `src/data.ts`/`src/state.ts` | Chốt mô hình chung và cách ghép chặng/nhánh trước khi các bạn mở rộng |
 | UI | Năm trang, prototype một hành trình Backend | Duyệt thiết kế tổng quát dùng được cho loại nhánh khác nhau và các tab My plan |
-| Lưu | localStorage, một kế hoạch hiện hành | Chốt đăng nhập/đồng bộ và lịch sử; bảo toàn dữ liệu cũ |
+| Lưu | localStorage, một kế hoạch hiện hành | Lưu cục bộ nhiều kế hoạch/lịch sử, xuất/nhập và bảo toàn dữ liệu cũ; đăng nhập/đồng bộ online ở giai đoạn sau |
 | Luồng | EF01–EF28 cho prototype Backend | Generalize và bổ sung luồng nghiệp vụ đã duyệt |
 | Kiểm thử | Các script kiểm tra prototype | Coverage theo danh mục mới + kiểm thử logic dùng chung + kiểm tra mọi cấu hình |
 
@@ -284,8 +287,8 @@ Các sơ đồ luồng chi tiết sẽ thực hiện sau khi nghiệp vụ đư�
 | Thứ tự | Đầu ra cần có | Khi nào được sang bước sau |
 |---|---|---|
 | 1 — đã gửi | Bảng phạm vi này: ngành → hướng → nhánh, chức năng và tiêu chí | Hải yêu cầu tiếp tục prototype; còn có thể sửa chi tiết danh mục |
-| 2 — đang giao kiểm tra | Prototype thống nhất năm trang; trạng thái chính/lỗi; thành phần và style dùng chung; My plan theo tham khảo | Hải thử và duyệt giao diện/hành vi |
-| 3 | Kiến trúc, mô hình dữ liệu, interface/module, lưu/migrate, planner dùng chung và mẫu dữ liệu đúng chuẩn | Hải duyệt; có ví dụ để các bạn triển khai cùng một cấu trúc |
+| 2 — đã chọn lại nền giao diện | Giữ sidebar và style bản cũ; thành phần mới sẽ ghép vào và duyệt trước tích hợp | Không dùng bố cục ngang Prototype 02 làm nền |
+| 3 — đang giao kiểm tra | [Kiến trúc](KIEN_TRUC_MAJORWEAVE.md), hợp đồng dữ liệu, lưu/migrate, planner chung và mẫu ba nhánh Backend đã kiểm tra cấu trúc | Hải duyệt; có ví dụ để các bạn triển khai cùng một cấu trúc |
 | 4 | Quy tắc Antigravity, quyền sửa thư mục, Git/PR, mẫu story/flow/test và tiêu chí bàn giao | Hải duyệt quy trình và hợp đồng giữa các phần |
 | 5 | Gói giao việc cho năm bạn: phạm vi, file/module sở hữu, phụ thuộc, người review, nghiệm thu, mốc tích hợp | Hải giao việc và nhóm xác nhận đầu ra |
 
@@ -298,10 +301,10 @@ Hải không cần tự biên soạn toàn bộ nguồn học hoặc viết xong
 - [ ] Đồng ý/sửa quan hệ ngành → hướng và cách trình bày KTMT/Vi mạch ở mục 3.
 - [ ] Đồng ý/sửa năm trang và đề xuất Plan/Stats/Weeks ở mục 7.
 - [ ] Đồng ý tiêu chí “mọi hướng/nhánh đều tạo được kế hoạch” ở mục 8.
-- [x] Google login/đồng bộ và khám phá khi chưa đăng nhập; nhiều kế hoạch, một kế hoạch đang xem.
+- [x] Làm không đăng nhập trước; nhiều kế hoạch, một kế hoạch đang xem. Tài khoản/Google login ở giai đoạn sau, chưa chọn nhà cung cấp.
 - [ ] Chốt cách giữ lịch sử khi tạo lại và migrate dữ liệu khách ở phần kiến trúc.
 
-Hải đã yêu cầu tiếp tục phần prototype. [Prototype 02 và hướng dẫn thử](PROTOTYPE_02.md) đang giao kiểm tra; dừng trước kiến trúc. Không coi việc commit tài liệu hoặc fixtures là phê duyệt toàn bộ nhánh hay bằng chứng đã hoàn thiện thư viện học.
+Hải đã chọn lại sidebar cũ và yêu cầu bước tiếp theo. [Kiến trúc bước 3](KIEN_TRUC_MAJORWEAVE.md), hợp đồng dữ liệu và mẫu ba nhánh Backend đang giao kiểm tra; dừng trước bộ khung và quy tắc giao việc. Không coi việc commit tài liệu hoặc fixtures là phê duyệt toàn bộ nhánh hay bằng chứng đã hoàn thiện thư viện học.
 
 ## 13. Nguồn đối chiếu và cách sử dụng
 

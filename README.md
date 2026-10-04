@@ -7,19 +7,21 @@ Mini Project môn **Phát triển ứng dụng web — IS207.R11**, nhóm **PHP 
 - [Repository đồ án chính](https://github.com/haiphamt/is207-main-project)
 - Hạn nộp mini: **12/10/2026**. Bản hiện tại là prototype, URL demo online sẽ cập nhật sau triển khai.
 
-## Prototype 02 — đang giao Hải duyệt
+## Bản đang dùng — giao diện có sidebar
 
-**Mở bản mới:** http://127.0.0.1:5173/prototype.html#/explore sau khi chạy `npm run dev`.
+**Mở bản đã chọn:** http://127.0.0.1:5173/#/explore sau khi chạy `npm run dev`. Hải yêu cầu dùng lại bản cũ có sidebar ngày 04/10/2026; đây là nền giao diện cho phần triển khai tiếp theo.
 
-[Hướng dẫn thử năm trang, phạm vi nội dung mẫu và checklist duyệt](docs/PROTOTYPE_02.md).
+[Kiến trúc triển khai — bước 3, đang giao Hải duyệt](docs/KIEN_TRUC_MAJORWEAVE.md): mô hình chung cho mọi hướng, nhiều kế hoạch, lưu trên thiết bị, lịch sử và xuất/nhập. [Hợp đồng dữ liệu](docs/architecture/contracts.ts), [hướng dẫn biên soạn](docs/architecture/HUONG_DAN_DU_LIEU.md) và [mẫu ba nhánh Backend](docs/architecture/backend.example.ts).
 
-Bản mới có bộ chọn 18 hướng / 50 cấu hình mẫu, nhiều kế hoạch, My plan với Plan / Stats / Weeks, Profile và nhịp học. Google login hiện là giao diện để duyệt; chưa có OAuth/đồng bộ. Nội dung học hoàn chỉnh cho tất cả hướng vẫn thuộc phạm vi triển khai tiếp theo.
+**Quyết định mới:** làm chế độ không đăng nhập trước; Profile là hồ sơ học tập trên thiết bị. Tài khoản/Google login là giai đoạn sau, chưa chọn backend/nhà cung cấp. Kiến trúc đề xuất IndexedDB và file sao lưu; bản chạy hiện tại vẫn giữ localStorage và chưa được chuyển cấu trúc.
+
+Prototype 02 được giữ để đối chiếu lịch sử, không phải giao diện nền đang được chọn: [tài liệu thử nghiệm](docs/PROTOTYPE_02.md). Nội dung mẫu 18 hướng / 50 cấu hình trong đó chưa phải thư viện học hoàn chỉnh. Phạm vi hoàn thiện mọi hướng được duyệt vẫn giữ nguyên.
 
 ## Phạm vi đích
 
 [Bảng phạm vi MajorWeave — 04/10/2026](docs/PHAM_VI_MAJORWEAVE.md) đề xuất đầy đủ ngành → hướng → nhánh, chức năng và tiêu chí nghiệm thu. Bản này có 18 hướng và 50 cấu hình kế hoạch đề xuất; Backend ba stack và việc thêm BA đã được xác nhận, các nhánh còn lại chờ duyệt.
 
-Danh mục 16 hướng và hành trình Backend mô tả phía dưới là **bản Prototype 01** ở trang gốc. Prototype 02 mở rộng giao diện để duyệt phạm vi đích, với nội dung mẫu ngoài Backend. Phân công dưới đây thuộc đợt chuẩn bị prototype; phân công triển khai mới sẽ lập sau khi duyệt prototype và kiến trúc.
+Danh mục 16 hướng và hành trình Backend mô tả phía dưới là **bản đang chạy ở trang gốc**, có giao diện Hải đã chọn lại. Phân công dưới đây thuộc đợt chuẩn bị prototype; phân công triển khai mới sẽ lập sau khi duyệt kiến trúc và quy tắc làm việc.
 
 ## Nhóm thực hiện
 

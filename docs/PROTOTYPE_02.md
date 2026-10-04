@@ -1,5 +1,7 @@
 # Prototype 02 — hướng dẫn Hải duyệt
 
+> **Trạng thái lịch sử — 04/10/2026:** Hải yêu cầu dùng lại bản cũ có sidebar. Prototype 02 không còn là giao diện nền được chọn. Làm không đăng nhập trước; phần tài khoản/Google trong bản này là thử nghiệm chưa kết nối. Xem [kiến trúc hiện tại để duyệt](KIEN_TRUC_MAJORWEAVE.md). Nội dung phía dưới giữ để đối chiếu đợt thử nghiệm.
+
 **Ngày:** 04/10/2026. **Phần:** 2 — prototype và giao diện chung.
 
 ## 1. Mở bản mới

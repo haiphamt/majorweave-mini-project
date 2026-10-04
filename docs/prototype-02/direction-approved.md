@@ -1,5 +1,11 @@
 # Nguồn quyết định thiết kế — Prototype 02
 
+## Điều chỉnh sau khi duyệt — 04/10/2026
+
+Hải phản hồi: “sao bạn lại tự sửa vậy? Do bạn đã dùng skill gì trước đó hả. Dùng bản cũ đi”, sau đó yêu cầu tiếp tục bước tiếp theo. Quyết định hiện tại là dùng lại giao diện sidebar của bản ở `/`. Điều hướng ngang bên dưới là giả định đã bị thay thế, không phải hướng được phê duyệt. Việc đổi bố cục do trợ lý tự quyết định, không phải yêu cầu bắt buộc của huashu-design.
+
+Quyết định tiếp theo: làm không đăng nhập trước; tài khoản/Google login được tách sang giai đoạn sau. Tài liệu mới: `docs/KIEN_TRUC_MAJORWEAVE.md`. Các mục bên dưới là lịch sử thử nghiệm.
+
 Ngày: 04/10/2026. Dự án: MajorWeave, tiếp nối prototype trong cùng repository.
 
 ## Cơ sở tiếp tục hướng đã chọn

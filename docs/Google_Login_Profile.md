@@ -1,5 +1,7 @@
 # Google login và Profile — đề xuất cho bản mini
 
+> **Cập nhật quyết định 04/10/2026:** Làm chế độ không đăng nhập trước. Profile là hồ sơ học tập trên thiết bị. Tài khoản/Google login ở giai đoạn sau, chưa chọn nhà cung cấp; Supabase bên dưới là đề xuất lịch sử, không phải công nghệ bắt buộc. Xem [kiến trúc đang giao duyệt](KIEN_TRUC_MAJORWEAVE.md).
+
 Cập nhật 03/10/2026. **Trạng thái:** Profile và kế hoạch trên thiết bị đã chạy; đăng nhập Google và lưu trên server chưa triển khai.
 
 ## Cách chia trang
