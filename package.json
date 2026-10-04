@@ -7,7 +7,8 @@
     "prebuild": "node scripts/prepare-docs.mjs",
     "dev": "vite --host 127.0.0.1 --port 5173 --strictPort",
     "build": "tsc -b && vite build",
-    "preview": "vite preview --host 127.0.0.1 --port 5173 --strictPort"
+    "preview": "vite preview --host 127.0.0.1 --port 5173 --strictPort",
+    "check:prototype": "node scripts/check-prototype.mjs"
   },
   "dependencies": {
     "lucide-react": "^0.468.0",

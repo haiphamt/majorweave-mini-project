@@ -1,6 +1,6 @@
 # MajorWeave — Bảng phạm vi để nhóm trưởng duyệt
 
-**Phiên bản:** 0.1 · **Ngày đối chiếu:** 04/10/2026 · **Hạn nộp:** 12/10/2026.
+**Phiên bản:** 0.2 · **Ngày đối chiếu:** 04/10/2026 · **Hạn nộp:** 12/10/2026.
 
 **Trạng thái:** Đã soạn để Hải kiểm tra. Đây là phạm vi đích đề xuất; chưa phải danh sách tính năng đã triển khai hoặc bản đã được Hải duyệt toàn bộ.
 
@@ -19,7 +19,7 @@
 | Mức hoàn thành | Mỗi hướng và mỗi nhánh được duyệt đều có nền tảng, các chặng học, nguồn học, bài thực hành, mục tiêu bổ trợ và kế hoạch sử dụng được |
 | Số trang chính | 5: Explore, Path detail, My roadmap, My plan, Profile |
 | Giao diện | Kế thừa phong cách prototype hiện có, lấy cảm hứng từ BeaverPlans; chi tiết và các trạng thái sẽ được duyệt ở phần prototype |
-| Tình trạng repo | Prototype đang có 16 hướng tổng quan; chỉ Backend có đủ trải nghiệm kế hoạch với Node.js, Python, Java |
+| Tình trạng repo | Prototype 01: 16 hướng, Backend ba stack. Prototype 02: giao diện 18 hướng / 50 cấu hình mẫu để duyệt; nội dung ngoài Backend chưa hoàn chỉnh |
 
 **Cách đọc:** Duyệt bảng ngành ở mục 3, các nhánh ở mục 4, chức năng ở mục 7 và tiêu chí hoàn thành ở mục 8. Các mục sau giúp kiểm tra khối lượng và chuẩn bị bước tiếp theo.
 
@@ -33,7 +33,9 @@
 6. Phần khám phá **Kỹ thuật Máy tính / Thiết kế Vi mạch** chỉ lấy các hướng liên quan có roadmap chính thức trên roadmap.sh. Không đưa các lộ trình VLSI, RTL, FPGA, Physical Design hoặc Embedded riêng vào bản này.
 7. Bổ sung **Business Analyst** từ nguồn khác roadmap.sh. Không bổ sung SEO/MarTech và Multimedia Design theo trả lời ngày 04/10/2026.
 8. Sáu thành viên: Hải chuẩn bị kiến trúc, prototype, thiết kế và duyệt cuối; năm bạn còn lại thực hiện chính. Mỗi bạn sẽ viết user story, luồng chi tiết, test case và ghi bằng chứng kiểm thử cho phần mình.
-9. Hoàn thành từng phần rồi Hải kiểm tra trước khi bắt đầu phần mới. Đợt này làm bảng phạm vi; không cập nhật Notion.
+9. Hoàn thành từng phần rồi Hải kiểm tra trước khi bắt đầu phần mới. Sau bảng phạm vi, Hải đã yêu cầu tiếp tục prototype; không cập nhật Notion.
+10. **Có Google login/đồng bộ; vẫn cho khám phá khi chưa đăng nhập**, xác nhận ngày 04/10/2026. Prototype 02 mới có giao diện tài khoản; chưa kết nối OAuth.
+11. **Giữ nhiều kế hoạch, chọn một kế hoạch đang xem**, xác nhận ngày 04/10/2026. Prototype 02 cho thử bằng dữ liệu lưu trên trình duyệt.
 
 **Phạm vi được giới hạn bằng danh mục cụ thể dưới đây.** “Đầy đủ” nghĩa là hoàn thiện tất cả hướng/nhánh trong danh mục đã duyệt. Không tuyên bố 18 hướng này là toàn bộ nghề nghiệp IT hoặc toàn bộ đầu ra của 12 ngành. Chẳng hạn Truyền thông Đa phương tiện còn có các hướng sáng tạo/truyền thông ngoài phạm vi đã chọn. [Thông tin ngành tại UIT](https://tuyensinh.uit.edu.vn/nganh-dao-tao/nganh-truyen-thong-da-phuong-tien).
 
@@ -217,7 +219,7 @@ Các chức năng này chưa được coi là đã giống hoặc đã hoàn thi
 - Nhịp học dựa trên ngày thực sự đánh dấu hoàn thành. Không tự tạo dữ liệu cũ để heatmap trông đầy.
 - Tải lại giữ dữ liệu đã lưu; dữ liệu lỗi phải được xử lý với thông báo rõ ràng, không âm thầm báo thành công.
 
-**Chưa chốt:** đăng nhập Google và lưu đồng bộ; một hay nhiều kế hoạch cùng lúc; cách lưu lịch sử khi tạo lại kế hoạch. Hiện prototype dùng localStorage và một kế hoạch hiện hành. Cần Hải quyết định trước phần kiến trúc dữ liệu; không mặc định sự tồn tại của nút Google là đã có OAuth.
+**Đã chốt với Hải:** Google login/đồng bộ, cho khách khám phá, giữ nhiều kế hoạch và chọn một kế hoạch đang xem. **Còn cần chốt ở kiến trúc:** migrate dữ liệu khách, chính sách giữ lịch sử khi tạo lại kế hoạch và xử lý xung đột đồng bộ. Prototype 02 dùng localStorage riêng và có nhiều kế hoạch; nút Google chỉ là giao diện để duyệt, chưa có OAuth.
 
 ## 8. Tiêu chí hoàn thành — áp dụng cho tất cả hướng được duyệt
 
@@ -255,9 +257,9 @@ Các luồng dùng chung còn cần kiểm tra nhánh lỗi: giờ học bằng 
 
 Các sơ đồ luồng chi tiết sẽ thực hiện sau khi nghiệp vụ được duyệt. Dùng tài liệu EF01–EF28 hiện có làm đối chiếu; mở rộng/điều chỉnh cho mọi hướng và các chức năng mới, không coi nó đã là đặc tả đích hoàn chỉnh.
 
-## 9. Đối chiếu với prototype hiện tại
+## 9. Đối chiếu với Prototype 01 và nền tảng cần chuẩn hóa
 
-| Hạng mục | Hiện tại trong repo | Cần làm sau khi duyệt |
+| Hạng mục | Prototype 01 trong repo | Cần làm sau khi duyệt |
 |---|---|---|
 | Danh mục | 12 ngành, 16 hướng trong `src/catalog.ts` | Cập nhật quan hệ, thêm AIE/BA, nhóm KTMT/Vi mạch |
 | Nội dung học | Backend có ba stack; 15 hướng khác chủ yếu tổng quan | Hoàn thiện mọi hướng/nhánh được duyệt, theo mục 5–6 |
@@ -267,12 +269,12 @@ Các sơ đồ luồng chi tiết sẽ thực hiện sau khi nghiệp vụ đư�
 | Luồng | EF01–EF28 cho prototype Backend | Generalize và bổ sung luồng nghiệp vụ đã duyệt |
 | Kiểm thử | Các script kiểm tra prototype | Coverage theo danh mục mới + kiểm thử logic dùng chung + kiểm tra mọi cấu hình |
 
-**Tài liệu cũ:** `docs/Danh_muc_nganh_huong_hoc.md` được sinh tự động từ catalog hiện tại. Nó mô tả prototype 16 hướng. Bản này là đề xuất phạm vi đích; chưa sửa catalog/app để tránh biến các lựa chọn chưa duyệt thành tính năng đã chốt.
+**Tài liệu cũ:** `docs/Danh_muc_nganh_huong_hoc.md` được sinh tự động từ catalog của Prototype 01, mô tả 16 hướng. **Prototype 02** dùng fixtures riêng để thử giao diện 18 hướng / 50 cấu hình, nhiều kế hoạch và các tab My plan. Chưa thay mô hình sản xuất hoặc hoàn thiện thư viện học; xem [hướng dẫn duyệt](PROTOTYPE_02.md).
 
 ## 10. Khối lượng để quyết định trước khi giao việc
 
 - 18 hướng, 50 cấu hình đề xuất; hiện ba cấu hình Backend có nền tảng triển khai, cần rà soát lại khi đổi mô hình.
-- 47 cấu hình còn lại chưa có trải nghiệm kế hoạch hoàn chỉnh. Chúng có thể chia sẻ nhiều chặng, nhưng vẫn cần nội dung, kiểm tra nguồn và bằng chứng nghiệm thu.
+- 47 cấu hình còn lại mới có lịch và khung nội dung mẫu ở Prototype 02; chưa có nội dung kế hoạch hoàn chỉnh. Chúng có thể chia sẻ nhiều chặng, nhưng vẫn cần biên soạn, kiểm tra nguồn và bằng chứng nghiệm thu.
 - Full-stack có 9 kết hợp được tạo từ FE/BE; không giao chín bạn viết chín roadmap hoặc chép chín thư mục dữ liệu.
 - Hướng ML/MLOps/SRE có chiều sâu và nhiều tiên quyết; không cân công việc chỉ bằng số hướng. Khi giao việc cần tính cả số chặng riêng, số nguồn cần kiểm tra, phần logic và kiểm thử.
 - Chưa có ước lượng giờ đáng tin cho toàn bộ phạm vi. Sau khi duyệt, sẽ kiểm kê chặng dùng chung/riêng và phân công năm bạn theo công sức thực tế trước khi cam kết lịch.
@@ -281,8 +283,8 @@ Các sơ đồ luồng chi tiết sẽ thực hiện sau khi nghiệp vụ đư�
 
 | Thứ tự | Đầu ra cần có | Khi nào được sang bước sau |
 |---|---|---|
-| 1 — đang giao kiểm tra | Bảng phạm vi này: ngành → hướng → nhánh, chức năng và tiêu chí | Hải duyệt hoặc yêu cầu sửa các mục 3, 4, 7, 8 |
-| 2 | Prototype thống nhất năm trang; trạng thái chính/lỗi; thành phần và style dùng chung; My plan theo tham khảo | Hải thử và duyệt giao diện/hành vi |
+| 1 — đã gửi | Bảng phạm vi này: ngành → hướng → nhánh, chức năng và tiêu chí | Hải yêu cầu tiếp tục prototype; còn có thể sửa chi tiết danh mục |
+| 2 — đang giao kiểm tra | Prototype thống nhất năm trang; trạng thái chính/lỗi; thành phần và style dùng chung; My plan theo tham khảo | Hải thử và duyệt giao diện/hành vi |
 | 3 | Kiến trúc, mô hình dữ liệu, interface/module, lưu/migrate, planner dùng chung và mẫu dữ liệu đúng chuẩn | Hải duyệt; có ví dụ để các bạn triển khai cùng một cấu trúc |
 | 4 | Quy tắc Antigravity, quyền sửa thư mục, Git/PR, mẫu story/flow/test và tiêu chí bàn giao | Hải duyệt quy trình và hợp đồng giữa các phần |
 | 5 | Gói giao việc cho năm bạn: phạm vi, file/module sở hữu, phụ thuộc, người review, nghiệm thu, mốc tích hợp | Hải giao việc và nhóm xác nhận đầu ra |
@@ -296,9 +298,10 @@ Hải không cần tự biên soạn toàn bộ nguồn học hoặc viết xong
 - [ ] Đồng ý/sửa quan hệ ngành → hướng và cách trình bày KTMT/Vi mạch ở mục 3.
 - [ ] Đồng ý/sửa năm trang và đề xuất Plan/Stats/Weeks ở mục 7.
 - [ ] Đồng ý tiêu chí “mọi hướng/nhánh đều tạo được kế hoạch” ở mục 8.
-- [ ] Chốt trước kiến trúc: Google login/đồng bộ; số kế hoạch đồng thời; cách giữ lịch sử khi tạo lại.
+- [x] Google login/đồng bộ và khám phá khi chưa đăng nhập; nhiều kế hoạch, một kế hoạch đang xem.
+- [ ] Chốt cách giữ lịch sử khi tạo lại và migrate dữ liệu khách ở phần kiến trúc.
 
-Sau lượt kiểm tra này, sửa phạm vi theo phản hồi rồi mới bắt đầu phần prototype. Không coi việc commit tài liệu là phê duyệt các nhánh đề xuất.
+Hải đã yêu cầu tiếp tục phần prototype. [Prototype 02 và hướng dẫn thử](PROTOTYPE_02.md) đang giao kiểm tra; dừng trước kiến trúc. Không coi việc commit tài liệu hoặc fixtures là phê duyệt toàn bộ nhánh hay bằng chứng đã hoàn thiện thư viện học.
 
 ## 13. Nguồn đối chiếu và cách sử dụng
 
@@ -307,7 +310,7 @@ Sau lượt kiểm tra này, sửa phạm vi theo phản hồi rồi mới bắt
 - [IIBA — What is Business Analysis?](https://www.iiba.org/professional-development/career-centre/what-is-business-analysis/): khung nghề BA; quan hệ BA với TMĐT còn được hỗ trợ bởi [mô tả nghề nghiệp ngành TMĐT tại UIT](https://tuyensinh.uit.edu.vn/nganh-dao-tao/nganh-thuong-mai-dien-tu).
 - [Vite — Getting Started](https://vite.dev/guide/), [React — Learn](https://react.dev/learn): phân biệt công cụ build với nhánh giao diện.
 - [W3C WAI — Tutorials](https://www.w3.org/WAI/tutorials/): nguồn nền tảng accessibility.
-- [BeaverPlans](https://beaverplans.com/): tham khảo phong cách và kế hoạch tuần theo các ảnh Hải cung cấp; chưa thực hiện lại một lượt đối chiếu tương tác trong đợt soạn bảng phạm vi này.
+- [BeaverPlans](https://beaverplans.com/): tham khảo phong cách và kế hoạch tuần theo ảnh Hải cung cấp; đã đọc trực tiếp giao diện khách khi làm Prototype 02 ngày 04/10/2026. Không tuyên bố đã kiểm tra hết tương tác của website tham khảo.
 - Repo hiện tại: kiểm tra `src/catalog.ts`, `src/data.ts`, `src/state.ts`, README và các tài liệu prototype ngày 04/10/2026.
 
 Các bảng ngành, nhánh, chuỗi chặng và tiêu chí nghiệm thu là thiết kế của nhóm cho MajorWeave, không phải bản sao của một website hay chương trình đào tạo.
