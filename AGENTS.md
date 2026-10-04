@@ -9,10 +9,11 @@
 3. `docs/BUOC_4_BO_KHUNG_VA_QUY_TAC.md`: trạng thái thực tế, ranh giới file.
 4. `docs/team/QUY_TRINH_ANTIGRAVITY.md` và task của mình.
 5. Nếu sửa nội dung: `docs/architecture/HUONG_DAN_DU_LIEU.md`, `src/domain/contracts.ts`, `src/content/paths/backend.ts`.
+6. Phân công hiện tại: `docs/team/PHAN_CONG_MINI_PROJECT.md` và `docs/tasks/MW-TEAM-01` đến `MW-TEAM-05`; allowlist trong task quyết định quyền sửa file.
 
 ## Phạm vi và giao diện
 
-- Sáu thành viên: nhóm trưởng kiến trúc/thiết kế/tích hợp/duyệt cuối; năm bạn triển khai. Chỉ làm task có mã và phạm vi file được giao. Chưa có tên/phân công mới trong bước 4.
+- Sáu thành viên: nhóm trưởng kiến trúc/thiết kế/tích hợp/duyệt cuối; năm bạn triển khai theo bảng phân công bước 5. Chỉ làm task có mã và phạm vi file được giao; mỗi người làm cả module và nội dung học được chỉ định.
 - Hoàn thiện mọi hướng/nhánh trong danh mục được duyệt; không thu hẹp về Backend. Không nhận placeholder hoặc chỉ liên kết ngoài là một kế hoạch đã hoàn chỉnh.
 - Dùng sidebar/style của app gốc `/`; `src/prototype/` là thử nghiệm lịch sử. Không lấy điều hướng ngang làm nền.
 - Giữ CSS, font, palette, khoảng cách và thành phần đã có. Thêm UI theo mẫu hiện có; đề xuất thay đổi thiết kế cho nhóm trưởng review. Skill không được tự thay thiết kế.

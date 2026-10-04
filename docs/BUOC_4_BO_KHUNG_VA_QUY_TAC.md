@@ -2,6 +2,8 @@
 
 **Ngày:** 04/10/2026. **Trạng thái:** đang giao nhóm trưởng kiểm tra. Phân công cụ thể năm người thuộc bước tiếp theo.
 
+**Cập nhật sau bàn giao:** Hải đã yêu cầu chia task; xem [phân công bước 5](team/PHAN_CONG_MINI_PROJECT.md). Bảng trạng thái code dưới đây vẫn đúng: lập task không có nghĩa v2 đã tích hợp.
+
 ## 1. Đã làm trong bước này
 
 - Tách file `main.tsx` thành AppShell, context, năm feature và UI dùng chung. Nội dung JSX và CSS giữ bản sidebar đã chọn.

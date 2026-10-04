@@ -13,7 +13,9 @@ Mini Project môn **Phát triển ứng dụng web — IS207.R11**, nhóm **PHP 
 
 [Kiến trúc triển khai — bước 3, nền cho bộ khung](docs/KIEN_TRUC_MAJORWEAVE.md): mô hình chung cho mọi hướng, nhiều kế hoạch, lưu trên thiết bị, lịch sử và xuất/nhập. [Hợp đồng dữ liệu chuẩn](src/domain/contracts.ts), [hướng dẫn biên soạn](docs/architecture/HUONG_DAN_DU_LIEU.md) và [mẫu ba nhánh Backend](src/content/paths/backend.ts).
 
-**Bước 4 — đang giao kiểm tra:** [bộ khung và ranh giới file](docs/BUOC_4_BO_KHUNG_VA_QUY_TAC.md), [luật chung cho AI](AGENTS.md), [quy trình Antigravity](docs/team/QUY_TRINH_ANTIGRAVITY.md) và [mẫu task](docs/templates/TASK.md). Các trang đã tách thành module; v2/IndexedDB chưa tích hợp. Phân công năm người là bước sau.
+**Bước 4 — đã bàn giao:** [bộ khung và ranh giới file](docs/BUOC_4_BO_KHUNG_VA_QUY_TAC.md), [luật chung cho AI](AGENTS.md), [quy trình Antigravity](docs/team/QUY_TRINH_ANTIGRAVITY.md) và [mẫu task](docs/templates/TASK.md). Các trang đã tách thành module; v2/IndexedDB chưa tích hợp.
+
+**Bước 5 — đã lập phân công theo yêu cầu của Hải:** [bảng phân công mini](docs/team/PHAN_CONG_MINI_PROJECT.md) có năm task cá nhân, allowlist, nội dung toàn danh mục, dependency, AC, luồng/test phải viết và mốc tới 12/10. Chưa triển khai code của các task hoặc ghi kết quả kiểm thử thay thành viên.
 
 **Quyết định mới:** làm chế độ không đăng nhập trước; Profile là hồ sơ học tập trên thiết bị. Tài khoản/Google login là giai đoạn sau, chưa chọn backend/nhà cung cấp. Kiến trúc đề xuất IndexedDB và file sao lưu; bản chạy hiện tại vẫn giữ localStorage và chưa được chuyển cấu trúc.
 
@@ -23,20 +25,20 @@ Prototype 02 được giữ để đối chiếu lịch sử, không phải giao
 
 [Bảng phạm vi MajorWeave — 04/10/2026](docs/PHAM_VI_MAJORWEAVE.md) đề xuất đầy đủ ngành → hướng → nhánh, chức năng và tiêu chí nghiệm thu. Bản này có 18 hướng và 50 cấu hình kế hoạch đề xuất; Backend ba stack và việc thêm BA đã được xác nhận, các nhánh còn lại chờ duyệt.
 
-Danh mục 16 hướng và hành trình Backend mô tả phía dưới là **bản đang chạy ở trang gốc**, có giao diện Hải đã chọn lại. Phân công dưới đây thuộc đợt chuẩn bị prototype; phân công triển khai mới sẽ lập sau khi duyệt kiến trúc và quy tắc làm việc.
+Danh mục 16 hướng và hành trình Backend mô tả phía dưới là **bản đang chạy ở trang gốc**, có giao diện Hải đã chọn lại. Phân công mới dưới đây bao phủ bảng đích 18 hướng/50 cấu hình, không phải bằng chứng đã hoàn thiện nội dung của từng hướng.
 
 ## Nhóm thực hiện
 
-| Thành viên | Phần phụ trách trong đợt chuẩn bị nộp |
+| Thành viên | Phân công triển khai mini hiện tại |
 |---|---|
-| Phạm Tuấn Hải | Điều phối, phát triển prototype, tích hợp và duyệt cuối |
-| Nguyễn Thị Quỳnh Hân | Danh mục ngành, nguồn CS, Product Brief |
-| Phạm Công Định | Ba stack, logic kế hoạch và kiến trúc |
-| Chung Minh Hiếu | UI/UX, responsive và tài liệu thiết kế |
-| Lê Nguyễn Hữu Hiếu | Nguồn học/chứng nhận, kiểm thử và luồng sự kiện |
-| Triệu Quang Huy | Repository/demo, AI log và đóng gói báo cáo |
+| Phạm Tuấn Hải | Kiến trúc, thiết kế/style, context/registry, tích hợp PR, nghiệm thu và demo |
+| [Nguyễn Thị Quỳnh Hân — MW-TEAM-01](docs/tasks/MW-TEAM-01/TASK.md) | Explore/Path detail, resolver; Backend, Frontend, Full-stack, UX |
+| [Phạm Công Định — MW-TEAM-02](docs/tasks/MW-TEAM-02/TASK.md) | My roadmap, planner/tạo lại; Mobile, Game |
+| [Chung Minh Hiếu — MW-TEAM-03](docs/tasks/MW-TEAM-03/TASK.md) | My plan, task/progress/tuần chốt; DS, ML, MLOps, AI Engineer |
+| [Lê Nguyễn Hữu Hiếu — MW-TEAM-04](docs/tasks/MW-TEAM-04/TASK.md) | Profile, activity/validation; Data Analyst, BI, Data Engineer, BA |
+| [Triệu Quang Huy — MW-TEAM-05](docs/tasks/MW-TEAM-05/TASK.md) | IndexedDB/migration/backup; DevOps/SRE, Network, Security, QA |
 
-Phân công là kế hoạch; đóng góp thực tế được ghi bằng commit/PR, đầu ra và review tại Project Hub. Khi làm việc, dùng tài khoản Git riêng và ghi mã task `MIxx` trong commit/PR tương ứng.
+Phân công là kế hoạch; đóng góp thực tế ghi bằng commit/PR cá nhân, story/flow/test/AI log và review trong repo. Dùng mã `MW-TEAM-01` đến `MW-TEAM-05` cho đợt này. Mục còn đề xuất trong bảng phạm vi cần Hải chốt đầu buổi; gói phân công không tự biến fixture thành nội dung đã duyệt.
 
 Bản thử một hành trình hoàn chỉnh: chọn ngành → khám phá Backend và chọn Node.js, Python hoặc Java → chọn nguồn học → chỉnh roadmap → tạo kế hoạch tuần → theo dõi tiến độ.
 

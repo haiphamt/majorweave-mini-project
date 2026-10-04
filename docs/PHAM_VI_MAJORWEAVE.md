@@ -1,12 +1,12 @@
 # MajorWeave — Bảng phạm vi để nhóm trưởng duyệt
 
-**Phiên bản:** 0.3 · **Ngày đối chiếu:** 04/10/2026 · **Hạn nộp:** 12/10/2026.
+**Phiên bản:** 0.4 · **Ngày đối chiếu:** 04/10/2026 · **Hạn nộp:** 12/10/2026.
 
 **Điều chỉnh mới nhất:** Hải chọn lại giao diện cũ có sidebar và yêu cầu làm không đăng nhập trước. Profile hiện là hồ sơ học tập cục bộ; tài khoản/Google login ở giai đoạn sau, chưa chọn nhà cung cấp. Giữ nhiều kế hoạch và phạm vi mọi hướng được duyệt. Sau yêu cầu tiếp tục, [bộ khung/quy tắc bước 4](BUOC_4_BO_KHUNG_VA_QUY_TAC.md) đã tách các trang; UI vẫn lưu v1, workspace v2 chưa tích hợp.
 
 **Trạng thái:** Đã soạn để Hải kiểm tra. Đây là phạm vi đích đề xuất; chưa phải danh sách tính năng đã triển khai hoặc bản đã được Hải duyệt toàn bộ.
 
-**Phụ trách phần chuẩn bị:** Phạm Tuấn Hải — nhóm trưởng, kiến trúc, prototype, thiết kế giao diện và duyệt đầu ra. Phân công triển khai cho năm thành viên còn lại sẽ được lập sau khi duyệt phạm vi và kiến trúc.
+**Phụ trách phần chuẩn bị:** Phạm Tuấn Hải — nhóm trưởng, kiến trúc, prototype, thiết kế giao diện và duyệt đầu ra. Hải đã yêu cầu chia task cho năm bạn; [phân công bước 5](team/PHAN_CONG_MINI_PROJECT.md) bao phủ bảng đích, có chủ sở hữu module/nội dung và allowlist. Chi tiết còn đề xuất cần ghi quyết định đầu buổi trước phát hành; chưa phải nội dung đã triển khai.
 
 ## 1. Đọc nhanh
 
@@ -87,7 +87,7 @@ Dùng mã hướng ở mục 4 để bảng ngắn và dễ kiểm tra. Cột m�
 - Một nhánh có thể là stack, nền tảng, công cụ hoặc trọng tâm nghiệp vụ. Không bắt mọi hướng phải chọn “ngôn ngữ lập trình”.
 - Backend ba stack đã được Hải chọn. BA đã được Hải đồng ý bổ sung. AI Engineer, các nhánh còn lại và các quan hệ ngành là đề xuất trong bản này để Hải duyệt.
 - Tên nhánh dưới đây do nhóm lựa chọn để triển khai; link roadmap hướng không có nghĩa roadmap.sh đã cung cấp nguyên bộ nhánh như trong bảng.
-- Nhánh chưa được duyệt chưa đưa vào giao việc. Sau khi duyệt, tất cả nhánh được chọn phải dùng được từ Path detail tới My plan.
+- Với nhánh còn đề xuất, bước 5 phân người khảo sát nguồn/story/khối lượng và chốt đầu buổi trước triển khai/phát hành nội dung. Sau khi duyệt, tất cả nhánh được chọn phải dùng được từ Path detail tới My plan.
 
 ### 4.2. Danh mục 18 hướng và 50 cấu hình kế hoạch
 
@@ -289,8 +289,8 @@ Các sơ đồ luồng chi tiết sẽ thực hiện sau khi nghiệp vụ đư�
 | 1 — đã gửi | Bảng phạm vi này: ngành → hướng → nhánh, chức năng và tiêu chí | Hải yêu cầu tiếp tục prototype; còn có thể sửa chi tiết danh mục |
 | 2 — đã chọn lại nền giao diện | Giữ sidebar và style bản cũ; thành phần mới sẽ ghép vào và duyệt trước tích hợp | Không dùng bố cục ngang Prototype 02 làm nền |
 | 3 — đã gửi, Hải yêu cầu tiếp tục | [Kiến trúc](KIEN_TRUC_MAJORWEAVE.md), hợp đồng dữ liệu, lưu/migrate, planner chung và mẫu ba nhánh Backend đã kiểm tra cấu trúc | Làm bộ khung theo kiến trúc; không coi mọi nhánh đề xuất đã được duyệt |
-| 4 — đang giao kiểm tra | [Bộ khung/quy tắc](BUOC_4_BO_KHUNG_VA_QUY_TAC.md): module riêng, luật Antigravity, ranh giới file, Git/PR, mẫu story/flow/test và kiểm tra tự động | Hải kiểm tra trước khi gắn tên năm người và giao task |
-| 5 | Gói giao việc cho năm bạn: phạm vi, file/module sở hữu, phụ thuộc, người review, nghiệm thu, mốc tích hợp | Hải giao việc và nhóm xác nhận đầu ra |
+| 4 — đã gửi, Hải yêu cầu chia task | [Bộ khung/quy tắc](BUOC_4_BO_KHUNG_VA_QUY_TAC.md): module riêng, luật Antigravity, ranh giới file, Git/PR, mẫu story/flow/test và kiểm tra tự động | Đã chạy check/build/CI; là nền cho bước 5 |
+| 5 — đã lập | [Gói giao việc năm bạn](team/PHAN_CONG_MINI_PROJECT.md): phạm vi, file/module sở hữu, phụ thuộc, review, nghiệm thu, mốc tích hợp | Thành viên bổ sung story/flow/test, thực hiện và gửi PR; Hải review/tích hợp |
 
 Hải không cần tự biên soạn toàn bộ nguồn học hoặc viết xong mọi module trước khi giao việc. Hải cần chốt danh mục, cấu trúc và các ví dụ chuẩn; năm bạn thực hiện nội dung/chức năng theo chuẩn đó.
 
@@ -304,7 +304,7 @@ Hải không cần tự biên soạn toàn bộ nguồn học hoặc viết xong
 - [x] Làm không đăng nhập trước; nhiều kế hoạch, một kế hoạch đang xem. Tài khoản/Google login ở giai đoạn sau, chưa chọn nhà cung cấp.
 - [ ] Chốt cách giữ lịch sử khi tạo lại và migrate dữ liệu khách ở phần kiến trúc.
 
-Hải đã chọn lại sidebar cũ và yêu cầu tiếp tục sau kiến trúc. [Bộ khung/quy tắc bước 4](BUOC_4_BO_KHUNG_VA_QUY_TAC.md) đang giao kiểm tra; dừng trước phân công cụ thể năm người. Không coi việc commit tài liệu hoặc fixtures là phê duyệt toàn bộ nhánh hay bằng chứng đã hoàn thiện thư viện học.
+Hải đã chọn lại sidebar cũ, yêu cầu tiếp tục sau kiến trúc và yêu cầu chia task cho năm bạn sau bước 4. [Gói phân công bước 5](team/PHAN_CONG_MINI_PROJECT.md) đã lập; không coi việc commit phân công hoặc fixtures là phê duyệt từng nội dung/nguồn hay bằng chứng đã hoàn thiện thư viện học.
 
 ## 13. Nguồn đối chiếu và cách sử dụng
 

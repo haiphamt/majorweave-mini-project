@@ -2,6 +2,8 @@
 
 **Áp dụng:** mini project, sáu thành viên. **Ngày:** 04/10/2026. Chưa phải bảng phân công.
 
+Phân công hiện tại và link task cá nhân: [PHAN_CONG_MINI_PROJECT.md](PHAN_CONG_MINI_PROJECT.md).
+
 ## 1. Bắt đầu trên máy thành viên
 
 1. Clone repo mini, mở **thư mục chứa `package.json` và `AGENTS.md`** trong Antigravity; không mở nhầm project chính.
