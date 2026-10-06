@@ -1,0 +1,404 @@
+{
+  "checkedAt": "2026-10-06",
+  "scope": "Official page review only; no enrollment, exam or learning lab execution.",
+  "entries": [
+    {
+      "id": "scientist.resource.python",
+      "url": "https://docs.python.org/3/tutorial/",
+      "checkedAt": "2026-10-06",
+      "method": "Opened official page with web tool; verified topic and documented access conditions. No enrollment, lab or paid API execution.",
+      "topic": "Functions, collections, files, exceptions.",
+      "accessNote": "Tài liệu miễn phí; cần biết lập trình cơ bản. Python 3 local, CPU, không tài khoản/API.",
+      "supportUrls": []
+    },
+    {
+      "id": "scientist.resource.numpy",
+      "url": "https://numpy.org/doc/stable/user/absolute_beginners.html",
+      "checkedAt": "2026-10-06",
+      "method": "Opened official page with web tool; verified topic and documented access conditions. No enrollment, lab or paid API execution.",
+      "topic": "Arrays, shapes and broadcasting.",
+      "accessNote": "Tài liệu miễn phí; cài NumPy trong Python tương thích, bài dữ liệu nhỏ chạy CPU.",
+      "supportUrls": []
+    },
+    {
+      "id": "scientist.resource.pandas",
+      "url": "https://pandas.pydata.org/docs/getting_started/intro_tutorials/",
+      "checkedAt": "2026-10-06",
+      "method": "Opened official page with web tool; verified topic and documented access conditions. No enrollment, lab or paid API execution.",
+      "topic": "Read, select, summarize and combine tables.",
+      "accessNote": "Tài liệu miễn phí; cài pandas, CSV tổng hợp; không dữ liệu cá nhân.",
+      "supportUrls": []
+    },
+    {
+      "id": "scientist.resource.scipy-stats",
+      "url": "https://docs.scipy.org/doc/scipy/tutorial/stats.html",
+      "checkedAt": "2026-10-06",
+      "method": "Opened official page with web tool; verified topic and documented access conditions. No enrollment, lab or paid API execution.",
+      "topic": "Distributions, sample statistics and tests.",
+      "accessNote": "Tài liệu miễn phí; cần NumPy, trung bình/phương sai; CPU và seed cố định. Trang hướng dẫn còn phát triển.",
+      "supportUrls": []
+    },
+    {
+      "id": "scientist.resource.linear-regression",
+      "url": "https://developers.google.com/machine-learning/crash-course/linear-regression",
+      "checkedAt": "2026-10-06",
+      "method": "Opened official page with web tool; verified topic and documented access conditions. No enrollment, lab or paid API execution.",
+      "topic": "Parameters, loss and gradient descent.",
+      "accessNote": "Module công khai miễn phí; cần đại số/Python/NumPy. Bài tổng hợp chạy CPU, không API/GPU.",
+      "supportUrls": []
+    },
+    {
+      "id": "scientist.resource.evaluation",
+      "url": "https://scikit-learn.org/stable/modules/model_evaluation.html",
+      "checkedAt": "2026-10-06",
+      "method": "Opened official page with web tool; verified topic and documented access conditions. No enrollment, lab or paid API execution.",
+      "topic": "Classification/regression metrics.",
+      "accessNote": "Tài liệu miễn phí; scikit-learn và dữ liệu nhỏ CPU. Không dịch vụ ngoài.",
+      "supportUrls": []
+    },
+    {
+      "id": "scientist.resource.leakage",
+      "url": "https://scikit-learn.org/stable/common_pitfalls.html",
+      "checkedAt": "2026-10-06",
+      "method": "Opened official page with web tool; verified topic and documented access conditions. No enrollment, lab or paid API execution.",
+      "topic": "Train/test isolation and Pipeline.",
+      "accessNote": "Tài liệu miễn phí; cần dữ liệu bảng/Python; không fit preprocessing trên test.",
+      "supportUrls": []
+    },
+    {
+      "id": "scientist.resource.fairness",
+      "url": "https://developers.google.com/machine-learning/crash-course/fairness",
+      "checkedAt": "2026-10-06",
+      "method": "Opened official page with web tool; verified topic and documented access conditions. No enrollment, lab or paid API execution.",
+      "topic": "Data bias and group evaluation.",
+      "accessNote": "Module miễn phí, học sau phân loại/đánh giá. Bài dùng nhóm giả lập, không thu thập thuộc tính nhạy cảm thật.",
+      "supportUrls": []
+    },
+    {
+      "id": "scientist.resource.sql",
+      "url": "https://www.postgresql.org/docs/current/tutorial-sql.html",
+      "checkedAt": "2026-10-06",
+      "method": "Opened official page with web tool; verified topic and documented access conditions. No enrollment, lab or paid API execution.",
+      "topic": "Queries, joins and aggregates.",
+      "accessNote": "Tài liệu miễn phí; PostgreSQL local, không cần thuê cloud.",
+      "supportUrls": []
+    },
+    {
+      "id": "scientist.resource.plots",
+      "url": "https://matplotlib.org/stable/tutorials/pyplot.html",
+      "checkedAt": "2026-10-06",
+      "method": "Opened official page with web tool; verified topic and documented access conditions. No enrollment, lab or paid API execution.",
+      "topic": "Labeled plots and subplots.",
+      "accessNote": "Tài liệu miễn phí; Python/Matplotlib CPU, xuất PNG không cần notebook online.",
+      "supportUrls": []
+    },
+    {
+      "id": "ml.resource.classifiers",
+      "url": "https://scikit-learn.org/stable/auto_examples/classification/plot_classifier_comparison.html",
+      "checkedAt": "2026-10-06",
+      "method": "Opened official page with web tool; verified topic and documented access conditions. No enrollment, lab or paid API execution.",
+      "topic": "Compare classification models.",
+      "accessNote": "Ví dụ miễn phí; dữ liệu nhỏ CPU, không GPU/tài khoản.",
+      "supportUrls": []
+    },
+    {
+      "id": "ml.resource.tuning",
+      "url": "https://scikit-learn.org/stable/modules/grid_search.html",
+      "checkedAt": "2026-10-06",
+      "method": "Opened official page with web tool; verified topic and documented access conditions. No enrollment, lab or paid API execution.",
+      "topic": "CV, grid/random search.",
+      "accessNote": "Tài liệu miễn phí; giới hạn grid/fold để chạy CPU; test giữ kín tới đánh giá cuối.",
+      "supportUrls": []
+    },
+    {
+      "id": "ml.resource.clustering",
+      "url": "https://scikit-learn.org/stable/modules/clustering.html",
+      "checkedAt": "2026-10-06",
+      "method": "Opened official page with web tool; verified topic and documented access conditions. No enrollment, lab or paid API execution.",
+      "topic": "Clustering methods and evaluation.",
+      "accessNote": "Tài liệu miễn phí; ma trận đã chuẩn hóa, dữ liệu nhỏ CPU.",
+      "supportUrls": []
+    },
+    {
+      "id": "ml.resource.pytorch-basics",
+      "url": "https://docs.pytorch.org/tutorials/beginner/basics/intro.html",
+      "checkedAt": "2026-10-06",
+      "method": "Opened official page with web tool; verified topic and documented access conditions. No enrollment, lab or paid API execution.",
+      "topic": "Tensors, networks, autograd, training and save/load.",
+      "accessNote": "Tài liệu/notebook miễn phí; Python/PyTorch/TorchVision. Bài nhỏ chạy CPU; Colab cần tài khoản và không đảm bảo GPU miễn phí.",
+      "supportUrls": []
+    },
+    {
+      "id": "ml.resource.transfer-learning",
+      "url": "https://docs.pytorch.org/tutorials/beginner/transfer_learning_tutorial.html",
+      "checkedAt": "2026-10-06",
+      "method": "Opened official page with web tool; verified topic and documented access conditions. No enrollment, lab or paid API execution.",
+      "topic": "Transforms, frozen features and fine-tuning.",
+      "accessNote": "Tài liệu miễn phí; tải ảnh/weights cần Internet/license. Tutorial có CPU fallback; bài freeze backbone/sample nhỏ. Thuê GPU/cloud có thể mất phí.",
+      "supportUrls": []
+    },
+    {
+      "id": "ml.resource.text-features",
+      "url": "https://scikit-learn.org/stable/modules/feature_extraction.html#text-feature-extraction",
+      "checkedAt": "2026-10-06",
+      "method": "Opened official page with web tool; verified topic and documented access conditions. No enrollment, lab or paid API execution.",
+      "topic": "Bag-of-words and TF-IDF.",
+      "accessNote": "Tài liệu miễn phí; TF-IDF/linear model CPU, corpus tổng hợp có nhãn.",
+      "supportUrls": []
+    },
+    {
+      "id": "ml.resource.transformers-course",
+      "url": "https://huggingface.co/learn/llm-course/chapter1/1",
+      "checkedAt": "2026-10-06",
+      "method": "Opened official page with web tool; verified topic and documented access conditions. No enrollment, lab or paid API execution.",
+      "topic": "Transformers and NLP.",
+      "accessNote": "Khóa đọc miễn phí, không quảng cáo; cần Python/nền deep learning. Model nhỏ public cần kiểm tra license; gated model cần tài khoản/chấp thuận riêng.",
+      "supportUrls": []
+    },
+    {
+      "id": "ml.resource.text-classification",
+      "url": "https://huggingface.co/docs/transformers/tasks/sequence_classification",
+      "checkedAt": "2026-10-06",
+      "method": "Opened official page with web tool; verified topic and documented access conditions. No enrollment, lab or paid API execution.",
+      "topic": "Tokenize, train, evaluate and infer.",
+      "accessNote": "Tài liệu miễn phí; full fine-tune có thể cần GPU. Bài dùng CPU/sample nhỏ/frozen encoder; ghi RAM/thời gian. Cloud/GPU thuê có thể mất phí.",
+      "supportUrls": []
+    },
+    {
+      "id": "ml.resource.model-card",
+      "url": "https://huggingface.co/docs/hub/model-cards",
+      "checkedAt": "2026-10-06",
+      "method": "Opened official page with web tool; verified topic and documented access conditions. No enrollment, lab or paid API execution.",
+      "topic": "Data, license, intended use and limitations.",
+      "accessNote": "Tài liệu miễn phí; viết card local không tài khoản. Upload Hub cần tài khoản; không upload dữ liệu riêng tư.",
+      "supportUrls": []
+    },
+    {
+      "id": "mlops.resource.git",
+      "url": "https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control",
+      "checkedAt": "2026-10-06",
+      "method": "Opened official page with web tool; verified topic and documented access conditions. No enrollment, lab or paid API execution.",
+      "topic": "Version history and reproducibility.",
+      "accessNote": "Sách miễn phí; Git local, không bắt buộc repo public.",
+      "supportUrls": []
+    },
+    {
+      "id": "mlops.resource.venv",
+      "url": "https://docs.python.org/3/library/venv.html",
+      "checkedAt": "2026-10-06",
+      "method": "Opened official page with web tool; verified topic and documented access conditions. No enrollment, lab or paid API execution.",
+      "topic": "Isolated environments.",
+      "accessNote": "Tài liệu miễn phí; Python 3/quyền tạo thư mục local; ghi phiên bản dependencies.",
+      "supportUrls": []
+    },
+    {
+      "id": "mlops.resource.tracking",
+      "url": "https://mlflow.org/docs/latest/ml/tracking/quickstart/",
+      "checkedAt": "2026-10-06",
+      "method": "Opened official page with web tool; verified topic and documented access conditions. No enrollment, lab or paid API execution.",
+      "topic": "Log params, metrics and artifacts.",
+      "accessNote": "Tài liệu miễn phí; MLflow local, không cần hosted trả phí. Không mở server local ra Internet.",
+      "supportUrls": []
+    },
+    {
+      "id": "mlops.resource.persistence",
+      "url": "https://scikit-learn.org/stable/model_persistence.html",
+      "checkedAt": "2026-10-06",
+      "method": "Opened official page with web tool; verified topic and documented access conditions. No enrollment, lab or paid API execution.",
+      "topic": "Persistence formats, compatibility and risks.",
+      "accessNote": "Tài liệu miễn phí; chỉ load artifact tự tạo/tin cậy, có checksum/environment. Không load pickle của người lạ.",
+      "supportUrls": []
+    },
+    {
+      "id": "mlops.resource.fastapi",
+      "url": "https://fastapi.tiangolo.com/tutorial/body/",
+      "checkedAt": "2026-10-06",
+      "method": "Opened official page with web tool; verified topic and documented access conditions. No enrollment, lab or paid API execution.",
+      "topic": "Request schema and validation.",
+      "accessNote": "Tài liệu miễn phí; Python/FastAPI local, không cloud/API trả tiền.",
+      "supportUrls": []
+    },
+    {
+      "id": "mlops.resource.containers",
+      "url": "https://docs.docker.com/get-started/tutorials/run-an-app/",
+      "checkedAt": "2026-10-06",
+      "method": "Opened official page with web tool; verified topic and documented access conditions. No enrollment, lab or paid API execution.",
+      "topic": "Images and local container execution.",
+      "accessNote": "Tài liệu miễn phí; Docker/virtualization local. Windows kiểm tra WSL2/Hyper-V/RAM theo trang cài đặt; Docker Desktop miễn phí cho giáo dục/cá nhân theo điều kiện license, trường hợp doanh nghiệp cần kiểm tra subscription. Không bắt buộc cloud.",
+      "supportUrls": [
+        "https://docs.docker.com/desktop/setup/install/windows-install/",
+        "https://docs.docker.com/subscription-billing/plans/"
+      ]
+    },
+    {
+      "id": "mlops.resource.monitoring",
+      "url": "https://prometheus.io/docs/introduction/overview/",
+      "checkedAt": "2026-10-06",
+      "method": "Opened official page with web tool; verified topic and documented access conditions. No enrollment, lab or paid API execution.",
+      "topic": "Scrape, metrics and alerts.",
+      "accessNote": "Tài liệu miễn phí; Prometheus local để đo request/error/latency, không thuê hosted service.",
+      "supportUrls": []
+    },
+    {
+      "id": "mlops.resource.data-versioning",
+      "url": "https://doc.dvc.org/start",
+      "checkedAt": "2026-10-06",
+      "method": "Opened official page with web tool; verified topic and documented access conditions. No enrollment, lab or paid API execution.",
+      "topic": "Data/artifact versioning.",
+      "accessNote": "Tài liệu miễn phí; Git/DVC/filesystem local. Cloud remote không bắt buộc; phí/quyền riêng nếu dùng.",
+      "supportUrls": []
+    },
+    {
+      "id": "mlops.resource.pipelines",
+      "url": "https://doc.dvc.org/start/data-pipelines",
+      "checkedAt": "2026-10-06",
+      "method": "Opened official page with web tool; verified topic and documented access conditions. No enrollment, lab or paid API execution.",
+      "topic": "Stages, dependencies and outputs.",
+      "accessNote": "Tài liệu miễn phí; DVC local, pipeline nhỏ CPU, không cần bucket cloud.",
+      "supportUrls": []
+    },
+    {
+      "id": "mlops.resource.python-ci",
+      "url": "https://docs.github.com/en/actions/tutorials/build-and-test-code/python",
+      "checkedAt": "2026-10-06",
+      "method": "Opened official page with web tool; verified topic and documented access conditions. No enrollment, lab or paid API execution.",
+      "topic": "Setup, install and test Python in CI.",
+      "accessNote": "Đọc miễn phí; Actions cần tài khoản/repo. Standard runner public miễn phí theo billing; private có quota, larger runner có phí. Có lệnh chạy test local tương đương.",
+      "supportUrls": [
+        "https://docs.github.com/en/billing/concepts/product-billing/github-actions"
+      ]
+    },
+    {
+      "id": "mlops.resource.registry",
+      "url": "https://mlflow.org/docs/latest/ml/model-registry/tutorial/",
+      "checkedAt": "2026-10-06",
+      "method": "Opened official page with web tool; verified topic and documented access conditions. No enrollment, lab or paid API execution.",
+      "topic": "Model versions, aliases and lifecycle.",
+      "accessNote": "Tài liệu miễn phí; MLflow local với backend phù hợp phiên bản, không hosted subscription.",
+      "supportUrls": []
+    },
+    {
+      "id": "ai-engineer.resource.llm",
+      "url": "https://developers.google.com/machine-learning/crash-course/llm",
+      "checkedAt": "2026-10-06",
+      "method": "Opened official page with web tool; verified topic and documented access conditions. No enrollment, lab or paid API execution.",
+      "topic": "Tokens, context, attention and limitations.",
+      "accessNote": "Module miễn phí; cần nền ML/neural network. Đọc không cần API/GPU; bài bắt đầu bằng đáp án cố định offline.",
+      "supportUrls": []
+    },
+    {
+      "id": "ai-engineer.resource.embeddings",
+      "url": "https://www.sbert.net/docs/sentence_transformer/usage/semantic_textual_similarity.html",
+      "checkedAt": "2026-10-06",
+      "method": "Opened official page with web tool; verified topic and documented access conditions. No enrollment, lab or paid API execution.",
+      "topic": "Embedding and similarity.",
+      "accessNote": "Tài liệu miễn phí; sentence-transformers/model nhỏ public CPU; tải weights cần Internet/license, không API trả tiền.",
+      "supportUrls": []
+    },
+    {
+      "id": "ai-engineer.resource.retrieval",
+      "url": "https://www.sbert.net/examples/sentence_transformer/applications/semantic-search/README.html",
+      "checkedAt": "2026-10-06",
+      "method": "Opened official page with web tool; verified topic and documented access conditions. No enrollment, lab or paid API execution.",
+      "topic": "Query/corpus embeddings and retrieval.",
+      "accessNote": "Tài liệu miễn phí; corpus nhỏ CPU local, không cần vector DB hosted; chunk giữ ID/nguồn.",
+      "supportUrls": []
+    },
+    {
+      "id": "ai-engineer.resource.gemini",
+      "url": "https://ai.google.dev/gemini-api/docs/get-started",
+      "checkedAt": "2026-10-06",
+      "method": "Opened official page with web tool; verified topic and documented access conditions. No enrollment, lab or paid API execution.",
+      "topic": "SDK, keys and requests.",
+      "accessNote": "Đọc miễn phí; gọi thật cần account/key và khu vực hỗ trợ. Free tier tùy model/quota; paid tier tính usage. Mock/offline là mặc định bài, API thật tùy chọn; key ở env.",
+      "supportUrls": [
+        "https://ai.google.dev/gemini-api/docs/pricing"
+      ]
+    },
+    {
+      "id": "ai-engineer.resource.function-calling",
+      "url": "https://ai.google.dev/gemini-api/docs/function-calling",
+      "checkedAt": "2026-10-06",
+      "method": "Opened official page with web tool; verified topic and documented access conditions. No enrollment, lab or paid API execution.",
+      "topic": "Tool schema, arguments, execution/results.",
+      "accessNote": "Đọc miễn phí; Gemini thật cần key/quota và có paid tier. Bài fake model trả tool call local; không cấp quyền shell hay dữ liệu cá nhân.",
+      "supportUrls": [
+        "https://ai.google.dev/gemini-api/docs/pricing"
+      ]
+    },
+    {
+      "id": "ai-engineer.resource.agents",
+      "url": "https://huggingface.co/learn/agents-course/en/unit1/what-are-agents",
+      "checkedAt": "2026-10-06",
+      "method": "Opened official page with web tool; verified topic and documented access conditions. No enrollment, lab or paid API execution.",
+      "topic": "Reasoning, actions and agent loops.",
+      "accessNote": "Khóa đọc miễn phí; cần Python/LLM. Bài local có tool allowlist/fake model; Hub/Spaces/certificate cần account HF; inference/GPU ngoài có thể mất phí.",
+      "supportUrls": [
+        "https://huggingface.co/learn/agents-course/en/unit0/introduction"
+      ]
+    },
+    {
+      "id": "ai-engineer.resource.agent-evaluation",
+      "url": "https://huggingface.co/learn/agents-course/en/unit4/hands-on",
+      "checkedAt": "2026-10-06",
+      "method": "Opened official page with web tool; verified topic and documented access conditions. No enrollment, lab or paid API execution.",
+      "topic": "Benchmark evaluation and final challenge.",
+      "accessNote": "Đọc/challenge khóa miễn phí; submit cần account HF. API/model/hosting tùy cách chạy có thể tốn phí. Bài nội bộ 20 case offline không tự nhận certificate.",
+      "supportUrls": []
+    },
+    {
+      "id": "scientist.credential.ml-specialization",
+      "url": "https://www.coursera.org/specializations/machine-learning-introduction",
+      "checkedAt": "2026-10-06",
+      "method": "Opened official certification provider page and read requirements.",
+      "topic": "Hoàn thành cả 3 khóa và programming assignments; certificate cần gói trả phí. FAQ hiển thị 49 USD/tháng ngày kiểm tra; giá/thuế/khuyến mại ở checkout có thể khác. Không phải university credit.",
+      "accessNote": "Python/đại số cơ bản và account Coursera; không bắt buộc mua để làm portfolio.",
+      "supportUrls": []
+    },
+    {
+      "id": "mlops.credential.aws-mla",
+      "url": "https://aws.amazon.com/certification/certified-machine-learning-engineer-associate/",
+      "checkedAt": "2026-10-06",
+      "method": "Opened official certification provider page and read requirements.",
+      "topic": "Đạt kỳ thi theo hướng dẫn hiện hành. Trang có MLA-C01 150 USD và beta cập nhật 75 USD ngày kiểm tra; xác nhận mã thi/giá/thuế khi đăng ký. AWS compute/lab có phí ngoài lệ phí thi.",
+      "accessNote": "Nhà cung cấp hướng tới ít nhất 1 năm ML engineering/AWS hands-on; không phải nhập môn. Bài local không cần AWS account.",
+      "supportUrls": []
+    },
+    {
+      "id": "ai-engineer.credential.hf-agents",
+      "url": "https://huggingface.co/learn/agents-course/en/unit4/get-your-certificate",
+      "checkedAt": "2026-10-06",
+      "method": "Opened official certification provider page and read requirements.",
+      "topic": "Trang claim yêu cầu điểm final challenge trên 30%, đăng nhập/cung cấp tên để verify/download. 20 test local không tương đương benchmark, không tự nhận đã đạt.",
+      "accessNote": "Python/LLM và account HF; hoàn thành Unit 1, use case và final challenge theo khóa. Certificate miễn phí, model/API/compute ngoài có thể tốn phí.",
+      "supportUrls": [
+        "https://huggingface.co/learn/agents-course/en/unit0/introduction",
+        "https://huggingface.co/learn/agents-course/en/unit4/hands-on"
+      ]
+    }
+  ],
+  "unverified": [
+    {
+      "url": "https://www.deeplearning.ai/courses/machine-learning-specialization/",
+      "checkedAt": null,
+      "reason": "Web open failed; official Coursera provider page used instead."
+    },
+    {
+      "url": "https://docs.docker.com/subscription/docker-personal/",
+      "checkedAt": null,
+      "reason": "Web open failed; official Windows install and plans pages used instead."
+    },
+    {
+      "url": "https://scipy.org/doc/scipy/tutorial/stats.html",
+      "checkedAt": null,
+      "reason": "Inaccessible host/path; stable docs.scipy.org page used."
+    }
+  ],
+  "surveyedButNotSelected": [
+    {
+      "url": "https://pll.harvard.edu/series/professional-certificate-data-science",
+      "checkedAt": "2026-10-06",
+      "reason": "Harvard Data Science uses R/RStudio/dplyr/ggplot2, not scientist.python; use Python portfolio and optional ML Specialization instead."
+    }
+  ]
+}
