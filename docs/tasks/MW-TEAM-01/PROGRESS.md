@@ -26,5 +26,5 @@
 - [ ] 12. Chạy `npm run check`, `npm run build` và kiểm thử trình duyệt thực tế.
 
 ## 3. Nhật ký chặn (Blockers)
-- **Thiếu URL gốc đã kiểm chứng:** Nội dung khóa học (Resources, Stages) cho 17 hướng đòi hỏi phải truy cập và lấy bằng chứng thực từ các trang web (chi phí, độ dài). Tác vụ này cần sự hỗ trợ của các chuyên gia nội dung để cung cấp thư viện URL chính xác, không được fake URL. Tác động: Chặn tiến độ code các file `src/content/paths/*.ts`. Người giải quyết: Quỳnh Hân / Team BA.
-- **Thiếu Context v2/Callback:** UI Explore và Path Detail phụ thuộc vào các helpers từ `src/app/context.ts` và `registry`. Theo yêu cầu của dự án, UI chỉ được nối vào v2 sau khi Hải tích hợp context/registry. Tác động: Chặn tiến độ code UI ở `src/features/`. Người giải quyết: Nhóm trưởng (Phạm Tuấn Hải).
+- **Thiếu Context v2/Callback (UI):** Explore và Path Detail chờ `src/app/context.ts` v2 và `registry` từ nhóm trưởng (Hải). Tác động: Chặn code UI ở `src/features/`. Người giải quyết: Phạm Tuấn Hải.
+- **`check-example.mjs` fail assertion `checkedAt = '2026-10-03'`:** File `docs/architecture/check-example.mjs` (ngoài allowlist, thuộc Hải) kỳ vọng mọi resource của `backendPack` có `checkedAt: '2026-10-03'`. Sau khi thêm resources mới ngày `2026-10-06`, assertion này fail. `npm run check` (check-project.mjs) đã **PASS**. Tác động: `npm run check` fail ở bước 3 (check-example). Người giải quyết: Phạm Tuấn Hải cần cập nhật assertion trong check-example hoặc tách check ví dụ ra khỏi CI chung. Phần độc lập khác vẫn tiếp tục được.
