@@ -18,7 +18,7 @@
 3. Lỗi/abort/conflict không báo success, giữ candidate để retry; activePlan chỉ đổi sau commit thành công.
 4. Callback dùng được qua React; IndexedDB compare revision+write atomic và dữ liệu đọc được sau reload.
 5. UI/sidebar cũ giữ nguyên; key legacy không bị chuyển hoặc xóa, v2 chưa giả làm dữ liệu v1.
-6. Check/build, 69 test planner, 15 test controller và browser native được ghi kết quả thật.
+6. Check/build, 69 test planner, 16 test controller và browser native được ghi kết quả thật.
 
 ## Ngoài phạm vi
 

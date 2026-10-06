@@ -2,6 +2,8 @@
 
 **Ngày:** 07/10/2026. **Nhánh:** `feat/mw-context-v2`. **Task tích hợp:** MW-CONTEXT-V2.
 
+[PR bàn giao #3](https://github.com/haiphamt/majorweave-mini-project/pull/3) đang chờ Hải kiểm tra.
+
 Hải yêu cầu triển khai Context/callback để Định làm UI My Roadmap. Huy xác nhận qua Hải chưa bắt đầu persistence; bootstrap load/save được thêm ở file riêng, không nhận thay toàn bộ MW-TEAM-05. Không cập nhật Notion hoặc tự thay thiết kế.
 
 ## 1. Lấy code

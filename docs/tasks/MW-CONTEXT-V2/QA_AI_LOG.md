@@ -1,6 +1,6 @@
 # Kiểm thử và AI log — MW-CONTEXT-V2
 
-**Ngày:** 07/10/2026. **Nhánh:** feat/mw-context-v2. **Người chuẩn bị:** Codex theo yêu cầu Hải. SHA được xác định bằng commit chứa tài liệu này và liên kết PR bàn giao.
+**Ngày:** 07/10/2026. **Nhánh:** feat/mw-context-v2. **Người chuẩn bị:** Codex theo yêu cầu Hải. SHA kiểm thử code: `bc13f06d4c73f9c3b537e6c3f7ff8c75c50f8eee`. [PR bàn giao #3](https://github.com/haiphamt/majorweave-mini-project/pull/3).
 
 ## Kết quả đã chạy
 
@@ -11,7 +11,7 @@
 - Native Chrome: 7 kiểm tra IndexedDB Pass (DB QA UUID riêng), gồm load/save/reload, hai writer tranh revision, lỗi conflict giữ candidate, preview/hủy không ghi, confirm giữ history.
 - React StrictMode provider/hook: callback tạo/lưu mobile.flutter Pass; hiển thị ready, 3 plans sau thao tác.
 - Bằng chứng: evidence/native-storage.png. Không đọc/ghi/xóa key legacy trong test.
-- Smoke trang ứng dụng `/\#/roadmap`: sidebar và màn My Roadmap v1 hiển thị bình thường sau khi thêm provider. Bằng chứng: evidence/app-preserved.png; không thao tác sửa kế hoạch trên màn này.
+- Smoke trang ứng dụng `/#/roadmap`: sidebar và màn My Roadmap v1 hiển thị bình thường sau khi thêm provider. Bằng chứng: evidence/app-preserved.png; không thao tác sửa kế hoạch trên màn này.
 
 ## AI log và lỗi triển khai
 
