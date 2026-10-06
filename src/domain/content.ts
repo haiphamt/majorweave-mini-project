@@ -42,11 +42,12 @@ export function resolveTrackContent(
     };
   }
 
-  // Ở phiên bản nâng cao, ta có thể phải resolve tham chiếu chặng/nguồn từ các pack khác nhau (nếu dùng ID nền tảng chung).
-  // Bản cơ bản này sẽ gộp toàn bộ resources, stages, credentials của pack chứa track đó và các pack dùng chung (nếu được thiết kế).
+  // Thu thập mọi resource và stage có trong tất cả các pack
+  const allStages = packs.flatMap(p => p.stages);
+  const allResources = packs.flatMap(p => p.resources);
+  const allCredentials = packs.flatMap(p => p.credentials);
   
-  // Thu thập mọi resource và stage có trong pack hiện tại
-  const resolvedStages = targetPack.stages.filter(s => targetTrack!.stageIds.includes(s.id));
+  const resolvedStages = allStages.filter(s => targetTrack!.stageIds.includes(s.id));
   
   // Lấy ra các resource liên quan
   const requiredResourceIds = new Set<string>();
@@ -54,10 +55,10 @@ export function resolveTrackContent(
     stage.resourceIds.forEach(rId => requiredResourceIds.add(rId));
   });
 
-  const resolvedResources = targetPack.resources.filter(r => requiredResourceIds.has(r.id));
+  const resolvedResources = allResources.filter(r => requiredResourceIds.has(r.id));
   
   // Lấy ra các credentials liên quan
-  const resolvedCredentials = targetPack.credentials.filter(c => targetTrack!.credentialIds.includes(c.id));
+  const resolvedCredentials = allCredentials.filter(c => targetTrack!.credentialIds.includes(c.id));
 
   return {
     ok: true,
