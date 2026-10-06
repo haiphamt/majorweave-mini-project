@@ -5,3 +5,4 @@ import type { State } from '../state';
 export type LegacyAppContext = { state: State; update: (patch: Partial<State>) => void; toast: (message: string) => void; openModule: (id: string) => void };
 export const Context = createContext<LegacyAppContext>(null!);
 export const useApp = () => useContext(Context);
+
