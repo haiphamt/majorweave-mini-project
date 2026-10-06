@@ -14,6 +14,7 @@ import type {
   ValidationIssue,
   PlannerFunction,
   ISODate,
+  Instant,
 } from './contracts';
 
 // ─── Hằng số ─────────────────────────────────────────────────────────────────
@@ -30,10 +31,12 @@ const MAX_SEGMENT_MINUTES = 120;
  */
 export function isValidDate(value: string): boolean {
   if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) return false;
-  const d = new Date(value + 'T00:00:00');
-  if (isNaN(d.getTime())) return false;
-  // Nếu JS tự điều chỉnh ngày (rollover) thì chuỗi ISO sẽ không còn match.
-  return d.toISOString().startsWith(value);
+  const [y, m, d] = value.split('-').map(Number);
+  // Dùng Date.UTC để tránh phụ thuộc timezone cục bộ.
+  const utc = new Date(Date.UTC(y, m - 1, d));
+  if (isNaN(utc.getTime())) return false;
+  // Nếu JS tự điều chỉnh ngày (rollover) thì UTC components sẽ không còn match.
+  return utc.getUTCFullYear() === y && utc.getUTCMonth() === m - 1 && utc.getUTCDate() === d;
 }
 
 /**
@@ -41,8 +44,9 @@ export function isValidDate(value: string): boolean {
  * Yêu cầu value đã là ngày hợp lệ.
  */
 export function isMonday(isoDate: ISODate): boolean {
-  // getDay(): 0=CN, 1=T2, 2=T3, ..., 6=T7
-  return new Date(isoDate + 'T00:00:00').getDay() === 1;
+  // Dùng UTC để tránh phụ thuộc timezone cục bộ.
+  const [y, m, d] = isoDate.split('-').map(Number);
+  return new Date(Date.UTC(y, m - 1, d)).getUTCDay() === 1;
 }
 
 /** Tên ngày trong tuần tiếng Việt, theo getDay() (0=CN). */
@@ -356,4 +360,144 @@ export const generatePlan: PlannerFunction = (
   };
 
   return { ok: true, value: plan };
+};
+
+// ─── regeneratePlan ───────────────────────────────────────────────────────────
+
+/**
+ * Tạo lại kế hoạch từ draft mới, giữ lại lịch sử và completion của các task cũ khớp định danh.
+ * Các bài tự thêm/sửa (customized) được giữ lại ở backlog.
+ */
+export const regeneratePlan = (
+  oldPlan: LearningPlan,
+  track: LearningTrack,
+  stages: LearningStage[],
+  resources: LearningResource[],
+  draft: RoadmapDraft,
+  context: { contentVersion: string; generationId: string; nextTaskId: () => string; now: Instant }
+): OperationResult<LearningPlan> => {
+  // ── Bước 1: Validate ─────────────────────────────────────────────────────
+  const issues = validateDraft(draft, track, stages, resources);
+  if (issues.length > 0) {
+    return { ok: false, code: 'validation', issues };
+  }
+
+  const stageMap = new Map(stages.map(s => [s.id, s]));
+  const resourceMap = new Map(resources.map(r => [r.id, r]));
+  const toLearnIds = draft.selectedStageIds.filter(
+    sid => !draft.knownStageIds.includes(sid),
+  );
+
+  // ── Bước 2: Build danh sách task thô ────────────────────────────────────
+  const rawTasks: PlanTask[] = [];
+
+  for (const sid of toLearnIds) {
+    const stage = stageMap.get(sid)!;
+    const chosenResourceId = draft.resourceByStage[sid] ?? stage.defaultResourceId;
+    const resource = resourceMap.get(chosenResourceId) ?? null;
+    const resourceSnapshot = resource
+      ? { id: resource.id, title: resource.title, provider: resource.provider, url: resource.url }
+      : null;
+
+    for (const work of stage.work) {
+      const chunks = chunkWork(work.minutes);
+      const isMultiChunk = chunks.length > 1;
+
+      for (const chunk of chunks) {
+        rawTasks.push({
+          id: context.nextTaskId(),
+          stageId: sid,
+          workId: work.id,
+          workRevision: work.revision,
+          segment: isMultiChunk
+            ? { fromMinute: chunk.fromMinute, toMinute: chunk.toMinute }
+            : null,
+          title: isMultiChunk
+            ? `${work.title} (phần ${chunk.index + 1}/${chunks.length})`
+            : work.title,
+          minutes: chunk.minutes,
+          acceptance: work.acceptance,
+          source: resourceSnapshot,
+          weekIndex: null,
+          dayIndex: null,
+          status: 'todo',
+          customized: false,
+          completionId: null,
+          notes: '',
+        });
+      }
+    }
+  }
+
+  // ── Bước 3: Khớp với task cũ ─────────────────────────────────────────────
+  const oldTasks = oldPlan.current.tasks;
+  const isSameTrack = oldPlan.trackId === draft.trackId;
+  
+  const retainedTasks: PlanTask[] = [];
+
+  for (const newTask of rawTasks) {
+    const old = oldTasks.find(o => 
+      !o.customized &&
+      o.workId === newTask.workId &&
+      o.workRevision === newTask.workRevision &&
+      o.segment?.fromMinute === newTask.segment?.fromMinute &&
+      o.segment?.toMinute === newTask.segment?.toMinute
+    );
+
+    if (old) {
+      retainedTasks.push({
+        ...newTask,
+        id: old.id,
+        status: old.status,
+        completionId: old.completionId,
+        notes: old.notes,
+      });
+    } else {
+      retainedTasks.push(newTask);
+    }
+  }
+
+  // ── Bước 4: Xếp lịch vào tuần ───────────────────────────────────────────
+  const scheduledTasks = scheduleIntoWeeks(retainedTasks, draft.hoursPerWeek);
+
+  // ── Bước 5: Giữ việc tự thêm/sửa ở backlog ──────────────────────────────
+  const finalTasks = [...scheduledTasks];
+  if (isSameTrack) {
+    const customizedTasks = oldTasks.filter(t => t.customized);
+    for (const cTask of customizedTasks) {
+      finalTasks.push({
+        ...cTask,
+        weekIndex: null,
+        dayIndex: null,
+      });
+    }
+  }
+
+  // ── Bước 6: Build PlanGeneration & LearningPlan ────────────────────────
+  const generation: PlanGeneration = {
+    id: context.generationId,
+    createdAt: context.now,
+    trackId: draft.trackId,
+    contentVersion: context.contentVersion,
+    selectedStageIds: draft.selectedStageIds,
+    knownStageIds: draft.knownStageIds,
+    resourceByStage: { ...draft.resourceByStage },
+    tasks: finalTasks,
+    closedWeeks: [],
+    goal: draft.goal,
+    hoursPerWeek: draft.hoursPerWeek,
+    startDate: draft.startDate,
+  };
+
+  const newPlan: LearningPlan = {
+    ...oldPlan,
+    name: `${track.label} — ${draft.goal.slice(0, 40)}`,
+    trackId: track.id,
+    pathId: track.pathId,
+    contentVersion: context.contentVersion,
+    current: generation,
+    history: [...oldPlan.history, oldPlan.current],
+  };
+
+  return { ok: true, value: newPlan };
 };
