@@ -135,6 +135,38 @@ export function validateDraft(
     }
   }
 
+  // ── 4a. Kiểm tra trùng lặp và thứ tự trong selectedStageIds ──────────────
+  const selectedSet = new Set<string>();
+  let lastTrackIndex = -1;
+  let hasOrderOrDuplicateIssue = false;
+
+  for (const sid of draft.selectedStageIds) {
+    if (selectedSet.has(sid)) {
+      issues.push({
+        code: 'DUPLICATE_STAGE_SELECTION',
+        field: 'selectedStageIds',
+        message: `Chặng "${sid}" được chọn nhiều lần.`,
+      });
+      hasOrderOrDuplicateIssue = true;
+      break;
+    }
+    selectedSet.add(sid);
+
+    const trackIndex = track.stageIds.indexOf(sid);
+    if (trackIndex !== -1) {
+      if (trackIndex < lastTrackIndex) {
+        issues.push({
+          code: 'INVALID_STAGE_ORDER',
+          field: 'selectedStageIds',
+          message: `Thứ tự chặng được chọn không hợp lệ. Phải tuân theo thứ tự trong track.`,
+        });
+        hasOrderOrDuplicateIssue = true;
+        break;
+      }
+      lastTrackIndex = trackIndex;
+    }
+  }
+
   // ── 5. knownStageIds: mọi ID phải tồn tại ────────────────────────────────
   for (const kid of draft.knownStageIds) {
     if (!stageMap.has(kid)) {
@@ -189,6 +221,12 @@ export function validateDraft(
         code: 'MISSING_RESOURCE',
         field: `resourceByStage.${sid}`,
         message: `Chặng "${sid}" không có tài nguyên hợp lệ. Đã chọn: "${chosenId ?? 'không có'}".`,
+      });
+    } else if (!stage.resourceIds.includes(chosenId)) {
+      issues.push({
+        code: 'RESOURCE_NOT_IN_STAGE',
+        field: `resourceByStage.${sid}`,
+        message: `Tài nguyên "${chosenId}" không thuộc danh sách tài nguyên của chặng "${sid}".`,
       });
     }
   }
@@ -335,8 +373,8 @@ export const generatePlan: PlannerFunction = (
     createdAt: context.now,
     trackId: draft.trackId,
     contentVersion: context.contentVersion,
-    selectedStageIds: draft.selectedStageIds,
-    knownStageIds: draft.knownStageIds,
+    selectedStageIds: [...draft.selectedStageIds],
+    knownStageIds: [...draft.knownStageIds],
     resourceByStage: { ...draft.resourceByStage },
     tasks: scheduledTasks,
     closedWeeks: [],
@@ -479,8 +517,8 @@ export const regeneratePlan = (
     createdAt: context.now,
     trackId: draft.trackId,
     contentVersion: context.contentVersion,
-    selectedStageIds: draft.selectedStageIds,
-    knownStageIds: draft.knownStageIds,
+    selectedStageIds: [...draft.selectedStageIds],
+    knownStageIds: [...draft.knownStageIds],
     resourceByStage: { ...draft.resourceByStage },
     tasks: finalTasks,
     closedWeeks: [],

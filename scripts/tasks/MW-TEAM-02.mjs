@@ -171,6 +171,20 @@ ok('goal rong -> MISSING_GOAL', () => {
   assert.ok(validateDraft({ ...BASE_DRAFT, goal: '' }, track, stages, resources).some(i => i.code === 'MISSING_GOAL'));
 });
 
+// Cac loi moi fix theo review
+ok('Thu tu dao nguoc [B, A] -> INVALID_STAGE_ORDER', () => {
+  assert.ok(validateDraft({ ...BASE_DRAFT, selectedStageIds: ['test.stage.b', 'test.stage.a'] }, track, stages, resources).some(i => i.code === 'INVALID_STAGE_ORDER'));
+});
+ok('Chon trung [A, A, B] -> DUPLICATE_STAGE_SELECTION', () => {
+  assert.ok(validateDraft({ ...BASE_DRAFT, selectedStageIds: ['test.stage.a', 'test.stage.a', 'test.stage.b'] }, track, stages, resources).some(i => i.code === 'DUPLICATE_STAGE_SELECTION'));
+});
+ok('Chon nguon r2 khong thuoc chang A -> RESOURCE_NOT_IN_STAGE', () => {
+  const extraResource = { id: 'resource.test.r2', title: 'R2', provider: 'Test', url: 'https://ex.com', language: 'en', format: 'article', cost: 'free', level: 'introductory', accessNote: '', checkedAt: null };
+  const allRes = [...resources, extraResource];
+  const draftWithWrongResource = { ...BASE_DRAFT, resourceByStage: { 'test.stage.a': 'resource.test.r2' } };
+  assert.ok(validateDraft(draftWithWrongResource, track, stages, allRes).some(i => i.code === 'RESOURCE_NOT_IN_STAGE'));
+});
+
 // --- Section 3: generatePlan invariants ---
 console.log('\n--- Section 3: generatePlan invariants ---');
 
@@ -298,6 +312,20 @@ ok('regeneratePlan khong mutate plan cu (pure function)', () => {
   regeneratePlan(oldPlan, track, stages, resources, { ...BASE_DRAFT, startDate: TUESDAY_DATE }, makeRegenContext());
   assert.equal(oldPlan.history.length, 0);
   assert.equal(oldPlan.current.id, 'gen-001');
+});
+ok('generatePlan va regeneratePlan tao snapshot doc lap cho selectedStageIds/knownStageIds', () => {
+  const draft = { ...BASE_DRAFT, selectedStageIds: [...BASE_DRAFT.selectedStageIds], knownStageIds: ['test.stage.a'] };
+  const g1 = generatePlan(track, stages, resources, draft, makeContext());
+  assert.equal(g1.ok, true);
+  const plan = g1.value;
+  draft.selectedStageIds.splice(0, 1); // Thay doi draft goc
+  assert.equal(plan.current.selectedStageIds.length, 2); // Plan khong bi thay doi
+
+  const draft2 = { ...BASE_DRAFT, selectedStageIds: [...BASE_DRAFT.selectedStageIds], knownStageIds: ['test.stage.a'] };
+  const g2 = regeneratePlan(plan, track, stages, resources, draft2, makeRegenContext());
+  assert.equal(g2.ok, true);
+  draft2.selectedStageIds.splice(0, 1);
+  assert.equal(g2.value.current.selectedStageIds.length, 2);
 });
 
 // --- Section 5: Noi dung Mobile ---
