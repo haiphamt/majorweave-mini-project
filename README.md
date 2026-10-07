@@ -5,7 +5,12 @@ Mini Project môn **Phát triển ứng dụng web — IS207.R11**, nhóm **PHP 
 - [Project Hub chung trên Notion](https://app.notion.com/p/3ee533490aed81719583de1253e9cb2d)
 - [Board Mini Project — MajorWeave](https://app.notion.com/p/3ee533490aed81f7ab5eee549942f2c3)
 - [Repository đồ án chính](https://github.com/haiphamt/is207-main-project)
-- Hạn nộp mini: **12/10/2026**. Bản hiện tại là prototype, URL demo online sẽ cập nhật sau triển khai.
+- Hạn nộp mini: **12/10/2026**. Bản hiện tại là prototype:
+    + [Demo online](https://cheery-dusk-9602b2.netlify.app/)
+    + Phiên bản code đã triển khai: `685435047a58f05d1bb3a90ae901425bdcb31074`.
+    + Ngày triển khai: 07/10/2026.
+    + Triển khai thủ công trên Netlify từ thư mục `dist`.
+    + Dữ liệu lưu bằng localStorage, riêng theo trình duyệt và thiết bị; chưa đồng bộ online.
 
 ## Bản đang dùng — giao diện có sidebar
 
