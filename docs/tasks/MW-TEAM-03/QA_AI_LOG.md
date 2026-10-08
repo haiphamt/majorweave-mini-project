@@ -1,5 +1,9 @@
 # Kiểm thử và AI log — MW-TEAM-03
 
+## Kiểm MI07 keyboard/focus — 09/10/2026
+Kiểm riêng appv1 code c8ffdb3 tại origin QA5198:5vòng Tab và5vòng Shift+Tab, thao tác keyboard mẫu và5modal. Bảng16ca/expected/actual ở KEYBOARD_MI07_2026-10-09.md; trace và JPG keyboard-* cùng ngày trong evidence. First Shift+Tab Path detail trả BODY3lần; chưa phân biệt chrome focus nên chưa ghi Pass focus trap. Escape/return opener đạt trong modal đã thử. Date native focus từng phần chưa kiểm đủ.
+Codex dùng computer-use, không sửa source/component chung; ghi đề xuất cho Hải ở báo cáo. Không chạy lại toàn suite/check/build trong lượt chỉ audit keyboard theo yêu cầu người dùng; kiểm diff và hash bảo toàn trước stage/commit. Giữ lịch sử test cũ; không nhận đây là test appv2/reload mới.
+
 ## Môi trường và trạng thái bàn giao
 
 - Người được giao: Chung Minh Hiếu. Thực thi code/test: Codex theo yêu cầu trực tiếp đợt 1.
