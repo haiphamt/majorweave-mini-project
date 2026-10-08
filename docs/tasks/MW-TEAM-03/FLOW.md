@@ -88,3 +88,170 @@ Các kết quả “chưa chạy UI” phía trên là lịch sử đợt 1; k�
 | FL06 / AC04 | Plan/Stats/Weeks, Xem tuần/backlog, chọn generation. Snapshot/history/archive readonly, empty rõ; skipped loại khỏi tổng, source snapshot safe protocol. Navigation không sửa plan. | Browser Stats tuần1 giữ1/2 ở cả8plan, Weeks, history readonly, archived, mobile390×844; UI02/03/07/08 và TC15–17. History regenerate/planner thật chưa chạy. |
 
 Input invariant/history immutability/ID/date được assert tại domain; browser chỉ kiểm hành vi hiển thị/tương tác. Sau tích hợp chạy full hành trình và cập nhật actual theo checklist demo, không đổi các ca chưa chạy thành Pass bằng fixture.
+
+
+## Bảng bước và sơ đồ bổ sung — 08/10/2026
+
+Đặc tả bổ sung cho sáu mã flow phía trên; giữ nguyên actor, story, AC và điều kiện trước đã nêu. Callback là ranh giới feature; persistence v2 thật vẫn chờ tích hợp. Các mã S/A/E/C được đặt trong phạm vi từng flow.
+
+### FL-MW-TEAM-03-01 — Chọn plan và chuyển tuần: bảng thực hiện
+
+| Bước | Sinh viên | UI | Domain / persistence | Dữ liệu sau bước |
+|---|---|---|---|---|
+| S1 | Chọn plan ID | onSelectPlan; khóa chọn khi pending | Chưa ghi dữ liệu | Giữ plan gốc |
+| S2 | Xác nhận thao tác nếu có | Kiểm tra input/quyền sửa | Adapter lưu activePlanId | Candidate hoặc kết quả đọc riêng |
+| S3 | Chờ kết quả | Đọc generation, chọn tuần/backlog | Adapter chịu trách nhiệm revision | Không báo thành công trước callback |
+| S4 | Đọc kết quả | Chỉ đổi tuần đang xem; task không đổi | Không sửa input/history | Publish sau thành công |
+
+| Mã | Xuất phát | Điều kiện | Thông báo / xử lý | Trạng thái dữ liệu | Test |
+|---|---|---|---|---|---|
+| A1 | S2 | Nhánh thay thế | Archived/history chuyển readonly | Theo contracts | UI05/06, TC15–17 |
+| E1 | S2/S3 | Input/lưu lỗi | ID mất hoặc lỗi chọn: giữ plan props, hiện lỗi | Không ghi đè bản gốc | UI05/06, TC15–17 |
+| C1 | S1/S2 | Hủy | Đóng bộ chọn: không gọi callback | Giữ dữ liệu trước thao tác | UI05/06, TC15–17 |
+
+```mermaid
+flowchart TD
+ S1["S1: Chọn plan ID"] --> S2["S2: Adapter lưu activePlanId"]
+ S1 --> C1["C1: Đóng bộ chọn: không gọi callback"]
+ S2 --> A1["A1: Archived/history chuyển readonly"]
+ A1 --> S3["S3: Đọc generation, chọn tuần/backlog"]
+ S2 --> S3
+ S2 --> E1["E1: ID mất hoặc lỗi chọn: giữ plan props, hiện lỗi"]
+ S3 --> E1
+ S3 --> S4["S4: Chỉ đổi tuần đang xem; task không đổi"]
+```
+
+### FL-MW-TEAM-03-02 — Hoàn thành / hoàn tác / làm lại: bảng thực hiện
+
+| Bước | Sinh viên | UI | Domain / persistence | Dữ liệu sau bước |
+|---|---|---|---|---|
+| S1 | Chọn trạng thái đích true/false | Khóa checkbox trong khi chờ | Chưa ghi dữ liệu | Giữ plan gốc |
+| S2 | Xác nhận thao tác nếu có | Kiểm tra input/quyền sửa | setTaskCompletion kiểm clock, ID, ledger | Candidate hoặc kết quả đọc riêng |
+| S3 | Chờ kết quả | onSavePlan(candidate, expected) | Adapter chịu trách nhiệm transaction/revision | Không báo thành công trước callback |
+| S4 | Đọc kết quả | Thành công cập nhật trạng thái; không đếm trùng | Không sửa input/history | Publish sau thành công |
+
+| Mã | Xuất phát | Điều kiện | Thông báo / xử lý | Trạng thái dữ liệu | Test |
+|---|---|---|---|---|---|
+| A1 | S2 | Nhánh thay thế | Lặp cùng trạng thái không thêm completion | Theo contracts | TC01–05, UI03/04 |
+| E1 | S2/S3 | Input/lưu lỗi | Tuần đóng hoặc lưu lỗi: giữ props, retry cùng candidate | Không ghi đè bản gốc | TC01–05, UI03/04 |
+| C1 | S1/S2 | Hủy | Bỏ thay đổi sau lỗi: bỏ candidate local | Giữ dữ liệu trước thao tác | TC01–05, UI03/04 |
+
+```mermaid
+flowchart TD
+ S1["S1: Chọn trạng thái đích true/false"] --> S2["S2: setTaskCompletion kiểm clock, ID, ledger"]
+ S1 --> C1["C1: Bỏ thay đổi sau lỗi: bỏ candidate local"]
+ S2 --> A1["A1: Lặp cùng trạng thái không thêm completion"]
+ A1 --> S3["S3: onSavePlan(candidate, expected)"]
+ S2 --> S3
+ S2 --> E1["E1: Tuần đóng hoặc lưu lỗi: giữ props, retry cùng candidate"]
+ S3 --> E1
+ S3 --> S4["S4: Thành công cập nhật trạng thái; không đếm trùng"]
+```
+
+### FL-MW-TEAM-03-03 — Thêm / sửa công việc: bảng thực hiện
+
+| Bước | Sinh viên | UI | Domain / persistence | Dữ liệu sau bước |
+|---|---|---|---|---|
+| S1 | Mở form, nhập title/acceptance/phút/notes | Giữ draft; validate trước submit | Chưa ghi dữ liệu | Giữ plan gốc |
+| S2 | Xác nhận thao tác nếu có | Kiểm tra input/quyền sửa | addTask/updateTask; chỉ field được phép | Candidate hoặc kết quả đọc riêng |
+| S3 | Chờ kết quả | onSavePlan(candidate, expected) | Adapter chịu trách nhiệm transaction/revision | Không báo thành công trước callback |
+| S4 | Đọc kết quả | Lưu xong mới đóng form; giữ ID/provenance khi sửa | Không sửa input/history | Publish sau thành công |
+
+| Mã | Xuất phát | Điều kiện | Thông báo / xử lý | Trạng thái dữ liệu | Test |
+|---|---|---|---|---|---|
+| A1 | S2 | Nhánh thay thế | Notes/lịch không tự bật customized | Theo contracts | TC06–08/10/18, UI01/04 |
+| E1 | S2/S3 | Input/lưu lỗi | Input sai giữ form; save lỗi cho retry | Không ghi đè bản gốc | TC06–08/10/18, UI01/04 |
+| C1 | S1/S2 | Hủy | Hủy/Escape bỏ draft, không lưu | Giữ dữ liệu trước thao tác | TC06–08/10/18, UI01/04 |
+
+```mermaid
+flowchart TD
+ S1["S1: Mở form, nhập title/acceptance/phút/notes"] --> S2["S2: addTask/updateTask; chỉ field được phép"]
+ S1 --> C1["C1: Hủy/Escape bỏ draft, không lưu"]
+ S2 --> A1["A1: Notes/lịch không tự bật customized"]
+ A1 --> S3["S3: onSavePlan(candidate, expected)"]
+ S2 --> S3
+ S2 --> E1["E1: Input sai giữ form; save lỗi cho retry"]
+ S3 --> E1
+ S3 --> S4["S4: Lưu xong mới đóng form; giữ ID/provenance khi sửa"]
+```
+
+### FL-MW-TEAM-03-04 — Dời lịch / backlog: bảng thực hiện
+
+| Bước | Sinh viên | UI | Domain / persistence | Dữ liệu sau bước |
+|---|---|---|---|---|
+| S1 | Sửa tuần và ngày | Tuần tạm trống vẫn giữ ngày trong draft | Chưa ghi dữ liệu | Giữ plan gốc |
+| S2 | Xác nhận thao tác nếu có | Kiểm tra input/quyền sửa | parseTaskForm; updateTask hoặc moveTaskToBacklog | Candidate hoặc kết quả đọc riêng |
+| S3 | Chờ kết quả | Hiện vượt giờ; gọi onSavePlan | Adapter chịu trách nhiệm transaction/revision | Không báo thành công trước callback |
+| S4 | Đọc kết quả | Giữ ID/source/completion; backlog có tuần/ngày null | Không sửa input/history | Publish sau thành công |
+
+| Mã | Xuất phát | Điều kiện | Thông báo / xử lý | Trạng thái dữ liệu | Test |
+|---|---|---|---|---|---|
+| A1 | S2 | Nhánh thay thế | Nhập lại tuần giữ ngày; backlog không có budget | Theo contracts | TC09/13/15, UI09/10 |
+| E1 | S2/S3 | Input/lưu lỗi | Đích đóng hoặc tuần không hợp lệ: không lưu | Không ghi đè bản gốc | TC09/13/15, UI09/10 |
+| C1 | S1/S2 | Hủy | Hủy draft giữ lịch gốc | Giữ dữ liệu trước thao tác | TC09/13/15, UI09/10 |
+
+```mermaid
+flowchart TD
+ S1["S1: Sửa tuần và ngày"] --> S2["S2: parseTaskForm; updateTask hoặc moveTaskToBacklog"]
+ S1 --> C1["C1: Hủy draft giữ lịch gốc"]
+ S2 --> A1["A1: Nhập lại tuần giữ ngày; backlog không có budget"]
+ A1 --> S3["S3: Hiện vượt giờ; gọi onSavePlan"]
+ S2 --> S3
+ S2 --> E1["E1: Đích đóng hoặc tuần không hợp lệ: không lưu"]
+ S3 --> E1
+ S3 --> S4["S4: Giữ ID/source/completion; backlog có tuần/ngày null"]
+```
+
+### FL-MW-TEAM-03-05 — Preview / chốt tuần: bảng thực hiện
+
+| Bước | Sinh viên | UI | Domain / persistence | Dữ liệu sau bước |
+|---|---|---|---|---|
+| S1 | Mở Chốt tuần | Preview snapshot và ba lựa chọn, chưa mutation | Chưa ghi dữ liệu | Giữ plan gốc |
+| S2 | Xác nhận thao tác nếu có | Kiểm tra input/quyền sửa | Xác nhận: closeWeek snapshot trước xử lý todo | Candidate hoặc kết quả đọc riêng |
+| S3 | Chờ kết quả | onSavePlan(candidate, expected) | Adapter chịu trách nhiệm transaction/revision | Không báo thành công trước callback |
+| S4 | Đọc kết quả | Thành công khóa tuần; snapshot không đổi | Không sửa input/history | Publish sau thành công |
+
+| Mã | Xuất phát | Điều kiện | Thông báo / xử lý | Trạng thái dữ liệu | Test |
+|---|---|---|---|---|---|
+| A1 | S2 | Nhánh thay thế | move_next / move_backlog / skip; lặp close giữ quyết định đầu | Theo contracts | TC11–14; browser fixture |
+| E1 | S2/S3 | Input/lưu lỗi | Save lỗi retry cùng candidate; không báo đã chốt | Không ghi đè bản gốc | TC11–14; browser fixture |
+| C1 | S1/S2 | Hủy | Hủy preview không tạo snapshot | Giữ dữ liệu trước thao tác | TC11–14; browser fixture |
+
+```mermaid
+flowchart TD
+ S1["S1: Mở Chốt tuần"] --> S2["S2: Xác nhận: closeWeek snapshot trước xử lý todo"]
+ S1 --> C1["C1: Hủy preview không tạo snapshot"]
+ S2 --> A1["A1: move_next / move_backlog / skip; lặp close giữ quyết định đầu"]
+ A1 --> S3["S3: onSavePlan(candidate, expected)"]
+ S2 --> S3
+ S2 --> E1["E1: Save lỗi retry cùng candidate; không báo đã chốt"]
+ S3 --> E1
+ S3 --> S4["S4: Thành công khóa tuần; snapshot không đổi"]
+```
+
+### FL-MW-TEAM-03-06 — Stats / Weeks / history: bảng thực hiện
+
+| Bước | Sinh viên | UI | Domain / persistence | Dữ liệu sau bước |
+|---|---|---|---|---|
+| S1 | Chọn view và generation | Hiện đúng generation, readonly lịch sử | Chưa ghi dữ liệu | Giữ plan gốc |
+| S2 | Xác nhận thao tác nếu có | Kiểm tra input/quyền sửa | calculatePlanStats/calculateWeekStats | Candidate hoặc kết quả đọc riêng |
+| S3 | Chờ kết quả | Đọc snapshot nếu tuần đóng | Không ghi dữ liệu | Không ghi dữ liệu |
+| S4 | Đọc kết quả | done/(todo+done); empty rõ; không cộng history | Không sửa input/history | Plan giữ nguyên |
+
+| Mã | Xuất phát | Điều kiện | Thông báo / xử lý | Trạng thái dữ liệu | Test |
+|---|---|---|---|---|---|
+| A1 | S2 | Nhánh thay thế | Backlog budget null; skipped không trong mẫu số | Theo contracts | TC10–17, UI02/03/07 |
+| E1 | S2/S3 | Input/lưu lỗi | Generation không tồn tại: báo lỗi, không thay bằng current | Không ghi đè bản gốc | TC10–17, UI02/03/07 |
+| C1 | S1/S2 | Hủy | Quay lại view: không mutation | Giữ dữ liệu trước thao tác | TC10–17, UI02/03/07 |
+
+```mermaid
+flowchart TD
+ S1["S1: Chọn view và generation"] --> S2["S2: calculatePlanStats/calculateWeekStats"]
+ S1 --> C1["C1: Quay lại view: không mutation"]
+ S2 --> A1["A1: Backlog budget null; skipped không trong mẫu số"]
+ A1 --> S3["S3: Đọc snapshot nếu tuần đóng"]
+ S2 --> S3
+ S2 --> E1["E1: Generation không tồn tại: báo lỗi, không thay bằng current"]
+ S3 --> E1
+ S3 --> S4["S4: done/(todo+done); empty rõ; không cộng history"]
+```
