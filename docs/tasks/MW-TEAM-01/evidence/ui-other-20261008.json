@@ -1,0 +1,95 @@
+{
+  "date": "2026-10-08",
+  "majors": [
+    {
+      "faculty": "se",
+      "major": "software",
+      "label": "Kỹ thuật Phần mềm",
+      "browseKeepsMajor": true
+    },
+    {
+      "faculty": "se",
+      "major": "multimedia",
+      "label": "Truyền thông Đa phương tiện",
+      "browseKeepsMajor": true
+    },
+    {
+      "faculty": "cs",
+      "major": "cs",
+      "label": "Khoa học Máy tính",
+      "browseKeepsMajor": true
+    },
+    {
+      "faculty": "cs",
+      "major": "ai",
+      "label": "Trí tuệ Nhân tạo",
+      "browseKeepsMajor": true
+    },
+    {
+      "faculty": "is",
+      "major": "is",
+      "label": "Hệ thống Thông tin",
+      "browseKeepsMajor": true
+    },
+    {
+      "faculty": "is",
+      "major": "ecommerce",
+      "label": "Thương mại Điện tử",
+      "browseKeepsMajor": true
+    },
+    {
+      "faculty": "ise",
+      "major": "it",
+      "label": "Công nghệ Thông tin",
+      "browseKeepsMajor": true
+    },
+    {
+      "faculty": "ise",
+      "major": "data",
+      "label": "Khoa học Dữ liệu",
+      "browseKeepsMajor": true
+    },
+    {
+      "faculty": "nc",
+      "major": "networks",
+      "label": "Mạng máy tính & Truyền thông Dữ liệu",
+      "browseKeepsMajor": true
+    },
+    {
+      "faculty": "nc",
+      "major": "security",
+      "label": "An toàn Thông tin",
+      "browseKeepsMajor": true
+    },
+    {
+      "faculty": "ce",
+      "major": "computer",
+      "label": "Kỹ thuật Máy tính",
+      "browseKeepsMajor": true
+    },
+    {
+      "faculty": "ce",
+      "major": "chip",
+      "label": "Thiết kế Vi mạch",
+      "browseKeepsMajor": true
+    }
+  ],
+  "emptySearch": {
+    "cards": 0,
+    "clearRestores": 18
+  },
+  "cancelDrawer": "Selected alternate then canceled; MDN remained selected",
+  "sourceFilterEmpty": "vi HTML source empty; selection retained; loosen action restores",
+  "credentials": "Google UX saved, reloaded and visible in Profile",
+  "keyboard": "Enter tab + drawer, Escape closes without write",
+  "mobile": {
+    "viewport": 390,
+    "height": 844,
+    "clientWidth": 375,
+    "scrollWidth": 375
+  },
+  "invalidTrack": "Explicit not_found message; no backend fallback",
+  "existingPlan": "First Angular plan still has completion after 16 other track flows",
+  "planCount": 17,
+  "limits": "UI IndexedDB quota/multi-tab conflict not artificially injected; controller tests cover both failures"
+}

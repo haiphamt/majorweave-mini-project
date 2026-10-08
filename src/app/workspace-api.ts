@@ -37,6 +37,8 @@ export type WorkspaceActions = {
   getDraft(trackId: string): RoadmapDraft | null;
   resolveTrack(trackId: string): OperationResult<ResolvedTrack>;
   saveDraft(): Promise<OperationResult<Workspace>>;
+  savePlan(next: LearningPlan, expected: LearningPlan): Promise<OperationResult<Workspace>>;
+  toggleCredential(id: string): Promise<OperationResult<Workspace>>;
   createPlan(trackId: string): Promise<OperationResult<LearningPlan>>;
   selectPlan(planId: string): Promise<OperationResult<Workspace>>;
   previewRegeneration(planId: string): OperationResult<RegenerationPreview>;

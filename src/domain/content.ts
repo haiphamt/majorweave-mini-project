@@ -1,129 +1,66 @@
-import { ContentPack, LearningTrack, LearningStage, LearningResource, OperationResult, CredentialGoal } from './contracts';
+import type { ContentPack, LearningTrack, LearningStage, LearningResource, OperationResult, CredentialGoal, ValidationIssue } from './contracts';
 
-export type ResolvedContent = {
-  track: LearningTrack;
-  stages: LearningStage[];
-  resources: LearningResource[];
-  credentials: CredentialGoal[];
-  contentVersion: string;
-};
+export type ResolvedContent = { track: LearningTrack; stages: LearningStage[]; resources: LearningResource[]; credentials: CredentialGoal[]; contentVersion: string };
 
-/**
- * Resolver thuần: nhận một mảng các ContentPack và một trackId,
- * trả về nội dung đầy đủ (stages, resources, credentials) được gộp lại cho track đó.
- * Giữ nguyên thứ tự lộ trình học được định nghĩa trong track.stageIds.
- * Lưu ý: Tuyệt đối không import thư viện giao diện (React) hay storage (IndexedDB) vào file này.
- */
-export function resolveTrackContent(
-  packs: readonly ContentPack[] | ContentPack[],
-  trackId: string
-): OperationResult<ResolvedContent> {
-  let targetTrack: LearningTrack | undefined;
-  let targetPack: ContentPack | undefined;
-
-  // 1. Tìm track trong tất cả các pack
-  for (const pack of packs) {
-    const found = pack.tracks.find(t => t.id === trackId);
-    if (found) {
-      targetTrack = found;
-      targetPack = pack;
-      break;
+/** Resolve one track against all supplied packs. Never import the registry or mutate inputs. */
+export function resolveTrackContent(packs: readonly ContentPack[], trackId: string): OperationResult<ResolvedContent> {
+  const issues: ValidationIssue[] = [];
+  const add = (code: string, field: string, message: string) => issues.push({ code, field, message });
+  function index<T extends { id: string }>(items: readonly T[], kind: string): Map<string, T> {
+    const map = new Map<string, T>();
+    for (const item of items) {
+      if (!item.id.trim()) add('invalid_id', kind, `ID ${kind} không được rỗng.`);
+      if (map.has(item.id)) add('duplicate_id', kind, `ID ${kind} bị trùng: ${item.id}.`);
+      map.set(item.id, item);
+    }
+    return map;
+  }
+  const tracks = index(packs.flatMap(p => p.tracks), 'track');
+  const stageMap = index(packs.flatMap(p => p.stages), 'stage');
+  const resourceMap = index(packs.flatMap(p => p.resources), 'resource');
+  const credentialMap = index(packs.flatMap(p => p.credentials), 'credential');
+  const track = tracks.get(trackId);
+  if (!track) add('not_found', 'trackId', `Không tìm thấy nội dung cho track ID: ${trackId}`);
+  if (!track || issues.length) return { ok: false, code: 'validation', issues };
+  const pack = packs.find(p => p.tracks.includes(track))!;
+  if (track.pathId !== pack.pathId) add('path_mismatch', 'pathId', 'Track không thuộc hướng chứa nó.');
+  const stageIds = new Set(track.stageIds);
+  if (stageIds.size !== track.stageIds.length) add('duplicate_stage', 'stageIds', 'Track tham chiếu một chặng nhiều lần.');
+  if (!track.stageIds.length) add('empty_track', 'stageIds', 'Track cần ít nhất một chặng.');
+  const stages: LearningStage[] = [];
+  for (const id of track.stageIds) {
+    const stage = stageMap.get(id);
+    if (!stage) add('missing_stage', 'stageIds', `Không tìm thấy định nghĩa cho chặng: ${id}`);
+    else stages.push(stage);
+  }
+  // Detect cycles separately from missing prerequisites/order to return useful diagnostics.
+  const visiting = new Set<string>(), visited = new Set<string>();
+  function visit(id: string) {
+    if (visiting.has(id)) { add('prerequisite_cycle', id, `Vòng tiên quyết tại ${id}.`); return; }
+    if (visited.has(id)) return;
+    visiting.add(id);
+    const stage = stageMap.get(id);
+    for (const prerequisite of stage?.prerequisiteIds ?? []) {
+      if (!stageIds.has(prerequisite)) add('missing_prerequisite', id, `Thiếu tiên quyết ${prerequisite} trong track.`);
+      else visit(prerequisite);
+    }
+    visiting.delete(id); visited.add(id);
+  }
+  track.stageIds.forEach(visit);
+  const seen = new Set<string>(), resourceIds = new Set<string>();
+  for (const stage of stages) {
+    for (const prerequisite of stage.prerequisiteIds) if (!seen.has(prerequisite)) add('prerequisite_order', stage.id, `Tiên quyết ${prerequisite} phải đứng trước ${stage.id}.`);
+    seen.add(stage.id);
+    if (!stage.resourceIds.length || !stage.resourceIds.includes(stage.defaultResourceId)) add('invalid_default_resource', stage.id, 'Nguồn mặc định phải thuộc chặng.');
+    if (new Set(stage.resourceIds).size !== stage.resourceIds.length) add('duplicate_resource', stage.id, 'Nguồn tham chiếu bị trùng.');
+    for (const id of stage.resourceIds) {
+      if (!resourceMap.has(id)) add('missing_resource', stage.id, `Thiếu nguồn ${id}.`);
+      resourceIds.add(id);
     }
   }
-
-  if (!targetTrack || !targetPack) {
-    return {
-      ok: false,
-      code: 'validation',
-      issues: [{
-        code: 'not_found',
-        field: 'trackId',
-        message: `Không tìm thấy nội dung cho track ID: ${trackId}`
-      }]
-    };
-  }
-
-  // 2. Thu thập mọi stage, resource, credential trong các pack vào Map để tra cứu O(1)
-  const stageMap = new Map<string, LearningStage>();
-  const resourceMap = new Map<string, LearningResource>();
-  const credentialMap = new Map<string, CredentialGoal>();
-
-  for (const pack of packs) {
-    for (const stage of pack.stages) {
-      if (!stageMap.has(stage.id)) {
-        stageMap.set(stage.id, stage);
-      }
-    }
-    for (const res of pack.resources) {
-      if (!resourceMap.has(res.id)) {
-        resourceMap.set(res.id, res);
-      }
-    }
-    for (const cred of pack.credentials) {
-      if (!credentialMap.has(cred.id)) {
-        credentialMap.set(cred.id, cred);
-      }
-    }
-  }
-
-  // 3. Kiểm tra các stageIds của track có tồn tại đầy đủ và giữ đúng thứ tự học
-  const missingStages: string[] = [];
-  const resolvedStages: LearningStage[] = [];
-
-  for (const sId of targetTrack.stageIds) {
-    const stage = stageMap.get(sId);
-    if (!stage) {
-      missingStages.push(sId);
-    } else {
-      resolvedStages.push(stage);
-    }
-  }
-
-  if (missingStages.length > 0) {
-    return {
-      ok: false,
-      code: 'validation',
-      issues: missingStages.map(id => ({
-        code: 'missing_stage',
-        field: 'stageIds',
-        message: `Không tìm thấy định nghĩa cho chặng (stage) ID: ${id}`
-      }))
-    };
-  }
-
-  // 4. Lấy ra các resources thuộc các chặng đã resolve
-  const requiredResourceIds = new Set<string>();
-  for (const stage of resolvedStages) {
-    for (const rId of stage.resourceIds) {
-      requiredResourceIds.add(rId);
-    }
-  }
-
-  const resolvedResources: LearningResource[] = [];
-  for (const rId of requiredResourceIds) {
-    const res = resourceMap.get(rId);
-    if (res) {
-      resolvedResources.push(res);
-    }
-  }
-
-  // 5. Lấy ra các credentials liên quan đến track
-  const resolvedCredentials: CredentialGoal[] = [];
-  for (const cId of targetTrack.credentialIds) {
-    const cred = credentialMap.get(cId);
-    if (cred) {
-      resolvedCredentials.push(cred);
-    }
-  }
-
-  return {
-    ok: true,
-    value: {
-      track: targetTrack,
-      stages: resolvedStages,
-      resources: resolvedResources,
-      credentials: resolvedCredentials,
-      contentVersion: targetPack.contentVersion,
-    }
-  };
+  if (new Set(track.credentialIds).size !== track.credentialIds.length) add('duplicate_credential', 'credentialIds', 'Mục tiêu chứng nhận bị trùng.');
+  for (const id of track.credentialIds) if (!credentialMap.has(id)) add('missing_credential', 'credentialIds', `Thiếu mục tiêu ${id}.`);
+  if (issues.length) return { ok: false, code: 'validation', issues };
+  const contributingPacks = packs.filter(p => p === pack || p.stages.some(s => seen.has(s.id)) || p.resources.some(r => resourceIds.has(r.id)) || p.credentials.some(c => track.credentialIds.includes(c.id)));
+  return { ok: true, value: structuredClone({ track, stages, resources: [...resourceIds].map(id => resourceMap.get(id)!), credentials: track.credentialIds.map(id => credentialMap.get(id)!), contentVersion: contributingPacks.map(p => `${p.pathId}:${p.contentVersion}`).sort().join('|') }) };
 }

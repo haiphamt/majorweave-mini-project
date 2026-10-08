@@ -142,3 +142,5 @@ try {
 console.log('PASS: legacy save uses the existing key and returns failure without mutating input when storage throws.');
 await import('../docs/architecture/check-example.mjs'); // Kiểm tra giữ nguồn/nhánh và legacy maps của Backend.
 await import('./tasks/MW-CONTEXT-V2.mjs'); // Context/callback regressions also run in CI.
+
+await import('./tasks/MW-TEAM-01.mjs'); // Own resolver/content regressions must run in CI.

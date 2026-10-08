@@ -9,8 +9,8 @@ const integrationStages: LearningStage[] = [
     description: 'Kết nối ứng dụng Frontend với Backend qua REST API, cấu hình CORS, xử lý Request/Response Interceptors và đồng bộ kiểu dữ liệu.',
     outcome: 'Xây dựng tầng dịch vụ kết nối mạng ổn định giữa FE và BE, quản lý trạng thái loading, caching và thông báo lỗi tập trung.',
     prerequisiteIds: ['frontend.dom-apis', 'web.http'],
-    resourceIds: ['resource.fs.fullstack-open', 'resource.fs.cors-mdn'],
-    defaultResourceId: 'resource.fs.fullstack-open',
+    resourceIds: ['resource.fs.fetch-mdn', 'resource.fs.cors-mdn'],
+    defaultResourceId: 'resource.fs.fetch-mdn',
     optional: false,
     work: [
       {
@@ -74,6 +74,7 @@ const integrationStages: LearningStage[] = [
 ];
 
 const fullstackResources: LearningResource[] = [
+  { id: 'resource.fs.fetch-mdn', title: 'Using the Fetch API', provider: 'MDN Web Docs', url: 'https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch', language: 'en', format: 'article', cost: 'free', level: 'intermediate', accessNote: 'HTTP client, Request/Response, trạng thái lỗi và xử lý JSON; áp dụng cho mọi cặp FE/BE REST API.', checkedAt: '2026-10-08' },
   {
     id: 'resource.fs.fullstack-open',
     title: 'Full Stack Open - Deep Dive Into Modern Web Development',
@@ -83,8 +84,8 @@ const fullstackResources: LearningResource[] = [
     format: 'course',
     cost: 'free',
     level: 'intermediate',
-    accessNote: 'Khóa học nổi tiếng của Đại học Helsinki về phát triển web Full-stack hiện đại.',
-    checkedAt: '2026-10-05'
+    accessNote: 'Khóa miễn phí về React và Node.js. Không dùng thay khóa Angular/Vue/FastAPI/Spring Boot; cần nền tảng lập trình, web, database và Git.',
+    checkedAt: '2026-10-08'
   },
   {
     id: 'resource.fs.cors-mdn',
@@ -96,19 +97,19 @@ const fullstackResources: LearningResource[] = [
     cost: 'free',
     level: 'intermediate',
     accessNote: 'Giải thích nguyên lý và cấu hình tiêu chuẩn cho cơ chế CORS giữa FE và BE.',
-    checkedAt: '2026-10-05'
+    checkedAt: '2026-10-08'
   },
   {
     id: 'resource.fs.jwt-auth-guide',
-    title: 'JSON Web Token (JWT) Security Cheat Sheet',
+    title: 'REST Security Cheat Sheet',
     provider: 'OWASP Foundation',
-    url: 'https://cheatsheetseries.owasp.org/cheatsheets/JSON_Web_Token_for_Java_Cheat_Sheet.html',
+    url: 'https://cheatsheetseries.owasp.org/cheatsheets/REST_Security_Cheat_Sheet.html',
     language: 'en',
     format: 'article',
     cost: 'free',
     level: 'advanced',
-    accessNote: 'Khuyến nghị an toàn bảo mật khi sử dụng JWT từ tổ chức OWASP.',
-    checkedAt: '2026-10-05'
+    accessNote: 'Hướng dẫn bảo mật REST/JWT chung cho nhiều ngôn ngữ; chống CSRF xem nguồn riêng bên cạnh.',
+    checkedAt: '2026-10-08'
   },
   {
     id: 'resource.fs.owasp-csrf',
@@ -120,7 +121,7 @@ const fullstackResources: LearningResource[] = [
     cost: 'free',
     level: 'advanced',
     accessNote: 'Các phương thức phòng chống tấn công CSRF trong ứng dụng web.',
-    checkedAt: '2026-10-05'
+    checkedAt: '2026-10-08'
   },
   {
     id: 'resource.fs.docker-compose',
@@ -132,19 +133,19 @@ const fullstackResources: LearningResource[] = [
     cost: 'free',
     level: 'intermediate',
     accessNote: 'Tài liệu hướng dẫn quản lý cụm ứng dụng đa container bằng Docker Compose.',
-    checkedAt: '2026-10-05'
+    checkedAt: '2026-10-08'
   },
   {
     id: 'resource.fs.fullstack-deploy-guide',
-    title: 'Deploying Full-Stack Applications to Render / Railway',
+    title: 'Deploy a Docker Image on Render',
     provider: 'Render Docs',
-    url: 'https://docs.render.com/',
+    url: 'https://docs.render.com/deploy-an-image',
     language: 'en',
     format: 'article',
     cost: 'free',
     level: 'intermediate',
-    accessNote: 'Cẩm nang triển khai cả Frontend, Backend và Database lên dịch vụ đám mây.',
-    checkedAt: '2026-10-05'
+    accessNote: 'Tài liệu triển khai Docker miễn phí để đọc; tài nguyên hosting/database có điều kiện và có thể cần trả phí.',
+    checkedAt: '2026-10-08'
   }
 ];
 
@@ -154,11 +155,11 @@ const fullstackCredentials: CredentialGoal[] = [
     name: 'Full Stack Open Certificate of Completion',
     provider: 'University of Helsinki',
     kind: 'course_certificate',
-    url: 'https://fullstackopen.com/en/#course-completion',
+    url: 'https://fullstackopen.com/en/part0/general_info/',
     cost: 'free',
-    prerequisites: 'Hoàn thành và nộp đầy đủ các bài tập trong khóa học Full Stack Open.',
-    requirements: 'Đạt tối thiểu số điểm bài tập theo quy định của Đại học Helsinki.',
-    checkedAt: '2026-10-05'
+    prerequisites: 'Có kỹ năng lập trình, nền tảng web/database/Git; khóa tập trung React và Node.js.',
+    requirements: 'Nộp bài đạt mức hoàn thành do khóa quy định; tải chứng nhận qua hệ thống bài nộp. Thi để lấy tín chỉ là yêu cầu riêng.',
+    checkedAt: '2026-10-08'
   },
   {
     id: 'credential.fs.ibm-fullstack',
@@ -167,9 +168,9 @@ const fullstackCredentials: CredentialGoal[] = [
     kind: 'program_certificate',
     url: 'https://www.coursera.org/professional-certificates/ibm-full-stack-cloud-developer',
     cost: 'paid',
-    prerequisites: 'Hoàn thành chuỗi khóa học về phát triển phần mềm toàn diện từ FE đến BE.',
+    prerequisites: 'Chuỗi nền tảng Full-stack React/Node.js/Python; bổ trợ React + Node hoặc React + Python, không xác nhận riêng FastAPI.',
     requirements: 'Vượt qua các bài kiểm tra thực hành và nộp dự án Capstone.',
-    checkedAt: '2026-10-05'
+    checkedAt: '2026-10-08'
   }
 ];
 
@@ -271,10 +272,7 @@ function buildFullstackTrack(fe: FeKey, be: BeKey): LearningTrack {
     pathId: 'fullstack',
     label: `${feLabels[fe]} + ${beLabels[be]}`,
     stageIds: uniqueStageIds,
-    credentialIds: [
-      'credential.fs.fullstack-open-cert',
-      'credential.fs.ibm-fullstack'
-    ],
+    credentialIds: fe === 'react' && be === 'node' ? ['credential.fs.fullstack-open-cert', 'credential.fs.ibm-fullstack'] : fe === 'react' && be === 'python' ? ['credential.fe.freecodecamp-rwd', 'credential.fs.ibm-fullstack'] : ['credential.fe.freecodecamp-rwd', 'credential.fe.freecodecamp-js'],
     roadmapLinks: [
       { label: 'Full Stack Roadmap', url: 'https://roadmap.sh/full-stack' },
       { label: `${feLabels[fe]} Roadmap`, url: `https://roadmap.sh/${fe}` },
@@ -307,7 +305,7 @@ const fullstackTracks: LearningTrack[] = fullstackPairs.map(([fe, be]) => buildF
 
 export const fullstackPack: ContentPack = {
   schemaVersion: 1,
-  contentVersion: '2026-10-05.fullstack-v1',
+  contentVersion: '2026-10-08.fullstack-v2',
   pathId: 'fullstack',
   reviewStatus: 'review',
   stages: integrationStages,

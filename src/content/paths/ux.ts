@@ -246,7 +246,7 @@ const uxResources: LearningResource[] = [
     cost: 'free',
     level: 'introductory',
     accessNote: 'Định nghĩa chuẩn mực về UX từ Don Norman và Jakob Nielsen.',
-    checkedAt: '2026-10-05'
+    checkedAt: '2026-10-08'
   },
   {
     id: 'resource.ux.interaction-design-dt',
@@ -258,7 +258,7 @@ const uxResources: LearningResource[] = [
     cost: 'free',
     level: 'introductory',
     accessNote: 'Khái quát 5 giai đoạn cốt lõi của tư duy thiết kế.',
-    checkedAt: '2026-10-05'
+    checkedAt: '2026-10-08'
   },
   {
     id: 'resource.ux.nngroup-personas',
@@ -270,7 +270,7 @@ const uxResources: LearningResource[] = [
     cost: 'free',
     level: 'intermediate',
     accessNote: 'Hướng dẫn phương pháp xây dựng Persona dựa trên dữ liệu thật.',
-    checkedAt: '2026-10-05'
+    checkedAt: '2026-10-08'
   },
   {
     id: 'resource.ux.nngroup-journey-mapping',
@@ -282,7 +282,7 @@ const uxResources: LearningResource[] = [
     cost: 'free',
     level: 'intermediate',
     accessNote: 'Cách tạo bản đồ trải nghiệm theo từng điểm chạm của người dùng.',
-    checkedAt: '2026-10-05'
+    checkedAt: '2026-10-08'
   },
   {
     id: 'resource.ux.nngroup-ia',
@@ -294,19 +294,19 @@ const uxResources: LearningResource[] = [
     cost: 'free',
     level: 'intermediate',
     accessNote: 'Tổng hợp tài liệu về cấu trúc thông tin và phân loại nội dung.',
-    checkedAt: '2026-10-05'
+    checkedAt: '2026-10-08'
   },
   {
     id: 'resource.ux.figma-flow-guide',
     title: 'Creating User Flow Diagrams in Figma',
     provider: 'Figma Resource Library',
-    url: 'https://www.figma.com/resource-library/user-flow-diagrams/',
+    url: 'https://www.figma.com/resource-library/user-flow/',
     language: 'en',
     format: 'article',
     cost: 'free',
     level: 'introductory',
     accessNote: 'Hướng dẫn vẽ sơ đồ luồng thao tác trực quan bằng Figma/FigJam.',
-    checkedAt: '2026-10-05'
+    checkedAt: '2026-10-08'
   },
   {
     id: 'resource.ux.nngroup-heuristics',
@@ -318,7 +318,7 @@ const uxResources: LearningResource[] = [
     cost: 'free',
     level: 'intermediate',
     accessNote: '10 nguyên tắc vàng đánh giá tính khả dụng giao diện của Jakob Nielsen.',
-    checkedAt: '2026-10-05'
+    checkedAt: '2026-10-08'
   },
   {
     id: 'resource.ux.lawsofux',
@@ -330,7 +330,7 @@ const uxResources: LearningResource[] = [
     cost: 'free',
     level: 'intermediate',
     accessNote: 'Tập hợp các quy luật tâm lý học ứng dụng vào thiết kế giao diện.',
-    checkedAt: '2026-10-05'
+    checkedAt: '2026-10-08'
   },
   {
     id: 'resource.ux.nngroup-usability-testing',
@@ -342,19 +342,19 @@ const uxResources: LearningResource[] = [
     cost: 'free',
     level: 'intermediate',
     accessNote: 'Quy trình chuẩn tổ chức một phiên thử nghiệm sản phẩm với người dùng.',
-    checkedAt: '2026-10-05'
+    checkedAt: '2026-10-08'
   },
   {
     id: 'resource.ux.usability-gov',
-    title: 'System Usability Scale (SUS) Guide',
-    provider: 'Usability.gov',
-    url: 'https://www.usability.gov/how-to-and-tools/methods/system-usability-scale.html',
+    title: 'Measuring Perceived Usability',
+    provider: 'Nielsen Norman Group',
+    url: 'https://www.nngroup.com/articles/measuring-perceived-usability/',
     language: 'en',
     format: 'article',
     cost: 'free',
     level: 'intermediate',
-    accessNote: 'Thang đo tiêu chuẩn đánh giá mức độ thân thiện của phần mềm.',
-    checkedAt: '2026-10-05'
+    accessNote: 'Đo khả dụng cảm nhận bằng SUS và các thang đo; thay trang usability.gov đã chuyển sang trang tổng quan.',
+    checkedAt: '2026-10-08'
   },
   {
     id: 'resource.ux.material-design-3',
@@ -366,7 +366,7 @@ const uxResources: LearningResource[] = [
     cost: 'free',
     level: 'intermediate',
     accessNote: 'Hướng dẫn toàn diện về bảng màu động, typography và layout từ Google.',
-    checkedAt: '2026-10-05'
+    checkedAt: '2026-10-08'
   },
   {
     id: 'resource.ux.refactoring-ui',
@@ -375,10 +375,10 @@ const uxResources: LearningResource[] = [
     url: 'https://www.refactoringui.com/',
     language: 'en',
     format: 'article',
-    cost: 'free',
+    cost: 'paid',
     level: 'intermediate',
-    accessNote: 'Kinh nghiệm thực tiễn tạo kiểu giao diện đẹp từ góc nhìn lập trình viên.',
-    checkedAt: '2026-10-05'
+    accessNote: 'Sách và bộ tài liệu thiết kế UI có phí. Chỉ phần giới thiệu/preview được xem miễn phí; xem giá hiện hành tại nhà cung cấp.',
+    checkedAt: '2026-10-08'
   },
   {
     id: 'resource.ux.figma-learn-autolayout',
@@ -390,31 +390,31 @@ const uxResources: LearningResource[] = [
     cost: 'free',
     level: 'intermediate',
     accessNote: 'Hướng dẫn chuyên sâu làm chủ Auto Layout và căn lề linh hoạt.',
-    checkedAt: '2026-10-05'
+    checkedAt: '2026-10-08'
   },
   {
     id: 'resource.ux.figma-prototype-docs',
     title: 'Create Smart Animations and Interactions in Figma',
     provider: 'Figma Help Center',
-    url: 'https://help.figma.com/hc/en-us/articles/360040315774-Create-smart-animations-with-Smart-Animate',
+    url: 'https://help.figma.com/hc/en-us/articles/360039818874-Smart-animate-layers-between-frames',
     language: 'en',
     format: 'article',
     cost: 'free',
     level: 'intermediate',
     accessNote: 'Cách tạo tương tác động tinh tế giữa các khung hình Figma.',
-    checkedAt: '2026-10-05'
+    checkedAt: '2026-10-08'
   },
   {
     id: 'resource.ux.figma-design-systems',
-    title: 'Design Systems Best Practices in Figma',
-    provider: 'Figma Resource Library',
-    url: 'https://www.figma.com/resource-library/design-systems/',
+    title: 'Design Systems 101: What Is a Design System?',
+    provider: 'Figma Blog',
+    url: 'https://www.figma.com/blog/design-systems-101-what-is-a-design-system/',
     language: 'en',
     format: 'article',
     cost: 'free',
     level: 'advanced',
-    accessNote: 'Quản lý thư viện thành phần và biến số (Variables) trong dự án lớn.',
-    checkedAt: '2026-10-05'
+    accessNote: 'Thành phần, biến và thư viện dùng chung; bài đọc miễn phí. Một số tính năng cộng tác Figma cần gói trả phí.',
+    checkedAt: '2026-10-08'
   },
   {
     id: 'resource.ux.design-system-checklist',
@@ -426,19 +426,19 @@ const uxResources: LearningResource[] = [
     cost: 'free',
     level: 'advanced',
     accessNote: 'Bảng kiểm tra đầy đủ các thành phần cần có của một Design System chuẩn.',
-    checkedAt: '2026-10-05'
+    checkedAt: '2026-10-08'
   },
   {
     id: 'resource.ux.uxdesign-cc-casestudy',
-    title: 'How to Write a UX Case Study that Actually Gets You Hired',
-    provider: 'UX Collective',
-    url: 'https://uxdesign.cc/how-to-write-a-ux-case-study-that-actually-gets-you-hired-531beeb5a8f4',
+    title: '5 Steps to Creating a UX Design Portfolio',
+    provider: 'Nielsen Norman Group',
+    url: 'https://www.nngroup.com/articles/ux-design-portfolios/',
     language: 'en',
     format: 'article',
     cost: 'free',
     level: 'intermediate',
-    accessNote: 'Kinh nghiệm viết Case Study thực tế có tác động rõ nét.',
-    checkedAt: '2026-10-05'
+    accessNote: 'Hướng dẫn trình bày quy trình UX, dự án và đóng góp trong portfolio; bài đọc công khai.',
+    checkedAt: '2026-10-08'
   },
   {
     id: 'resource.ux.cofolios',
@@ -450,7 +450,7 @@ const uxResources: LearningResource[] = [
     cost: 'free',
     level: 'introductory',
     accessNote: 'Thư viện tham khảo Portfolio thiết kế sản phẩm của các thực tập sinh tại Big Tech.',
-    checkedAt: '2026-10-05'
+    checkedAt: '2026-10-08'
   }
 ];
 
@@ -462,9 +462,9 @@ const uxCredentials: CredentialGoal[] = [
     kind: 'program_certificate',
     url: 'https://www.coursera.org/professional-certificates/google-ux-design',
     cost: 'paid',
-    prerequisites: 'Hoàn thành 7 khóa học về quy trình thiết kế UX và 3 dự án portfolio thực tế.',
+    prerequisites: 'Không yêu cầu kinh nghiệm UX trước; học chuỗi khóa và xây portfolio theo chương trình hiện hành.',
     requirements: 'Vượt qua các bài kiểm tra trắc nghiệm và nộp dự án được chấm điểm ngang hàng.',
-    checkedAt: '2026-10-05'
+    checkedAt: '2026-10-08'
   },
   {
     id: 'credential.ux.ixdf-design-thinking',
@@ -474,8 +474,8 @@ const uxCredentials: CredentialGoal[] = [
     url: 'https://www.interaction-design.org/courses/design-thinking-the-beginner-s-guide',
     cost: 'paid',
     prerequisites: 'Hoàn thành các bài học và bài kiểm tra tình huống về tư duy thiết kế.',
-    requirements: 'Đạt trên 70% số điểm tổng kết khóa học được chứng nhận bởi các giáo sư hàng đầu.',
-    checkedAt: '2026-10-05'
+    requirements: 'Hoàn thành yêu cầu và đạt ngưỡng điểm chứng nhận của khóa; cần tư cách thành viên trả phí. Kiểm tra điều kiện hiện hành trước khi đăng ký.',
+    checkedAt: '2026-10-08'
   }
 ];
 
@@ -542,7 +542,7 @@ const uxTracks: LearningTrack[] = [
 
 export const uxPack: ContentPack = {
   schemaVersion: 1,
-  contentVersion: '2026-10-05.ux-v1',
+  contentVersion: '2026-10-08.ux-v2',
   pathId: 'ux',
   reviewStatus: 'review',
   stages: uxStages,

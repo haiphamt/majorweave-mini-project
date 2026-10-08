@@ -1,3 +1,4 @@
+import { randomUUID } from 'node:crypto';
 import assert from 'node:assert/strict';
 import { build } from 'esbuild';
 
@@ -155,4 +156,76 @@ if (!errorResultMissingStage.ok) {
 }
 
 console.log('PASS: Các trường hợp lỗi not_found và missing_stage được kiểm soát an toàn.');
-console.log('--- TOÀN BỘ BỘ KIỂM THỬ MW-TEAM-01 THÀNH CÔNG ---');
+
+
+// Strict resolver diagnostics: malformed content must fail before UI/planning.
+for (const [name, mutate, expectedCode] of [
+  ['missing resource', p=>{p[0].resources=p[0].resources.filter(r=>r.id!==p[0].stages[0].defaultResourceId);},'missing_resource'],
+  ['missing credential', p=>{p[0].tracks[0].credentialIds=['missing'];},'missing_credential'],
+  ['duplicate ID', p=>{p[0].stages.push(structuredClone(p[0].stages[0]));},'duplicate_id'],
+  ['bad default', p=>{p[0].stages[0].defaultResourceId='missing';},'invalid_default_resource'],
+  ['missing prerequisite', p=>{p[0].stages[0].prerequisiteIds=['missing'];},'missing_prerequisite'],
+  ['cycle', p=>{const [a,b]=p[0].tracks[0].stageIds;p[0].stages.find(s=>s.id===a).prerequisiteIds=[b];p[0].stages.find(s=>s.id===b).prerequisiteIds=[a];},'prerequisite_cycle'],
+  ['reversed order', p=>{p[0].tracks[0].stageIds.reverse();},'prerequisite_order'],
+  ['duplicate stage reference', p=>{p[0].tracks[0].stageIds.push(p[0].tracks[0].stageIds[0]);},'duplicate_stage'],
+  ['wrong path', p=>{p[0].tracks[0].pathId='wrong';},'path_mismatch'],
+]) {
+  const changed=structuredClone(packs);mutate(changed);
+  const result=resolveTrackContent(changed,'backend.node');
+  assert.equal(result.ok,false,name);assert.ok(result.issues.some(i=>i.code===expectedCode),JSON.stringify(result));
+  console.log('PASS resolver '+name);
+}
+const initialContent=JSON.stringify(packs);
+const detached=resolveTrackContent(packs,'fullstack.react-node').value;
+detached.stages[0].title='Changed caller copy';assert.equal(JSON.stringify(packs),initialContent);
+const changedVersion=structuredClone(packs);changedVersion[0].contentVersion+='-updated';
+assert.notEqual(resolveTrackContent(packs,'fullstack.react-node').value.contentVersion,resolveTrackContent(changedVersion,'fullstack.react-node').value.contentVersion);
+assert.equal(resolveTrackContent(packs,'ux.product').value.contentVersion,resolveTrackContent(changedVersion,'ux.product').value.contentVersion);
+for(const id of expected17Tracks.filter(id=>id.startsWith('fullstack.'))){
+  const [fe,be]=id.slice('fullstack.'.length).split('-');const resolved=resolveTrackContent(packs,id).value;
+  assert.ok(resolved.stages.some(s=>s.id.startsWith('frontend.'+fe+'.')));
+  for(const other of ['react','angular','vue'].filter(x=>x!==fe))assert.ok(!resolved.stages.some(s=>s.id.startsWith('frontend.'+other+'.')));
+  for(const other of ['node','python','java'].filter(x=>x!==be))assert.ok(!resolved.stages.some(s=>s.id.startsWith('backend.'+other+'.')));
+  if(id!=='fullstack.react-node')assert.ok(!resolved.track.credentialIds.includes('credential.fs.fullstack-open-cert'));
+  assert.equal(resolved.stages.find(s=>s.id==='fullstack.api-client').defaultResourceId,'resource.fs.fetch-mdn');
+}
+console.log('PASS detached resolver, dependency version and nine FE/BE source/credential pairs');
+const loadIntegration=async entry=>{const b=await build({entryPoints:[entry],bundle:true,platform:'node',format:'esm',write:false});return import('data:text/javascript;base64,'+Buffer.from(b.outputFiles[0].text).toString('base64'));};
+const {createWorkspaceController}=await loadIntegration('src/app/workspace-controller.ts');
+const {emptyWorkspace,validateRoadmapWorkspace}=await loadIntegration('src/persistence/roadmap-store.ts');
+const {setTaskCompletion,calculatePlanStats}=await loadIntegration('src/domain/progress.ts');
+let disk=emptyWorkspace('Asia/Ho_Chi_Minh'),serial=0,failSave=false;
+const ok=r=>{assert.equal(r.ok,true,r.ok?'':JSON.stringify(r));return r.value;};
+const persistence={loadWorkspace:async()=>({ok:true,value:structuredClone(disk)}),saveWorkspace:async(candidate,revision)=>{
+  if(failSave){failSave=false;return {ok:false,code:'storage',issues:[{code:'QUOTA',field:'workspace',message:'Test quota'}]};}
+  assert.equal(revision,disk.revision);ok(validateRoadmapWorkspace(candidate));disk=structuredClone({...candidate,revision:revision+1});return {ok:true,value:structuredClone(disk)};
+}};
+const controller=createWorkspaceController({persistence,packs,now:()=> '2026-10-08T03:00:00Z',today:()=> '2026-10-08',nextId:randomUUID});
+ok(await controller.initialize());
+for(const trackId of expected17Tracks){
+  ok(controller.selectTrack(trackId));const resolved=ok(controller.resolveTrack(trackId));const draft=controller.getDraft(trackId);
+  const stage=resolved.stages.find(s=>s.resourceIds.length>1);assert.ok(stage,trackId+' needs source choice');
+  const source=stage.resourceIds.find(id=>id!==stage.defaultResourceId);
+  ok(controller.updateDraft(trackId,{goal:'MW01 test '+trackId,resourceByStage:{...draft.resourceByStage,[stage.id]:source}}));
+  ok(await controller.saveDraft());const plan=ok(await controller.createPlan(trackId));
+  assert.ok(plan.current.tasks.filter(t=>t.stageId===stage.id).every(t=>t.source.id===source));
+  const persisted=controller.getSnapshot().workspace.plans.find(p=>p.id===plan.id);
+  const next=ok(setTaskCompletion(persisted,persisted.current.tasks[0].id,true,{now:'2026-10-08T04:00:00Z',today:'2026-10-08',timeZone:'Asia/Ho_Chi_Minh',nextCompletionId:randomUUID}));
+  ok(await controller.savePlan(next,persisted));ok(await controller.reloadWorkspace());
+  const reloaded=controller.getSnapshot().workspace.plans.find(p=>p.id===plan.id);
+  assert.equal(reloaded.current.tasks[0].status,'done');assert.equal(reloaded.completions.length,1);
+  const before=JSON.stringify(reloaded);ok(controller.selectTrack(trackId==='ux.product'?'frontend.react':'ux.product'));
+  assert.equal(JSON.stringify(controller.getSnapshot().workspace.plans.find(p=>p.id===plan.id)),before);
+  console.log('PASS integration source/create/complete/reload/independent '+trackId);
+}
+assert.equal(disk.plans.length,17);
+const before=structuredClone(disk), expected=controller.getSnapshot().workspace.plans[0];
+const updated=ok(setTaskCompletion(expected,expected.current.tasks[1].id,true,{now:'2026-10-08T05:00:00Z',today:'2026-10-08',timeZone:'Asia/Ho_Chi_Minh',nextCompletionId:randomUUID}));
+failSave=true;assert.equal((await controller.savePlan(updated,expected)).ok,false);
+assert.deepEqual(disk,before);assert.equal(controller.getSnapshot().dirty,true);assert.ok(controller.getSnapshot().unsavedWorkspace);
+ok(await controller.retrySave());assert.equal(disk.plans[0].completions.length,2);
+assert.equal((await controller.savePlan(updated,expected)).ok,false,'stale plan must be rejected');
+assert.equal((await controller.toggleCredential('missing')).ok,false);
+const credential=packs[0].tracks[0].credentialIds[0];ok(await controller.toggleCredential(credential));ok(await controller.reloadWorkspace());assert.ok(disk.savedCredentialIds.includes(credential));
+ok(await controller.toggleCredential(credential));assert.ok(!disk.savedCredentialIds.includes(credential));
+console.log('PASS failed save preserves old plan, retry, stale plan and credential persistence');

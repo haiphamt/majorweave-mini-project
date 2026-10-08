@@ -1,0 +1,11 @@
+import { build } from 'esbuild';
+import fs from 'node:fs/promises';
+const output=await build({entryPoints:['src/content/index.ts'],bundle:true,platform:'node',format:'esm',write:false});
+const {contentPacks}=await import('data:text/javascript;base64,'+Buffer.from(output.outputFiles[0].text).toString('base64'));
+const own=contentPacks.filter(p=>['backend','frontend','fullstack','ux'].includes(p.pathId));
+const items=own.flatMap(p=>[...p.resources,...p.credentials].map(r=>({id:r.id,path:p.pathId,title:r.title||r.name,provider:r.provider,url:r.url,cost:r.cost,conditions:r.accessNote||r.requirements})));
+const urls=[...new Set(items.map(r=>r.url))], results=[];let next=0;
+async function worker(){while(next<urls.length){const url=urls[next++];let result;try{const response=await fetch(url,{signal:AbortSignal.timeout(18000),headers:{'User-Agent':'Mozilla/5.0 (compatible; MajorWeave source verification)'}});let body='';if(response.ok){const reader=response.body.getReader();for(let read=0;read<15;read++){const chunk=await reader.read();if(chunk.done)break;body+=new TextDecoder().decode(chunk.value);if(body.length>120000)break;}await reader.cancel();}result={url,status:response.status,finalUrl:response.url,title:(body.match(/<title[^>]*>([\s\S]*?)<\/title>/i)?.[1]||'').replace(/\s+/g,' ').slice(0,250),excerpt:body.replace(/<script[\s\S]*?<\/script>/gi,'').replace(/<style[\s\S]*?<\/style>/gi,'').replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').slice(0,5000),checkedOn:'2026-10-08'};}catch(error){result={url,error:error.message,checkedOn:'2026-10-08'};}results.push(result);console.log(JSON.stringify({url,status:result.status,title:result.title,error:result.error}));}}
+await Promise.all(Array.from({length:8},worker));
+await fs.mkdir('docs/tasks/MW-TEAM-01/evidence',{recursive:true});await fs.writeFile('docs/tasks/MW-TEAM-01/evidence/source-http-audit-20261008.json',JSON.stringify({checkedOn:'2026-10-08',note:'HTTP status and provider-page extracts. Cost/access/credential claims are reviewed separately; status 200 alone does not prove them.',items,results},null,2));
+console.log('AUDIT COMPLETE',urls.length,'URLs',results.filter(r=>r.status===200).length,'reachable');

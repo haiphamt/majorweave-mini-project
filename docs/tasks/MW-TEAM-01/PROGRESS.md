@@ -1,19 +1,13 @@
-# PROGRESS — MW-TEAM-01 (Nguyễn Thị Quỳnh Hân)
+# Tiến độ MW-TEAM-01 — 08/10/2026
 
-**08/10/2026: đã nhập code clone vào nhánh feat/mw-team-01 của repo mini; chưa Done.**
+Đã sửa các lỗi ghi nhận khi nhập clone, tích hợp app và kiểm thử đủ 17 nhánh. Sẵn sàng gửi review qua PR #5: https://github.com/haiphamt/majorweave-mini-project/pull/5
 
-Chi tiết kết quả và việc cần làm: [Review nhập clone](REVIEW_IMPORT_20261008.md).
+- Catalog: 6 khoa / 12 ngành / 18 hướng; Explore và tài liệu sinh cùng dùng catalog v2.
+- Nội dung của Hân: Backend 3, Frontend 3, Full-stack 9, UX 2; giữ ID, legacy maps, foundation, work và portfolio.
+- Resolver có validation tham chiếu/tiên quyết/duplicate/default, kết quả không mutate input, version theo dependency.
+- Path detail/drawer/roadmap/plan/bookmark nối workspace chung; lưu/retry đúng trạng thái, không reset dữ liệu cũ.
+- Check/build/task tests PASS. UI 17/17 nhánh và 12/12 ngành PASS; có JSON/ảnh trong evidence.
+- Đã kiểm tra lại URL, sửa chi phí/nguồn không phù hợp; HTTP audit không thay bằng chứng hoàn thành khóa hoặc nghiệm thu nội dung.
+- Còn bước review chéo của Định và duyệt/tích hợp cuối của Hải. Chưa đánh Done thay người duyệt.
 
-- [x] Catalog v2 có 6 khoa, 12 ngành, 18 hướng; 17 track có nội dung và pass test cấu trúc riêng.
-- [x] Preview UI cả 17 nhánh; drawer Backend đã sửa ID và thử 3 stack; drawer React và bộ lọc rỗng đã thử.
-- [x] Build TypeScript/Vite pass trên Windows.
-- [x] Nhập 11 file đúng allowlist, giữ nguồn/ID Backend của repo Git và giữ clone gốc.
-- [ ] Resolver xử lý nguồn/chứng nhận thiếu, ID trùng và tiên quyết sai/vòng.
-- [ ] Explore hiển thị catalog v2 đủ 18 hướng (UI hiện 16).
-- [ ] UI chọn nguồn/thêm chặng/lưu draft cho FE/FS/UX và reload giữ nhánh.
-- [ ] Tích hợp registry/context v2 và My Roadmap; phối hợp ID và mục tiêu chứng nhận v1/v2.
-- [ ] npm run check pass: đang fail lỗi assertion ngày có trước nhập, file thuộc Hải.
-- [ ] Xác minh mọi nguồn/chứng nhận, kiểm tra responsive/keyboard/lỗi lưu.
-- [ ] Toàn hành trình 17 cấu hình sau tích hợp, review chéo Định và nghiệm thu Hải.
-
-Báo cáo “100%” trước đó trong clone chưa phù hợp kết quả chạy lại; bản trước nhập được giữ trong artifacts/mw-team-01-import-20261008/ và clone gốc.
+Xem QA_AI_LOG.md, FLOW.md và COMPLETION_20261008.md cho kết quả/phạm vi/SHA. REVIEW_IMPORT_20261008.md là snapshot các thiếu sót trước lượt sửa này, không phải trạng thái hiện tại.

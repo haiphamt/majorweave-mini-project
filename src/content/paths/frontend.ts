@@ -325,7 +325,7 @@ const frontendResources: LearningResource[] = [
     cost: 'free',
     level: 'introductory',
     accessNote: 'Tài liệu hướng dẫn trực tuyến có ví dụ lệnh minh họa.',
-    checkedAt: '2026-10-05'
+    checkedAt: '2026-10-08'
   },
   {
     id: 'resource.fe.git-github-docs',
@@ -337,7 +337,7 @@ const frontendResources: LearningResource[] = [
     cost: 'free',
     level: 'introductory',
     accessNote: 'Tài liệu hướng dẫn chính thức từ GitHub.',
-    checkedAt: '2026-10-05'
+    checkedAt: '2026-10-08'
   },
   {
     id: 'resource.fe.html-mdn',
@@ -349,7 +349,7 @@ const frontendResources: LearningResource[] = [
     cost: 'free',
     level: 'introductory',
     accessNote: 'Tài liệu tiêu chuẩn vàng về Semantic HTML và các thẻ ngữ nghĩa.',
-    checkedAt: '2026-10-05'
+    checkedAt: '2026-10-08'
   },
   {
     id: 'resource.fe.html-freecodecamp',
@@ -361,7 +361,7 @@ const frontendResources: LearningResource[] = [
     cost: 'free',
     level: 'introductory',
     accessNote: 'Khóa học tương tác thực hành trực tiếp trên trình duyệt, miễn phí 100%.',
-    checkedAt: '2026-10-05'
+    checkedAt: '2026-10-08'
   },
   {
     id: 'resource.fe.flexbox-css-tricks',
@@ -373,7 +373,7 @@ const frontendResources: LearningResource[] = [
     cost: 'free',
     level: 'introductory',
     accessNote: 'Sơ đồ hình ảnh trực quan về tất cả các thuộc tính Flexbox.',
-    checkedAt: '2026-10-05'
+    checkedAt: '2026-10-08'
   },
   {
     id: 'resource.fe.grid-mdn',
@@ -385,7 +385,7 @@ const frontendResources: LearningResource[] = [
     cost: 'free',
     level: 'introductory',
     accessNote: 'Tài liệu chi tiết về bố cục hai chiều CSS Grid từ MDN.',
-    checkedAt: '2026-10-05'
+    checkedAt: '2026-10-08'
   },
   {
     id: 'resource.fe.js-javascript-info',
@@ -397,7 +397,7 @@ const frontendResources: LearningResource[] = [
     cost: 'free',
     level: 'mixed',
     accessNote: 'Giáo trình chi tiết từ cơ bản đến nâng cao về JavaScript hiện đại.',
-    checkedAt: '2026-10-05'
+    checkedAt: '2026-10-08'
   },
   {
     id: 'resource.fe.js-mdn',
@@ -409,7 +409,7 @@ const frontendResources: LearningResource[] = [
     cost: 'free',
     level: 'mixed',
     accessNote: 'Tra cứu chuẩn cú pháp và API của JavaScript.',
-    checkedAt: '2026-10-05'
+    checkedAt: '2026-10-08'
   },
   {
     id: 'resource.fe.dom-mdn',
@@ -421,7 +421,7 @@ const frontendResources: LearningResource[] = [
     cost: 'free',
     level: 'intermediate',
     accessNote: 'Hướng dẫn chuẩn về kiến trúc cây DOM và thao tác sự kiện.',
-    checkedAt: '2026-10-05'
+    checkedAt: '2026-10-08'
   },
   {
     id: 'resource.fe.async-mdn',
@@ -433,7 +433,7 @@ const frontendResources: LearningResource[] = [
     cost: 'free',
     level: 'intermediate',
     accessNote: 'Giải thích chi tiết về xử lý bất đồng bộ và Fetch API.',
-    checkedAt: '2026-10-05'
+    checkedAt: '2026-10-08'
   },
   {
     id: 'resource.fe.ts-handbook',
@@ -445,7 +445,7 @@ const frontendResources: LearningResource[] = [
     cost: 'free',
     level: 'intermediate',
     accessNote: 'Cẩm nang chính thức về ngôn ngữ TypeScript từ đội ngũ Microsoft.',
-    checkedAt: '2026-10-05'
+    checkedAt: '2026-10-08'
   },
   {
     id: 'resource.fe.ts-learn-x',
@@ -457,7 +457,7 @@ const frontendResources: LearningResource[] = [
     cost: 'free',
     level: 'introductory',
     accessNote: 'Bản tóm tắt cú pháp TypeScript nhanh chóng, dễ tra cứu.',
-    checkedAt: '2026-10-05'
+    checkedAt: '2026-10-08'
   },
   {
     id: 'resource.fe.react-dev',
@@ -469,19 +469,19 @@ const frontendResources: LearningResource[] = [
     cost: 'free',
     level: 'introductory',
     accessNote: 'Tài liệu tương tác chính thức của React với kiến trúc hiện đại.',
-    checkedAt: '2026-10-05'
+    checkedAt: '2026-10-08'
   },
   {
     id: 'resource.fe.react-fcc',
-    title: 'React Course - Beginner to Advanced',
-    provider: 'freeCodeCamp',
-    url: 'https://www.freecodecamp.org/news/learn-react-by-building-projects/',
+    title: 'React Tutorial: Tic-Tac-Toe',
+    provider: 'React documentation',
+    url: 'https://react.dev/learn/tutorial-tic-tac-toe',
     language: 'en',
-    format: 'course',
+    format: 'exercise',
     cost: 'free',
     level: 'intermediate',
-    accessNote: 'Học React qua việc thực hành xây dựng các dự án mẫu.',
-    checkedAt: '2026-10-05'
+    accessNote: 'Bài thực hành React chính thức: component, props, state và tương tác. Cần nền tảng JavaScript.',
+    checkedAt: '2026-10-08'
   },
   {
     id: 'resource.fe.react-dev-hooks',
@@ -493,19 +493,19 @@ const frontendResources: LearningResource[] = [
     cost: 'free',
     level: 'intermediate',
     accessNote: 'Đặc tả chi tiết cách dùng và lưu ý của từng Hook.',
-    checkedAt: '2026-10-05'
+    checkedAt: '2026-10-08'
   },
   {
     id: 'resource.fe.react-router-docs',
     title: 'React Router Documentation',
     provider: 'React Router',
-    url: 'https://reactrouter.com/en/main',
+    url: 'https://reactrouter.com/start/declarative/installation',
     language: 'en',
     format: 'article',
     cost: 'free',
     level: 'intermediate',
     accessNote: 'Tài liệu hướng dẫn thiết lập SPA Routing cho React.',
-    checkedAt: '2026-10-05'
+    checkedAt: '2026-10-08'
   },
   {
     id: 'resource.fe.angular-dev',
@@ -517,7 +517,7 @@ const frontendResources: LearningResource[] = [
     cost: 'free',
     level: 'introductory',
     accessNote: 'Cổng thông tin và hướng dẫn chính thức phiên bản Angular mới.',
-    checkedAt: '2026-10-05'
+    checkedAt: '2026-10-08'
   },
   {
     id: 'resource.fe.angular-tour',
@@ -529,7 +529,7 @@ const frontendResources: LearningResource[] = [
     cost: 'free',
     level: 'introductory',
     accessNote: 'Khóa hướng dẫn từng bước tạo ứng dụng đầu tiên với Standalone Components.',
-    checkedAt: '2026-10-05'
+    checkedAt: '2026-10-08'
   },
   {
     id: 'resource.fe.angular-di-docs',
@@ -541,7 +541,7 @@ const frontendResources: LearningResource[] = [
     cost: 'free',
     level: 'intermediate',
     accessNote: 'Hướng dẫn kiến trúc DI và quản lý Service trong Angular.',
-    checkedAt: '2026-10-05'
+    checkedAt: '2026-10-08'
   },
   {
     id: 'resource.fe.angular-forms-docs',
@@ -553,7 +553,7 @@ const frontendResources: LearningResource[] = [
     cost: 'free',
     level: 'intermediate',
     accessNote: 'Cẩm nang xây dựng và xác thực biểu mẫu với Reactive Forms.',
-    checkedAt: '2026-10-05'
+    checkedAt: '2026-10-08'
   },
   {
     id: 'resource.fe.vue-dev',
@@ -565,7 +565,7 @@ const frontendResources: LearningResource[] = [
     cost: 'free',
     level: 'introductory',
     accessNote: 'Tài liệu chính thức của Vue 3 với phong cách Composition API.',
-    checkedAt: '2026-10-05'
+    checkedAt: '2026-10-08'
   },
   {
     id: 'resource.fe.vue-tutorial',
@@ -577,7 +577,7 @@ const frontendResources: LearningResource[] = [
     cost: 'free',
     level: 'introductory',
     accessNote: 'Trình thực hành tương tác trực tiếp từng tính năng của Vue 3.',
-    checkedAt: '2026-10-05'
+    checkedAt: '2026-10-08'
   },
   {
     id: 'resource.fe.vue-router-docs',
@@ -589,7 +589,7 @@ const frontendResources: LearningResource[] = [
     cost: 'free',
     level: 'intermediate',
     accessNote: 'Tài liệu hướng dẫn điều hướng cho ứng dụng Vue.',
-    checkedAt: '2026-10-05'
+    checkedAt: '2026-10-08'
   },
   {
     id: 'resource.fe.pinia-docs',
@@ -601,7 +601,7 @@ const frontendResources: LearningResource[] = [
     cost: 'free',
     level: 'intermediate',
     accessNote: 'Thư viện quản lý trạng thái chuẩn khuyến nghị cho Vue 3.',
-    checkedAt: '2026-10-05'
+    checkedAt: '2026-10-08'
   },
   {
     id: 'resource.fe.testing-library-docs',
@@ -613,19 +613,19 @@ const frontendResources: LearningResource[] = [
     cost: 'free',
     level: 'intermediate',
     accessNote: 'Bộ công cụ kiểm thử giao diện theo góc nhìn trải nghiệm người dùng.',
-    checkedAt: '2026-10-05'
+    checkedAt: '2026-10-08'
   },
   {
     id: 'resource.fe.web-dev-performance',
     title: 'Web Vitals & Performance Optimization',
     provider: 'web.dev by Google',
-    url: 'https://web.dev/explore/metrics',
+    url: 'https://web.dev/articles/vitals',
     language: 'en',
     format: 'article',
     cost: 'free',
     level: 'advanced',
     accessNote: 'Hướng dẫn đo lường và tối ưu LCP, FID, CLS, INP từ các kỹ sư Google.',
-    checkedAt: '2026-10-05'
+    checkedAt: '2026-10-08'
   },
   {
     id: 'resource.fe.vite-docs',
@@ -637,7 +637,7 @@ const frontendResources: LearningResource[] = [
     cost: 'free',
     level: 'introductory',
     accessNote: 'Hướng dẫn cấu hình build và đóng gói tài nguyên web hiện đại.',
-    checkedAt: '2026-10-05'
+    checkedAt: '2026-10-08'
   },
   {
     id: 'resource.fe.vercel-docs',
@@ -649,7 +649,7 @@ const frontendResources: LearningResource[] = [
     cost: 'free',
     level: 'introductory',
     accessNote: 'Hướng dẫn triển khai dự án frontend với CI/CD tự động.',
-    checkedAt: '2026-10-05'
+    checkedAt: '2026-10-08'
   }
 ];
 
@@ -664,7 +664,7 @@ const frontendCredentials: CredentialGoal[] = [
     cost: 'free',
     prerequisites: 'Hoàn thành 5 dự án giao diện bắt buộc trên freeCodeCamp.',
     requirements: 'Đạt đầy đủ các bài kiểm tra tự động về bố cục HTML/CSS và khả năng phản hồi di động.',
-    checkedAt: '2026-10-05'
+    checkedAt: '2026-10-08'
   },
   {
     id: 'credential.fe.freecodecamp-js',
@@ -675,7 +675,7 @@ const frontendCredentials: CredentialGoal[] = [
     cost: 'free',
     prerequisites: 'Hoàn thành các bài tập thuật toán và thao tác dữ liệu JavaScript.',
     requirements: 'Giải quyết 5 bài toán thực tế kiểm tra tư duy lập trình và thao tác chuỗi/mảng.',
-    checkedAt: '2026-10-05'
+    checkedAt: '2026-10-08'
   },
   {
     id: 'credential.fe.meta-frontend',
@@ -686,7 +686,7 @@ const frontendCredentials: CredentialGoal[] = [
     cost: 'paid',
     prerequisites: 'Hoàn thành chuỗi 9 khóa học về HTML/CSS, JavaScript, React và Capstone Project.',
     requirements: 'Vượt qua các bài kiểm tra trắc nghiệm và nộp dự án Capstone được chấm điểm ngang hàng.',
-    checkedAt: '2026-10-05'
+    checkedAt: '2026-10-08'
   }
 ];
 
@@ -798,7 +798,7 @@ const frontendTracks: LearningTrack[] = [
 
 export const frontendPack: ContentPack = {
   schemaVersion: 1,
-  contentVersion: '2026-10-05.frontend-v1',
+  contentVersion: '2026-10-08.frontend-v2',
   pathId: 'frontend',
   reviewStatus: 'review',
   stages: frontendStages,

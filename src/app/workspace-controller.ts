@@ -107,6 +107,20 @@ export function createWorkspaceController(options: WorkspaceOptions): WorkspaceC
       const blocked = guard(); if (blocked) return Promise.resolve(blocked);
       return commit(snapshot.workspace!);
     },
+    savePlan(next, expected) {
+      const blocked = guard(); if (blocked) return Promise.resolve(blocked);
+      const current = snapshot.workspace!.plans.find(plan => plan.id === expected.id);
+      if (!current || current !== expected || next.id !== current.id || next.trackId !== current.trackId || next.current.id !== current.current.id)
+        return Promise.resolve(failure('conflict', 'STALE_PLAN', 'planId', 'Kế hoạch đã thay đổi; mở lại thao tác trên bản mới.'));
+      return commit({ ...snapshot.workspace!, plans: snapshot.workspace!.plans.map(plan => plan.id === next.id ? structuredClone(next) : plan) });
+    },
+    toggleCredential(id) {
+      const blocked = guard(); if (blocked) return Promise.resolve(blocked);
+      if (!options.packs.some(pack => pack.credentials.some(credential => credential.id === id)))
+        return Promise.resolve(failure('validation', 'CREDENTIAL_NOT_FOUND', 'credentialId', 'Mục tiêu không tồn tại trong danh mục.'));
+      const saved = snapshot.workspace!.savedCredentialIds;
+      return commit({ ...snapshot.workspace!, savedCredentialIds: saved.includes(id) ? saved.filter(item => item !== id) : [...saved,id] });
+    },
     async createPlan(trackId) {
       const blocked = guard(); if (blocked) return blocked;
       const resolved = resolveTrack(trackId); if (!resolved.ok) return resolved;

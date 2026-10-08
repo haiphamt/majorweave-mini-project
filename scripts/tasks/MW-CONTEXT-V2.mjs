@@ -63,7 +63,7 @@ await check('Concurrent reload is rejected before it can overwrite later edits',
   requireOk(f.controller.updateDraft('backend.node', { goal: 'Latest draft' }));
   assert.equal(f.controller.getDraft('backend.node').goal, 'Latest draft');
 });
-await check('Ten registered tracks generate independent plans', async () => {
+await check('All registered tracks generate independent plans (including the original ten)', async () => {
   const f = fixture(); await prepare(f);
   const ids = contentPacks.flatMap(pack => pack.tracks.map(track => track.id));
   for (const id of ids) {
@@ -71,8 +71,9 @@ await check('Ten registered tracks generate independent plans', async () => {
     requireOk(f.controller.updateDraft(id, { goal: `Learn ${id}` }));
     requireOk(await f.controller.createPlan(id));
   }
-  assert.equal(f.disk().plans.length, 10);
-  assert.equal(new Set(f.disk().plans.map(plan => plan.id)).size, 10);
+  for (const id of ['backend.node','backend.python','backend.java','mobile.android','mobile.ios','mobile.flutter','mobile.react-native','game.unity','game.unreal','game.godot']) assert.ok(ids.includes(id), `Original registered track lost: ${id}`);
+  assert.equal(f.disk().plans.length, ids.length);
+  assert.equal(new Set(f.disk().plans.map(plan => plan.id)).size, ids.length);
 });
 await check('Explore another track does not change profile or active plan', async () => {
   const f = fixture(); await prepare(f);

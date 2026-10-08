@@ -33,10 +33,11 @@ export function isValidDate(value: string): boolean {
   if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) return false;
   const [y, m, d] = value.split('-').map(Number);
   // Dùng Date.UTC để tránh phụ thuộc timezone cục bộ.
-  const utc = new Date(Date.UTC(y, m - 1, d));
+  const utc = new Date(0);
+  utc.setUTCFullYear(y, m - 1, d);
   if (isNaN(utc.getTime())) return false;
   // Nếu JS tự điều chỉnh ngày (rollover) thì UTC components sẽ không còn match.
-  return utc.getUTCFullYear() === y && utc.getUTCMonth() === m - 1 && utc.getUTCDate() === d;
+  return y >= 1 && utc.getUTCFullYear() === y && utc.getUTCMonth() === m - 1 && utc.getUTCDate() === d;
 }
 
 /**
@@ -45,8 +46,16 @@ export function isValidDate(value: string): boolean {
  */
 export function isMonday(isoDate: ISODate): boolean {
   // Dùng UTC để tránh phụ thuộc timezone cục bộ.
-  const [y, m, d] = isoDate.split('-').map(Number);
-  return new Date(Date.UTC(y, m - 1, d)).getUTCDay() === 1;
+  return isValidDate(isoDate) && new Date(`${isoDate}T00:00:00Z`).getUTCDay() === 1;
+}
+
+/** Đề xuất Thứ Hai kế tiếp; UI phải cho xác nhận trước khi áp dụng. */
+export function nextMonday(isoDate: ISODate): ISODate | null {
+  if (!isValidDate(isoDate)) return null;
+  const date = new Date(`${isoDate}T00:00:00Z`);
+  date.setUTCDate(date.getUTCDate() + (8 - date.getUTCDay()) % 7);
+  const result = date.toISOString().slice(0, 10);
+  return isValidDate(result) ? result : null;
 }
 
 /** Tên ngày trong tuần tiếng Việt, theo getDay() (0=CN). */
@@ -89,7 +98,7 @@ export function validateDraft(
       message: `Ngày bắt đầu "${draft.startDate}" không hợp lệ. Phải là định dạng YYYY-MM-DD và là ngày có thật.`,
     });
   } else if (!isMonday(draft.startDate)) {
-    const dayName = DAY_NAMES_VI[new Date(draft.startDate + 'T00:00:00').getDay()];
+    const dayName = DAY_NAMES_VI[new Date(draft.startDate + 'T00:00:00Z').getUTCDay()];
     issues.push({
       code: 'START_DATE_NOT_MONDAY',
       field: 'startDate',
@@ -138,7 +147,6 @@ export function validateDraft(
   // ── 4a. Kiểm tra trùng lặp và thứ tự trong selectedStageIds ──────────────
   const selectedSet = new Set<string>();
   let lastTrackIndex = -1;
-  let hasOrderOrDuplicateIssue = false;
 
   for (const sid of draft.selectedStageIds) {
     if (selectedSet.has(sid)) {
@@ -147,7 +155,6 @@ export function validateDraft(
         field: 'selectedStageIds',
         message: `Chặng "${sid}" được chọn nhiều lần.`,
       });
-      hasOrderOrDuplicateIssue = true;
       break;
     }
     selectedSet.add(sid);
@@ -160,7 +167,6 @@ export function validateDraft(
           field: 'selectedStageIds',
           message: `Thứ tự chặng được chọn không hợp lệ. Phải tuân theo thứ tự trong track.`,
         });
-        hasOrderOrDuplicateIssue = true;
         break;
       }
       lastTrackIndex = trackIndex;
@@ -175,6 +181,8 @@ export function validateDraft(
         field: 'knownStageIds',
         message: `Chặng đã biết "${kid}" không tồn tại trong nội dung.`,
       });
+    } else if (!trackStageSet.has(kid)) {
+      issues.push({ code: 'KNOWN_STAGE_NOT_IN_TRACK', field: 'knownStageIds', message: `Chặng đã biết "${kid}" không thuộc nhánh đang chọn.` });
     }
   }
 
@@ -185,6 +193,7 @@ export function validateDraft(
   for (const sid of draft.selectedStageIds) {
     const stage = stageMap.get(sid);
     if (!stage) continue; // đã báo lỗi ở trên
+    if (draft.knownStageIds.includes(sid)) continue;
     for (const prereqId of stage.prerequisiteIds) {
       if (!available.has(prereqId)) {
         issues.push({
@@ -192,6 +201,8 @@ export function validateDraft(
           field: 'selectedStageIds',
           message: `Chặng "${sid}" yêu cầu tiên quyết "${prereqId}" nhưng chặng này không được chọn và không có trong danh sách đã biết.`,
         });
+      } else if (!draft.knownStageIds.includes(prereqId) && draft.selectedStageIds.indexOf(prereqId) >= draft.selectedStageIds.indexOf(sid)) {
+        issues.push({ code: 'INVALID_PREREQUISITE_ORDER', field: 'selectedStageIds', message: `Chặng "${prereqId}" phải được học trước "${sid}".` });
       }
     }
   }
@@ -211,6 +222,14 @@ export function validateDraft(
 
   // ── 8. resourceByStage: chặng cần học phải có nguồn hợp lệ ───────────────
   const resourceMap = new Map(resources.map(r => [r.id, r]));
+
+  // Reject stale/foreign source selections even when their stage is already known.
+  for (const [sid, rid] of Object.entries(draft.resourceByStage)) {
+    const stage = stageMap.get(sid);
+    if (!trackStageSet.has(sid) || !stage || !stage.resourceIds.includes(rid) || !resourceMap.has(rid)) {
+      issues.push({ code: 'RESOURCE_NOT_IN_STAGE', field: `resourceByStage.${sid}`, message: `Nguồn "${rid}" không hợp lệ cho chặng "${sid}" trong nhánh này.` });
+    }
+  }
 
   for (const sid of toLearnIds) {
     const stage = stageMap.get(sid);
@@ -238,6 +257,18 @@ export function validateDraft(
       field: 'goal',
       message: 'Mục tiêu học không được để trống.',
     });
+  }
+
+  const work = toLearnIds.flatMap(id => stageMap.get(id)?.work ?? []);
+  if (toLearnIds.length > 0 && work.length === 0) {
+    issues.push({ code: 'NOTHING_TO_PLAN', field: 'selectedStageIds', message: 'Các chặng đã chọn không có bài thực hành để lập lịch.' });
+  }
+  const workIds = new Set<string>();
+  for (const item of work) {
+    if (!Number.isSafeInteger(item.minutes) || item.minutes <= 0 || !Number.isSafeInteger(item.revision) || item.revision <= 0 || workIds.has(item.id)) {
+      issues.push({ code: 'INVALID_WORK', field: `work.${item.id}`, message: 'Bài thực hành cần ID duy nhất, số phút và revision nguyên dương.' });
+    }
+    workIds.add(item.id);
   }
 
   return issues;
@@ -302,7 +333,6 @@ function scheduleIntoWeeks(tasks: PlanTask[], hoursPerWeek: number): PlanTask[] 
  * - context cung cấp clock, planId, generationId và hàm nextTaskId() để testable.
  * - Trả OperationResult<LearningPlan> — không ghi storage, không dispatch event.
  *
- * TODO: Viết thêm regeneratePlan (giữ lịch sử, khớp định danh, backlog customized).
  */
 export const generatePlan: PlannerFunction = (
   track,
@@ -351,8 +381,8 @@ export const generatePlan: PlannerFunction = (
             ? `${work.title} (phần ${chunk.index + 1}/${chunks.length})`
             : work.title,
           minutes: chunk.minutes,
-          acceptance: work.acceptance,
-          source: resourceSnapshot,
+          acceptance: [...work.acceptance],
+          source: resourceSnapshot ? { ...resourceSnapshot } : null,
           weekIndex: null,   // Sẽ được gán ở bước schedule
           dayIndex: null,
           status: 'todo',
@@ -414,128 +444,42 @@ export const regeneratePlan = (
   draft: RoadmapDraft,
   context: { contentVersion: string; generationId: string; nextTaskId: () => string; now: Instant }
 ): OperationResult<LearningPlan> => {
-  // ── Bước 1: Validate ─────────────────────────────────────────────────────
-  const issues = validateDraft(draft, track, stages, resources);
-  if (issues.length > 0) {
-    return { ok: false, code: 'validation', issues };
-  }
+  const generated = generatePlan(track, stages, resources, draft, { ...context, planId: oldPlan.id });
+  if (!generated.ok) return generated;
 
-  const stageMap = new Map(stages.map(s => [s.id, s]));
-  const resourceMap = new Map(resources.map(r => [r.id, r]));
-  const toLearnIds = draft.selectedStageIds.filter(
-    sid => !draft.knownStageIds.includes(sid),
-  );
-
-  // ── Bước 2: Build danh sách task thô ────────────────────────────────────
-  const rawTasks: PlanTask[] = [];
-
-  for (const sid of toLearnIds) {
-    const stage = stageMap.get(sid)!;
-    const chosenResourceId = draft.resourceByStage[sid] ?? stage.defaultResourceId;
-    const resource = resourceMap.get(chosenResourceId) ?? null;
-    const resourceSnapshot = resource
-      ? { id: resource.id, title: resource.title, provider: resource.provider, url: resource.url }
-      : null;
-
-    for (const work of stage.work) {
-      const chunks = chunkWork(work.minutes);
-      const isMultiChunk = chunks.length > 1;
-
-      for (const chunk of chunks) {
-        rawTasks.push({
-          id: context.nextTaskId(),
-          stageId: sid,
-          workId: work.id,
-          workRevision: work.revision,
-          segment: isMultiChunk
-            ? { fromMinute: chunk.fromMinute, toMinute: chunk.toMinute }
-            : null,
-          title: isMultiChunk
-            ? `${work.title} (phần ${chunk.index + 1}/${chunks.length})`
-            : work.title,
-          minutes: chunk.minutes,
-          acceptance: work.acceptance,
-          source: resourceSnapshot,
-          weekIndex: null,
-          dayIndex: null,
-          status: 'todo',
-          customized: false,
-          completionId: null,
-          notes: '',
-        });
-      }
-    }
-  }
-
-  // ── Bước 3: Khớp với task cũ ─────────────────────────────────────────────
-  const oldTasks = oldPlan.current.tasks;
-  const isSameTrack = oldPlan.trackId === draft.trackId;
-  
-  const retainedTasks: PlanTask[] = [];
-
-  for (const newTask of rawTasks) {
-    const old = oldTasks.find(o => 
-      !o.customized &&
-      o.workId === newTask.workId &&
-      o.workRevision === newTask.workRevision &&
-      o.segment?.fromMinute === newTask.segment?.fromMinute &&
-      o.segment?.toMinute === newTask.segment?.toMinute
-    );
-
-    if (old) {
-      retainedTasks.push({
-        ...newTask,
-        id: old.id,
-        status: old.status,
-        completionId: old.completionId,
-        notes: old.notes,
-      });
-    } else {
-      retainedTasks.push(newTask);
-    }
-  }
-
-  // ── Bước 4: Xếp lịch vào tuần ───────────────────────────────────────────
-  const scheduledTasks = scheduleIntoWeeks(retainedTasks, draft.hoursPerWeek);
-
-  // ── Bước 5: Giữ việc tự thêm/sửa ở backlog ──────────────────────────────
-  const finalTasks = [...scheduledTasks];
-  if (isSameTrack) {
-    const customizedTasks = oldTasks.filter(t => t.customized);
-    for (const cTask of customizedTasks) {
-      finalTasks.push({
-        ...cTask,
-        weekIndex: null,
-        dayIndex: null,
-      });
-    }
-  }
-
-  // ── Bước 6: Build PlanGeneration & LearningPlan ────────────────────────
-  const generation: PlanGeneration = {
-    id: context.generationId,
-    createdAt: context.now,
-    trackId: draft.trackId,
-    contentVersion: context.contentVersion,
-    selectedStageIds: [...draft.selectedStageIds],
-    knownStageIds: [...draft.knownStageIds],
-    resourceByStage: { ...draft.resourceByStage },
-    tasks: finalTasks,
-    closedWeeks: [],
-    goal: draft.goal,
-    hoursPerWeek: draft.hoursPerWeek,
-    startDate: draft.startDate,
+  // Clone the ledger/history too: editing the returned plan must never mutate
+  // an earlier generation, the input plan, or the content templates.
+  const preserved = structuredClone(oldPlan);
+  const oldTasks = preserved.current.tasks;
+  const custom = oldTasks.filter(task => task.customized || task.workId === null);
+  const identity = (task: PlanTask) => JSON.stringify([
+    task.workId, task.workRevision,
+    task.segment?.fromMinute ?? 0, task.segment?.toMinute ?? task.minutes,
+  ]);
+  const matches = new Map(oldTasks.filter(task => !task.customized && task.workId !== null)
+    .map(task => [identity(task), task]));
+  const customKeys = new Set(custom.filter(task => task.workId !== null).map(identity));
+  const retained = generated.value.current.tasks
+    // A customized version is retained in backlog, not duplicated by a template.
+    .filter(task => !customKeys.has(identity(task)))
+    .map(task => {
+      const old = matches.get(identity(task));
+      return old ? { ...task, id: old.id, status: old.status, completionId: old.completionId, notes: old.notes } : task;
+    });
+  const tasks = [
+    ...scheduleIntoWeeks(retained, draft.hoursPerWeek),
+    ...custom.map(task => ({ ...structuredClone(task), weekIndex: null, dayIndex: null })),
+  ];
+  return {
+    ok: true,
+    value: {
+      ...preserved,
+      name: generated.value.name,
+      trackId: track.id,
+      pathId: track.pathId,
+      contentVersion: context.contentVersion,
+      current: { ...generated.value.current, tasks },
+      history: [...preserved.history, preserved.current],
+    },
   };
-
-  const newPlan: LearningPlan = {
-    ...oldPlan,
-    name: `${track.label} — ${draft.goal.slice(0, 40)}`,
-    trackId: track.id,
-    pathId: track.pathId,
-    contentVersion: context.contentVersion,
-    current: generation,
-    history: [...oldPlan.history, oldPlan.current],
-  };
-
-  return { ok: true, value: newPlan };
 };
