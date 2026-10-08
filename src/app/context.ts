@@ -6,3 +6,7 @@ export type LegacyAppContext = { state: State; update: (patch: Partial<State>) =
 export const Context = createContext<LegacyAppContext>(null!);
 export const useApp = () => useContext(Context);
 
+// New features use this hook. useApp remains the legacy UI compatibility API.
+export { useWorkspace } from './WorkspaceProvider';
+export type { WorkspaceActions, RegenerationPreview, ResolvedTrack } from './workspace-api';
+

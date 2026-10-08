@@ -167,3 +167,9 @@ export type LoadWorkspaceFunction = () => Promise<OperationResult<Workspace>>;
 export type SaveWorkspaceFunction = (
   next: Workspace, expectedRevision: number
 ) => Promise<OperationResult<Workspace>>;
+
+// App and persistence share this port; no feature may call a storage API directly.
+export type WorkspacePersistence = {
+  loadWorkspace: LoadWorkspaceFunction;
+  saveWorkspace: SaveWorkspaceFunction;
+};
