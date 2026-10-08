@@ -53,50 +53,123 @@ export function emptyWorkspace(timeZone: string): Workspace {
     activePlanId: null, plans: [], drafts: {}, savedCredentialIds: [], imports: [] };
 }
 type StoreOptions = { databaseName?: string; timeZone: string; validate?: (value: unknown) => OperationResult<Workspace> };
-const storageFailure = (): OperationResult<Workspace> => ({ ok: false, code: 'storage', issues: [{ code: 'INDEXEDDB_FAILED', field: 'workspace', message: 'Không mở/lưu được IndexedDB. Dữ liệu chưa lưu vẫn được giữ; không chuyển kho lưu tự động.' }] });
+
+function failure(code: string, message: string): OperationResult<Workspace> {
+  return { ok: false, code: 'storage', issues: [{ code, field: 'workspace', message }] };
+}
+function storageFailure(error: unknown, phase: 'open' | 'read' | 'write' | 'abort'): OperationResult<Workspace> {
+  const name = error instanceof Error || error instanceof DOMException ? error.name : '';
+  if (name === 'QuotaExceededError') return failure('INDEXEDDB_QUOTA', 'Thiết bị không đủ dung lượng lưu. Giữ bản chưa lưu để thử lại hoặc xuất sao lưu.');
+  if (name === 'VersionError') return failure('INDEXEDDB_VERSION', 'Database có phiên bản mới hơn ứng dụng. Dữ liệu gốc được giữ; hãy cập nhật ứng dụng.');
+  if (name === 'SecurityError' || name === 'NotAllowedError') return failure('INDEXEDDB_UNAVAILABLE', 'Trình duyệt không cho phép dùng IndexedDB. Bản chưa lưu được giữ, không tự đổi kho lưu.');
+  if (name === 'AbortError' || phase === 'abort') return failure('INDEXEDDB_ABORTED', 'Giao dịch lưu đã bị hủy. Chưa lưu thành công; giữ bản đang sửa để thử lại.');
+  return failure(`INDEXEDDB_${phase.toUpperCase()}_FAILED`, 'Không đọc/lưu được IndexedDB. Bản chưa lưu được giữ; không tự đặt lại dữ liệu.');
+}
 
 export function createRoadmapStore(options: StoreOptions): WorkspacePersistence {
   const validate = options.validate ?? validateRoadmapWorkspace;
-  function open(): Promise<IDBDatabase> {
-    return new Promise((resolve, reject) => {
-      const request = indexedDB.open(options.databaseName ?? 'majorweave', 1);
-      let blocked = false;
-      request.onupgradeneeded = () => { if (!request.result.objectStoreNames.contains('workspace')) request.result.createObjectStore('workspace'); };
-      request.onerror = () => reject(request.error);
-      request.onblocked = () => { blocked = true; reject(new Error('Database blocked')); };
-      request.onsuccess = () => {
-        if (blocked) { request.result.close(); return; }
-        request.result.onversionchange = () => request.result.close();
-        resolve(request.result);
+  type OpenResult = { ok: true; db: IDBDatabase } | { ok: false; result: OperationResult<Workspace> };
+  function open(): Promise<OpenResult> {
+    return new Promise(resolve => {
+      let settled = false;
+      const fail = (result: OperationResult<Workspace>) => {
+        if (!settled) { settled = true; resolve({ ok: false, result }); }
       };
+      try {
+        if (typeof indexedDB === 'undefined') {
+          fail(failure('INDEXEDDB_UNAVAILABLE', 'Trình duyệt không hỗ trợ IndexedDB. Không tự chuyển kho lưu.'));
+          return;
+        }
+        const request = indexedDB.open(options.databaseName ?? 'majorweave', 1);
+        request.onblocked = () => fail(failure('INDEXEDDB_BLOCKED', 'Tab khác đang giữ database. Đóng hoặc tải lại tab ấy rồi thử lại; không xóa database.'));
+        request.onerror = () => fail(storageFailure(request.error, 'open'));
+        request.onupgradeneeded = () => {
+          try {
+            // A blocked open may resume after the caller already received an error.
+            if (settled) { request.transaction?.abort(); return; }
+            if (!request.result.objectStoreNames.contains('workspace')) request.result.createObjectStore('workspace');
+          } catch (error) {
+            request.transaction?.abort();
+            fail(storageFailure(error, 'open'));
+          }
+        };
+        request.onsuccess = () => {
+          const db = request.result;
+          if (settled) { db.close(); return; }
+          db.onversionchange = () => db.close();
+          settled = true;
+          resolve({ ok: true, db });
+        };
+      } catch (error) { fail(storageFailure(error, 'open')); }
     });
   }
+
   async function transact(next?: Workspace, expectedRevision?: number): Promise<OperationResult<Workspace>> {
     let candidate: Workspace | undefined;
-    if (next) { const checked = validate(next); if (!checked.ok) return checked; candidate = checked.value; }
     try {
-      const db = await open();
-      return await new Promise<OperationResult<Workspace>>(resolve => {
-        let result: OperationResult<Workspace> = storageFailure();
-        const transaction = db.transaction('workspace', candidate ? 'readwrite' : 'readonly');
+      if (next !== undefined) {
+        if (!Number.isSafeInteger(expectedRevision) || (expectedRevision ?? -1) < 0) {
+          return { ok: false, code: 'validation', issues: [{ code: 'INVALID_EXPECTED_REVISION', field: 'revision', message: 'Revision mong đợi phải là số nguyên không âm.' }] };
+        }
+        // Snapshot before awaiting open: caller changes cannot alter the pending save.
+        const checked = validate(structuredClone(next));
+        if (!checked.ok) return checked;
+        candidate = structuredClone(checked.value);
+      }
+    } catch (error) { return storageFailure(error, 'write'); }
+    const opened = await open();
+    if (!opened.ok) return opened.result;
+    const db = opened.db;
+    return new Promise<OperationResult<Workspace>>(resolve => {
+      let transaction: IDBTransaction;
+      let result: OperationResult<Workspace> = failure('INDEXEDDB_ABORTED', 'Giao dịch chưa hoàn tất hoặc đã bị hủy. Bản chưa lưu được giữ.');
+      let requestFailure: OperationResult<Workspace> | undefined;
+      try {
+        transaction = db.transaction('workspace', candidate ? 'readwrite' : 'readonly');
+        // Register handlers before queuing any request, including synchronous failures.
+        transaction.oncomplete = () => { db.close(); resolve(result); };
+        transaction.onabort = () => {
+          db.close();
+          resolve(requestFailure ?? (!result.ok ? result : storageFailure(transaction.error, 'abort')));
+        };
+        transaction.onerror = () => {
+          if (!requestFailure) requestFailure = storageFailure(transaction.error, candidate ? 'write' : 'read');
+          // Do not preventDefault: native request errors must abort the transaction.
+        };
         const store = transaction.objectStore('workspace');
         const request = store.get('local');
+        request.onerror = () => { requestFailure = storageFailure(request.error, 'read'); };
         request.onsuccess = () => {
-          const checked = request.result === undefined ? { ok: true as const, value: emptyWorkspace(options.timeZone) } : validate(request.result);
-          if (!checked.ok) { result = checked; transaction.abort(); return; }
-          if (!candidate) { result = checked; return; }
-          if (checked.value.revision !== expectedRevision || candidate.revision !== expectedRevision) {
-            result = { ok: false, code: 'conflict', issues: [{ code: 'REVISION_CONFLICT', field: 'revision', message: 'Dữ liệu đã đổi ở tab khác. Tải lại sau khi giữ/xuất bản chưa lưu.' }] };
-            transaction.abort(); return;
+          try {
+            const checked = request.result === undefined
+              ? { ok: true as const, value: emptyWorkspace(options.timeZone) }
+              : validate(request.result);
+            if (!checked.ok) { result = checked; transaction.abort(); return; }
+            if (!candidate) { result = checked; return; }
+            if (checked.value.revision !== expectedRevision || candidate.revision !== expectedRevision) {
+              result = { ok: false, code: 'conflict', issues: [{ code: 'REVISION_CONFLICT', field: 'revision', message: 'Dữ liệu đã đổi ở tab khác. Giữ/xuất bản chưa lưu trước khi tải lại.' }] };
+              transaction.abort(); return;
+            }
+            if (checked.value.revision === Number.MAX_SAFE_INTEGER) {
+              result = { ok: false, code: 'validation', issues: [{ code: 'REVISION_OVERFLOW', field: 'revision', message: 'Revision vượt giới hạn số nguyên an toàn; dữ liệu gốc được giữ.' }] };
+              transaction.abort(); return;
+            }
+            const saved = structuredClone({ ...candidate, revision: checked.value.revision + 1 });
+            const write = store.put(saved, 'local');
+            write.onerror = () => { requestFailure = storageFailure(write.error, 'write'); };
+            // This is a candidate result; resolve only from transaction.oncomplete.
+            result = { ok: true, value: saved };
+          } catch (error) {
+            requestFailure = storageFailure(error, candidate ? 'write' : 'read');
+            transaction.abort();
           }
-          const saved = structuredClone({ ...candidate, revision: checked.value.revision + 1 });
-          store.put(saved, 'local');
-          result = { ok: true, value: saved };
         };
-        transaction.oncomplete = () => { db.close(); resolve(result); };
-        transaction.onabort = () => { db.close(); resolve(result.ok ? storageFailure() : result); };
-      });
-    } catch { return storageFailure(); }
+      } catch (error) {
+        // Transaction creation / object-store lookup can throw synchronously.
+        db.close();
+        resolve(storageFailure(error, candidate ? 'write' : 'read'));
+      }
+    });
   }
   return { loadWorkspace: () => transact(), saveWorkspace: (next, expectedRevision) => transact(next, expectedRevision) };
 }
