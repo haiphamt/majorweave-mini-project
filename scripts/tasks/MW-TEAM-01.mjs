@@ -75,7 +75,7 @@ assert.equal(expected17Tracks.length, 17, 'Số lượng track phải đúng 17 
 for (const trackId of expected17Tracks) {
   const result = resolveTrackContent(packs, trackId);
   assert.ok(result.ok, `Resolve thất bại cho track ${trackId}`);
-  
+
   const { track, stages, resources, credentials, contentVersion } = result.value;
   assert.equal(track.id, trackId, `Track ID không khớp: ${track.id}`);
   assert.ok(contentVersion, `Track ${trackId} thiếu contentVersion`);

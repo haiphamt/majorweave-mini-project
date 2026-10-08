@@ -50,3 +50,7 @@ Bản nhập là đầu vào review, không phải bản nghiệm thu. Hải c�
 ## AI log của buổi này
 
 Codex đọc allowlist và diff hai thư mục, chạy lại test/check/build, kiểm tra UI trên profile thử, phát hiện và sửa lỗi ID drawer, giữ phần Backend mới hơn, ghi rõ các kết quả chưa đạt. Các tên model và PASS trong QA log clone là báo cáo được nhập; chưa có log gốc/SHA để xác thực lịch sử đó.
+
+## Phiên bản kiểm chứng
+
+Code và minh chứng của buổi review được lưu ở commit 9091d951dce62f67b5faf4eb203a322122c62e07 trên feat/mw-team-01. Commit tài liệu kế tiếp chỉ bổ sung SHA và dọn khoảng trắng của script; không đổi logic đã kiểm thử.
