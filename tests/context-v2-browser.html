@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="vi"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>MajorWeave — Context v2 verification</title>
+<body><h1>Context v2 / IndexedDB — kiểm tra riêng</h1><p>Chỉ dùng database thử mới. Không đọc, ghi hoặc xóa localStorage cũ.</p>
+<button id="run">Chạy kiểm tra</button><ol id="results" aria-live="polite"></ol><p id="summary" role="status">Chưa chạy</p><div id="react-probe"></div>
+<script type="module">
+import React, { useState } from 'react';
+import { createRoot } from 'react-dom/client';
+import { createWorkspaceController } from '/src/app/workspace-controller.ts';
+import { WorkspaceProvider, useWorkspace } from '/src/app/WorkspaceProvider.tsx';
+import { createRoadmapStore } from '/src/persistence/roadmap-store.ts';
+import { contentPacks } from '/src/content/index.ts';
+const requireOk = result => { if (!result.ok) throw new Error(JSON.stringify(result)); return result.value; };
+const assert = (condition, message) => { if (!condition) throw new Error(message); };
+document.querySelector('#run').onclick = async event => {
+  event.target.disabled = true;
+  const name = `majorweave-context-qa-${crypto.randomUUID()}`;
+  const options = { persistence: createRoadmapStore({ databaseName: name, timeZone: 'Asia/Bangkok' }), packs: contentPacks,
+    now: () => new Date().toISOString(), today: () => '2026-10-07', nextId: () => crypto.randomUUID() };
+  const results = document.querySelector('#results');
+  let passed = 0;
+  const test = async (label, run) => { await run(); passed++; const item = document.createElement('li'); item.textContent = `PASS: ${label}`; results.append(item); };
+  try {
+    const controller = createWorkspaceController(options);
+    await test('Mở IndexedDB trống, không có plan mặc định', async () => {
+      const workspace = requireOk(await controller.initialize()); assert(workspace.revision === 0 && workspace.plans.length === 0, 'Unexpected defaults');
+    });
+    await test('Tạo hai plan; thành công sau transaction hoàn tất', async () => {
+      requireOk(controller.updateDraft('backend.node', { goal: 'Native storage test' }));
+      requireOk(await controller.createPlan('backend.node')); requireOk(await controller.createPlan('backend.node'));
+      assert(controller.getSnapshot().workspace.plans.length === 2 && controller.getSnapshot().workspace.revision === 2, 'Missing saved plan');
+    });
+    await test('Tải lại bằng controller mới giữ hai plan và draft', async () => {
+      const reloaded = createWorkspaceController(options); const workspace = requireOk(await reloaded.initialize());
+      assert(workspace.plans.length === 2 && workspace.drafts['backend.node'].goal === 'Native storage test', 'Reload failed');
+    });
+    await test('Hai writer cùng revision: một thành công, một conflict', async () => {
+      const first = requireOk(await options.persistence.loadWorkspace()); const second = structuredClone(first);
+      first.profile.displayName = 'Writer A'; second.profile.displayName = 'Writer B';
+      const writes = await Promise.all([options.persistence.saveWorkspace(first, first.revision), options.persistence.saveWorkspace(second, second.revision)]);
+      assert(writes.filter(result => result.ok).length === 1 && writes.some(result => !result.ok && result.code === 'conflict'), 'Lost-update protection failed');
+    });
+    await test('Conflict ở callback giữ bản chưa lưu, không kích hoạt plan mới', async () => {
+      const result = await controller.createPlan('backend.node');
+      assert(!result.ok && result.code === 'conflict' && controller.getSnapshot().unsavedWorkspace.plans.length === 3, 'Pending candidate lost');
+      assert(requireOk(await options.persistence.loadWorkspace()).plans.length === 2, 'Stale writer changed disk');
+    });
+    await test('Bỏ bản chưa lưu có xác nhận; preview/hủy giữ nguyên database', async () => {
+      requireOk(await controller.reloadWorkspace(true));
+      const before = requireOk(await options.persistence.loadWorkspace());
+      requireOk(controller.updateDraft('backend.node', { hoursPerWeek: 8 }));
+      requireOk(controller.previewRegeneration(before.activePlanId)); controller.cancelRegeneration();
+      const after = requireOk(await options.persistence.loadWorkspace()); assert(JSON.stringify(before) === JSON.stringify(after), 'Preview/cancel wrote to disk');
+    });
+    await test('Xác nhận tạo lại lưu history; reload vẫn giữ history', async () => {
+      const preview = requireOk(controller.previewRegeneration(controller.getSnapshot().workspace.activePlanId));
+      requireOk(await controller.confirmRegeneration(preview.token));
+      const workspace = requireOk(await options.persistence.loadWorkspace());
+      const active = workspace.plans.find(plan => plan.id === workspace.activePlanId);
+      assert(active.history.length === 1 && active.current.hoursPerWeek === 8, 'History lost');
+    });
+    document.querySelector('#summary').textContent = `${passed}/${passed} kiểm tra native IndexedDB PASS. Database thử: ${name}`;
+    function Probe() {
+      const { status, workspace, actions } = useWorkspace();
+      const [message, setMessage] = useState('');
+      return React.createElement('section', null,
+        React.createElement('h2', null, 'React Provider / hook thật'),
+        React.createElement('p', { id: 'probe-state' }, `${status} · ${workspace?.plans.length ?? 0} plans`),
+        React.createElement('button', { disabled: status !== 'ready', onClick: async () => {
+          requireOk(actions.updateDraft('mobile.flutter', { goal: 'React callback test' }));
+          const plan = requireOk(await actions.createPlan('mobile.flutter'));
+          setMessage(`PASS React callback: ${plan.trackId} saved`);
+        } }, 'Thử callback qua React'),
+        React.createElement('p', { role: 'status', id: 'probe-result' }, message));
+    }
+    createRoot(document.querySelector('#react-probe')).render(React.createElement(React.StrictMode, null,
+      React.createElement(WorkspaceProvider, { options }, React.createElement(Probe))));
+  } catch (error) {
+    document.querySelector('#summary').textContent = `FAIL sau ${passed} kiểm tra: ${error.message}`;
+  }
+};
+</script></body></html>

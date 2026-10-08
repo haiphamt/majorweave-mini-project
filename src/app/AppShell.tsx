@@ -12,6 +12,7 @@ import { MyRoadmap } from '../features/my-roadmap/MyRoadmap';
 import { MyPlan } from '../features/my-plan/MyPlan';
 import { Profile } from '../features/profile/Profile';
 import { saveLegacyState } from '../persistence/legacy';
+import { WorkspaceProvider } from './WorkspaceProvider';
 
 export function AppShell() {
   const [state, setState] = useState<State>(loadState);
@@ -28,7 +29,7 @@ export function AppShell() {
   const steps = [{ to: '/explore', label: 'Explore', desc: 'Khám phá hướng học', icon: Compass }, { to: '/path', label: 'Path detail', desc: 'Kỹ năng & nguồn học', icon: BookOpen }, { to: '/roadmap', label: 'My roadmap', desc: 'Lộ trình của bạn', icon: RouteIcon }, { to: '/plan', label: 'My plan', desc: 'Một tuần một bước', icon: CalendarDays }, { to: '/profile', label: 'Profile', desc: 'Hồ sơ & nhịp học', icon: UserRound }];
   const finished = state.tasks.filter(t => t.completed).length;
   const currentStack = state.tasks.length && state.planMeta ? state.planMeta.stack : state.stack;
-  return <Context.Provider value={{ state, update, toast, openModule: setModuleId }}><div className="app-shell">
+  return <WorkspaceProvider><Context.Provider value={{ state, update, toast, openModule: setModuleId }}><div className="app-shell">
     <aside className="sidebar">
       <Link className="brand" to="/explore"><img src="/favicon.svg" alt="" /><span>Major<span className="brand-italic">Weave</span><small>EXPLORE. LEARN. GROW.</small></span></Link>
       <div className="sidebar-label">YOUR JOURNEY</div>
@@ -43,5 +44,5 @@ export function AppShell() {
   </div>{moduleId && <ModuleDrawer module={modules.find(m => m.id === moduleId)!} onClose={() => setModuleId(null)} />}
     {showAbout && <Dialog title="A small beginning." eyebrow="MAJORWEAVE · PROTOTYPE 01" onClose={() => setShowAbout(false)}><div className="dialog-body"><p>Bản thử có ba nhánh Backend: Node.js / Express, Python / FastAPI và Java / Spring Boot. Bạn có thể chọn nguồn học, chỉnh roadmap, tạo kế hoạch tuần và lưu tiến độ.</p><p>Các hướng khác hiện có phần tổng quan. Danh sách ngành được gộp theo ngành gốc; liên hệ với hướng học là gợi ý để khám phá.</p><p>Dữ liệu của bạn được lưu trên trình duyệt này. Sau khi học ở nguồn bên ngoài, bạn tự đánh dấu hoàn thành tại My plan.</p><div className="source-note">Nguồn học được đối chiếu ngày {checkedAt}. Thời gian học là ước lượng do nhóm biên soạn cho một dự án nhỏ.</div><div className="about-links"><External href="https://tuyensinh.uit.edu.vn/nganh-dao-tao/">Ngành đào tạo UIT</External><External href="https://roadmap.sh/backend">Tham khảo roadmap.sh</External><External href="https://beaverplans.com/">Cảm hứng giao diện Beaver Plans</External></div></div></Dialog>}
     <div className={`toast ${message ? 'visible' : ''}`} role="status" aria-live="polite">{message && <><Check size={16} />{message}</>}</div>
-  </Context.Provider>;
+  </Context.Provider></WorkspaceProvider>;
 }
