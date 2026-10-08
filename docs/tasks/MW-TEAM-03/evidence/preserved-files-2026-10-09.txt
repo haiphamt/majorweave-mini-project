@@ -1,0 +1,16 @@
+
+Algorithm : SHA256
+Hash      : 3A31011A79434EFD98D6D25EB9CD56D1C76D6B2D00B22530E6A9ECE93A709F93
+Path      : C:\Đại học\UIT\Năm 3\HKI\Phát triển ứng dụng Web - IS207.R11\dự án nhóm\majorweave-mini-project\docs\Danh_muc_nganh_huong_hoc.md
+
+Algorithm : SHA256
+Hash      : C3197F7913FF1FE20319D35FA66FF38052DA47CF53339984BCF3C5EEEDE348FE
+Path      : C:\Đại học\UIT\Năm 3\HKI\Phát triển ứng dụng Web - IS207.R11\dự án nhóm\majorweave-mini-project\docs\Luong_su_kien_chi_tiet.md
+
+Algorithm : SHA256
+Hash      : 3D9783E2EFC3C4B0403E4D85C1D991A9052A64D8F095FF5EAA1E236D8DA2F37E
+Path      : C:\Đại học\UIT\Năm 3\HKI\Phát triển ứng dụng Web - IS207.R11\dự án nhóm\majorweave-mini-project\public\catalog.json
+
+Algorithm : SHA256
+Hash      : DF6BD2E09E9A3365C96A9186409842DD1E8B24F9A0BFB0067B0FB85B1C50ECD6
+Path      : C:\Đại học\UIT\Năm 3\HKI\Phát triển ứng dụng Web - IS207.R11\dự án nhóm\majorweave-mini-project\.github.lnk

@@ -244,3 +244,26 @@ Hiếu ủy quyền commit/push các bugfix và tài liệu liên quan vào feat
 Cập nhật điểm nối từ đọc diff 08/10: PR #5 đã có savePlan/WorkspacePlan adapter; báo cáo 07/10 chỉ là lịch sử. Hải phối hợp tích hợp/review, Hiếu kiểm lại tám track trên app thật sau đó. Không merge main, không gửi tin Hải hoặc sửa PR description online trong Bước A; push cập nhật code PR hiện có theo ủy quyền.
 
 AI log 08/10 / Codex: đọc checkpoint/AGENTS/TASK/status/contracts, rà từng diff code/tests/docs, chạy lại validation thay vì dùng Pass cũ, cập nhật tài liệu và log; stage file cụ thể, kiểm bảo toàn và commit/push theo yêu cầu trực tiếp của Hiếu. Chưa nghiệm thu toàn task.
+
+
+## Tiếp tục 08–09/10/2026 — UI/UX, content và review chéo
+
+Code kiểm tra: **1ce77b1491d09c2134fe4cd9ebf652fe3b7582fc**, source không đổi trong lượt tài liệu này. Browser/source audit chạy08/10; validation ghi lại09/10. Các kết quả06–07/10 phía trên giữ nguyên lịch sử.
+
+| Kiểm tra thực sự chạy | Kết quả | Log |
+|---|---|---|
+| node scripts/tasks/MW-TEAM-03.mjs | 41/41, exit0 | evidence/task-validation-2026-10-09.txt |
+| npm run check | exit0; registry hiện1pack, không phải8AI đã đăng ký | cùng log |
+| npm --ignore-scripts run build | exit0;1612 modules,9.16s | cùng log |
+| TypeScript strict preview (lệnh ở mục đợt3) | exit0 | evidence/preview-typecheck-2026-10-09.txt; output trống khi thành công |
+| node docs/tasks/MW-TEAM-03/review-planner.mjs ../majorweave-review-mw02-44595b9 | 22/22, exit0 | evidence/review-validation-2026-10-09.txt |
+| node scripts/tasks/MW-TEAM-02.mjs, cwd checkout44595b9 |123 PASS/0 FAIL, exit0 | evidence/planner-task-validation-2026-10-09.txt |
+
+Một lần gọi test Định từ cwd repo Hiếu không resolve src/domain/planner.ts (exit1), được giữ trong review-validation log; sau đó chạy đúng cwd đạt123. Không tính lỗi gọi lệnh là bug planner hoặc xóa log để làm xanh.
+Build bỏ prebuild sinh docs/catalog để bảo toàn ba file modified. Không nhận đã chạy prebuild. Hash cả ba file và .github.lnk khớp baseline; xem evidence/preserved-files-2026-10-09.txt.
+Browser IAB trên origin QA5194: năm trang appv1 ở1440×900 và390×844, không tràn ngang; Explore empty/reset, Profile save/reload, Roadmap tạo plan34task, done/reload appv1. Fixture kiểm loading/empty/load-error/archived, title/acceptance validation, save failure/retry một task, Escape, đổi tuần blank→2 giữ Thứ Ba, close preview cancel giữ Saves2. JSON và bốn JPG mới là kết quả thật; chi tiết/giới hạn trong MI07_MI08_REVIEW_2026-10-08.md.
+Keyboard chỉ lấy mẫu; Shift+Tab Path detail có quan sát activeElement body chưa xác định nguyên nhân. Không ký Pass đầy đủ accessibility. Chưa chạy v2 persistent reload, đa tab/conflict/migration hoặc full8track UI. Fixture clock06/10 và RAM, không giả làm persistence.
+
+### AI log
+Codex hỗ trợ rà diff bugfix đã push (không commit trùng), viết sáu flow theo template, MI09 nguồn thiết kế, audit content, review planner123+composition22, lưu ảnh/JSON và cập nhật bàn giao. Không sửa source chung, đăng review, cập nhật Notion hoặc gửi tin. Chưa học/chứng nhận; reviewStatus vẫnreview. Hiếu và reviewer cần duyệt workload/portfolio/thiết kế.
+GitHub09/10: PR #6 đổihead2be6c07; đọc QA bổ sung của Huy (hai tab, blocked,abort,complete,quota injection) là bằng chứng tác giả, chưa tự chạy. #3/#5 chưa có comment/review chỉ định nền đầy đủ. Tiếp tục phần độc lập, chờ Hải chốt SHA tích hợp.
