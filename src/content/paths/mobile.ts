@@ -1,40 +1,100 @@
 // src/content/paths/mobile.ts
 // ContentPack cho hướng Mobile Developer — 4 track: Android, iOS, Flutter, React Native.
-// reviewStatus='draft': biên soạn lần đầu, chờ Hải nghiệm thu.
-// checkedAt=null: nguồn chưa được mở và xác minh — cần rà từng URL trước khi đẩy 'ready'.
+// reviewStatus='review': đã rà nguồn và bài ngày 07/10/2026; chờ Hải nghiệm thu.
+// Bằng chứng theo từng nguồn: docs/tasks/MW-TEAM-02/CONTENT_REVIEW.md.
 // Ghi chú iOS: nội dung để học Swift/SwiftUI; không yêu cầu website MajorWeave chạy Swift.
 
 import type { ContentPack } from '../../domain/contracts';
 
 export const mobilePack: ContentPack = {
   schemaVersion: 1,
-  contentVersion: '2026-10-05.initial',
+  contentVersion: '2026-10-07.review',
   pathId: 'mobile',
-  reviewStatus: 'draft',
+  reviewStatus: 'review',
 
   // ─── Resources ────────────────────────────────────────────────────────────
   // Nguồn xếp trước tracks/stages để tham chiếu rõ ràng hơn khi đọc.
   resources: [
+    {
+      "language": "en",
+      "format": "article",
+      "cost": "free",
+      "level": "intermediate",
+      "accessNote": "Tài liệu miễn phí, đọc trên web.",
+      "checkedAt": "2026-10-07",
+      "id": "resource.mobile.typescript-basics",
+      "title": "TypeScript — Everyday Types",
+      "provider": "Microsoft / TypeScript",
+      "url": "https://www.typescriptlang.org/docs/handbook/2/everyday-types.html"
+    },
+    {
+      "language": "en",
+      "format": "article",
+      "cost": "free",
+      "level": "intermediate",
+      "accessNote": "Tài liệu miễn phí, đọc trên web.",
+      "checkedAt": "2026-10-07",
+      "id": "resource.mobile.compose-testing",
+      "title": "Test your Compose layout",
+      "provider": "Google",
+      "url": "https://developer.android.com/develop/ui/compose/testing"
+    },
+    {
+      "language": "en",
+      "format": "article",
+      "cost": "free",
+      "level": "intermediate",
+      "accessNote": "Tài liệu miễn phí, đọc trên web.",
+      "checkedAt": "2026-10-07",
+      "id": "resource.mobile.async-storage",
+      "title": "AsyncStorage — persistent React Native storage",
+      "provider": "React Native Async Storage maintainers",
+      "url": "https://github.com/react-native-async-storage/async-storage"
+    },
+    {
+      "language": "en",
+      "format": "article",
+      "cost": "free",
+      "level": "intermediate",
+      "accessNote": "Tài liệu miễn phí, đọc trên web.",
+      "checkedAt": "2026-10-07",
+      "id": "resource.mobile.react-query-native",
+      "title": "TanStack Query — React Native",
+      "provider": "TanStack",
+      "url": "https://tanstack.com/query/latest/docs/framework/react/react-native"
+    },
+    {
+      "language": "en",
+      "format": "article",
+      "cost": "free",
+      "level": "intermediate",
+      "accessNote": "Tài liệu miễn phí; dùng Xcode tương thích và iOS 17+ cho bài @Observable/SwiftData.",
+      "checkedAt": "2026-10-07",
+      "id": "resource.mobile.observation-docs",
+      "title": "Observation — @Observable",
+      "provider": "Apple",
+      "url": "https://developer.apple.com/documentation/observation"
+    },
     // ── Git chung ──────────────────────────────────────────────────────────
     {
       id: 'resource.mobile.git-docs',
       title: 'Git Documentation',
       provider: 'Git SCM',
-      url: 'https://git-scm.com/doc',
+      url: "https://git-scm.com/docs",
       language: 'en', format: 'article', cost: 'free', level: 'introductory',
       accessNote: 'Miễn phí, đọc trên web.',
-      checkedAt: null,
+      checkedAt: '2026-10-07',
     },
 
     // ── Kotlin / Android ───────────────────────────────────────────────────
     {
       id: 'resource.mobile.kotlinlang-docs',
-      title: 'Kotlin Documentation',
+      title: "Kotlin basic syntax",
       provider: 'JetBrains',
-      url: 'https://kotlinlang.org/docs/home.html',
+      url: "https://kotlinlang.org/docs/basic-syntax.html",
       language: 'en', format: 'article', cost: 'free', level: 'introductory',
       accessNote: 'Miễn phí, đọc trên web.',
-      checkedAt: null,
+      checkedAt: '2026-10-07',
     },
     {
       id: 'resource.mobile.kotlin-koans',
@@ -42,8 +102,8 @@ export const mobilePack: ContentPack = {
       provider: 'JetBrains',
       url: 'https://kotlinlang.org/docs/koans.html',
       language: 'en', format: 'exercise', cost: 'free', level: 'introductory',
-      accessNote: 'Miễn phí, làm online hoặc trong IDE.',
-      checkedAt: null,
+      accessNote: "Bài tập miễn phí trên web/IDE; phù hợp người đã biết Java hoặc đã học cú pháp Kotlin cơ bản.",
+      checkedAt: '2026-10-07',
     },
     {
       id: 'resource.mobile.android-fundamentals',
@@ -52,34 +112,34 @@ export const mobilePack: ContentPack = {
       url: 'https://developer.android.com/courses/android-basics-compose/course',
       language: 'en', format: 'course', cost: 'free', level: 'introductory',
       accessNote: 'Miễn phí; cần Android Studio.',
-      checkedAt: null,
+      checkedAt: '2026-10-07',
     },
     {
       id: 'resource.mobile.android-developers',
       title: 'Android Developer Guides',
       provider: 'Google',
-      url: 'https://developer.android.com/guide',
+      url: "https://developer.android.com/get-started/overview",
       language: 'en', format: 'article', cost: 'free', level: 'mixed',
       accessNote: 'Miễn phí, đọc trên web.',
-      checkedAt: null,
+      checkedAt: '2026-10-07',
     },
     {
       id: 'resource.mobile.compose-pathway',
       title: 'Jetpack Compose Pathway',
       provider: 'Google',
-      url: 'https://developer.android.com/courses/pathways/compose',
+      url: "https://developer.android.com/courses/jetpack-compose/course",
       language: 'en', format: 'course', cost: 'free', level: 'intermediate',
       accessNote: 'Miễn phí; cần Android Studio Hedgehog trở lên.',
-      checkedAt: null,
+      checkedAt: '2026-10-07',
     },
     {
       id: 'resource.mobile.compose-docs',
       title: 'Jetpack Compose Documentation',
       provider: 'Google',
-      url: 'https://developer.android.com/jetpack/compose/documentation',
+      url: "https://developer.android.com/develop/ui/compose/documentation",
       language: 'en', format: 'article', cost: 'free', level: 'mixed',
       accessNote: 'Miễn phí, đọc trên web.',
-      checkedAt: null,
+      checkedAt: '2026-10-07',
     },
     {
       id: 'resource.mobile.android-architecture',
@@ -88,7 +148,7 @@ export const mobilePack: ContentPack = {
       url: 'https://developer.android.com/topic/architecture',
       language: 'en', format: 'article', cost: 'free', level: 'intermediate',
       accessNote: 'Miễn phí, đọc trên web.',
-      checkedAt: null,
+      checkedAt: '2026-10-07',
     },
     {
       id: 'resource.mobile.room-docs',
@@ -97,16 +157,16 @@ export const mobilePack: ContentPack = {
       url: 'https://developer.android.com/training/data-storage/room',
       language: 'en', format: 'article', cost: 'free', level: 'intermediate',
       accessNote: 'Miễn phí, đọc trên web.',
-      checkedAt: null,
+      checkedAt: '2026-10-07',
     },
     {
       id: 'resource.mobile.retrofit-docs',
       title: 'Retrofit Documentation',
-      provider: 'Square',
-      url: 'https://square.github.io/retrofit/',
+      provider: "Lysine (dự án khởi đầu tại Square)",
+      url: "https://lysine.dev/retrofit/",
       language: 'en', format: 'article', cost: 'free', level: 'intermediate',
-      accessNote: 'Miễn phí, đọc trên web.',
-      checkedAt: null,
+      accessNote: "Tài liệu và thư viện mã nguồn mở miễn phí; lab cần Android SDK và kết nối mạng hoặc API giả lập.",
+      checkedAt: '2026-10-07',
     },
     {
       id: 'resource.mobile.kotlin-coroutines-docs',
@@ -115,25 +175,25 @@ export const mobilePack: ContentPack = {
       url: 'https://kotlinlang.org/docs/coroutines-guide.html',
       language: 'en', format: 'article', cost: 'free', level: 'intermediate',
       accessNote: 'Miễn phí, đọc trên web.',
-      checkedAt: null,
+      checkedAt: '2026-10-07',
     },
     {
       id: 'resource.mobile.android-testing',
-      title: 'Testing Android Apps (Codelab)',
+      title: "Write unit tests for ViewModel",
       provider: 'Google',
-      url: 'https://developer.android.com/codelabs/android-testing',
+      url: "https://developer.android.com/codelabs/basic-android-kotlin-compose-test-viewmodel",
       language: 'en', format: 'lab', cost: 'free', level: 'intermediate',
-      accessNote: 'Miễn phí, làm codelab trên web.',
-      checkedAt: null,
+      accessNote: "Codelab miễn phí; cần Android Studio, Kotlin, Compose và ViewModel. Codelab android-testing cũ đã deprecated.",
+      checkedAt: '2026-10-07',
     },
     {
       id: 'resource.mobile.play-console-docs',
-      title: 'Google Play Console Help',
+      title: "Create and set up your app — Google Play",
       provider: 'Google',
-      url: 'https://support.google.com/googleplay/android-developer',
+      url: "https://support.google.com/googleplay/android-developer/answer/9859152",
       language: 'en', format: 'article', cost: 'free', level: 'mixed',
-      accessNote: 'Tài liệu miễn phí. Tài khoản Play Console cần phí đăng ký một lần ~$25 USD.',
-      checkedAt: null,
+      accessNote: "Đọc miễn phí. Đưa ứng dụng lên Play cần tài khoản nhà phát triển, phí và điều kiện kiểm thử/xác minh hiện hành; bài có phương án build local.",
+      checkedAt: '2026-10-07',
     },
 
     // ── Swift / iOS ────────────────────────────────────────────────────────
@@ -144,25 +204,25 @@ export const mobilePack: ContentPack = {
       url: 'https://docs.swift.org/swift-book/documentation/the-swift-programming-language/',
       language: 'en', format: 'article', cost: 'free', level: 'introductory',
       accessNote: 'Miễn phí. Cần macOS để dùng Xcode đầy đủ.',
-      checkedAt: null,
+      checkedAt: '2026-10-07',
     },
     {
       id: 'resource.mobile.swift-tour',
-      title: 'A Swift Tour (Swift Playgrounds)',
+      title: "A Swift Tour",
       provider: 'Apple',
       url: 'https://docs.swift.org/swift-book/documentation/the-swift-programming-language/guidedtour/',
-      language: 'en', format: 'exercise', cost: 'free', level: 'introductory',
+      language: 'en', format: "article", cost: 'free', level: 'introductory',
       accessNote: 'Miễn phí, chạy trong Swift Playgrounds hoặc Xcode.',
-      checkedAt: null,
+      checkedAt: '2026-10-07',
     },
     {
       id: 'resource.mobile.swiftui-tutorials',
-      title: 'SwiftUI Tutorials',
+      title: "Develop in Swift",
       provider: 'Apple',
-      url: 'https://developer.apple.com/tutorials/swiftui',
+      url: "https://developer.apple.com/tutorials/develop-in-swift",
       language: 'en', format: 'course', cost: 'free', level: 'introductory',
-      accessNote: 'Miễn phí. Cần Xcode trên macOS.',
-      checkedAt: null,
+      accessNote: "Tutorial miễn phí; cần máy Mac chạy Xcode tương thích. Thay tutorial SwiftUI cũ mà Apple đánh dấu không còn theo thực hành hiện tại.",
+      checkedAt: '2026-10-07',
     },
     {
       id: 'resource.mobile.swiftui-docs',
@@ -171,7 +231,7 @@ export const mobilePack: ContentPack = {
       url: 'https://developer.apple.com/documentation/swiftui',
       language: 'en', format: 'article', cost: 'free', level: 'mixed',
       accessNote: 'Miễn phí, đọc trên web.',
-      checkedAt: null,
+      checkedAt: '2026-10-07',
     },
     {
       id: 'resource.mobile.swiftdata-docs',
@@ -180,17 +240,9 @@ export const mobilePack: ContentPack = {
       url: 'https://developer.apple.com/documentation/swiftdata',
       language: 'en', format: 'article', cost: 'free', level: 'intermediate',
       accessNote: 'Miễn phí. Yêu cầu iOS 17+ / macOS 14+.',
-      checkedAt: null,
+      checkedAt: '2026-10-07',
     },
-    {
-      id: 'resource.mobile.swiftui-combine',
-      title: 'Combine Framework Documentation',
-      provider: 'Apple',
-      url: 'https://developer.apple.com/documentation/combine',
-      language: 'en', format: 'article', cost: 'free', level: 'intermediate',
-      accessNote: 'Miễn phí, đọc trên web.',
-      checkedAt: null,
-    },
+
     {
       id: 'resource.mobile.urlsession-docs',
       title: 'URLSession Documentation',
@@ -198,7 +250,7 @@ export const mobilePack: ContentPack = {
       url: 'https://developer.apple.com/documentation/foundation/urlsession',
       language: 'en', format: 'article', cost: 'free', level: 'intermediate',
       accessNote: 'Miễn phí, đọc trên web.',
-      checkedAt: null,
+      checkedAt: '2026-10-07',
     },
     {
       id: 'resource.mobile.swift-concurrency-docs',
@@ -207,7 +259,7 @@ export const mobilePack: ContentPack = {
       url: 'https://docs.swift.org/swift-book/documentation/the-swift-programming-language/concurrency/',
       language: 'en', format: 'article', cost: 'free', level: 'intermediate',
       accessNote: 'Miễn phí, đọc trên web.',
-      checkedAt: null,
+      checkedAt: '2026-10-07',
     },
     {
       id: 'resource.mobile.xctest-docs',
@@ -216,27 +268,27 @@ export const mobilePack: ContentPack = {
       url: 'https://developer.apple.com/documentation/xctest',
       language: 'en', format: 'article', cost: 'free', level: 'intermediate',
       accessNote: 'Miễn phí. Cần Xcode.',
-      checkedAt: null,
+      checkedAt: '2026-10-07',
     },
     {
       id: 'resource.mobile.appstore-connect-docs',
-      title: 'App Store Connect Help',
+      title: "Upload builds — App Store Connect",
       provider: 'Apple',
-      url: 'https://developer.apple.com/help/app-store-connect/',
+      url: "https://developer.apple.com/help/app-store-connect/manage-builds/upload-builds/",
       language: 'en', format: 'article', cost: 'unknown', level: 'mixed',
-      accessNote: 'Tài liệu miễn phí. Phát hành App Store cần Apple Developer Program ~$99 USD/năm.',
-      checkedAt: null,
+      accessNote: "Tài liệu miễn phí; TestFlight/App Store cần quyền App Store Connect và Apple Developer Program. Không yêu cầu mua membership để hoàn thành lab simulator.",
+      checkedAt: '2026-10-07',
     },
 
     // ── Flutter / Dart ─────────────────────────────────────────────────────
     {
       id: 'resource.mobile.flutter-docs',
-      title: 'Flutter Documentation',
+      title: "Install Flutter",
       provider: 'Google',
-      url: 'https://docs.flutter.dev',
+      url: "https://docs.flutter.dev/install",
       language: 'en', format: 'article', cost: 'free', level: 'introductory',
-      accessNote: 'Miễn phí, đọc trên web.',
-      checkedAt: null,
+      accessNote: "SDK/tài liệu miễn phí. Android: SDK và emulator hoặc thiết bị; iOS: máy Mac và Xcode tương thích.",
+      checkedAt: '2026-10-07',
     },
     {
       id: 'resource.mobile.dart-tour',
@@ -245,7 +297,7 @@ export const mobilePack: ContentPack = {
       url: 'https://dart.dev/language',
       language: 'en', format: 'article', cost: 'free', level: 'introductory',
       accessNote: 'Miễn phí, đọc trên web.',
-      checkedAt: null,
+      checkedAt: '2026-10-07',
     },
     {
       id: 'resource.mobile.flutter-widget-catalog',
@@ -254,16 +306,16 @@ export const mobilePack: ContentPack = {
       url: 'https://docs.flutter.dev/ui/widgets',
       language: 'en', format: 'article', cost: 'free', level: 'mixed',
       accessNote: 'Miễn phí, đọc trên web.',
-      checkedAt: null,
+      checkedAt: '2026-10-07',
     },
     {
       id: 'resource.mobile.flutter-codelabs',
-      title: 'Flutter Codelabs',
+      title: "Flutter learning pathway",
       provider: 'Google',
-      url: 'https://docs.flutter.dev/codelabs',
+      url: "https://docs.flutter.dev/learn/pathway",
       language: 'en', format: 'lab', cost: 'free', level: 'introductory',
       accessNote: 'Miễn phí, làm codelab trên web.',
-      checkedAt: null,
+      checkedAt: '2026-10-07',
     },
     {
       id: 'resource.mobile.riverpod-docs',
@@ -272,17 +324,9 @@ export const mobilePack: ContentPack = {
       url: 'https://riverpod.dev/docs/introduction/getting_started',
       language: 'en', format: 'article', cost: 'free', level: 'intermediate',
       accessNote: 'Miễn phí, đọc trên web.',
-      checkedAt: null,
+      checkedAt: '2026-10-07',
     },
-    {
-      id: 'resource.mobile.flutter-bloc-docs',
-      title: 'Bloc Library Documentation',
-      provider: 'Felix Angelov / bloclibrary.dev',
-      url: 'https://bloclibrary.dev',
-      language: 'en', format: 'article', cost: 'free', level: 'intermediate',
-      accessNote: 'Miễn phí, đọc trên web.',
-      checkedAt: null,
-    },
+
     {
       id: 'resource.mobile.dio-docs',
       title: 'Dio Package (pub.dev)',
@@ -290,7 +334,7 @@ export const mobilePack: ContentPack = {
       url: 'https://pub.dev/packages/dio',
       language: 'en', format: 'article', cost: 'free', level: 'intermediate',
       accessNote: 'Miễn phí, đọc trên pub.dev.',
-      checkedAt: null,
+      checkedAt: '2026-10-07',
     },
     {
       id: 'resource.mobile.hive-docs',
@@ -299,7 +343,7 @@ export const mobilePack: ContentPack = {
       url: 'https://pub.dev/packages/hive',
       language: 'en', format: 'article', cost: 'free', level: 'intermediate',
       accessNote: 'Miễn phí, đọc trên pub.dev.',
-      checkedAt: null,
+      checkedAt: '2026-10-07',
     },
     {
       id: 'resource.mobile.flutter-testing-docs',
@@ -308,7 +352,7 @@ export const mobilePack: ContentPack = {
       url: 'https://docs.flutter.dev/testing/overview',
       language: 'en', format: 'article', cost: 'free', level: 'intermediate',
       accessNote: 'Miễn phí, đọc trên web.',
-      checkedAt: null,
+      checkedAt: '2026-10-07',
     },
     {
       id: 'resource.mobile.github-actions-flutter',
@@ -317,7 +361,7 @@ export const mobilePack: ContentPack = {
       url: 'https://docs.flutter.dev/deployment/cd',
       language: 'en', format: 'article', cost: 'free', level: 'intermediate',
       accessNote: 'Miễn phí. GitHub Actions free tier giới hạn số phút/tháng.',
-      checkedAt: null,
+      checkedAt: '2026-10-07',
     },
 
     // ── React Native ───────────────────────────────────────────────────────
@@ -328,16 +372,16 @@ export const mobilePack: ContentPack = {
       url: 'https://reactnative.dev/docs/getting-started',
       language: 'en', format: 'article', cost: 'free', level: 'introductory',
       accessNote: 'Miễn phí. Cần Android Studio hoặc Xcode tùy nền tảng.',
-      checkedAt: null,
+      checkedAt: '2026-10-07',
     },
     {
       id: 'resource.mobile.expo-docs',
-      title: 'Expo Documentation',
+      title: "Create an Expo project",
       provider: 'Expo',
-      url: 'https://docs.expo.dev',
+      url: "https://docs.expo.dev/get-started/create-a-project/",
       language: 'en', format: 'article', cost: 'free', level: 'introductory',
-      accessNote: 'Expo Go miễn phí; EAS Build có gói free giới hạn build/tháng.',
-      checkedAt: null,
+      accessNote: "Tài liệu và khởi tạo project miễn phí; cần Node.js và thiết bị/emulator. Native iOS local cần macOS/Xcode.",
+      checkedAt: '2026-10-07',
     },
     {
       id: 'resource.mobile.rn-core-components',
@@ -346,7 +390,7 @@ export const mobilePack: ContentPack = {
       url: 'https://reactnative.dev/docs/components-and-apis',
       language: 'en', format: 'article', cost: 'free', level: 'introductory',
       accessNote: 'Miễn phí, đọc trên web.',
-      checkedAt: null,
+      checkedAt: '2026-10-07',
     },
     {
       id: 'resource.mobile.react-navigation-docs',
@@ -355,34 +399,26 @@ export const mobilePack: ContentPack = {
       url: 'https://reactnavigation.org/docs/getting-started',
       language: 'en', format: 'article', cost: 'free', level: 'intermediate',
       accessNote: 'Miễn phí, đọc trên web.',
-      checkedAt: null,
+      checkedAt: '2026-10-07',
     },
     {
       id: 'resource.mobile.zustand-docs',
-      title: 'Zustand Documentation',
+      title: "Zustand — official README and examples",
       provider: 'pmndrs',
-      url: 'https://docs.pmnd.rs/zustand/getting-started/introduction',
+      url: "https://github.com/pmndrs/zustand",
       language: 'en', format: 'article', cost: 'free', level: 'intermediate',
       accessNote: 'Miễn phí, đọc trên web.',
-      checkedAt: null,
+      checkedAt: '2026-10-07',
     },
-    {
-      id: 'resource.mobile.redux-toolkit-docs',
-      title: 'Redux Toolkit Documentation',
-      provider: 'Redux',
-      url: 'https://redux-toolkit.js.org/introduction/getting-started',
-      language: 'en', format: 'article', cost: 'free', level: 'intermediate',
-      accessNote: 'Miễn phí, đọc trên web.',
-      checkedAt: null,
-    },
+
     {
       id: 'resource.mobile.rn-testing-docs',
       title: 'React Native Testing Library',
       provider: 'callstack',
-      url: 'https://callstack.github.io/react-native-testing-library/',
+      url: "https://oss.callstack.com/react-native-testing-library/",
       language: 'en', format: 'article', cost: 'free', level: 'intermediate',
       accessNote: 'Miễn phí, đọc trên web.',
-      checkedAt: null,
+      checkedAt: '2026-10-07',
     },
     {
       id: 'resource.mobile.eas-build-docs',
@@ -390,8 +426,8 @@ export const mobilePack: ContentPack = {
       provider: 'Expo',
       url: 'https://docs.expo.dev/build/introduction/',
       language: 'en', format: 'article', cost: 'mixed', level: 'intermediate',
-      accessNote: 'Free tier giới hạn build/tháng; gói trả phí từ $29/tháng.',
-      checkedAt: null,
+      accessNote: "Tài liệu miễn phí. EAS Build cần tài khoản Expo; có hạn mức miễn phí và gói trả phí, xem trang giá hiện hành. Có thể build Android local nếu hết hạn mức.",
+      checkedAt: '2026-10-07',
     },
   ],
 
@@ -461,8 +497,8 @@ export const mobilePack: ContentPack = {
       id: 'mobile.android.setup',
       title: 'Cài đặt Android Studio và cấu trúc dự án',
       phase: 'foundation',
-      description: 'Cài Android Studio, tạo project, hiểu Gradle, AVD emulator và cấu trúc thư mục.',
-      outcome: 'Chạy được app Hello World trên emulator và thiết bị thực.',
+      description: "Cần máy chạy được Android Studio/SDK và emulator (ảo hóa) hoặc thiết bị Android có USB debugging; cài Gradle/AVD và tạo project.",
+      outcome: "Chạy được app Hello World trên emulator hoặc thiết bị Android.",
       prerequisiteIds: ['mobile.shared.kotlin-basics'],
       resourceIds: ['resource.mobile.android-fundamentals', 'resource.mobile.android-developers'],
       defaultResourceId: 'resource.mobile.android-fundamentals',
@@ -574,7 +610,7 @@ export const mobilePack: ContentPack = {
       description: 'Unit test với JUnit, UI test với Compose Testing, build release AAB và quy trình Play Console.',
       outcome: 'App có test cơ bản, build release được ký và sẵn sàng đăng ký Play Console.',
       prerequisiteIds: ['mobile.android.network'],
-      resourceIds: ['resource.mobile.android-testing', 'resource.mobile.play-console-docs'],
+      resourceIds: ['resource.mobile.android-testing', 'resource.mobile.compose-testing', 'resource.mobile.play-console-docs'],
       defaultResourceId: 'resource.mobile.android-testing',
       optional: false,
       work: [
@@ -589,12 +625,23 @@ export const mobilePack: ContentPack = {
         },
         {
           id: 'mobile.android.publish.w02',
-          revision: 1,
+          revision: 2,
           title: 'Build release AAB và cấu hình Play Console',
           minutes: 60,
-          acceptance: [
-            'AAB build thành công có chữ ký; upload được lên Internal Testing track.',
-          ],
+          acceptance: ["Build được AAB có chữ ký và APK thử nghiệm cài được trên emulator/thiết bị; không đưa keystore hoặc mật khẩu vào Git.","Nếu có tài khoản Play Console đủ điều kiện: thử Internal Testing; nếu không: nộp artifact local và checklist phát hành."],
+        },
+        {
+          "id": "mobile.android.portfolio.w01",
+          "revision": 1,
+          "title": "Tích hợp portfolio: App quản lý ghi chú cá nhân (Android)",
+          "minutes": 120,
+          "acceptance": [
+            "CRUD ghi chú lưu bằng Room, hiển thị bằng Jetpack Compose.",
+            "Fetch được dữ liệu bổ sung từ ít nhất một REST API.",
+            "Có ≥3 unit test và ≥2 UI test chạy pass.",
+            "Build release AAB ký thành công, có hướng dẫn cài đặt.",
+            "README ghi môi trường, cách chạy/test, nguồn asset và giới hạn; có ảnh hoặc video demo."
+          ]
         },
       ],
     },
@@ -661,7 +708,7 @@ export const mobilePack: ContentPack = {
       description: 'MVVM với @Observable, SwiftData để lưu dữ liệu cục bộ.',
       outcome: 'Dữ liệu bền vững qua lần mở app; ViewModel tách logic khỏi View.',
       prerequisiteIds: ['mobile.ios.ui'],
-      resourceIds: ['resource.mobile.swiftdata-docs', 'resource.mobile.swiftui-combine'],
+      resourceIds: ["resource.mobile.swiftdata-docs","resource.mobile.observation-docs"],
       defaultResourceId: 'resource.mobile.swiftdata-docs',
       optional: false,
       work: [
@@ -703,8 +750,8 @@ export const mobilePack: ContentPack = {
       id: 'mobile.ios.publish',
       title: 'Kiểm thử và phát hành lên App Store',
       phase: 'ship',
-      description: 'XCTest, TestFlight, App Store Connect và quy trình review của Apple.',
-      outcome: 'App có unit test, upload được lên TestFlight, cấu hình App Store Connect.',
+      description: "XCTest trên simulator; tìm hiểu TestFlight/App Store Connect. Phát hành store là tùy chọn có membership.",
+      outcome: "Có unit test, bản chạy trên simulator và checklist phát hành; chỉ upload TestFlight khi có quyền và membership.",
       prerequisiteIds: ['mobile.ios.network'],
       resourceIds: ['resource.mobile.xctest-docs', 'resource.mobile.appstore-connect-docs'],
       defaultResourceId: 'resource.mobile.xctest-docs',
@@ -721,13 +768,23 @@ export const mobilePack: ContentPack = {
         },
         {
           id: 'mobile.ios.publish.w02',
-          revision: 1,
-          title: 'Archive và upload lên TestFlight',
+          revision: 2,
+          title: "Chuẩn bị bản phân phối và checklist TestFlight",
           minutes: 60,
-          acceptance: [
-            'Build archive thành công; có thể cài qua TestFlight link nội bộ.',
-            '(Nếu chưa có Apple Developer account: archive IPA local là đủ cho bài này.)',
-          ],
+          acceptance: ["Chạy bản Release trên iOS Simulator và nộp log build cùng checklist ký/phân phối.","Nếu có membership, thiết bị và provisioning hợp lệ: archive và upload TestFlight; không yêu cầu xuất IPA bằng tài khoản miễn phí."],
+        },
+        {
+          "id": "mobile.ios.portfolio.w01",
+          "revision": 1,
+          "title": "Tích hợp portfolio: App quản lý tác vụ (iOS / SwiftUI)",
+          "minutes": 120,
+          "acceptance": [
+            "CRUD tác vụ lưu bằng SwiftData và hiển thị bằng SwiftUI (iOS 17+).",
+            "Fetch API bằng URLSession async/await, có xử lý lỗi.",
+            "Có ít nhất 3 XCTest cho ViewModel chạy pass.",
+            "Bản Release chạy trên simulator; TestFlight tùy chọn khi có membership/provisioning hợp lệ.",
+            "README ghi môi trường, cách chạy/test, nguồn asset và giới hạn; có ảnh hoặc video demo."
+          ]
         },
       ],
     },
@@ -778,13 +835,10 @@ export const mobilePack: ContentPack = {
       work: [
         {
           id: 'mobile.flutter.ui.w01',
-          revision: 1,
+          revision: 2,
           title: 'StatefulWidget, setState và ListView',
           minutes: 90,
-          acceptance: [
-            'ListView hiển thị danh sách động.',
-            'setState cập nhật đúng item được chọn mà không rebuild toàn bộ.',
-          ],
+          acceptance: ["ListView hiển thị danh sách động.","setState cập nhật đúng dữ liệu hiển thị và giữ trạng thái cuộn; không giả định chỉ một Widget được rebuild."],
         },
       ],
     },
@@ -792,17 +846,17 @@ export const mobilePack: ContentPack = {
       id: 'mobile.flutter.state',
       title: 'Quản lý state với Riverpod',
       phase: 'build',
-      description: 'Riverpod StateNotifierProvider; tách UI khỏi business logic.',
+      description: "Riverpod Notifier/NotifierProvider; tách UI khỏi business logic.",
       outcome: 'State được quản lý ngoài Widget; UI chỉ observe và render.',
       prerequisiteIds: ['mobile.flutter.ui'],
-      resourceIds: ['resource.mobile.riverpod-docs', 'resource.mobile.flutter-bloc-docs'],
+      resourceIds: ["resource.mobile.riverpod-docs"],
       defaultResourceId: 'resource.mobile.riverpod-docs',
       optional: false,
       work: [
         {
           id: 'mobile.flutter.state.w01',
-          revision: 1,
-          title: 'Riverpod StateNotifierProvider cho Todo list',
+          revision: 2,
+          title: "Riverpod NotifierProvider cho Todo list",
           minutes: 90,
           acceptance: [
             'Todo list dùng Riverpod; Widget không chứa logic nghiệp vụ.',
@@ -863,6 +917,19 @@ export const mobilePack: ContentPack = {
             'GitHub Actions tự chạy flutter test và flutter build apk khi push.',
           ],
         },
+        {
+          "id": "mobile.flutter.portfolio.w01",
+          "revision": 1,
+          "title": "Tích hợp portfolio: App tin tức đa nền tảng (Android + iOS)",
+          "minutes": 120,
+          "acceptance": [
+            "Fetch danh sách bài viết từ public API, hiển thị và lưu offline bằng Hive.",
+            "State quản lý bằng Riverpod.",
+            "Build được APK không lỗi.",
+            "Có ≥2 widget test chạy pass qua flutter test.",
+            "README ghi môi trường, cách chạy/test, nguồn asset và giới hạn; có ảnh hoặc video demo."
+          ]
+        },
       ],
     },
 
@@ -874,10 +941,11 @@ export const mobilePack: ContentPack = {
       description: 'React Native CLI hoặc Expo, TypeScript cơ bản, Metro bundler và cấu trúc dự án.',
       outcome: 'Chạy được RN app trên Android emulator; TypeScript compile không lỗi.',
       prerequisiteIds: ['mobile.shared.git'],
-      resourceIds: ['resource.mobile.rn-docs', 'resource.mobile.expo-docs'],
+      resourceIds: ['resource.mobile.rn-docs', 'resource.mobile.expo-docs', 'resource.mobile.typescript-basics'],
       defaultResourceId: 'resource.mobile.expo-docs',
       optional: false,
       work: [
+        { id: 'mobile.rn.setup.types.w01', revision: 1, title: 'TypeScript: model, union và hàm cập nhật thói quen', minutes: 60, acceptance: ['Định nghĩa Habit và trạng thái bằng union; hàm thêm/sửa trả về mảng mới.', 'tsc strict bắt lỗi input sai và xử lý được dữ liệu rỗng.'] },
         {
           id: 'mobile.rn.setup.w01',
           revision: 1,
@@ -940,22 +1008,19 @@ export const mobilePack: ContentPack = {
       id: 'mobile.rn.state',
       title: 'Quản lý state với Zustand và React Query',
       phase: 'build',
-      description: 'Zustand store cho local state; React Query cho server state và cache.',
+      description: "Zustand cho state; TanStack Query cho API/cache và AsyncStorage để giữ thói quen sau khi mở lại app.",
       outcome: 'State global nhất quán giữa các màn hình; server state được cache và refetch.',
       prerequisiteIds: ['mobile.rn.navigation'],
-      resourceIds: ['resource.mobile.zustand-docs', 'resource.mobile.redux-toolkit-docs'],
+      resourceIds: ["resource.mobile.zustand-docs","resource.mobile.react-query-native","resource.mobile.async-storage"],
       defaultResourceId: 'resource.mobile.zustand-docs',
       optional: false,
       work: [
         {
           id: 'mobile.rn.state.w01',
-          revision: 1,
+          revision: 2,
           title: 'Zustand store và React Query integration',
           minutes: 90,
-          acceptance: [
-            'Thêm item ở màn hình A hiện ngay ở màn hình B không cần reload.',
-            'React Query cache dữ liệu API và refetch khi app focus lại.',
-          ],
+          acceptance: ["Thêm item ở màn hình A hiện ngay ở màn hình B; đóng/mở app giữ dữ liệu qua AsyncStorage.","TanStack Query cache API, refetch khi app focus; kiểm tra cả loading và lỗi mạng."],
         },
       ],
     },
@@ -963,8 +1028,8 @@ export const mobilePack: ContentPack = {
       id: 'mobile.rn.publish',
       title: 'Kiểm thử và phát hành với EAS Build',
       phase: 'ship',
-      description: 'Jest + React Native Testing Library, EAS Build và OTA update với Expo.',
-      outcome: 'App có test, build được bằng EAS và phân phối qua store hoặc OTA.',
+      description: "Jest + React Native Testing Library, build Android bằng EAS hoặc local.",
+      outcome: "App có test và bản Android preview chạy được; store/iOS distribution tùy điều kiện tài khoản.",
       prerequisiteIds: ['mobile.rn.state'],
       resourceIds: ['resource.mobile.rn-testing-docs', 'resource.mobile.eas-build-docs'],
       defaultResourceId: 'resource.mobile.rn-testing-docs',
@@ -972,13 +1037,23 @@ export const mobilePack: ContentPack = {
       work: [
         {
           id: 'mobile.rn.publish.w01',
-          revision: 1,
+          revision: 2,
           title: 'Jest + RNTL unit test và EAS Build cấu hình',
           minutes: 90,
-          acceptance: [
-            'Ít nhất 3 test component chạy qua jest.',
-            'eas build --profile preview tạo được artifact thành công.',
-          ],
+          acceptance: ["Ít nhất 3 test component chạy qua Jest/RNTL.","Tạo được Android preview artifact bằng EAS Build hoặc build Android local và cài chạy thử; ghi cách build trong README."],
+        },
+        {
+          "id": "mobile.react-native.portfolio.w01",
+          "revision": 1,
+          "title": "Tích hợp portfolio: App theo dõi thói quen (React Native)",
+          "minutes": 120,
+          "acceptance": [
+            "CRUD thói quen lưu cục bộ bằng AsyncStorage và còn sau khi mở lại app.",
+            "Ít nhất 2 tab, stack navigation type-safe.",
+            "TanStack Query lấy API, có loading/error và refetch.",
+            "Ít nhất 3 test RNTL pass; Android artifact qua EAS hoặc local chạy được.",
+            "README ghi môi trường, cách chạy/test, nguồn asset và giới hạn; có ảnh hoặc video demo."
+          ]
         },
       ],
     },
@@ -986,19 +1061,9 @@ export const mobilePack: ContentPack = {
 
   // ─── Credentials ─────────────────────────────────────────────────────────
   credentials: [
-    {
-      id: 'credential.mobile.associate-android-developer',
-      name: 'Associate Android Developer (AAD)',
-      provider: 'Google',
-      kind: 'exam_certificate',
-      url: 'https://developers.google.com/certification/associate-android-developer',
-      cost: 'paid',
-      prerequisites: 'Thành thạo Android development với Kotlin và Jetpack.',
-      requirements: 'Thi thực hành code trong thời gian giới hạn; phí khoảng $149 USD. Kiểm tra trang chính thức để cập nhật phí.',
-      checkedAt: null,
-    },
-    // Ghi chú: iOS không có chứng chỉ lập trình chính thức từ Apple tính đến lần biên soạn.
-    // Flutter và React Native không có chứng chỉ nền tảng chính thức; portfolio là đầu ra chính.
+
+    // Không đưa AAD đã retired vào mục tiêu mới. Khảo sát/nguồn: CONTENT_REVIEW.md.
+    // Chưa chọn chương trình thi phù hợp cho iOS/Flutter/RN sau khảo sát; dùng portfolio, không tạo credential giả.
   ],
 
   // ─── Tracks ───────────────────────────────────────────────────────────────
@@ -1016,7 +1081,7 @@ export const mobilePack: ContentPack = {
         'mobile.android.network',
         'mobile.android.publish',
       ],
-      credentialIds: ['credential.mobile.associate-android-developer'],
+      credentialIds: [],
       roadmapLinks: [
         { label: 'Android Developer Roadmap', url: 'https://roadmap.sh/android' },
       ],
@@ -1046,15 +1111,7 @@ export const mobilePack: ContentPack = {
       roadmapLinks: [
         { label: 'iOS Developer Roadmap', url: 'https://roadmap.sh/ios' },
       ],
-      portfolio: {
-        title: 'App quản lý tác vụ (iOS / SwiftUI)',
-        acceptance: [
-          'CRUD tác vụ lưu bằng SwiftData, hiển thị bằng SwiftUI.',
-          'Fetch được ít nhất một API bằng URLSession async/await.',
-          'Có ≥3 XCTest unit test chạy pass.',
-          'Archive IPA thành công (TestFlight nếu có Apple Developer account).',
-        ],
-      },
+      portfolio: {"title":"App quản lý tác vụ (iOS / SwiftUI)","acceptance":["CRUD tác vụ lưu bằng SwiftData và hiển thị bằng SwiftUI (iOS 17+).","Fetch API bằng URLSession async/await, có xử lý lỗi.","Có ít nhất 3 XCTest cho ViewModel chạy pass.","Bản Release chạy trên simulator; TestFlight tùy chọn khi có membership/provisioning hợp lệ."]},
     },
     {
       id: 'mobile.flutter',
@@ -1098,15 +1155,7 @@ export const mobilePack: ContentPack = {
       roadmapLinks: [
         { label: 'React Native Roadmap', url: 'https://roadmap.sh/react-native' },
       ],
-      portfolio: {
-        title: 'App theo dõi thói quen (React Native)',
-        acceptance: [
-          'CRUD thói quen lưu cục bộ bằng AsyncStorage hoặc MMKV.',
-          'Tab navigation ≥2 tab, stack navigation type-safe.',
-          'Server state đồng bộ qua React Query.',
-          'Có ≥3 test component RNTL chạy pass; EAS Build tạo được artifact.',
-        ],
-      },
+      portfolio: {"title":"App theo dõi thói quen (React Native)","acceptance":["CRUD thói quen lưu cục bộ bằng AsyncStorage và còn sau khi mở lại app.","Ít nhất 2 tab, stack navigation type-safe.","TanStack Query lấy API, có loading/error và refetch.","Ít nhất 3 test RNTL pass; Android artifact qua EAS hoặc local chạy được."]},
     },
   ],
 };

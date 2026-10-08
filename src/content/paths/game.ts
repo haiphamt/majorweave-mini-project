@@ -1,27 +1,87 @@
 // src/content/paths/game.ts
 // ContentPack cho hướng Game Developer — 3 track: Unity/C#, Unreal/C++, Godot/GDScript.
-// reviewStatus='draft': biên soạn lần đầu, chờ Hải nghiệm thu.
-// checkedAt=null: nguồn chưa được mở và xác minh — cần rà từng URL trước khi đẩy 'ready'.
+// reviewStatus='review': đã rà nguồn và bài ngày 07/10/2026; chờ Hải nghiệm thu.
+// Bằng chứng theo từng nguồn: docs/tasks/MW-TEAM-02/CONTENT_REVIEW.md.
 
 import type { ContentPack } from '../../domain/contracts';
 
 export const gamePack: ContentPack = {
   schemaVersion: 1,
-  contentVersion: '2026-10-05.initial',
+  contentVersion: '2026-10-07.review',
   pathId: 'game',
-  reviewStatus: 'draft',
+  reviewStatus: 'review',
 
   // ─── Resources ────────────────────────────────────────────────────────────
   resources: [
+    {
+      "language": "en",
+      "format": "article",
+      "cost": "free",
+      "level": "intermediate",
+      "accessNote": "Tài liệu miễn phí, đọc trên web.",
+      "checkedAt": "2026-10-07",
+      "id": "resource.game.godot-tilemaps",
+      "title": "Using TileMaps / TileMapLayer",
+      "provider": "Godot Engine",
+      "url": "https://docs.godotengine.org/en/stable/tutorials/2d/using_tilemaps.html"
+    },
+    {
+      "language": "en",
+      "format": "article",
+      "cost": "free",
+      "level": "intermediate",
+      "accessNote": "Tài liệu miễn phí, đọc trên web.",
+      "checkedAt": "2026-10-07",
+      "id": "resource.game.unity-2d",
+      "title": "2D game development in Unity",
+      "provider": "Unity Technologies",
+      "url": "https://docs.unity3d.com/Manual/Unity2D.html"
+    },
+    {
+      "language": "en",
+      "format": "article",
+      "cost": "free",
+      "level": "intermediate",
+      "accessNote": "Tài liệu miễn phí. Học khái niệm vector/dot/cross chung; viết bài trong ngôn ngữ/engine đang chọn, không bắt track Unity/Unreal dùng GDScript.",
+      "checkedAt": "2026-10-07",
+      "id": "resource.game.vector-math",
+      "title": "Vector math — Godot documentation",
+      "provider": "Godot Engine",
+      "url": "https://docs.godotengine.org/en/stable/tutorials/math/vector_math.html"
+    },
+    {
+      "language": "en",
+      "format": "article",
+      "cost": "free",
+      "level": "intermediate",
+      "accessNote": "Tài liệu miễn phí, đọc trên web.",
+      "checkedAt": "2026-10-07",
+      "id": "resource.game.unreal-packaging",
+      "title": "Packaging Your Project",
+      "provider": "Epic Games",
+      "url": "https://dev.epicgames.com/documentation/en-us/unreal-engine/packaging-your-project"
+    },
+    {
+      "language": "en",
+      "format": "article",
+      "cost": "free",
+      "level": "intermediate",
+      "accessNote": "Tài liệu miễn phí, đọc trên web.",
+      "checkedAt": "2026-10-07",
+      "id": "resource.game.unity-ugui",
+      "title": "Unity UI (uGUI) — Canvas and controls",
+      "provider": "Unity Technologies",
+      "url": "https://docs.unity3d.com/Packages/com.unity.ugui@2.0/manual/index.html"
+    },
     // ── Git chung ──────────────────────────────────────────────────────────
     {
       id: 'resource.game.git-docs',
       title: 'Git Documentation',
       provider: 'Git SCM',
-      url: 'https://git-scm.com/doc',
+      url: "https://git-scm.com/docs",
       language: 'en', format: 'article', cost: 'free', level: 'introductory',
       accessNote: 'Miễn phí, đọc trên web.',
-      checkedAt: null,
+      checkedAt: '2026-10-07',
     },
     {
       id: 'resource.game.git-lfs',
@@ -29,8 +89,8 @@ export const gamePack: ContentPack = {
       provider: 'GitHub',
       url: 'https://git-lfs.com/',
       language: 'en', format: 'article', cost: 'free', level: 'introductory',
-      accessNote: 'Miễn phí cho repo public; GitHub LFS storage có giới hạn cho repo private.',
-      checkedAt: null,
+      accessNote: "Git LFS là mã nguồn mở miễn phí; storage/bandwidth của dịch vụ hosting có hạn mức và có thể tính phí, kể cả repo public.",
+      checkedAt: '2026-10-07',
     },
 
     // ── C# / Unity ─────────────────────────────────────────────────────────
@@ -41,16 +101,16 @@ export const gamePack: ContentPack = {
       url: 'https://learn.microsoft.com/en-us/dotnet/csharp/',
       language: 'en', format: 'article', cost: 'free', level: 'introductory',
       accessNote: 'Miễn phí, đọc trên web.',
-      checkedAt: null,
+      checkedAt: '2026-10-07',
     },
     {
       id: 'resource.game.unity-learn',
-      title: 'Unity Learn — Pathways',
+      title: "Unity Essentials",
       provider: 'Unity Technologies',
-      url: 'https://learn.unity.com',
+      url: "https://learn.unity.com/pathway/unity-essentials",
       language: 'en', format: 'course', cost: 'free', level: 'introductory',
-      accessNote: 'Miễn phí. Tài khoản Unity cần đăng ký nhưng không cần mua bản quyền cho cá nhân và học sinh (Unity Personal).',
-      checkedAt: null,
+      accessNote: "Pathway học miễn phí; tài khoản Unity dùng để lưu tiến độ. Kiểm tra điều kiện license của Editor trước khi dùng; lab không yêu cầu asset trả phí.",
+      checkedAt: '2026-10-07',
     },
     {
       id: 'resource.game.unity-manual',
@@ -59,7 +119,7 @@ export const gamePack: ContentPack = {
       url: 'https://docs.unity3d.com/Manual/index.html',
       language: 'en', format: 'article', cost: 'free', level: 'mixed',
       accessNote: 'Miễn phí, đọc trên web.',
-      checkedAt: null,
+      checkedAt: '2026-10-07',
     },
     {
       id: 'resource.game.unity-scripting-api',
@@ -68,7 +128,7 @@ export const gamePack: ContentPack = {
       url: 'https://docs.unity3d.com/ScriptReference/index.html',
       language: 'en', format: 'article', cost: 'free', level: 'mixed',
       accessNote: 'Miễn phí, đọc trên web.',
-      checkedAt: null,
+      checkedAt: '2026-10-07',
     },
     {
       id: 'resource.game.unity-physics-docs',
@@ -77,17 +137,9 @@ export const gamePack: ContentPack = {
       url: 'https://docs.unity3d.com/Manual/PhysicsSection.html',
       language: 'en', format: 'article', cost: 'free', level: 'intermediate',
       accessNote: 'Miễn phí, đọc trên web.',
-      checkedAt: null,
+      checkedAt: '2026-10-07',
     },
-    {
-      id: 'resource.game.unity-ui-toolkit',
-      title: 'Unity UI Toolkit Documentation',
-      provider: 'Unity Technologies',
-      url: 'https://docs.unity3d.com/Manual/UIElements.html',
-      language: 'en', format: 'article', cost: 'free', level: 'intermediate',
-      accessNote: 'Miễn phí, đọc trên web.',
-      checkedAt: null,
-    },
+
     {
       id: 'resource.game.unity-test-framework',
       title: 'Unity Test Framework Documentation',
@@ -95,7 +147,7 @@ export const gamePack: ContentPack = {
       url: 'https://docs.unity3d.com/Packages/com.unity.test-framework@1.4/manual/index.html',
       language: 'en', format: 'article', cost: 'free', level: 'intermediate',
       accessNote: 'Miễn phí, đọc trên web.',
-      checkedAt: null,
+      checkedAt: '2026-10-07',
     },
     {
       id: 'resource.game.unity-addressables',
@@ -104,7 +156,7 @@ export const gamePack: ContentPack = {
       url: 'https://docs.unity3d.com/Packages/com.unity.addressables@2.0/manual/index.html',
       language: 'en', format: 'article', cost: 'free', level: 'advanced',
       accessNote: 'Miễn phí, đọc trên web.',
-      checkedAt: null,
+      checkedAt: '2026-10-07',
     },
     {
       id: 'resource.game.unity-game-dev-course',
@@ -112,38 +164,30 @@ export const gamePack: ContentPack = {
       provider: 'GameDev.tv / Udemy',
       url: 'https://www.udemy.com/course/unitycourse2/',
       language: 'en', format: 'course', cost: 'paid', level: 'introductory',
-      accessNote: 'Trả phí; thường có giảm giá ~$15–20 USD. Kiểm tra giá hiện tại trên Udemy.',
-      checkedAt: null,
+      accessNote: "Khóa GameDev.tv trên Udemy trả phí; giá theo khu vực/tài khoản/khuyến mại. Không bắt buộc mua khóa cho các bài miễn phí trong track.",
+      checkedAt: '2026-10-07',
     },
 
     // ── C++ / Unreal ───────────────────────────────────────────────────────
     {
       id: 'resource.game.cpp-tour',
-      title: 'A Tour of C++',
+      title: "LearnCpp — C++ tutorials",
       provider: 'learncpp.com',
       url: 'https://www.learncpp.com',
       language: 'en', format: 'article', cost: 'free', level: 'introductory',
       accessNote: 'Miễn phí, đọc trên web.',
-      checkedAt: null,
+      checkedAt: '2026-10-07',
     },
     {
       id: 'resource.game.unreal-docs',
-      title: 'Unreal Engine Documentation',
+      title: "Programming with C++ in Unreal Engine",
       provider: 'Epic Games',
-      url: 'https://dev.epicgames.com/documentation/en-us/unreal-engine/unreal-engine-5-0-documentation',
+      url: "https://dev.epicgames.com/documentation/en-us/unreal-engine/programming-with-cplusplus-in-unreal-engine",
       language: 'en', format: 'article', cost: 'free', level: 'mixed',
-      accessNote: 'Miễn phí, đọc trên web. Unreal Engine 5 miễn phí; royalty 5% doanh thu sau $1M USD.',
-      checkedAt: null,
+      accessNote: "Tài liệu miễn phí. Lab cần Unreal Editor, compiler C++ và SDK phù hợp hệ điều hành; xem điều kiện license của Epic nếu phát hành thương mại.",
+      checkedAt: '2026-10-07',
     },
-    {
-      id: 'resource.game.unreal-online-learning',
-      title: 'Unreal Online Learning',
-      provider: 'Epic Games',
-      url: 'https://dev.epicgames.com/community/learning',
-      language: 'en', format: 'course', cost: 'free', level: 'introductory',
-      accessNote: 'Miễn phí sau khi đăng ký tài khoản Epic.',
-      checkedAt: null,
-    },
+
     {
       id: 'resource.game.unreal-blueprint-docs',
       title: 'Unreal Engine Blueprint Visual Scripting',
@@ -151,7 +195,7 @@ export const gamePack: ContentPack = {
       url: 'https://dev.epicgames.com/documentation/en-us/unreal-engine/blueprints-visual-scripting-in-unreal-engine',
       language: 'en', format: 'article', cost: 'free', level: 'introductory',
       accessNote: 'Miễn phí, đọc trên web.',
-      checkedAt: null,
+      checkedAt: '2026-10-07',
     },
     {
       id: 'resource.game.unreal-gameplay-framework',
@@ -160,16 +204,16 @@ export const gamePack: ContentPack = {
       url: 'https://dev.epicgames.com/documentation/en-us/unreal-engine/gameplay-framework-in-unreal-engine',
       language: 'en', format: 'article', cost: 'free', level: 'intermediate',
       accessNote: 'Miễn phí, đọc trên web.',
-      checkedAt: null,
+      checkedAt: '2026-10-07',
     },
     {
       id: 'resource.game.unreal-optimization-docs',
-      title: 'Performance and Profiling in Unreal Engine',
+      title: "Testing and Optimizing Your Content",
       provider: 'Epic Games',
-      url: 'https://dev.epicgames.com/documentation/en-us/unreal-engine/performance-and-profiling-in-unreal-engine',
+      url: "https://dev.epicgames.com/documentation/en-us/unreal-engine/testing-and-optimizing-your-content",
       language: 'en', format: 'article', cost: 'free', level: 'advanced',
       accessNote: 'Miễn phí, đọc trên web.',
-      checkedAt: null,
+      checkedAt: '2026-10-07',
     },
 
     // ── GDScript / Godot ───────────────────────────────────────────────────
@@ -180,7 +224,7 @@ export const gamePack: ContentPack = {
       url: 'https://docs.godotengine.org/en/stable/',
       language: 'en', format: 'article', cost: 'free', level: 'introductory',
       accessNote: 'Miễn phí, đọc trên web. Godot Engine là phần mềm mã nguồn mở MIT.',
-      checkedAt: null,
+      checkedAt: '2026-10-07',
     },
     {
       id: 'resource.game.gdscript-docs',
@@ -189,7 +233,7 @@ export const gamePack: ContentPack = {
       url: 'https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_basics.html',
       language: 'en', format: 'article', cost: 'free', level: 'introductory',
       accessNote: 'Miễn phí, đọc trên web.',
-      checkedAt: null,
+      checkedAt: '2026-10-07',
     },
     {
       id: 'resource.game.godot-your-first-2d',
@@ -198,7 +242,7 @@ export const gamePack: ContentPack = {
       url: 'https://docs.godotengine.org/en/stable/getting_started/first_2d_game/index.html',
       language: 'en', format: 'lab', cost: 'free', level: 'introductory',
       accessNote: 'Miễn phí, hướng dẫn chính thức theo bước.',
-      checkedAt: null,
+      checkedAt: '2026-10-07',
     },
     {
       id: 'resource.game.godot-your-first-3d',
@@ -207,7 +251,7 @@ export const gamePack: ContentPack = {
       url: 'https://docs.godotengine.org/en/stable/getting_started/first_3d_game/index.html',
       language: 'en', format: 'lab', cost: 'free', level: 'intermediate',
       accessNote: 'Miễn phí, hướng dẫn chính thức theo bước.',
-      checkedAt: null,
+      checkedAt: '2026-10-07',
     },
     {
       id: 'resource.game.godot-ui-docs',
@@ -216,7 +260,7 @@ export const gamePack: ContentPack = {
       url: 'https://docs.godotengine.org/en/stable/tutorials/ui/index.html',
       language: 'en', format: 'article', cost: 'free', level: 'intermediate',
       accessNote: 'Miễn phí, đọc trên web.',
-      checkedAt: null,
+      checkedAt: '2026-10-07',
     },
     {
       id: 'resource.game.godot-signals-docs',
@@ -225,7 +269,7 @@ export const gamePack: ContentPack = {
       url: 'https://docs.godotengine.org/en/stable/getting_started/step_by_step/signals.html',
       language: 'en', format: 'article', cost: 'free', level: 'intermediate',
       accessNote: 'Miễn phí, đọc trên web.',
-      checkedAt: null,
+      checkedAt: '2026-10-07',
     },
     {
       id: 'resource.game.godot-export-docs',
@@ -234,7 +278,7 @@ export const gamePack: ContentPack = {
       url: 'https://docs.godotengine.org/en/stable/tutorials/export/index.html',
       language: 'en', format: 'article', cost: 'free', level: 'intermediate',
       accessNote: 'Miễn phí. Xuất HTML5 miễn phí; store cần tài khoản Google Play / Apple Developer.',
-      checkedAt: null,
+      checkedAt: '2026-10-07',
     },
     {
       id: 'resource.game.godot-unit-test',
@@ -243,7 +287,7 @@ export const gamePack: ContentPack = {
       url: 'https://gut.readthedocs.io/en/latest/',
       language: 'en', format: 'article', cost: 'free', level: 'intermediate',
       accessNote: 'Miễn phí, cài qua Godot Asset Library.',
-      checkedAt: null,
+      checkedAt: '2026-10-07',
     },
   ],
 
@@ -279,22 +323,19 @@ export const gamePack: ContentPack = {
       id: 'game.shared.math',
       title: 'Toán học cơ bản cho game (Vector, Ma trận, Tọa độ)',
       phase: 'foundation',
-      description: 'Vector 2D/3D, dot product, cross product, ma trận transform, tọa độ local/world.',
-      outcome: 'Hiểu được tại sao object xoay sai hoặc di chuyển lệch; debug được vấn đề toán học cơ bản.',
+      description: "Vector 2D/3D, dot/cross product, hướng và hệ tọa độ. Áp dụng bằng C#, C++ hoặc GDScript theo track.",
+      outcome: "Tính đúng hướng chuyển động và xử lý vector độ dài bằng 0 trong engine đang chọn.",
       prerequisiteIds: [],
-      resourceIds: ['resource.game.godot-docs'],
-      defaultResourceId: 'resource.game.godot-docs',
-      optional: true,
+      resourceIds: ["resource.game.vector-math"],
+      defaultResourceId: "resource.game.vector-math",
+      optional: false,
       work: [
         {
           id: 'game.shared.math.w01',
-          revision: 1,
+          revision: 2,
           title: 'Vector 2D/3D và toán học không gian',
           minutes: 90,
-          acceptance: [
-            'Giải thích được dot product và cross product dùng làm gì trong game.',
-            'Viết được hàm tính hướng từ A đến B và bình thường hoá vector.',
-          ],
+          acceptance: ["Tính hướng chuẩn hóa A đến B bằng C#/C++/GDScript theo track; kiểm tra A=B không tạo NaN.","Giải thích dot/cross product bằng ví dụ góc nhìn/hướng vuông góc; kiểm tra ít nhất 3 bộ tọa độ."],
         },
       ],
     },
@@ -305,7 +346,7 @@ export const gamePack: ContentPack = {
       title: 'C# cơ bản cho Unity',
       phase: 'foundation',
       description: 'Kiểu dữ liệu, class, interface, delegate, event và LINQ trong C#.',
-      outcome: 'Viết được MonoBehaviour script xử lý input, sinh object và quản lý trạng thái.',
+      outcome: "Viết được chương trình C# có class, interface và event trước khi cài Unity Editor.",
       prerequisiteIds: ['game.shared.git'],
       resourceIds: ['resource.game.csharp-docs', 'resource.game.unity-learn'],
       defaultResourceId: 'resource.game.csharp-docs',
@@ -323,13 +364,10 @@ export const gamePack: ContentPack = {
         },
         {
           id: 'game.unity.csharp.w02',
-          revision: 1,
-          title: 'MonoBehaviour vòng đời: Start, Update, Coroutine',
+          revision: 2,
+          title: "Vòng lặp và event trong chương trình C# console",
           minutes: 60,
-          acceptance: [
-            'Coroutine đếm ngược 3 giây rồi kích hoạt hành động.',
-            'Phân biệt được khi nào dùng Update vs FixedUpdate.',
-          ],
+          acceptance: ["Viết vòng lặp đếm ngược và phát event OnFinished trong console app.","Có người nhận event cập nhật trạng thái; chưa yêu cầu Unity Editor ở chặng C# nền tảng."],
         },
       ],
     },
@@ -337,7 +375,7 @@ export const gamePack: ContentPack = {
       id: 'game.unity.setup',
       title: 'Unity Editor và dự án đầu tiên',
       phase: 'foundation',
-      description: 'Giao diện Unity Editor, Scene, GameObject, Component, Prefab và Asset workflow.',
+      description: "Cài Unity Hub/Editor tương thích và module build đích; dùng template 2D, asset tự tạo hoặc miễn phí có license rõ. Làm quen Scene/GameObject/Prefab.",
       outcome: 'Tạo được dự án Unity, import asset và dựng được Scene đơn giản có ánh sáng.',
       prerequisiteIds: ['game.unity.csharp'],
       resourceIds: ['resource.game.unity-learn', 'resource.game.unity-manual'],
@@ -363,8 +401,8 @@ export const gamePack: ContentPack = {
       description: 'Sprite, Tilemap, Rigidbody2D, Collider2D, Animator và Camera 2D.',
       outcome: 'Xây được prototype 2D platformer cơ bản có physics và animation.',
       prerequisiteIds: ['game.unity.setup', 'game.shared.math'],
-      resourceIds: ['resource.game.unity-learn', 'resource.game.unity-physics-docs'],
-      defaultResourceId: 'resource.game.unity-learn',
+      resourceIds: ['resource.game.unity-2d', 'resource.game.unity-physics-docs'],
+      defaultResourceId: 'resource.game.unity-2d',
       optional: false,
       work: [
         {
@@ -393,11 +431,11 @@ export const gamePack: ContentPack = {
       id: 'game.unity.ui',
       title: 'Giao diện người dùng (HUD và Menu)',
       phase: 'build',
-      description: 'Unity UI Toolkit hoặc uGUI: Canvas, Button, TextMeshPro, ScriptableObject cho data.',
+      description: "uGUI: Canvas, Button và TextMeshPro cho HUD/menu.",
       outcome: 'Có màn hình menu và HUD hiển thị điểm/máu cập nhật theo game state.',
       prerequisiteIds: ['game.unity.core2d'],
-      resourceIds: ['resource.game.unity-ui-toolkit', 'resource.game.unity-manual'],
-      defaultResourceId: 'resource.game.unity-ui-toolkit',
+      resourceIds: ["resource.game.unity-ugui","resource.game.unity-manual"],
+      defaultResourceId: "resource.game.unity-ugui",
       optional: false,
       work: [
         {
@@ -434,12 +472,10 @@ export const gamePack: ContentPack = {
         },
         {
           id: 'game.unity.patterns.w02',
-          revision: 1,
+          revision: 2,
           title: 'Object Pool cho đạn/enemy',
           minutes: 75,
-          acceptance: [
-            'Spawn 100 đạn/s không gây GC spike; Pool tái sử dụng object đúng.',
-          ],
+          acceptance: ["Pool tái sử dụng object sau khi trả về; không Instantiate thêm khi số active chưa vượt pool đã cấp.","Ghi một phép đo Profiler trước/sau trên cùng thiết bị và scene; giải thích allocation còn lại, không cam kết FPS tuyệt đối."],
         },
       ],
     },
@@ -448,7 +484,7 @@ export const gamePack: ContentPack = {
       title: 'Kiểm thử, tối ưu và phát hành',
       phase: 'ship',
       description: 'Unity Test Framework (Play Mode/Edit Mode test), Profiler, build WebGL/Android.',
-      outcome: 'Game có test, chạy ổn định 60 FPS và có build có thể phân phối.',
+      outcome: "Game có test và build phân phối được; đo và ghi bottleneck trên thiết bị thử thay vì cam kết 60 FPS mọi máy.",
       prerequisiteIds: ['game.unity.patterns'],
       resourceIds: ['resource.game.unity-test-framework', 'resource.game.unity-addressables'],
       defaultResourceId: 'resource.game.unity-test-framework',
@@ -473,6 +509,19 @@ export const gamePack: ContentPack = {
             'Build WebGL chạy được trong trình duyệt hoặc APK cài được trên thiết bị Android.',
           ],
         },
+        {
+          "id": "game.unity.portfolio.w01",
+          "revision": 1,
+          "title": "Tích hợp portfolio: 2D Platformer Game (Unity / C#)",
+          "minutes": 120,
+          "acceptance": [
+            "Game 2D hoàn chỉnh có ít nhất 2 màn chơi, enemy AI và hệ thống điểm số.",
+            "UI có màn hình chính, game over và điểm cao (local).",
+            "Có ≥3 Edit Mode test cho logic game.",
+            "Build WebGL hoặc APK chạy được, có hướng dẫn cài đặt/chơi.",
+            "README ghi môi trường, cách chạy/test, nguồn asset và giới hạn; có ảnh hoặc video demo."
+          ]
+        },
       ],
     },
 
@@ -481,7 +530,7 @@ export const gamePack: ContentPack = {
       id: 'game.unreal.cpp',
       title: 'C++ cơ bản cho Unreal Engine',
       phase: 'foundation',
-      description: 'Con trỏ, bộ nhớ heap/stack, class, template, UObject và UCLASS macro.',
+      description: "Cần máy phù hợp Unreal Editor, compiler C++ và SDK Windows cho đích Shipping Windows. Học class/template/con trỏ trước, rồi tạo UObject/Actor; không yêu cầu dịch vụ trả phí.",
       outcome: 'Viết được Actor C++ đơn giản, hiểu vòng đời UObject và cách Unreal quản lý bộ nhớ.',
       prerequisiteIds: ['game.shared.git'],
       resourceIds: ['resource.game.cpp-tour', 'resource.game.unreal-docs'],
@@ -517,8 +566,8 @@ export const gamePack: ContentPack = {
       description: 'Blueprint graph, Character, PlayerController, GameMode và Camera.',
       outcome: 'Prototype gameplay cơ bản bằng Blueprint, hiểu Gameplay Framework rõ ràng.',
       prerequisiteIds: ['game.unreal.cpp'],
-      resourceIds: ['resource.game.unreal-blueprint-docs', 'resource.game.unreal-online-learning'],
-      defaultResourceId: 'resource.game.unreal-online-learning',
+      resourceIds: ["resource.game.unreal-blueprint-docs","resource.game.unreal-gameplay-framework"],
+      defaultResourceId: "resource.game.unreal-blueprint-docs",
       optional: false,
       work: [
         {
@@ -581,7 +630,7 @@ export const gamePack: ContentPack = {
       description: 'Unreal Insights, GPU Profiler, LOD, Nanite cơ bản và quy trình Package game.',
       outcome: 'Build game ra file exe/installer, không có obvious bottleneck theo Unreal Insights.',
       prerequisiteIds: ['game.unreal.cpp-gameplay'],
-      resourceIds: ['resource.game.unreal-optimization-docs', 'resource.game.unreal-docs'],
+      resourceIds: ["resource.game.unreal-optimization-docs","resource.game.unreal-packaging"],
       defaultResourceId: 'resource.game.unreal-optimization-docs',
       optional: false,
       work: [
@@ -603,6 +652,19 @@ export const gamePack: ContentPack = {
             'Game build thành công dạng Shipping, chạy được trên máy không cài Unreal.',
           ],
         },
+        {
+          "id": "game.unreal.portfolio.w01",
+          "revision": 1,
+          "title": "Tích hợp portfolio: 3D Third-Person Game Prototype (Unreal Engine / C++)",
+          "minutes": 120,
+          "acceptance": [
+            "Character di chuyển, tấn công và có hệ thống HP bằng C++ Component.",
+            "Ít nhất một enemy tuần tra đơn giản bằng Component/Blueprint và gây sát thương qua Health Component.",
+            "Blueprint HUD hiển thị HP và điểm số cập nhật qua Delegate.",
+            "Build Windows Shipping chạy được không cần cài Unreal Engine.",
+            "README ghi môi trường, cách chạy/test, nguồn asset và giới hạn; có ảnh hoặc video demo."
+          ]
+        },
       ],
     },
 
@@ -611,7 +673,7 @@ export const gamePack: ContentPack = {
       id: 'game.godot.gdscript',
       title: 'GDScript và Godot Editor cơ bản',
       phase: 'foundation',
-      description: 'GDScript: biến, hàm, class, annotation (@export, @onready). Node tree và Scene.',
+      description: "Cài Godot 4.x và chọn GUT tương thích phiên bản; GDScript, Node/Scene, @export/@onready. Dùng asset tự tạo hoặc có license rõ.",
       outcome: 'Viết được GDScript script điều khiển Node, hiểu cây Node và Signals.',
       prerequisiteIds: ['game.shared.git'],
       resourceIds: ['resource.game.gdscript-docs', 'resource.game.godot-docs'],
@@ -644,10 +706,10 @@ export const gamePack: ContentPack = {
       id: 'game.godot.core2d',
       title: 'Lập trình game 2D với Godot',
       phase: 'build',
-      description: 'Sprite2D, CharacterBody2D, CollisionShape2D, AnimationPlayer và TileMap.',
+      description: 'Sprite2D, CharacterBody2D, CollisionShape2D, AnimationPlayer và TileMapLayer.',
       outcome: 'Prototype 2D platformer cơ bản chạy được với collision và animation.',
       prerequisiteIds: ['game.godot.gdscript', 'game.shared.math'],
-      resourceIds: ['resource.game.godot-your-first-2d', 'resource.game.godot-docs'],
+      resourceIds: ['resource.game.godot-your-first-2d', 'resource.game.godot-tilemaps', 'resource.game.godot-docs'],
       defaultResourceId: 'resource.game.godot-your-first-2d',
       optional: false,
       work: [
@@ -663,8 +725,8 @@ export const gamePack: ContentPack = {
         },
         {
           id: 'game.godot.core2d.w02',
-          revision: 1,
-          title: 'AnimationPlayer, TileMap và enemy AI đơn giản',
+          revision: 2,
+          title: 'AnimationPlayer, TileMapLayer và enemy AI đơn giản',
           minutes: 90,
           acceptance: [
             'Idle/Run/Jump animation chuyển đúng.',
@@ -748,6 +810,19 @@ export const gamePack: ContentPack = {
             'Upload được lên itch.io (public hoặc private link) có mô tả tối thiểu.',
           ],
         },
+        {
+          "id": "game.godot.portfolio.w01",
+          "revision": 1,
+          "title": "Tích hợp portfolio: 2D Action Game (Godot / GDScript)",
+          "minutes": 120,
+          "acceptance": [
+            "Game 2D có nhân vật, enemy, thu thập item và điều kiện thắng/thua.",
+            "Kiến trúc dùng Signal và Autoload EventBus, không coupling trực tiếp giữa các script.",
+            "Có ≥3 GUT test cho logic game.",
+            "Build HTML5 chạy được trong trình duyệt và được upload lên itch.io.",
+            "README ghi môi trường, cách chạy/test, nguồn asset và giới hạn; có ảnh hoặc video demo."
+          ]
+        },
       ],
     },
   ],
@@ -759,24 +834,14 @@ export const gamePack: ContentPack = {
       name: 'Unity Certified Associate: Game Developer',
       provider: 'Unity Technologies',
       kind: 'exam_certificate',
-      url: 'https://unity.com/products/unity-certifications',
+      url: "https://unity.com/products/unity-certifications/associate-game-developer",
       cost: 'paid',
-      prerequisites: 'Biết lập trình C# trong Unity, hiểu Editor và workflow cơ bản.',
-      requirements: 'Thi trắc nghiệm + bài thực hành. Phí kiểm tra trang chính thức vì thay đổi theo năm.',
-      checkedAt: null,
+      prerequisites: "Đã làm game bằng C#, có dự án để phát hành và hiểu quy trình sản xuất game; mục tiêu bổ trợ sau portfolio.",
+      requirements: "Đăng ký kỳ thi qua đối tác Unity/Pearson VUE và đáp ứng điều kiện hiện hành. Có phí; xem giá tại thời điểm đăng ký. Không coi hoàn thành roadmap là đạt chứng chỉ.",
+      checkedAt: '2026-10-07',
     },
-    {
-      id: 'credential.game.unreal-associate',
-      name: 'Unreal Authorized Instructor / Epic MegaGrants (không phải chứng chỉ nghề)',
-      provider: 'Epic Games',
-      kind: 'program_certificate',
-      url: 'https://dev.epicgames.com/community/learning',
-      cost: 'unknown',
-      prerequisites: 'Không có chương trình chứng chỉ kỹ năng kỹ sư chính thức từ Epic tính đến lần biên soạn.',
-      requirements: 'Biên soạn ghi nhận không có chứng chỉ nghề nghiệp phù hợp; portfolio là đầu ra chính cho track Unreal.',
-      checkedAt: null,
-    },
-    // Godot: không có chứng nhận chính thức (engine mã nguồn mở). Portfolio là đầu ra chính.
+
+    // Unreal/Godot: chưa chọn chương trình thi phù hợp sau khảo sát; portfolio là đầu ra. Xem CONTENT_REVIEW.md.
   ],
 
   // ─── Tracks ───────────────────────────────────────────────────────────────
@@ -825,13 +890,13 @@ export const gamePack: ContentPack = {
       credentialIds: [],
       roadmapLinks: [
         { label: 'Game Developer Roadmap', url: 'https://roadmap.sh/game-developer' },
-        { label: 'Unreal Online Learning', url: 'https://dev.epicgames.com/community/learning' },
+        { label: 'Unreal C++ Documentation', url: 'https://dev.epicgames.com/documentation/en-us/unreal-engine/programming-with-cplusplus-in-unreal-engine' },
       ],
       portfolio: {
         title: '3D Third-Person Game Prototype (Unreal Engine / C++)',
         acceptance: [
           'Character di chuyển, tấn công và có hệ thống HP bằng C++ Component.',
-          'Ít nhất một enemy có AI dùng Behavior Tree đơn giản.',
+          'Ít nhất một enemy tuần tra đơn giản bằng Component/Blueprint và gây sát thương qua Health Component.',
           'Blueprint HUD hiển thị HP và điểm số cập nhật qua Delegate.',
           'Build Windows Shipping chạy được không cần cài Unreal Engine.',
         ],
@@ -841,14 +906,7 @@ export const gamePack: ContentPack = {
       id: 'game.godot',
       pathId: 'game',
       label: 'Godot / GDScript',
-      stageIds: [
-        'game.shared.git',
-        'game.shared.math',
-        'game.godot.gdscript',
-        'game.godot.core2d',
-        'game.godot.ui-signals',
-        'game.godot.publish',
-      ],
+      stageIds: ["game.shared.git","game.shared.math","game.godot.gdscript","game.godot.core2d","game.godot.core3d","game.godot.ui-signals","game.godot.publish"],
       credentialIds: [],
       roadmapLinks: [
         { label: 'Game Developer Roadmap', url: 'https://roadmap.sh/game-developer' },
