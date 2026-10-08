@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>MW-TEAM-05 — kiểm thử bổ sung</title></head>
+<body>
+<h1>MW-TEAM-05 — kiểm thử bổ sung</h1>
+<p>Chỉ dùng DB QA có UUID. Không đọc/xóa DB học thật. Các thao tác tạo lỗi chỉ áp dụng trong trang test này.</p>
+<h2>1. Hai tab thật</h2>
+<p id="identity"></p><a id="peer" target="_blank" rel="noopener">Mở tab B cùng phiên kiểm thử</a>
+<ol><li>Mở tab B bằng link trên.</li><li>Bấm “Tải snapshot” ở cả A và B; cả hai phải hiện revision 0.</li><li>Bấm “Lưu snapshot” ở A trước, đợi success.</li><li>Bấm “Lưu snapshot” ở B; phải conflict, giữ input và dữ liệu disk của A.</li></ol>
+<button id="load">Tải snapshot</button> <button id="save" disabled>Lưu snapshot</button><pre id="tab-output" aria-live="polite"></pre>
+<h2>2. Lỗi và transaction</h2>
+<p>Quota được tạo bằng QuotaExceededError có kiểm soát; chưa chứng minh disk thật hết dung lượng. Blocked dùng upgrade 1 → 2 trên DB QA và giữ connection; không đổi version DB ứng dụng.</p>
+<button id="run">Chạy 4 kiểm thử bổ sung</button><pre id="suite-output" aria-live="polite">Chưa chạy.</pre>
+<script type="module" src="./indexeddb-extra.ts"></script></body></html>

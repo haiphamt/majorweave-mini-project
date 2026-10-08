@@ -1,0 +1,27 @@
+Nguồn: output Huy gửi trong cuộc trao đổi 08/10/2026. Xuống dòng được chuẩn hóa để dễ đọc.
+
+TAB A
+page 39fe014e-d6a0-4cbd-b00b-250d8a6e1670
+database majorweave.qa.team05.tabs.a05b5a3d-38ea-49e1-b3a5-dbd234e112d1
+Tải snapshot revision 0. Sẵn sàng thử cùng revision 0.
+Quan sát tab B (cc4edbf7-3f40-4037-952b-1a695eb6918e) tải revision 0
+SUCCESS tab A: revision 0 → 1; input giữ nguyên.
+
+DB QA prefix: majorweave.qa.team05.failures.ef535b72-7d74-4b95-8aa0-01ae5a74b572
+TRACE transaction.complete → save.promise.resolved
+PASS Không resolve success trước transaction.complete (native)
+PASS Abort transaction native sau put.success: rollback, input giữ, retry được
+PASS QuotaExceededError injected: lỗi rõ, disk/input giữ, retry được (không phải disk đầy thật)
+PASS Blocked event native với upgrade QA 1→2; mở muộn không reset/ghi DB
+4 PASS / 0 FAIL
+Quota là fault injection; blocked dùng upgrade native trên DB QA. Không coi các kết quả này là nghiệm thu quota đầy disk thực hoặc toàn bộ UI.
+Hai tab thật có kết quả riêng ở mục 1. Migration/backup/validator semantic/content chưa nằm trong suite.
+
+TAB B
+page cc4edbf7-3f40-4037-952b-1a695eb6918e
+database majorweave.qa.team05.tabs.a05b5a3d-38ea-49e1-b3a5-dbd234e112d1
+Tải snapshot revision 0. Sẵn sàng thử cùng revision 0.
+Quan sát tab A save revision 0 → 1
+Kết quả: conflict / REVISION_CONFLICT
+PASS hai tab thật: tab thắng được giữ trên disk; tab stale conflict; candidate chưa lưu còn nguyên.
+Mục 2 ở B: Chưa chạy.

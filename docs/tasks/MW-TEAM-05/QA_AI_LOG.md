@@ -61,7 +61,7 @@ Tổng: **7/7 native Context PASS**, callback React PASS. Đây là kết quả 
 
 - Log terminal và log browser đã được Huy cung cấp trong cuộc trao đổi.
 - Ảnh/file log trong thư mục `evidence/`: chưa bổ sung; không ghi rằng đã có ảnh trong repo.
-- Link draft PR: chưa có, bổ sung sau khi mở PR.
+- PR load/save: https://github.com/haiphamt/majorweave-mini-project/pull/6; chờ review/nghiệm thu của Hải.
 
 ## Bug log
 
@@ -83,8 +83,8 @@ Chưa thực hiện trong đợt này; làm trên bài nhỏ chung do nhóm ch�
 
 ## Phần chưa chạy / chưa triển khai
 
-- Hai tab thật cùng revision, bằng chứng so sánh trước/sau.
-- Native blocked, quota, abort, failure paths và xác nhận không resolve success trước complete trong test riêng.
+- Hai tab thật: đã chạy bổ sung ngày 08/10/2026; xem mục kết quả bổ sung cuối file.
+- Complete, native abort, blocked có kiểm soát và quota injection: đã chạy bổ sung; quota đầy disk thật và các failure paths ngoài suite chưa có bằng chứng.
 - Validator semantic đầy đủ từ Hữu Hiếu.
 - Migration v1: raw/schema/fingerprint/preview/confirm/cancel và giữ key cũ.
 - Backup/import: round trip, phiên bản lạ, duplicate/copy/remap, cancel/conflict/quota.
@@ -94,3 +94,31 @@ Chưa thực hiện trong đợt này; làm trên bài nhỏ chung do nhóm ch�
 ## Kết luận bàn giao
 
 Đã có bằng chứng cho nhóm load/save ban đầu và tích hợp Context; chưa hoàn thành toàn bộ MW-TEAM-05. Mở draft PR mới và gửi Hải review, không tự merge/push main. Giữ nguyên dữ liệu thật và phối hợp dependency trước tích hợp.
+
+## Kết quả bổ sung theo review PR #6 — 08/10/2026
+
+Người chạy: Huy; output do Huy cung cấp trong cuộc trao đổi lúc khoảng 20:43–20:44 (Asia/Ho_Chi_Minh). Trang: `http://127.0.0.1:5174/docs/tasks/MW-TEAM-05/indexeddb-extra.html`.
+
+Mã trang test bổ sung đã có trong ZIP dự án người làm gửi trước lần chạy. SHA chứa các file bổ sung, tên/phiên bản trình duyệt: chưa ghi nhận; cần bổ sung từ máy người chạy. Không gán SHA aafd1f6 của lần kiểm tra cũ cho trang test mới chưa xác nhận commit.
+
+| Test | Kết quả thực | Giới hạn |
+|---|---|---|
+| TC-11 — thời điểm success | PASS; TRACE transaction.complete → save.promise.resolved | Native transaction được quan sát bằng listener trong trang test |
+| TC-12 — abort sau put.success | PASS; rollback, input giữ nguyên, retry được | Abort chủ động trên transaction native của DB QA |
+| TC-13 — quota | PASS; mã lỗi rõ, disk/input giữ nguyên, retry được | QuotaExceededError tạo có kiểm soát tại put; chưa thử disk thật đầy hoặc lỗi quota bất đồng bộ |
+| TC-14 — blocked | PASS; mở muộn không reset/ghi DB, version giữ v1 | Giữ connection v1, chuyển riêng yêu cầu open DB QA sang v2 để tạo blocked native; adapter ứng dụng vẫn v1 |
+| TC-15 — hai tab thật | PASS; A save 0 → 1; B stale trả conflict / REVISION_CONFLICT; disk của A và candidate của B giữ nguyên | Hai tab riêng, save theo thứ tự A rồi B; không tuyên bố hai transaction bắt đầu đồng thời |
+
+Suite lỗi/transaction: **4 PASS / 0 FAIL**. Hai tab: **PASS**, kết quả riêng. Mục 2 ở tab B hiện “Chưa chạy” là đúng vì suite 4 test đã chạy ở A; không tính suite của B là một lần chạy khác.
+
+- DB suite: `majorweave.qa.team05.failures.ef535b72-7d74-4b95-8aa0-01ae5a74b572`.
+- DB hai tab: `majorweave.qa.team05.tabs.a05b5a3d-38ea-49e1-b3a5-dbd234e112d1`.
+- Tab A page: `39fe014e-d6a0-4cbd-b00b-250d8a6e1670`.
+- Tab B page: `cc4edbf7-3f40-4037-952b-1a695eb6918e`.
+- Minh chứng dạng text: [evidence/load-save-extra-2026-10-08.txt](evidence/load-save-extra-2026-10-08.txt). Chép từ output do người chạy gửi; không phải ảnh chụp và không phải AI tự chạy trình duyệt.
+
+### AI log bổ sung
+
+ChatGPT/Codex tạo indexeddb-extra.html/ts, hướng dẫn chạy và FLOW_LOAD_SAVE.md trong allowlist docs; kiểm tra TypeScript strict thành công. Huy áp dụng, chạy suite và hai tab, gửi output thực. AI đối chiếu output, bổ sung QA log và lưu bản text minh chứng. Không đổi adapter load/save trong đợt bổ sung này.
+
+Migration, backup/import, validator semantic, mười track và FLOW.md đầy đủ vẫn chưa được nghiệm thu bởi các kết quả này. Không tự merge main.
