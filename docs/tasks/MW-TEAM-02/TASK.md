@@ -1,7 +1,7 @@
 # MW-TEAM-02 — Roadmap cá nhân, sinh kế hoạch và nội dung Mobile/Game
 
 **Người làm:** Phạm Công Định (`Dinglebell`). **Reviewer cuối:** Phạm Tuấn Hải. **Review chéo:** Chung Minh Hiếu.
-**Branch:** `feat/mw-team-02`. **Trạng thái:** Đã triển khai planner + 7 track; đã rà nguồn và kiểm thử ngày 07/10/2026. Chờ tích hợp UI v2, review chéo và Hải nghiệm thu. Branch hiện có PR mở; thay đổi đợt rà này chưa commit/push.
+**Branch:** `feat/mw-team-02`. **Trạng thái 08/10/2026:** Đã ghép Context v2 của Hải và nối/simplify My Roadmap trong allowlist. Planner + 7 track và UI v2 đã kiểm thử: 123 domain/content + 17 browser checks Pass; check/build Pass. Bản bàn giao được commit trên branch cá nhân, dựa trên base kiểm thử `5ff66ba66ee094c5af388885a109578bf1c96ace`; chưa push. Chờ review chéo, Hải nghiệm thu và ghép My Plan/migration của các task khác. Xem [review UI hiện tại](UI_REVIEW_2026-10-08.md).
 
 Đọc [phân công chung](../../team/PHAN_CONG_MINI_PROJECT.md), [quy trình Antigravity](../../team/QUY_TRINH_ANTIGRAVITY.md), [kiến trúc](../../KIEN_TRUC_MAJORWEAVE.md) và [chuẩn nội dung](../../architecture/HUONG_DAN_DU_LIEU.md). Scope chi tiết/nhánh là baseline từ bảng đích; ghi thay đổi được Hải chốt vào task, không tự thu hẹp.
 
@@ -79,7 +79,7 @@ Copy mẫu [FLOW](../../templates/FLOW.md) thành `FLOW.md`; mỗi hành động
 - **FL-MW-TEAM-02-05:** Xem preview tạo lại, xác nhận hoặc hủy.
 - **FL-MW-TEAM-02-06:** Giữ việc tự thêm/sửa và lịch sử khi tạo lại.
 
-Copy mẫu [QA và AI log](../../templates/QA_AI_LOG.md) thành `QA_AI_LOG.md`. Test có steps/expected/actual, SHA, môi trường, ảnh/log khi cần. Kết quả hiện tại: **123 domain/content + 7 UI v1 check pass**; ma trận UI v2 chưa chạy vì context/persistence chung chưa tích hợp.
+Copy mẫu [QA và AI log](../../templates/QA_AI_LOG.md) thành `QA_AI_LOG.md`. Test có steps/expected/actual, SHA, môi trường, ảnh/log khi cần. Kết quả hiện tại: **123 domain/content + 17 UI v2 checks Pass**. Cả 7 track đã chạy chọn → đổi nguồn → tạo → reload; bước hoàn thành thuộc My Plan v2 chưa tích hợp.
 
 - Unit/invariant planner: tổng phút, thứ tự, quỹ tuần, đoạn ổn định; không chỉ snapshot một lịch mẫu.
 - Tạo lại: cùng work/revision/đoạn giữ ID/notes/completion; đổi nghĩa không chuyển hoàn thành; history không bị sửa.

@@ -9,8 +9,6 @@
  */
 
 import assert from 'node:assert/strict';
-import { createRequire } from 'node:module';
-import fs from 'node:fs';
 import { build } from 'esbuild';
 
 async function bundleAndImport(entryPoint) {
@@ -633,93 +631,8 @@ ok('Reviewed Mobile/Game sources have real review dates; retired/fake credential
 });
 
 if (process.argv.includes('--ui')) {
-  const require = createRequire(import.meta.url);
-  const { chromium } = require(process.env.MAJORWEAVE_PLAYWRIGHT_MODULE || 'playwright');
-  const browser = await chromium.launch({ headless: true, ...(process.env.MAJORWEAVE_BROWSER_CHANNEL ? { channel: process.env.MAJORWEAVE_BROWSER_CHANNEL } : {}) });
-  // An isolated context never opens or clears the learner's browser profile.
-  const context = await browser.newContext({ viewport: { width: 1440, height: 1000 } });
-  const page = await context.newPage();
-  const baseUrl = process.env.MAJORWEAVE_TEST_URL || 'http://127.0.0.1:5174';
-  const evidence = 'docs/tasks/MW-TEAM-02/evidence';
-  fs.mkdirSync(evidence, { recursive: true });
-  const errors = [];
-  page.on('pageerror', e => errors.push(e.message));
-  const results = [];
-  const checkUI = async (name, fn) => {
-    try { await fn(); pass++; results.push({ name, status: 'pass' }); console.log(`  PASS UI: ${name}`); }
-    catch (e) { fail++; results.push({ name, status: 'fail', error: e.message }); console.error(`  FAIL UI: ${name}: ${e.message}`); throw e; }
-  };
-  try {
-    await page.goto(`${baseUrl}/#/roadmap`);
-    const create = () => page.getByRole('button', { name: 'Tạo kế hoạch của tôi', exact: true });
-    const stored = () => page.evaluate(() => JSON.parse(localStorage.getItem('majorweave.prototype.v1')));
-    await checkUI('Required goal error keeps draft', async () => {
-      await page.getByLabel('Mục tiêu của bạn').fill(''); await create().click();
-      assert.match(await page.getByRole('alert').innerText(), /mục tiêu/);
-      assert.equal(await page.getByLabel('Mục tiêu của bạn').inputValue(), '');
-      await page.getByLabel('Mục tiêu của bạn').fill('MW-TEAM-02 verification');
-    });
-    await checkUI('Tuesday proposal: cancel and Escape preserve date and restore keyboard focus', async () => {
-      await page.getByLabel('Ngày bắt đầu').fill('2026-10-06'); await create().click();
-      await page.getByRole('heading', { name: 'Bắt đầu vào Thứ Hai?' }).waitFor();
-      await page.screenshot({ path: `${evidence}/monday-desktop.png` });
-      await page.getByRole('button', { name: 'Giữ ngày đã chọn' }).click();
-      assert.equal(await page.getByLabel('Ngày bắt đầu').inputValue(), '2026-10-06');
-      await create().click(); await page.keyboard.press('Escape');
-      assert.equal(await page.getByRole('dialog').count(), 0);
-      assert.ok(await create().evaluate(el => el === document.activeElement));
-    });
-    await checkUI('Confirm Monday, create plan and reload', async () => {
-      await create().click(); await page.getByRole('button', { name: 'Dùng ngày 2026-10-12' }).click();
-      await page.waitForURL('**/#/plan'); await page.reload();
-      await page.getByRole('link', { name: 'My roadmap Lộ trình của bạn 03' }).click();
-      assert.equal(await page.getByLabel('Ngày bắt đầu').inputValue(), '2026-10-12');
-      assert.ok((await stored()).tasks.length > 0);
-    });
-    await checkUI('Cancel rebuild preserves current plan and tasks', async () => {
-      const before = await stored();
-      await page.getByLabel('Ngày bắt đầu').fill('2026-10-13'); await create().click();
-      await page.getByRole('button', { name: 'Dùng ngày 2026-10-19' }).click();
-      await page.getByRole('heading', { name: 'Tạo lại kế hoạch?' }).waitFor();
-      await page.getByRole('button', { name: 'Giữ kế hoạch hiện tại' }).click();
-      const after = await stored();
-      assert.deepEqual(after.tasks, before.tasks); assert.deepEqual(after.planMeta, before.planMeta);
-    });
-    await checkUI('Source selection and known toggle persist without changing active plan', async () => {
-      const before = await stored();
-      const source = page.getByLabel('Nguồn học cho JavaScript foundations');
-      const choices = await source.locator('option').evaluateAll(items => items.map(item => item.value));
-      await source.selectOption(choices[1]);
-      const known = page.getByRole('checkbox', { name: 'Đã biết', exact: true }).first();
-      const previous = await known.isChecked(); await known.setChecked(!previous); await page.reload();
-      assert.equal(await source.inputValue(), choices[1]);
-      assert.equal(await known.isChecked(), !previous);
-      assert.deepEqual((await stored()).tasks, before.tasks);
-    });
-    await checkUI('Mobile dialog fits viewport and keyboard confirms proposed date', async () => {
-      await page.setViewportSize({ width: 390, height: 844 });
-      await page.getByLabel('Ngày bắt đầu').fill('2026-10-20'); await create().click();
-      const dialog = page.getByRole('dialog'); await dialog.waitFor();
-      assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
-      const bounds = await dialog.boundingBox(); assert.ok(bounds.x >= 0 && bounds.x + bounds.width <= 390);
-      await page.screenshot({ path: `${evidence}/monday-mobile.png` });
-      const confirm = page.getByRole('button', { name: 'Dùng ngày 2026-10-26' });
-      await confirm.focus(); await page.keyboard.press('Enter');
-      await page.getByRole('heading', { name: 'Tạo lại kế hoạch?' }).waitFor();
-      await page.keyboard.press('Escape');
-      assert.equal(await page.getByLabel('Ngày bắt đầu').inputValue(), '2026-10-26');
-    });
-    await checkUI('All-known selection rejects empty plan; no browser errors', async () => {
-      const before = await stored();
-      for (const checkbox of await page.getByRole('checkbox', { name: 'Đã biết', exact: true }).all()) await checkbox.check();
-      await create().click(); assert.match(await page.getByRole('alert').innerText(), /chặng chưa biết/);
-      assert.deepEqual((await stored()).tasks, before.tasks); assert.deepEqual(errors, []);
-    });
-  } finally {
-    fs.writeFileSync(`${evidence}/ui-results.json`, JSON.stringify({ date: '2026-10-07', browser: browser.version(), baseUrl, isolatedContext: true, results, errors, scope: 'Legacy MyRoadmap only; v2 registry/context/persistence not integrated.' }, null, 2) + '\n');
-    await context.close(); await browser.close();
-  }
+  const { runRoadmapUITests } = await import('../../src/features/my-roadmap/MyRoadmap.ui-tests.mjs');
+  pass += await runRoadmapUITests();
 }
-
 console.log(`\n=== Ket qua: ${pass} PASS, ${fail} FAIL ===\n`);
 if (fail > 0) process.exit(1);

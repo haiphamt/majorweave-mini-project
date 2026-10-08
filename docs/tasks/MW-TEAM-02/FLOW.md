@@ -1,6 +1,6 @@
 # Luồng chi tiết — MW-TEAM-02
 
-Phân biệt trạng thái: planner v2 đã thực hiện và kiểm thử; UI hiện dùng shared context v1. Những bước lưu workspace/đa kế hoạch bên dưới là hợp đồng tích hợp cần thực hiện sau khi Hải cung cấp callback, không phải tính năng UI đã hoàn thành. Xem [handoff](INTEGRATION_HANDOFF.md) và [QA](QA_AI_LOG.md).
+**Cập nhật 08/10/2026:** planner và My Roadmap hiện dùng shared Context v2 của Hải. UI không gọi storage, không ghi shadow plan v1, không chuyển tới My Plan cũ sau lưu. Các luồng tạo/lưu/preview/recovery dưới đây đã có browser test; completion/My Plan/migration vẫn chờ ghép. Xem [handoff](INTEGRATION_HANDOFF.md), [QA](QA_AI_LOG.md) và [review UI](UI_REVIEW_2026-10-08.md).
 
 ## FL-02-01 — Chọn chặng và prerequisite (AC-01; TC-02-01/07)
 
@@ -8,15 +8,15 @@ Phân biệt trạng thái: planner v2 đã thực hiện và kiểm thử; UI h
 - Chính: kiểm tra ID thuộc track, đủ prerequisite được chọn hoặc đã biết; prerequisite cần học đứng trước chặng phụ thuộc. Chặng đã biết không yêu cầu học lại prerequisite.
 - Lỗi: báo prerequisite/ID không hợp lệ; không generate/save plan.
 - Hủy: không thay plan đang học. Sau: draft hợp lệ mới được generate.
-- Trạng thái: domain đã kiểm thử; UI v2 chọn stage tùy ý còn chờ tích hợp.
+- Trạng thái: đã kiểm thử domain + UI v2 bỏ/thêm bằng checkbox; thứ tự do controller chuẩn hóa; báo thiếu tiên quyết bằng tên chặng.
 
 ## FL-02-02 — Đã biết và nguồn học (AC-01/02; TC-02-07/10)
 
 - Trước: draft cho track hiện hành; người học đánh dấu đã biết hoặc chọn source.
 - Chính: source phải nằm trong resourceIds của stage; knownStageIds phải thuộc track. Dùng source mặc định nếu chưa chọn thay thế. Task giữ snapshot source/acceptance độc lập.
-- Nhánh: all-known dẫn tới lỗi không còn nội dung để lập kế hoạch. Đổi track phải bỏ mapping source/known cũ không thuộc track.
+- Nhánh: all-known dẫn tới lỗi không còn nội dung để lập kế hoạch. Đổi track lấy draft riêng theo trackId; giữ draft của track trước.
 - Lỗi/hủy: active plan không đổi. Sau: draft có thể reload, plan chỉ đổi khi xác nhận generate/regenerate.
-- Trạng thái: v1 source/known persistence và domain cả 7 track đã kiểm thử; UI v2 pack registry còn chờ.
+- Trạng thái: source/known qua callbacks v2; bấm Lưu bản nháp để reload giữ thay đổi mà không sửa active plan. Domain và UI cả 7 track đã kiểm thử.
 
 ## FL-02-03 — Mục tiêu, giờ và ngày bắt đầu (AC-01; TC-02-01/08/11)
 
@@ -34,7 +34,7 @@ Phân biệt trạng thái: planner v2 đã thực hiện và kiểm thử; UI h
 - Hợp đồng UI v2: append plan vào workspace; gọi shared save với revision hiện tại; chỉ activate/thông báo thành công sau save thành công.
 - Lỗi save/quota/conflict: giữ draft và plan cũ, hiển thị lỗi có thể thử lại; không tự ghi đè workspace mới hơn. Hủy: không append plan.
 - Sau: hai plan độc lập, sửa plan A không làm đổi B.
-- Trạng thái: domain được kiểm thử; append/save/activate và lỗi transaction UI còn chờ shared callbacks.
+- Trạng thái: tạo mới mặc định luôn append plan; đã thử hai plan cùng track và save failure/retry/conflict. Chỉ báo đã lưu sau callback ok; ở lại My Roadmap khi My Plan v2 chưa tích hợp.
 
 ## FL-02-05 — Preview và xác nhận tạo lại (AC-04; TC-02-04/09)
 
@@ -43,7 +43,7 @@ Phân biệt trạng thái: planner v2 đã thực hiện và kiểm thử; UI h
 - Nhánh: cùng workId/revision/segment giữ task ID/status/notes/completion. Revision mới là bài mới, không tự kế thừa completion.
 - Lỗi: draft sai hoặc conflict thì không commit preview; giữ plan cũ. Hủy/Escape: không thay tasks, planMeta hoặc workspace.
 - Sau: lịch sử generation cũ được lưu, ledger không nhân đôi.
-- Trạng thái: domain đã kiểm thử; v1 rebuild-confirm cancel đã kiểm thử. Preview v2 và save/conflict còn chờ tích hợp.
+- Trạng thái: nút Xem trước tạo lại tách khỏi Tạo kế hoạch mới, chỉ áp dụng active plan cùng track. Dialog có số task/completion/backlog; confirm/cancel/Escape/history đã thử. Đổi track tạo plan mới theo handoff leader.
 
 ## FL-02-06 — Custom task và lịch sử khi tạo lại (AC-04; TC-02-05)
 
@@ -51,4 +51,4 @@ Phân biệt trạng thái: planner v2 đã thực hiện và kiểm thử; UI h
 - Chính: giữ mọi custom/user-created task trong backlog; không ghi đè bằng template cùng identity. Work revision mới vẫn tạo template mới.
 - Nhánh: task thuần template chỉ được giữ trạng thái khi identity còn khớp. Task cũ không còn trong lịch mới vẫn có trong history.
 - Lỗi/hủy: input plan, nested source/acceptance/history và ledger không bị mutate. Sau: giữ notes/completion, closedWeeks của generation cũ và ledger lịch sử.
-- Trạng thái: domain đã kiểm thử cả đổi track và snapshot isolation; trình bày backlog/history bằng UI v2 còn chờ shared workspace.
+- Trạng thái: domain đã kiểm thử đổi track và snapshot isolation. Preview UI hiển thị số backlog/completion và giải thích giữ custom/history; màn thao tác backlog/completion/history đầy đủ thuộc My Plan v2 của Hiếu.

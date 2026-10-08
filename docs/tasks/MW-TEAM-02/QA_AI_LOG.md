@@ -1,5 +1,20 @@
 # Kiểm thử và AI log — MW-TEAM-02
 
+## Cập nhật 08/10/2026 — My Roadmap dùng Context v2
+
+- Đối chiếu hai file leader gửi: `TIN_NHAN_GUI_DINH_CONTEXT_V2.md` và `HANDOFF_CONTEXT_V2.md`. Context đã ghép trong branch; My Plan v1 là dependency đã được ghi rõ, không chép plan sang v1 để né tích hợp.
+- Base SHA: `5ff66ba66ee094c5af388885a109578bf1c96ace`; kết quả áp dụng cho working tree mới, hash ở [manifest v2](evidence/v2-manifest.json), chưa commit/push.
+- `node scripts/tasks/MW-TEAM-02.mjs --ui`: **140 Pass, 0 Fail** (123 domain/content + 17 UI). Playwright từ runtime có sẵn; Edge headless, context cô lập; desktop 1440×1000 và mobile 390×844.
+- UI: goal/giờ/all-known lỗi; ngày Monday confirm/cancel/Escape/focus; hai plan cùng track độc lập; preview không ghi; cancel giữ plan; confirm giữ history; prerequisite/bỏ/thêm chặng; nguồn/known lưu draft và reload; từng Android/iOS/Flutter/RN/Unity/Unreal/Godot chọn–nguồn–tạo–reload; mobile/keyboard; lỗi lưu giữ candidate/retry đúng một plan; conflict hai tab và xác nhận bỏ candidate.
+- `npm run check`: Pass, gồm 16 context checks. `npm run build`: Pass.
+- Theo yêu cầu typography tiếp theo của Định: tiêu đề chặng 15–16px/600, chữ phụ/nguồn 13px, form/dialog 14px; chỉ scope My Roadmap trong CSS chung. Đã xem trang hiện đang mở mà không reload/bỏ draft; chạy lại 140 checks, check/build và ảnh mobile/desktop Pass sau điều chỉnh.
+- [Log task](evidence/v2-test-output.txt), [UI JSON](evidence/v2-ui-results.json), [check](evidence/v2-check-output.txt), [build](evidence/v2-build-output.txt), [desktop](evidence/v2-roadmap-desktop.png), [mobile](evidence/v2-roadmap-mobile.png), [dialog mobile](evidence/v2-monday-mobile.png). Ảnh đã xem trực tiếp; không tràn ngang.
+- AI log: Codex đọc review/code, bỏ copy trang trí/reorder vô hiệu/link drawer v1, dùng callbacks chung, thêm save/recovery và test. Không sửa provider/controller/types/CSS chung hoặc feature bạn khác. Test UI v1 cũ được chuyển sang v2 vì storage/hành vi đã đổi; giữ và mở rộng coverage, không bỏ assertion domain.
+- Lần đầu Edge bị sandbox chặn, sau đó server trong sandbox không truy cập được từ Edge ngoài sandbox. Chạy server/test ngoài sandbox với approval. Các lượt trung gian phát hiện thiếu accessible label cho track; test chọn nhầm chặng chỉ có một nguồn; assertion reload đọc trước lúc tải xong. Đã sửa và chạy lại toàn suite thành công.
+- Giới hạn: chưa kiểm tra hoàn thành/bỏ hoàn thành ở My Plan v2, migration/import/upgrade/quota thật, hoặc native toolchain. Lỗi lưu là fault injection; conflict dùng hai trang thật trên IndexedDB riêng của context thử. Nội dung không được khảo sát lại ngày 08/10; ngày rà nguồn vẫn 07/10. Chưa ký review/Done thay nhóm.
+
+## Bằng chứng lịch sử 07/10/2026
+
 ## Môi trường và phạm vi
 
 - Ngày chạy: 07/10/2026. Người yêu cầu: Phạm Công Định; thực hiện kiểm tra: Codex.

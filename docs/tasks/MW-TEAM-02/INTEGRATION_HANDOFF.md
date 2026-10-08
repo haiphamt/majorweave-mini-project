@@ -1,5 +1,13 @@
 # MW-TEAM-02 — Bàn giao tích hợp v2
 
+## Trạng thái hiện tại — 08/10/2026
+
+Context của Hải đã được ghép. My Roadmap dùng `useWorkspace()` và callbacks chuẩn: chỉnh draft, chọn track/stage/source/known, lưu draft, tạo mới mặc định, preview/confirm/cancel cùng nhánh, retry và reload có xác nhận khi bỏ candidate. Không điều hướng sang My Plan v1 sau tạo. [Review và ranh giới hiện tại](UI_REVIEW_2026-10-08.md), [QA v2](QA_AI_LOG.md), [FLOW](FLOW.md).
+
+My Plan v2/completion do Hiếu/Hải ghép; migration/import do Huy phối hợp. Sidebar/topbar/footer và Path Detail/ModuleDrawer chung vẫn v1 theo handoff. My Roadmap đã bỏ link vào drawer/Path Detail v1 và không tạo shadow state. Phần bên dưới là bản bàn giao **lịch sử 07/10**, không còn là danh sách callback đang thiếu.
+
+## Bản bàn giao lịch sử
+
 **07/10/2026 · Chờ Hải chốt và tích hợp context, resolver, persistence chung.**
 
 ## Đã sẵn sàng trong phạm vi Định
