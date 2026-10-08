@@ -1,7 +1,7 @@
 # MW-TEAM-04 — Hồ sơ, nhịp học, validation và nội dung Data/BA
 
 **Người làm:** Lê Nguyễn Hữu Hiếu (`hiuanhutiu`). **Reviewer cuối:** Phạm Tuấn Hải. **Review chéo:** Nguyễn Thị Quỳnh Hân.
-**Branch:** `feat/mw-team-04`. **Trạng thái:** Được giao; chưa bắt đầu, chưa có kết quả test/PR.
+**Branch:** `feat/mw-team-04`. **Trạng thái:** Đang triển khai độc lập; chưa tích hợp v2, chưa nghiệm thu.
 
 Đọc [phân công chung](../../team/PHAN_CONG_MINI_PROJECT.md), [quy trình Antigravity](../../team/QUY_TRINH_ANTIGRAVITY.md), [kiến trúc](../../KIEN_TRUC_MAJORWEAVE.md) và [chuẩn nội dung](../../architecture/HUONG_DAN_DU_LIEU.md). Scope chi tiết/nhánh là baseline từ bảng đích; ghi thay đổi được Hải chốt vào task, không tự thu hẹp.
 
@@ -85,7 +85,7 @@ Copy mẫu [FLOW](../../templates/FLOW.md) thành `FLOW.md`; mỗi hành động
 - **FL-MW-TEAM-04-05:** Chọn file nhập, xem preview/lỗi, bỏ qua trùng hoặc nhập bản sao.
 - **FL-MW-TEAM-04-06:** Xác nhận/hủy nhập và phản hồi lỗi lưu/conflict.
 
-Copy mẫu [QA và AI log](../../templates/QA_AI_LOG.md) thành `QA_AI_LOG.md`. Test có steps/expected/actual, SHA, môi trường, ảnh/log khi cần. Hiện tất cả test của task **chưa chạy**.
+Test được lập trong [QA và AI log](QA_AI_LOG.md), có steps/expected/actual, môi trường và minh chứng. Trạng thái ban đầu được giữ để đối chiếu; xem mục kết quả cuối để phân biệt test đã chạy và tích hợp còn chờ.
 
 - Validator runtime: malformed object, ranges/dates/UUID/schema, quan hệ done–completion và snapshots; dữ liệu thiếu catalog không mất plan.
 - Activity: nhiều plan/history, reverted, archived, legacy thiếu ngày, timezone cũ giữ nguyên.
@@ -105,3 +105,46 @@ Copy mẫu [QA và AI log](../../templates/QA_AI_LOG.md) thành `QA_AI_LOG.md`. 
 - [ ] Review chéo và Hải nghiệm thu cuối; sửa feedback xong trước khi đánh Done.
 
 Không cập nhật Notion, không tự merge/push main và không giao lại toàn bộ kiểm thử cho một thành viên.
+
+## 8. Khảo sát code và kế hoạch thực hiện — 07/10/2026
+
+Baseline local: `6854350`. Working tree sạch trước khi tạo branch; fetch remote bị từ chối quyền chạy nên chưa xác nhận baseline bằng main remote. Giữ danh tính Git hiện có của Hữu Hiếu.
+
+Code thật: AppShell giữ State v1, update trả void và saveLegacyState chạy trong effect; context không có Workspace, save result hoặc import/export. StudyActivity nhận Task[] v1 và quy ngày theo timezone máy. Profile không có timezone/cancel, báo đã lưu trước kết quả persistence. Chưa có domain/content/planner/progress hay persistence/workspace/backup. Registry chỉ có backendPack. Không nối v2 bằng state/storage/callback riêng.
+
+Thứ tự: story/flow/test → validator/activity thuần → bốn content pack/tám track và kiểm tra nguồn → cải thiện Profile trong props v1 hiện có → kiểm thử riêng/check/build → PR bàn giao, chờ review/tích hợp. Nội dung mới luôn ở review.
+
+### Story theo hành động
+
+| Story | Nhu cầu của sinh viên | Acceptance | Flow / test |
+|---|---|---|---|
+| US-04-01 | Sửa tên/ngành/timezone của hồ sơ trên thiết bị, có thể hủy | AC-01; tên rỗng được giữ theo hành vi v1 và hiển thị Người học; tối đa 60 ký tự; ngành hợp lệ hoặc null; timezone IANA hợp lệ | FL-04-01 / TC-P01–P05 |
+| US-04-02 | Xem ngày học và phút ước lượng thực tế trên tất cả plan | AC-02; bỏ reverted; không đọc history lần nữa; giữ localDate tại ghi nhận; legacy không bịa ngày | FL-04-02 / TC-A01–A06 |
+| US-04-03 | Mở plan đang học từ Profile | Chuyển trang không sửa draft/profile/completion; chưa có plan dẫn tới tạo kế hoạch | FL-04-03 / TC-P06 |
+| US-04-04 | Xuất bản đang lưu hoặc bản còn thay đổi để chuyển máy | AC-05; nói rõ bản xuất; không báo đã lưu DB khi chỉ tải file | FL-04-04 / TC-I01 |
+| US-04-05 | Xem trước file nhập, lựa chọn profile và xử lý trùng | AC-03/04/05; validator từ unknown; lỗi có code/field/message; preview không ghi | FL-04-05 / TC-V01–V12, TC-I02 |
+| US-04-06 | Xác nhận hoặc hủy nhập, giữ dữ liệu khi lỗi/conflict | AC-05; revision thiết bị; confirm một transaction; cancel không mutation | FL-04-06 / TC-I03–I05 |
+| US-04-07 | Học đủ tám nhánh Data/BA với bài và portfolio phù hợp | AC-06; prerequisite đủ; nguồn trực tiếp, checkedAt thật; chứng nhận tùy chọn | FL-04-07 / TC-C01–C08 |
+
+### Chữ ký bàn giao đề xuất (chưa được Hải/Huy xác nhận)
+
+- `validateWorkspace(value: unknown, options?: { majorIds?: readonly string[]; contentPacks?: readonly ContentPack[] }): OperationResult<Workspace>`.
+- `validateBackupFile(value: unknown, options?: ...): OperationResult<BackupFile>`; nhận object sau JSON.parse ở persistence, không đọc file/storage. Lỗi schema mới trả unsupported_version; sai cấu trúc/quan hệ trả validation. Không sửa input, không reset dữ liệu.
+- `validateProfile(value: unknown, majorIds?: readonly string[]): OperationResult<Workspace['profile']>`; catalog do caller truyền, domain không import registry/catalog.
+- `summarizeActivity(plans: readonly LearningPlan[])`: trả days (date/completedTasks/estimatedMinutes), tổng việc/phút có ngày và undatedTasks/undatedEstimatedMinutes. Chỉ đọc sổ completion, gồm archived, không đổi localDate theo timezone profile mới.
+- Chốt với Chung Minh Hiếu: undo có revertedAt ở ledger; snapshot lịch sử done vẫn được giữ dù ledger đã revert sau đó. Current done phải liên kết completion chưa revert; snapshot chỉ cần liên kết đúng task và không xảy ra sau thời điểm snapshot.
+- Chốt với Hải: context cung cấp Workspace và kết quả lưu thực; updateProfile trả OperationResult sau lưu; openPlan xử lý activePlanId; save state dirty/saving/saved/error/conflict. Profile không tự định nghĩa context thứ hai.
+- Chốt với Huy/Hải: callback chọn file/preview (persistence đọc file), export bản saved/unsaved; previewId gắn revision; confirm nhận duplicate policy skip/copy và includeProfile (mặc định false); cancel không ghi. Shape preview/import options cần vào hợp đồng chung trước khi làm UI v2.
+- StudyActivity cần props tổng hợp ngày/phút + legacy count và ngày hôm nay theo timezone. Hải sở hữu adapter/component; không chuyển localDate thành timestamp giả để nhét vào Task[] v1.
+- Bốn pack export analystPack/biPack/engineerPack/businessAnalystPack; Hải đăng ký vào content/index.ts và Hân resolve. ID shared Data SQL sẽ định nghĩa một lần ở analystPack; các pack phụ thuộc ghi rõ trong inventory.
+
+### Điểm chưa thể nghiệm thu ở baseline
+
+Timezone lưu/reload v2; heatmap nhiều plan; UI preview/confirm/copy/export; lưu lỗi/conflict v2; hành trình tám track trên app đều phụ thuộc phần chung chưa tồn tại. Test fixture độc lập không được dùng làm bằng chứng tích hợp. Không tự ghi Hải đã duyệt nhánh, chữ ký hoặc UI. Sau PR, Hải/Huy/Hân/Định/Chung Minh Hiếu tích hợp phần sở hữu rồi chạy lại ma trận trong QA_AI_LOG.
+
+## 9. Bản triển khai độc lập để review
+
+- Validator/activity, Profile v1 có validation/hủy/phản hồi lưu trung thực; bốn pack đủ tám track, 29 chặng mới/43 bài/24 nguồn/6 mục tiêu chứng nhận. [Nguồn và dependency](SOURCE_INVENTORY.md).
+- 28 nhóm test module/content và 14 check UI pass; chi tiết [QA/AI log](QA_AI_LOG.md). Không đánh dấu hoàn thành toàn task khi v2 chưa tích hợp.
+- `language.python` phụ thuộc backendPack của Hân; analystPack sở hữu Data shared stages. Chữ ký ở mục 8 là code đã triển khai nhưng **chưa được đồng thuận liên nhóm**.
+- Bàn giao riêng trên `feat/mw-team-04`; không merge main, không sửa file chung, không tạo login. Theo dõi review/tích hợp rồi chạy lại toàn bộ TC-I và hành trình TC-C trên app chính.

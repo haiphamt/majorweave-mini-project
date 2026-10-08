@@ -1,0 +1,47 @@
+{
+  "executedAt": "2026-10-07T13:13:07.250Z",
+  "baseline": "685435047a58f05d1bb3a90ae901425bdcb31074",
+  "node": "v24.14.1",
+  "passed": 28,
+  "tests": [
+    "TC-V01 malformed unknown and sparse arrays",
+    "TC-V02 schema and backup versions",
+    "TC-V03 types, enums and numeric boundaries",
+    "TC-V04 real dates, Monday, timezone and localDate",
+    "TC-V05 UUID uniqueness and active plan",
+    "TC-V06 safe source URLs",
+    "TC-V07 current task and ledger relations",
+    "TC-V08 immutable historical done survives later undo",
+    "TC-V09 closed week totals and duplicate indices",
+    "TC-V10 generation, segment, backlog and import relations",
+    "TC-V11 removed catalog preserves plan/history and draft",
+    "TC-V12 backup round trip, frozen data and known catalog errors",
+    "TC-A01 empty activity",
+    "TC-A02 archived and repeated snapshots count ledger once",
+    "TC-A03 done undo done again",
+    "TC-A04 legacy completion has no fabricated date",
+    "TC-A05 original timezone survives profile change",
+    "TC-A06 no input mutation and sorted days",
+    "TC-P02 profile validation and empty name policy",
+    "TC-C01 analyst.spreadsheet content/dependencies",
+    "TC-C02 analyst.pandas content/dependencies",
+    "TC-C03 bi.powerbi content/dependencies",
+    "TC-C04 bi.tableau content/dependencies",
+    "TC-C05 engineer.batch content/dependencies",
+    "TC-C06 engineer.streaming content/dependencies",
+    "TC-C07 business-analyst.software-ba content/dependencies",
+    "TC-C08 business-analyst.data-ba content/dependencies",
+    "Content metadata and track-specific coverage"
+  ],
+  "content": {
+    "tracks": 8,
+    "stages": 29,
+    "work": 43,
+    "resources": 24,
+    "credentials": 6,
+    "reusedStages": [
+      "language.python"
+    ]
+  },
+  "limitation": "Pure module/content tests only; no claim about registry, planner, persistence or v2 UI integration."
+}
