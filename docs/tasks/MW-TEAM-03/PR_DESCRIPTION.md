@@ -1,9 +1,13 @@
-# Đề xuất PR: MW-TEAM-03 — Tiến độ, tám track AI và My Plan v2 có kiểm thử
+# MW-TEAM-03 — Tiến độ, tám track AI và My Plan v2 độc lập
 
-Hoàn thiện module tiến độ thuần theo contracts, bốn content pack/tám track ở trạng thái review, và MyPlanV2 nhận Workspace plan/callback. UI cho chọn plan, Plan/Stats/Weeks, done/undo, thêm/sửa/dời/backlog, preview/hủy/xác nhận chốt tuần và history chỉ đọc. Snapshot được chụp trước xử lý unfinished; stats bỏ skipped, không đếm trùng completion. Lỗi lưu không báo thành công và retry dùng lại cùng candidate.
+Đã bàn giao commit `30d67122d94aa9784fb688f5e3eb7ade112c5c9a` qua [PR #2](https://github.com/haiphamt/majorweave-mini-project/pull/2). Module progress thuần, bốn pack/tám track ở trạng thái review và MyPlanV2 controlled hỗ trợ Plan/Stats/Weeks, done/undo, thêm/sửa/dời/backlog, chốt tuần và history chỉ đọc. Snapshot trước xử lý; lỗi lưu cho retry đúng candidate.
 
-Context/persistence sản phẩm vẫn v1. Giữ MyPlan v1, sidebar/CSS/component dùng chung; không thêm store hoặc dependency, không sửa registry/contracts/app chung. MyPlanV2 chạy trong trang fixture test-only; cần adapter transaction/persistence/migration và registry trước tích hợp. Điểm nối, trách nhiệm expectedRevision, demo và test còn thiếu ở DEMO_INTEGRATION.md.
+**Bổ sung bugfix, bàn giao 08/10 qua PR #2:** fixture thiếu font loader nên font dự phòng hiển thị sai dấu tiếng Việt; thêm đúng ba link font của index.html, giữ CSS/style. Form từng xóa day ngay khi week tạm rỗng; giữ day trong draft khi đổi tuần và chỉ clear ở payload backlog khi submit.
 
-Validation ngày 06/10/2026: 38/38 task tests (20 progress, 10 content, 8 view model/SSR); TypeScript riêng preview; npm run check/build; browser fixture tám plan với done/undo/redo/close, cả ba xử lý unfinished, snapshot Stats, form/error/retry/cancel, history/archive/empty/loading, keyboard Tab/Escape và 390×844. Smoke app v1 Explore/My Plan không lỗi console. Chưa chạy chọn nguồn/tạo plan bằng planner/reload persistence thật hoặc migration đa tab. Nguồn đã mở kiểm tra ở SOURCES.json; chưa thực hiện các bài học hoặc đạt chứng nhận. Cả bốn pack giữ reviewStatus=review.
+Validation thực 07/10: **41/41 task tests** (20 progress, 10 content, 11 UI model/SSR/font), TypeScript preview, npm run check và npm --ignore-scripts run build pass. Bỏ prebuild để bảo toàn ba file generated đang modified. Browser tái hiện trước sửa và kiểm sau: Thứ Ba tuần 1 → xóa tạm → tuần 2 vẫn Thứ Ba; cancel, tuần 0 invalid, save backlog day=null; Tuần/Thống kê font đúng. Screenshot/log trong evidence; không coi đây là persistence end-to-end.
 
-Người làm: Chung Minh Hiếu. Deadline 22:00 10/10/2026 Việt Nam. Đây là mô tả để review; chưa tạo PR, commit hoặc push. QA_AI_LOG.md ghi kết quả/giới hạn, FLOW.md có sáu flow. Reviewer cần duyệt content/workload và adapter chung trước nghiệm thu.
+Chạy lại ngày 08/10 trên code bàn giao: 41/41 task tests, TypeScript preview, check và build không prebuild pass; log ở evidence/bugfix-2026-10-08-verification.txt. Không chạy lại browser ngày 08/10; các ảnh trước/sau là phiên 07/10.
+
+Nhánh này vẫn app v1 và fixture v2 độc lập. PR #3 có provider/bootstrap; PR #5 đã có savePlan/WorkspacePlan adapter theo diff đọc 08/10, chưa được kiểm thử tích hợp tại đây. Phối hợp Hải chọn bản tích hợp và kiểm revision/retry/hủy pending, registry AI. Chưa full tám track nguồn → planner → done → chốt → reload, migration/conflict/semantic validator hoặc nghiệm thu content.
+
+Người làm Chung Minh Hiếu; deadline **20:00 10/10/2026 Việt Nam**. Huy review chéo, Hải review/tích hợp cuối. Nội dung chuẩn bị để cập nhật PR; chưa sửa description trên GitHub trong lượt 07/10.

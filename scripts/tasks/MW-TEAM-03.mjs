@@ -398,7 +398,8 @@ const validForm = () => ({stageId:'s1',title:'  Tên bài  ',minutes:'90',accept
 test('UI01 form parsing validates and normalizes user input', () => {
  assert.deepEqual(ok(ui.parseTaskForm(validForm())),{stageId:'s1',title:'Tên bài',minutes:90,acceptance:['Yêu cầu 1','Yêu cầu 2'],notes:'Ghi chú',weekIndex:1,dayIndex:0});
  assert.equal(ok(ui.parseTaskForm({...validForm(),week:'',day:''})).weekIndex,null);
- for (const patch of [{title:' '},{minutes:''},{minutes:'0'},{minutes:'1.5'},{minutes:'Infinity'},{week:'0'},{week:'1.5'},{acceptance:'\n '},{stageId:''},{day:'7'},{week:'',day:'0'}]) assert.equal(ui.parseTaskForm({...validForm(),...patch}).ok,false,JSON.stringify(patch));
+ assert.equal(ok(ui.parseTaskForm({...validForm(),week:'',day:'0'})).dayIndex,null);
+ for (const patch of [{title:' '},{minutes:''},{minutes:'0'},{minutes:'1.5'},{minutes:'Infinity'},{week:'0'},{week:'1.5'},{acceptance:'\n '},{stageId:''},{day:'7'},{week:'',day:'7'}]) assert.equal(ui.parseTaskForm({...validForm(),...patch}).ok,false,JSON.stringify(patch));
 });
 test('UI02 sparse week list and snapshot display never duplicate/mutate tasks', () => {
  const p=ok(close(fixture(),0,'move_next',context()));
@@ -451,6 +452,49 @@ test('UI08 source links are escaped and unsafe URLs are not rendered as links', 
  assert.ok(html.includes('URL không hợp lệ'));
  for(const url of ['javascript:alert(1)','data:text/html,bad','bad']) assert.equal(ui.safeSourceUrl(url),false);
  assert.equal(ui.safeSourceUrl('https://example.org'),true);
+});
+
+test('UI09 week edit with temporary blank preserves all seven weekdays and task identity', () => {
+ for (let day=0; day<7; day++) {
+  const p=ok(set(fixture(),uuid(1),true,context()));
+  p.current.tasks[0].dayIndex=day;
+  freeze(p);
+  const before=structuredClone(p);
+  const original=ui.taskForm(p.current.tasks[0]);
+  const temporary={...original,week:''};
+  assert.equal(temporary.day,String(day));
+  const {stageId,...patch}=ok(ui.parseTaskForm({...temporary,week:'2'}));
+  const next=ok(edit(p,uuid(1),patch));
+  assert.equal(next.current.tasks[0].weekIndex,1);
+  assert.equal(next.current.tasks[0].dayIndex,day);
+  assert.equal(next.current.tasks[0].id,p.current.tasks[0].id);
+  assert.deepEqual(next.current.tasks[0].source,p.current.tasks[0].source);
+  assert.equal(next.current.tasks[0].completionId,p.current.tasks[0].completionId);
+  assert.deepEqual(next.completions,p.completions);
+  assert.equal(next.current.tasks[0].customized,false);
+  assert.deepEqual(p,before);
+ }
+});
+test('UI10 committing blank week clears backlog day; cancel/invalid input leave plan unchanged', () => {
+ const p=freeze(fixture()), before=structuredClone(p);
+ const original=ui.taskForm(p.current.tasks[0]);
+ const draft={...original,week:''};
+ const {stageId,...patch}=ok(ui.parseTaskForm(draft));
+ assert.equal(patch.weekIndex,null); assert.equal(patch.dayIndex,null);
+ assert.equal(draft.day,'1'); // UI draft retains Tuesday until commit.
+ const next=ok(edit(p,uuid(1),patch));
+ assert.equal(next.current.tasks[0].dayIndex,null);
+ assert.equal(ui.taskForm(next.current.tasks[0]).day,'');
+ assert.equal(ui.parseTaskForm({...draft,week:'0'}).ok,false);
+ assert.equal(ui.parseTaskForm({...draft,week:'1.5'}).ok,false);
+ assert.deepEqual(p,before);
+});
+test('UI11 fixture loads the same Vietnamese-capable fonts as the app entry', () => {
+ const entry=fs.readFileSync('index.html','utf8'), preview=fs.readFileSync('docs/tasks/MW-TEAM-03/ui-preview.html','utf8');
+ const fontLinks=html=>[...html.matchAll(/<link\b[^>]*href="(https:\/\/fonts\.[^"]+)"[^>]*>/g)].map(m=>m[1]);
+ assert.equal(fontLinks(entry).length,3);
+ assert.deepEqual(fontLinks(preview),fontLinks(entry));
+ assert.match(preview,/charset="UTF-8"/i); assert.match(preview,/<html lang="vi">/);
 });
 
 let failed = 0;

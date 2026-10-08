@@ -192,3 +192,55 @@ Ma trận: scientist.python→next; ml.classical→backlog; ml.cv→skip; ml.nlp
 | 06/10/2026 / Codex | Rà contextv1 và boundaries, viết controlled MyPlanV2/viewModel tái dùng progress/Dialog/CSS; fixture 8plan,8test UI; browser fault/retry, snapshot3action, readonly/multi-plan/mobile/keyboard; cập nhật6flow, QA, demo, adapter diff đề xuất và PR description | 38/38, check/build/preview typecheck và fixture browser Pass; giữ appv1. Hiếu đọc demo/nội dung, người sở hữu chung nối Workspace/persistence/registry và chạy full E2E chưa thực hiện; không ký nghiệm thu thay reviewer |
 
 Browser bổ sung cuối đợt3: lỗi onSelectPlan khi đổi sang ml.classical giữ scientist.python, hiện issues; lỗi lưu completion rồi Bỏ thay đổi chưa lưu giữ unchecked và Saves0. Đã reload fixture về trạng thái sạch; ghi thêm checks trong ui-matrix.json. Vite port5183 còn chạy để demo, Ctrl+C tại terminal để dừng.
+
+## Kiểm tra tiến độ và sửa bug A/B — 07/10/2026
+
+Baseline code của Hiếu: **30d67122d94aa9784fb688f5e3eb7ade112c5c9a**, branch feat/mw-team-03, PR #2 open. Code sửa lỗi dưới đây chưa commit/push. Main đọc tại dd67b6735d59fe56b32384a674bbe03b76501962; PR #3 head f3462986ce49b10875338d50836d841a587d9e66 khớp refs Git hiện có. Đánh giá từng yêu cầu/điểm nối: [PROGRESS_REVIEW_2026-10-07.md](PROGRESS_REVIEW_2026-10-07.md).
+
+### Tái hiện, nguyên nhân và kiểm lại
+
+| Ca | Trước sửa / nguyên nhân | Sửa và actual sau sửa |
+|---|---|---|
+| A — Font Tuần/Thống kê | Screenshot Tuần 2 tách dấu/giãn chữ. DOM h2 Tuần 1. là NFC, code point dấu ầ=U+1EA7; stylesheet links=[]; font CSS Newsreader, Georgia, serif, letter-spacing=-0.8px. Fixture HTML thiếu font loader của index.html nên fallback. | Thêm preconnect Google Fonts/gstatic và stylesheet đúng ba family/weights của app, không sửa shared CSS. Browser Tuần 2 và Thống kê hiển thị đúng; DOM có font stylesheet, NFC và -0.8px vẫn giữ. UI11 kiểm font links bằng entry app. |
+| B — Xóa tạm tuần làm mất ngày | Set Thứ Ba/tuần1, save; edit week=''→'2' cho day=''; save rồi mở lại tuần2 day='' (tái hiện được). Handler từng clear day ngay khi week blank. | Handler chỉ sửa week, giữ day draft. parseTaskForm clear dayIndex tại submit backlog. Browser blank tạm giữ day='1' nhưng disabled; nhập2 vẫn1, save hiện Cần làm · Thứ Ba. |
+| B — Hủy | Edit tuần2/ThứBa, xóa week rồi Hủy | Task vẫn tuần2/ThứBa, không save. |
+| B — Input lỗi | Nhập week0, save | Lỗi tuần phải nguyên từ1, form còn mở; giữ day, không thay task. |
+| B — Backlog thật | Xóa week rồi save từ ThứBa/tuần2, mở lại task trong backlog | week='', day='', đúng contract weekIndex/dayIndex=null; không hồi lại ThứBa sau commit backlog. |
+| UI09–10 | Bổ sung regression tests ngày0..6, temporary blank, completed task, invalid week, backlog commit/cancel | Pass; kiểm ID/source/completion/customized và deep input invariant. |
+
+Sửa UI01: backlog form được giữ day trong draft và normalize dayIndex=null khi submit; day sai7 vẫn invalid. Đây là sửa semantics form theo contract, không bỏ validation domain hoặc assertion invariant. Domain API không thay đổi.
+
+### Lệnh đã chạy thực
+
+- `node scripts/tasks/MW-TEAM-03.mjs`: exit0, **41/41 Pass** (20 progress, 10 content, 11 UI). Chạy lại sau sửa, không dùng kết quả38/38 cũ làm kết quả mới.
+- `npm run check`: exit0, **1 registered content pack, 28 modules**; registry nhánh Hiếu vẫn chỉ Backend.
+- `npm --ignore-scripts run build`: exit0, **tsc -b && vite build**,1612 modules, built in10.44s. Đây là script build thật; cố ý không chạy prebuild sinh docs/catalog để giữ nguyên ba file modified có trước. Không tuyên bố prebuild đã kiểm lại trong lượt này.
+- TypeScript preview command ở mục đợt3: exit0 sau sửa. Chạy riêng vì docs không nằm trong tsconfig src.
+- Browser IAB, Vite6.4.3 loopback5183: tái hiện và kiểm lại A/B, Hủy/input lỗi/backlog; console warn/error=[] lúc kiểm. Font Stats/Tuần đã nhìn screenshot; không đo glyph bounding box hoặc chứng nhận accessibility.
+- `git diff --check`: kiểm cuối lượt; ảnh/log ở evidence/bugfix-2026-10-07-verification.txt. Không chạy lại 8-plan matrix/full E2E hoặc tests PR #1/#3 trong lượt này; bằng chứng tám plan cũ là fixture ngày06/10.
+
+### Minh chứng và bảo toàn công việc
+
+[Font trước](evidence/bug-a-before.png), [day mất trước](evidence/bug-b-before.png), [font + ThứBa tuần2 sau](evidence/bug-ab-after.png), [Stats sau](evidence/bug-a-stats-after.png). Hash trước/sau tại [preserved-files-2026-10-07.json](evidence/preserved-files-2026-10-07.json): ba file docs/Danh_muc_nganh_huong_hoc.md, docs/Luong_su_kien_chi_tiet.md, public/catalog.json và .github.lnk **đều giữ nguyên từng byte**. Không restore/reset/stash/delete/stage, không merge hoặc commit/push. Không cần worktree vì không đổi nhánh/tích hợp.
+
+### Tình hình mới và giới hạn
+
+PR #2 chưa review. Main vẫn v1; PR #3 đã có provider/IndexedDB bootstrap nhưng đang open và WorkspaceActions chưa có save mutation My Plan, retry/cancel pending cần phối hợp adapter. Registry #3 chỉ Backend/Mobile/Game. Không còn kết luận “toàn dự án chưa ai viết context v2”; đúng là context v2 đã ở nhánh PR, chưa nối My Plan/main. Chưa kiểm source→planner→done/close→reload thật trên8track, migration/semantic validation/conflict hoặc workload học. Không cập nhật Notion hay ký nghiệm thu.
+
+AI log: Codex đọc AGENTS/task/contracts/code/refs main và PR #1–#4 qua GitHub CLI; gh trong sandbox bị chặn config, đã xin quyền đọc CLI rồi đọc được. Rà invariant/điểm nối callback, tái hiện A/B bằng browser, sửa trong allowlist, thêm3test regression, chạy task/check/build/preview typecheck; cập nhật status/handoff/QA/đánh giá. Hiếu đọc duyệt; Huy review chéo, Hải tích hợp; chưa gửi message/comment hoặc thay PR trên GitHub. Deadline20:00 10/10/2026 Việt Nam.
+
+## Bước A — Rà và kiểm lại bản bàn giao 08/10/2026
+
+Hiếu ủy quyền commit/push các bugfix và tài liệu liên quan vào feat/mw-team-03 để cập nhật PR #2. Parent là 30d67122d94aa9784fb688f5e3eb7ade112c5c9a; SHA bản bàn giao là commit chứa log [bugfix-2026-10-08-verification.txt](evidence/bugfix-2026-10-08-verification.txt), tra bằng `git log -1 -- docs/tasks/MW-TEAM-03/evidence/bugfix-2026-10-08-verification.txt`.
+
+- Diff xác nhận font links giống index.html; handler tuần chỉ thay week, parseTaskForm giữ ngày hợp lệ khi có tuần và normalize null khi lưu backlog. Không đổi contracts/progress hoặc code tích hợp.
+- Chạy lại `node scripts/tasks/MW-TEAM-03.mjs`: exit 0, **41/41 pass** (20 progress, 10 content, 11 UI).
+- Chạy lại `npm run check`: exit 0, 1 registered pack / 28 modules, legacy save và Backend references pass. Không phải kiểm toàn registry AI.
+- Chạy lại lệnh TypeScript preview ghi ở đợt 3: exit 0.
+- Chạy lại `npm --ignore-scripts run build`: exit 0, tsc -b và Vite, 1612 modules, 11.46s. Không chạy prebuild vì có thể ghi vào ba file generated đang modified cần giữ nguyên.
+- `git diff --check` phần bàn giao pass. Hash SHA256 bốn file cần bảo toàn khớp trước/sau validation và trước commit; không stage chúng.
+- Không chạy lại browser hôm nay: code hai bugfix không đổi so với phiên browser 07/10; ảnh/log phiên đó giữ ngày gốc. Không nhận đã test tích hợp PR #5, reload thật hoặc migration/conflict.
+
+Cập nhật điểm nối từ đọc diff 08/10: PR #5 đã có savePlan/WorkspacePlan adapter; báo cáo 07/10 chỉ là lịch sử. Hải phối hợp tích hợp/review, Hiếu kiểm lại tám track trên app thật sau đó. Không merge main, không gửi tin Hải hoặc sửa PR description online trong Bước A; push cập nhật code PR hiện có theo ủy quyền.
+
+AI log 08/10 / Codex: đọc checkpoint/AGENTS/TASK/status/contracts, rà từng diff code/tests/docs, chạy lại validation thay vì dùng Pass cũ, cập nhật tài liệu và log; stage file cụ thể, kiểm bảo toàn và commit/push theo yêu cầu trực tiếp của Hiếu. Chưa nghiệm thu toàn task.

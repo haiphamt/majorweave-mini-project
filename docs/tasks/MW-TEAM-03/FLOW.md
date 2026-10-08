@@ -74,6 +74,8 @@ Người làm: Chung Minh Hiếu. Deadline: **20:00 ngày 10/10/2026, giờ Vi�
 
 ## Cập nhật đợt 3 — Mapping sáu flow UI (06/10/2026)
 
+Cập nhật form FL03/FL04 ngày 07/10: khi ô tuần tạm rỗng, giữ day trong draft và disable chọn ngày; nhập lại tuần giữ day. Chỉ khi submit blank thành backlog mới parse ra weekIndex/dayIndex=null. Hủy giữ task gốc. UI09–10 và browser có ca Thứ Ba tuần 1 → xóa tạm → tuần 2 → save, blank→cancel, week 0→validation và blank→save backlog.
+
 Các kết quả “chưa chạy UI” phía trên là lịch sử đợt 1; kết quả hiện tại dưới đây dùng MyPlanV2 controlled trong fixture, không phải app persistence v2 đã tích hợp. Callback thành công mới publish plan/activePlanId; lỗi giữ props cũ và candidate retry. Không có storage trong feature. Adapter phải kiểm Workspace expectedRevision theo DEMO_INTEGRATION.md.
 
 | Flow / AC | UI chính, thay thế, lỗi, hủy | Bằng chứng và giới hạn |

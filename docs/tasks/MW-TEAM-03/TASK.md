@@ -1,7 +1,9 @@
 # MW-TEAM-03 — Kế hoạch tuần, tiến độ và nội dung AI
 
+**Cập nhật bàn giao bugfix 08/10/2026:** Hiếu đã cho phép commit/push bản sửa font fixture và giữ ngày học khi đổi tuần vào PR #2. Chạy lại trên code bàn giao: 41/41 task tests, check, TypeScript preview và build không prebuild đều pass; log ở [evidence/bugfix-2026-10-08-verification.txt](evidence/bugfix-2026-10-08-verification.txt). Browser ngày 07/10 là minh chứng trước/sau; không chạy lại browser trong lượt 08/10. PR #5 đã có savePlan/WorkspacePlan adapter theo diff đọc ngày 08/10, chưa được kiểm thử/tích hợp tại nhánh này. Trạng thái 07/10 và các đợt dưới đây là lịch sử; toàn task vẫn chờ tích hợp và nghiệm thu.
+
 **Người làm:** Chung Minh Hiếu (`chungminhhieu2311-collab`). **Reviewer cuối:** Phạm Tuấn Hải. **Review chéo:** Triệu Quang Huy.
-**Branch:** `feat/mw-team-03`. **Trạng thái:** Đợt 1 domain, đợt 2 nội dung và đợt 3 UI v2 độc lập hoàn tất để review ngày 06/10/2026; 38/38 test pass và browser fixture tám plan. Context sản phẩm vẫn v1; chưa tích hợp registry/persistence/UI v2, chưa nghiệm thu. Chưa commit/push/PR.
+**Branch:** `feat/mw-team-03`. **Trạng thái hiện tại 07/10/2026:** Đã bàn giao commit `30d67122d94aa9784fb688f5e3eb7ade112c5c9a` qua [PR #2](https://github.com/haiphamt/majorweave-mini-project/pull/2), đang open, chưa có review. Main vẫn v1; [PR #3](https://github.com/haiphamt/majorweave-mini-project/pull/3) có provider v2 nhưng còn thiếu callback mutation My Plan và registry AI. Đã sửa lỗi font fixture và mất ngày khi nhập tuần; 41/41 task tests pass, browser tái hiện/kiểm lại hai lỗi. Sửa lỗi lượt này chưa commit/push. Đánh giá từng yêu cầu: [PROGRESS_REVIEW_2026-10-07.md](PROGRESS_REVIEW_2026-10-07.md). Chưa nghiệm thu toàn task.
 
 Đọc [phân công chung](../../team/PHAN_CONG_MINI_PROJECT.md), [quy trình Antigravity](../../team/QUY_TRINH_ANTIGRAVITY.md), [kiến trúc](../../KIEN_TRUC_MAJORWEAVE.md) và [chuẩn nội dung](../../architecture/HUONG_DAN_DU_LIEU.md). Scope chi tiết/nhánh là baseline từ bảng đích; ghi thay đổi được Hải chốt vào task, không tự thu hẹp.
 

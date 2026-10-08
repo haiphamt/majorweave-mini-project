@@ -4,6 +4,10 @@ Chung Minh Hiếu · 06/10/2026 · deadline **20:00 10/10/2026, giờ Việt Nam
 
 ## Trạng thái thực tế
 
+**Cập nhật 08/10/2026:** PR #5 đã có `savePlan(next, expected)` và WorkspacePlan adapter theo diff đã đọc; không viết callback thứ hai dựa trên phần đề xuất cũ. Nhánh Hiếu vẫn chưa tích hợp adapter này. Phối hợp Hải kiểm retry/hủy pending/conflict, registry AI và kiểm thử tám track qua planner/lưu/reload. Bản sửa font/day được bàn giao riêng trong PR #2; xem [NEXT_STEPS_2026-10-08.md](NEXT_STEPS_2026-10-08.md).
+
+**Cập nhật 07/10/2026:** Nhánh Hiếu và origin/main vẫn v1. PR #3 (`feat/mw-context-v2`, head f3462986ce49b10875338d50836d841a587d9e66) đã có WorkspaceProvider/useWorkspace/IndexedDB bootstrap, nhưng đang open. WorkspaceActions có selectPlan/retrySave, chưa có mutation callback lưu plan của MyPlanV2 và chưa registry bốn pack AI. Cần xử lý cả retry/cancel pending của controller, không chỉ nối props vào hook. Xem [đối chiếu code/điểm nối mới](PROGRESS_REVIEW_2026-10-07.md). Các ví dụ phía dưới vẫn là đề xuất adapter, không phải API đã triển khai. Bugfix font/day được kiểm lại độc lập, chưa tích hợp PR #3.
+
 `src/app/context.ts` vẫn dùng LegacyAppContext/State v1; `src/persistence` có legacy adapter và README, chưa có load/save Workspace v2. `MyPlan.tsx` đang nối context v1 được giữ nguyên. Registry hiện chỉ Backend. **MyPlanV2 đã chạy trong fixture, chưa được nối app sản phẩm hoặc persistence v2.** Không có kho plan/storage riêng ở feature. Fixture dưới docs chỉ giữ dữ liệu giả trong bộ nhớ, reload là reset, không chứng minh lưu bền.
 
 ## Demo độc lập
