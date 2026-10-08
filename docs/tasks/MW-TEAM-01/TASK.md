@@ -1,7 +1,7 @@
 # MW-TEAM-01 — Khám phá, chi tiết hướng và nội dung Web/UX
 
 **Người làm:** Nguyễn Thị Quỳnh Hân (`QuynhHan486`). **Reviewer cuối:** Phạm Tuấn Hải. **Review chéo:** Phạm Công Định.
-**Branch:** `feat/mw-team-01`. **Trạng thái:** Được giao; chưa bắt đầu, chưa có kết quả test/PR.
+**Branch:** `feat/mw-team-01`. **Trạng thái:** Đã nhập code clone ngày 08/10/2026; kiểm tra lại phát hiện thiếu sót, chưa đủ điều kiện Done. Xem REVIEW_IMPORT_20261008.md.
 
 Đọc [phân công chung](../../team/PHAN_CONG_MINI_PROJECT.md), [quy trình Antigravity](../../team/QUY_TRINH_ANTIGRAVITY.md), [kiến trúc](../../KIEN_TRUC_MAJORWEAVE.md) và [chuẩn nội dung](../../architecture/HUONG_DAN_DU_LIEU.md). Scope chi tiết/nhánh là baseline từ bảng đích; ghi thay đổi được Hải chốt vào task, không tự thu hẹp.
 

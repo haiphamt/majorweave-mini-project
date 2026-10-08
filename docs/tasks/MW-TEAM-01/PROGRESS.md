@@ -1,30 +1,19 @@
-# PROGRESS - MW-TEAM-01 (Nguyễn Thị Quỳnh Hân)
+# PROGRESS — MW-TEAM-01 (Nguyễn Thị Quỳnh Hân)
 
-## 1. Hiện trạng ban đầu
-- Nhánh hiện tại: `feat/mw-team-01`
-- File đã thay đổi: `src/content/catalog.ts`, `src/domain/content.ts`, `.vscode/launch.json`
-- Mẫu FLOW và QA_AI_LOG đã được copy.
+**08/10/2026: đã nhập code clone vào nhánh feat/mw-team-01 của repo mini; chưa Done.**
 
-## 2. Checklist (dựa trên AC và Nội dung yêu cầu)
+Chi tiết kết quả và việc cần làm: [Review nhập clone](REVIEW_IMPORT_20261008.md).
 
-### Giai đoạn 1: Dữ liệu và Resolver
-- [x] 1. Khai báo 12 ngành / 6 khoa và danh mục hướng v2 vào `src/content/catalog.ts` (đã có sẵn trong file hiện tại).
-- [x] 2. Hoàn thiện hàm resolver trong `src/domain/content.ts` (đã update: sử dụng `packs.flatMap` để lấy stage/resource chéo cho các Full-stack tracks).
-- [ ] 3. Viết `src/content/paths/backend.ts`: Bị chặn (Cần thời gian kiểm chứng URL và thông tin các khoá học nền tảng/chuyên sâu thực tế).
-- [ ] 4. Viết `src/content/paths/frontend.ts`: Bị chặn (Cần thông tin kiểm chứng thực tế).
-- [ ] 5. Viết `src/content/paths/ux.ts`: Bị chặn (Cần thông tin kiểm chứng thực tế).
-- [ ] 6. Viết `src/content/paths/fullstack.ts`: Bị chặn (Phụ thuộc vào 3 file trên).
+- [x] Catalog v2 có 6 khoa, 12 ngành, 18 hướng; 17 track có nội dung và pass test cấu trúc riêng.
+- [x] Preview UI cả 17 nhánh; drawer Backend đã sửa ID và thử 3 stack; drawer React và bộ lọc rỗng đã thử.
+- [x] Build TypeScript/Vite pass trên Windows.
+- [x] Nhập 11 file đúng allowlist, giữ nguồn/ID Backend của repo Git và giữ clone gốc.
+- [ ] Resolver xử lý nguồn/chứng nhận thiếu, ID trùng và tiên quyết sai/vòng.
+- [ ] Explore hiển thị catalog v2 đủ 18 hướng (UI hiện 16).
+- [ ] UI chọn nguồn/thêm chặng/lưu draft cho FE/FS/UX và reload giữ nhánh.
+- [ ] Tích hợp registry/context v2 và My Roadmap; phối hợp ID và mục tiêu chứng nhận v1/v2.
+- [ ] npm run check pass: đang fail lỗi assertion ngày có trước nhập, file thuộc Hải.
+- [ ] Xác minh mọi nguồn/chứng nhận, kiểm tra responsive/keyboard/lỗi lưu.
+- [ ] Toàn hành trình 17 cấu hình sau tích hợp, review chéo Định và nghiệm thu Hải.
 
-### Giai đoạn 2: UI (Giao diện Khám phá & Chi tiết)
-- [ ] 7. Xây dựng `src/features/explore`: Bị chặn (Đợi API Callback Context từ nhóm trưởng).
-- [ ] 8. Xây dựng `src/features/path-detail`: Bị chặn (Cần dữ liệu content mock để hiển thị 3 tab).
-- [ ] 9. Tích hợp UI Explore/Path detail đọc nội dung đã resolve qua props/context v2.
-
-### Giai đoạn 3: Tài liệu và Kiểm thử
-- [ ] 10. Điền luồng vào `FLOW.md`.
-- [ ] 11. Điền test case vào `QA_AI_LOG.md`.
-- [ ] 12. Chạy `npm run check`, `npm run build` và kiểm thử trình duyệt thực tế.
-
-## 3. Nhật ký chặn (Blockers)
-- **Thiếu Context v2/Callback (UI):** Explore và Path Detail chờ `src/app/context.ts` v2 và `registry` từ nhóm trưởng (Hải). Tác động: Chặn code UI ở `src/features/`. Người giải quyết: Phạm Tuấn Hải.
-- **`check-example.mjs` fail assertion `checkedAt = '2026-10-03'`:** File `docs/architecture/check-example.mjs` (ngoài allowlist, thuộc Hải) kỳ vọng mọi resource của `backendPack` có `checkedAt: '2026-10-03'`. Sau khi thêm resources mới ngày `2026-10-06`, assertion này fail. `npm run check` (check-project.mjs) đã **PASS**. Tác động: `npm run check` fail ở bước 3 (check-example). Người giải quyết: Phạm Tuấn Hải cần cập nhật assertion trong check-example hoặc tách check ví dụ ra khỏi CI chung. Phần độc lập khác vẫn tiếp tục được.
+Báo cáo “100%” trước đó trong clone chưa phù hợp kết quả chạy lại; bản trước nhập được giữ trong artifacts/mw-team-01-import-20261008/ và clone gốc.

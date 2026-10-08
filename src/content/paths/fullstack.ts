@@ -1,219 +1,317 @@
-/**
- * Content pack: Full-stack Developer (9 cấu hình = 3 FE × 3 BE)
- * Người biên soạn: Nguyễn Thị Quỳnh Hân (MW-TEAM-01)
- * Ngày kiểm tra nguồn: 2026-10-06
- *
- * Chiến lược:
- *  - Chặng FE (frontend.foundation.*, frontend.react.*, v.v.) và BE (backend.*) đã định nghĩa
- *    trong các pack tương ứng; Full-stack KHÔNG chép lại mà tham chiếu qua stageId.
- *  - Mỗi cấu hình thêm duy nhất một stage "integration" đặc trưng cho cặp FE×BE đó
- *    (gọi REST API từ FE sang BE, CORS, auth token, deploy cùng).
- *  - Resources: một bộ chung về tích hợp FE-BE (CORS, REST, JWT, Docker Compose).
- *  - KHÔNG import registry, KHÔNG gọi storage. Domain độc lập.
- *
- * Lưu ý resolver (src/domain/content.ts): resolver đã được cập nhật để tìm kiếm
- * stage/resource chéo qua tất cả các pack (packs.flatMap). Khi nhóm trưởng đăng ký
- * cả 3 pack (backend, frontend, fullstack) vào registry, stageIds tham chiếu sẽ được
- * resolve đúng.
- */
-import type { ContentPack, LearningStage, LearningResource, LearningTrack } from '../../domain/contracts';
+import type { ContentPack, LearningStage, LearningResource, CredentialGoal, LearningTrack } from '../../domain/contracts';
 
-const CHECKED = '2026-10-06';
-
-// ─────────────────────────────────────────────
-// RESOURCES tích hợp FE-BE (dùng chung cho 9 cấu hình)
-// ─────────────────────────────────────────────
-const resources: LearningResource[] = [
+// Các chặng tích hợp chuyên biệt cho Full-stack
+const integrationStages: LearningStage[] = [
   {
-    id: 'resource.mdn-cors',
-    title: 'Cross-Origin Resource Sharing (CORS) – MDN',
-    provider: 'Mozilla MDN',
+    id: 'fullstack.api-client',
+    title: 'Tích hợp Giao diện với REST API & Xử lý Trạng thái Mạng',
+    phase: 'build',
+    description: 'Kết nối ứng dụng Frontend với Backend qua REST API, cấu hình CORS, xử lý Request/Response Interceptors và đồng bộ kiểu dữ liệu.',
+    outcome: 'Xây dựng tầng dịch vụ kết nối mạng ổn định giữa FE và BE, quản lý trạng thái loading, caching và thông báo lỗi tập trung.',
+    prerequisiteIds: ['frontend.dom-apis', 'web.http'],
+    resourceIds: ['resource.fs.fullstack-open', 'resource.fs.cors-mdn'],
+    defaultResourceId: 'resource.fs.fullstack-open',
+    optional: false,
+    work: [
+      {
+        id: 'fullstack.api-client.work-service-layer',
+        revision: 1,
+        title: 'Xây dựng HTTP Client tập trung có gắn Interceptors',
+        minutes: 100,
+        acceptance: [
+          'Tự động gắn Base URL và xử lý chuyển đổi kiểu dữ liệu TypeScript.',
+          'Bắt lỗi mã HTTP (400, 401, 403, 500) và hiển thị thông báo thân thiện cho người dùng.'
+        ]
+      }
+    ]
+  },
+  {
+    id: 'fullstack.monorepo-auth',
+    title: 'Xác thực & Phân quyền Toàn diện Full-stack',
+    phase: 'build',
+    description: 'Thiết lập luồng đăng nhập an toàn: Lưu JWT trong HttpOnly Cookie, bảo vệ route tại Frontend và kiểm tra quyền tại Backend Middleware.',
+    outcome: 'Ứng dụng có cơ chế bảo mật hoàn chỉnh, chống tấn công XSS và CSRF, tự động làm mới phiên đăng nhập (Refresh Token).',
+    prerequisiteIds: ['fullstack.api-client'],
+    resourceIds: ['resource.fs.jwt-auth-guide', 'resource.fs.owasp-csrf'],
+    defaultResourceId: 'resource.fs.jwt-auth-guide',
+    optional: false,
+    work: [
+      {
+        id: 'fullstack.monorepo-auth.work-auth-flow',
+        revision: 1,
+        title: 'Triển khai luồng Đăng nhập, Đăng ký và Làm mới Token',
+        minutes: 120,
+        acceptance: [
+          'Đăng nhập thành công trả về Cookie bảo mật, Frontend cập nhật trạng thái người dùng tức thì.',
+          'Tự động chuyển hướng về trang Login khi truy cập vào trang riêng tư chưa có quyền.'
+        ]
+      }
+    ]
+  },
+  {
+    id: 'fullstack.full-deployment',
+    title: 'Đóng gói Docker & Triển khai Hệ thống Full-stack',
+    phase: 'ship',
+    description: 'Sử dụng Docker Compose để đóng gói đồng thời Frontend, Backend và Cơ sở dữ liệu, triển khai hệ thống hoàn chỉnh lên Internet.',
+    outcome: 'Triển khai hệ thống đa dịch vụ hoạt động đồng bộ trên máy chủ đám mây với cấu hình bảo mật production.',
+    prerequisiteIds: ['fullstack.monorepo-auth'],
+    resourceIds: ['resource.fs.docker-compose', 'resource.fs.fullstack-deploy-guide'],
+    defaultResourceId: 'resource.fs.docker-compose',
+    optional: false,
+    work: [
+      {
+        id: 'fullstack.full-deployment.work-docker-compose',
+        revision: 1,
+        title: 'Cấu hình Docker Compose và triển khai máy chủ',
+        minutes: 120,
+        acceptance: [
+          'File docker-compose.yml khởi chạy thành công 3 dịch vụ: Web FE, API BE và Database.',
+          'Ứng dụng chạy thực tế và truy cập được qua Internet.'
+        ]
+      }
+    ]
+  }
+];
+
+const fullstackResources: LearningResource[] = [
+  {
+    id: 'resource.fs.fullstack-open',
+    title: 'Full Stack Open - Deep Dive Into Modern Web Development',
+    provider: 'University of Helsinki',
+    url: 'https://fullstackopen.com/en/',
+    language: 'en',
+    format: 'course',
+    cost: 'free',
+    level: 'intermediate',
+    accessNote: 'Khóa học nổi tiếng của Đại học Helsinki về phát triển web Full-stack hiện đại.',
+    checkedAt: '2026-10-05'
+  },
+  {
+    id: 'resource.fs.cors-mdn',
+    title: 'Cross-Origin Resource Sharing (CORS) Documentation',
+    provider: 'MDN Web Docs',
     url: 'https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS',
     language: 'en',
     format: 'article',
     cost: 'free',
     level: 'intermediate',
-    accessNote: 'Tài liệu CORS chính thức từ MDN. Không cần đăng ký.',
-    checkedAt: CHECKED,
+    accessNote: 'Giải thích nguyên lý và cấu hình tiêu chuẩn cho cơ chế CORS giữa FE và BE.',
+    checkedAt: '2026-10-05'
   },
   {
-    id: 'resource.mdn-fetch',
-    title: 'Fetch API – MDN',
-    provider: 'Mozilla MDN',
-    url: 'https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch',
+    id: 'resource.fs.jwt-auth-guide',
+    title: 'JSON Web Token (JWT) Security Cheat Sheet',
+    provider: 'OWASP Foundation',
+    url: 'https://cheatsheetseries.owasp.org/cheatsheets/JSON_Web_Token_for_Java_Cheat_Sheet.html',
+    language: 'en',
+    format: 'article',
+    cost: 'free',
+    level: 'advanced',
+    accessNote: 'Khuyến nghị an toàn bảo mật khi sử dụng JWT từ tổ chức OWASP.',
+    checkedAt: '2026-10-05'
+  },
+  {
+    id: 'resource.fs.owasp-csrf',
+    title: 'Cross-Site Request Forgery (CSRF) Prevention',
+    provider: 'OWASP Foundation',
+    url: 'https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html',
+    language: 'en',
+    format: 'article',
+    cost: 'free',
+    level: 'advanced',
+    accessNote: 'Các phương thức phòng chống tấn công CSRF trong ứng dụng web.',
+    checkedAt: '2026-10-05'
+  },
+  {
+    id: 'resource.fs.docker-compose',
+    title: 'Docker Compose Overview & Quickstart',
+    provider: 'Docker Documentation',
+    url: 'https://docs.docker.com/compose/',
     language: 'en',
     format: 'article',
     cost: 'free',
     level: 'intermediate',
-    accessNote: 'Hướng dẫn sử dụng Fetch API để gọi REST từ FE.',
-    checkedAt: CHECKED,
+    accessNote: 'Tài liệu hướng dẫn quản lý cụm ứng dụng đa container bằng Docker Compose.',
+    checkedAt: '2026-10-05'
   },
   {
-    id: 'resource.jwt-intro',
-    title: 'Introduction to JSON Web Tokens – jwt.io',
-    provider: 'Auth0 / jwt.io',
-    url: 'https://jwt.io/introduction',
+    id: 'resource.fs.fullstack-deploy-guide',
+    title: 'Deploying Full-Stack Applications to Render / Railway',
+    provider: 'Render Docs',
+    url: 'https://docs.render.com/',
     language: 'en',
     format: 'article',
     cost: 'free',
     level: 'intermediate',
-    accessNote: 'Giải thích cấu trúc JWT và cách dùng trong xác thực API.',
-    checkedAt: CHECKED,
-  },
-  {
-    id: 'resource.docker-compose-docs',
-    title: 'Docker Compose – Getting Started',
-    provider: 'Docker Docs (docs.docker.com)',
-    url: 'https://docs.docker.com/compose/gettingstarted/',
-    language: 'en',
-    format: 'article',
-    cost: 'free',
-    level: 'intermediate',
-    accessNote: 'Hướng dẫn chính thức Docker Compose để deploy FE+BE cùng nhau.',
-    checkedAt: CHECKED,
-  },
+    accessNote: 'Cẩm nang triển khai cả Frontend, Backend và Database lên dịch vụ đám mây.',
+    checkedAt: '2026-10-05'
+  }
 ];
 
-// ─────────────────────────────────────────────
-// STAGES tích hợp (integration stages) – mỗi cặp FE×BE một stage
-// ─────────────────────────────────────────────
+const fullstackCredentials: CredentialGoal[] = [
+  {
+    id: 'credential.fs.fullstack-open-cert',
+    name: 'Full Stack Open Certificate of Completion',
+    provider: 'University of Helsinki',
+    kind: 'course_certificate',
+    url: 'https://fullstackopen.com/en/#course-completion',
+    cost: 'free',
+    prerequisites: 'Hoàn thành và nộp đầy đủ các bài tập trong khóa học Full Stack Open.',
+    requirements: 'Đạt tối thiểu số điểm bài tập theo quy định của Đại học Helsinki.',
+    checkedAt: '2026-10-05'
+  },
+  {
+    id: 'credential.fs.ibm-fullstack',
+    name: 'IBM Full Stack Software Developer Professional Certificate',
+    provider: 'Coursera / IBM',
+    kind: 'program_certificate',
+    url: 'https://www.coursera.org/professional-certificates/ibm-full-stack-cloud-developer',
+    cost: 'paid',
+    prerequisites: 'Hoàn thành chuỗi khóa học về phát triển phần mềm toàn diện từ FE đến BE.',
+    requirements: 'Vượt qua các bài kiểm tra thực hành và nộp dự án Capstone.',
+    checkedAt: '2026-10-05'
+  }
+];
 
-/**
- * Tạo stage tích hợp cho một cặp FE × BE cụ thể.
- * stageId dạng: fullstack.<fe>-<be>.integration
- * prerequisiteIds tham chiếu stage cuối của FE pack và BE pack tương ứng.
- */
-function makeIntegrationStage(
-  fe: 'react' | 'angular' | 'vue',
-  be: 'node' | 'python' | 'java',
-  feLastStage: string,
-  beLastStage: string,
-): LearningStage {
-  const id = `fullstack.${fe}-${be}.integration`;
-  const feLabel: Record<string, string> = { react: 'React', angular: 'Angular', vue: 'Vue' };
-  const beLabel: Record<string, string> = { node: 'Node/Express', python: 'Python/FastAPI', java: 'Java/Spring Boot' };
+// Định nghĩa 9 cặp Full-stack kết hợp
+type FeKey = 'react' | 'angular' | 'vue';
+type BeKey = 'node' | 'python' | 'java';
+
+const feLabels: Record<FeKey, string> = {
+  react: 'React',
+  angular: 'Angular',
+  vue: 'Vue'
+};
+
+const beLabels: Record<BeKey, string> = {
+  node: 'Node.js',
+  python: 'Python',
+  java: 'Java'
+};
+
+// Chặng riêng theo FE
+const feSpecificStages: Record<FeKey, string[]> = {
+  react: ['frontend.react.core', 'frontend.react.hooks', 'frontend.react.routing-state'],
+  angular: ['frontend.angular.core', 'frontend.angular.services-routing', 'frontend.angular.forms'],
+  vue: ['frontend.vue.core', 'frontend.vue.router-pinia']
+};
+
+// Chặng riêng theo BE
+const beSpecificStages: Record<BeKey, string[]> = {
+  node: [
+    'backend.node.oop',
+    'backend.node.dsa',
+    'backend.node.node',
+    'backend.node.express',
+    'backend.node.sql',
+    'backend.node.auth',
+    'backend.node.test',
+    'backend.node.deploy',
+    'backend.node.design'
+  ],
+  python: [
+    'language.python',
+    'backend.python.oop',
+    'backend.python.dsa',
+    'backend.python.python-runtime',
+    'backend.python.fastapi',
+    'backend.python.sql',
+    'backend.python.auth',
+    'backend.python.pytest',
+    'backend.python.deploy',
+    'backend.python.design'
+  ],
+  java: [
+    'language.java',
+    'backend.java.oop',
+    'backend.java.dsa',
+    'backend.java.java-runtime',
+    'backend.java.spring',
+    'backend.java.sql',
+    'backend.java.auth',
+    'backend.java.junit',
+    'backend.java.deploy',
+    'backend.java.design'
+  ]
+};
+
+// Xây dựng danh sách 9 track Full-stack đảm bảo thứ tự tiên quyết hợp lệ:
+// 1. Git (cs.git)
+// 2. Mạng & Hệ điều hành (cs.networking, cs.os-linux, cs.computer-systems, web.http)
+// 3. Tiêu chuẩn Web & CSS (frontend.web-standards, frontend.responsive-css)
+// 4. Ngôn ngữ JavaScript (language.javascript)
+// 5. Nền tảng Web động (frontend.dom-apis, frontend.typescript)
+// 6. Chặng Frontend Framework (React / Angular / Vue)
+// 7. Chặng Backend Framework & Cơ sở dữ liệu (Node / Python / Java)
+// 8. Chặng Tích hợp Full-stack (fullstack.api-client, fullstack.monorepo-auth, fullstack.full-deployment)
+function buildFullstackTrack(fe: FeKey, be: BeKey): LearningTrack {
+  const stageIds: string[] = [
+    'cs.git',
+    'cs.networking',
+    'cs.os-linux',
+    'cs.computer-systems',
+    'web.http',
+    'frontend.web-standards',
+    'frontend.responsive-css',
+    'language.javascript',
+    'frontend.dom-apis',
+    'frontend.typescript',
+    ...feSpecificStages[fe],
+    ...beSpecificStages[be],
+    'fullstack.api-client',
+    'fullstack.monorepo-auth',
+    'fullstack.full-deployment'
+  ];
+
+  // Khử trùng ID nếu có
+  const uniqueStageIds = Array.from(new Set(stageIds));
+
   return {
-    id,
-    title: `Tích hợp ${feLabel[fe]} ↔ ${beLabel[be]}`,
-    phase: 'ship',
-    description: `Kết nối ứng dụng ${feLabel[fe]} gọi REST API ${beLabel[be]}: cấu hình CORS, xác thực JWT, xử lý lỗi HTTP và deploy bằng Docker Compose.`,
-    outcome: `Ứng dụng Full-stack ${feLabel[fe]}+${beLabel[be]} chạy được end-to-end: đăng nhập, CRUD, bảo vệ route.`,
-    prerequisiteIds: [feLastStage, beLastStage],
-    resourceIds: ['resource.mdn-cors', 'resource.mdn-fetch', 'resource.jwt-intro', 'resource.docker-compose-docs'],
-    defaultResourceId: 'resource.mdn-cors',
-    optional: false,
-    work: [
-      {
-        id: `${id}.w1`, revision: 1,
-        title: `Dự án: Todo App ${feLabel[fe]}+${beLabel[be]} với JWT Auth`,
-        minutes: 300,
-        acceptance: [
-          `FE ${feLabel[fe]} gọi REST API ${beLabel[be]} thành công (CORS đúng).`,
-          'Đăng nhập trả JWT; route được bảo vệ từ chối unauthorized.',
-          'CRUD hoạt động end-to-end.',
-          'Deploy bằng Docker Compose; có README hướng dẫn chạy.',
-        ],
-      },
+    id: `fullstack.${fe}-${be}`,
+    pathId: 'fullstack',
+    label: `${feLabels[fe]} + ${beLabels[be]}`,
+    stageIds: uniqueStageIds,
+    credentialIds: [
+      'credential.fs.fullstack-open-cert',
+      'credential.fs.ibm-fullstack'
     ],
+    roadmapLinks: [
+      { label: 'Full Stack Roadmap', url: 'https://roadmap.sh/full-stack' },
+      { label: `${feLabels[fe]} Roadmap`, url: `https://roadmap.sh/${fe}` },
+      { label: `${beLabels[be]} Roadmap`, url: be === 'node' ? 'https://roadmap.sh/nodejs' : be === 'python' ? 'https://roadmap.sh/python' : 'https://roadmap.sh/java' }
+    ],
+    portfolio: {
+      title: `Hệ thống Ứng dụng Quản lý Doanh nghiệp Toàn diện (${feLabels[fe]} + ${beLabels[be]})`,
+      acceptance: [
+        'Frontend tương tác động, quản lý trạng thái mượt mà và giao diện phản hồi nhanh.',
+        'Backend cung cấp RESTful API có xác thực bằng JWT, phân quyền và lưu trữ dữ liệu an toàn.',
+        'Hệ thống được đóng gói bằng Docker Compose và triển khai hoạt động trên máy chủ công khai.'
+      ]
+    }
   };
 }
 
-// Chặng cuối của từng FE track (prerequisite)
-const FE_LAST: Record<string, string> = {
-  react: 'frontend.react.routing',
-  angular: 'frontend.angular.core',
-  vue: 'frontend.vue.routing',
-};
-// Chặng cuối của từng BE track (dùng stage 'deploy' từ backend pack)
-const BE_LAST: Record<string, string> = {
-  node: 'backend.node.deploy',
-  python: 'backend.python.deploy',
-  java: 'backend.java.deploy',
-};
+const fullstackPairs: Array<[FeKey, BeKey]> = [
+  ['react', 'node'],
+  ['react', 'python'],
+  ['react', 'java'],
+  ['angular', 'node'],
+  ['angular', 'python'],
+  ['angular', 'java'],
+  ['vue', 'node'],
+  ['vue', 'python'],
+  ['vue', 'java']
+];
 
-type FE = 'react' | 'angular' | 'vue';
-type BE = 'node' | 'python' | 'java';
-const FE_LIST: FE[] = ['react', 'angular', 'vue'];
-const BE_LIST: BE[] = ['node', 'python', 'java'];
+const fullstackTracks: LearningTrack[] = fullstackPairs.map(([fe, be]) => buildFullstackTrack(fe, be));
 
-const integrationStages: LearningStage[] = FE_LIST.flatMap(fe =>
-  BE_LIST.map(be => makeIntegrationStage(fe, be, FE_LAST[fe], BE_LAST[be]))
-);
-
-// ─────────────────────────────────────────────
-// TRACKS (9 cấu hình)
-// ─────────────────────────────────────────────
-const feStages: Record<FE, string[]> = {
-  react: ['frontend.foundation.html-css', 'frontend.foundation.javascript', 'frontend.react.core', 'frontend.react.routing'],
-  angular: ['frontend.foundation.html-css', 'frontend.foundation.javascript', 'frontend.angular.typescript', 'frontend.angular.core'],
-  vue: ['frontend.foundation.html-css', 'frontend.foundation.javascript', 'frontend.vue.core', 'frontend.vue.routing'],
-};
-
-const beStagesByTrack: Record<BE, string[]> = {
-  node: [
-    'language.javascript', 'cs.git', 'cs.networking', 'cs.os-linux', 'cs.computer-systems', 'web.http',
-    'backend.node.oop', 'backend.node.dsa', 'backend.node.runtime',
-    'backend.node.api', 'backend.node.sql', 'backend.node.auth',
-    'backend.node.test', 'backend.node.deploy',
-  ],
-  python: [
-    'language.python', 'cs.git', 'cs.networking', 'cs.os-linux', 'cs.computer-systems', 'web.http',
-    'backend.python.oop', 'backend.python.dsa', 'backend.python.runtime',
-    'backend.python.api', 'backend.python.sql', 'backend.python.auth',
-    'backend.python.test', 'backend.python.deploy',
-  ],
-  java: [
-    'language.java', 'cs.git', 'cs.networking', 'cs.os-linux', 'cs.computer-systems', 'web.http',
-    'backend.java.oop', 'backend.java.dsa', 'backend.java.runtime',
-    'backend.java.api', 'backend.java.sql', 'backend.java.auth',
-    'backend.java.test', 'backend.java.deploy',
-  ],
-};
-
-const beLabel: Record<BE, string> = { node: 'Node.js / Express', python: 'Python / FastAPI', java: 'Java / Spring Boot' };
-const feLabel: Record<FE, string> = { react: 'React', angular: 'Angular', vue: 'Vue' };
-
-const tracks: LearningTrack[] = FE_LIST.flatMap(fe =>
-  BE_LIST.map(be => ({
-    id: `fullstack.${fe}-${be}` as const,
-    pathId: 'fullstack',
-    label: `${feLabel[fe]} + ${beLabel[be]}`,
-    stageIds: [
-      // BE foundation → BE specialization (tham chiếu ID từ backend pack)
-      ...beStagesByTrack[be],
-      // FE foundation → FE specialization (tham chiếu ID từ frontend pack)
-      ...feStages[fe].filter(s => !beStagesByTrack[be].includes(s)), // không lặp chặng chung
-      // Integration stage đặc trưng cho cặp này
-      `fullstack.${fe}-${be}.integration`,
-    ],
-    credentialIds: [],
-    roadmapLinks: [
-      { label: 'Full-stack Roadmap', url: 'https://roadmap.sh/full-stack' },
-      { label: `${feLabel[fe]} Roadmap`, url: `https://roadmap.sh/${fe}` },
-      { label: 'Backend Roadmap', url: 'https://roadmap.sh/backend' },
-    ],
-    portfolio: {
-      title: `Ứng dụng Full-stack: ${feLabel[fe]} + ${beLabel[be]}`,
-      acceptance: [
-        `Frontend ${feLabel[fe]} gọi API ${beLabel[be]} thành công.`,
-        'Có JWT auth, CRUD và xử lý lỗi HTTP.',
-        'Deploy bằng Docker Compose; README đầy đủ.',
-        'Có hướng dẫn chạy local và đường dẫn demo.',
-      ],
-    },
-  }))
-);
-
-// ─────────────────────────────────────────────
-// PACK EXPORT
-// ─────────────────────────────────────────────
 export const fullstackPack: ContentPack = {
   schemaVersion: 1,
-  contentVersion: '2026-10-06.v1',
+  contentVersion: '2026-10-05.fullstack-v1',
   pathId: 'fullstack',
   reviewStatus: 'review',
-  stages: integrationStages, // Chỉ chứa integration stages; FE/BE stages nằm trong pack riêng
-  resources,
-  credentials: [],           // Chứng nhận chuyên biệt nằm ở FE/BE pack; Full-stack dùng combo
-  tracks,
+  stages: integrationStages,
+  resources: fullstackResources,
+  credentials: fullstackCredentials,
+  tracks: fullstackTracks
 };
