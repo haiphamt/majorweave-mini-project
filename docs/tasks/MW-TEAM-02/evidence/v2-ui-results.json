@@ -1,0 +1,78 @@
+{
+  "date": "2026-10-08",
+  "browser": "154.0.4258.62",
+  "baseUrl": "http://127.0.0.1:5174",
+  "isolatedContext": true,
+  "results": [
+    {
+      "name": "Missing goal, invalid hours and all-known reject without saving",
+      "status": "pass"
+    },
+    {
+      "name": "Tuesday cancel/Escape preserve date and restore focus",
+      "status": "pass"
+    },
+    {
+      "name": "Monday confirm creates a persisted v2 plan and stays on roadmap",
+      "status": "pass"
+    },
+    {
+      "name": "Create defaults to a second independent plan on the same track",
+      "status": "pass"
+    },
+    {
+      "name": "Preview cancel is read-only; confirm keeps generation history",
+      "status": "pass"
+    },
+    {
+      "name": "Prerequisite warning, remove/re-add, source and known edits survive draft save/reload",
+      "status": "pass"
+    },
+    {
+      "name": "mobile.android: select, change source, generate, reload",
+      "status": "pass"
+    },
+    {
+      "name": "mobile.ios: select, change source, generate, reload",
+      "status": "pass"
+    },
+    {
+      "name": "mobile.flutter: select, change source, generate, reload",
+      "status": "pass"
+    },
+    {
+      "name": "mobile.react-native: select, change source, generate, reload",
+      "status": "pass"
+    },
+    {
+      "name": "game.unity: select, change source, generate, reload",
+      "status": "pass"
+    },
+    {
+      "name": "game.unreal: select, change source, generate, reload",
+      "status": "pass"
+    },
+    {
+      "name": "game.godot: select, change source, generate, reload",
+      "status": "pass"
+    },
+    {
+      "name": "Mobile layout and Monday dialog fit; keyboard confirmation works",
+      "status": "pass"
+    },
+    {
+      "name": "Save failure blocks edits; retry stores exactly one candidate plan",
+      "status": "pass"
+    },
+    {
+      "name": "Two-tab conflict keeps candidate; discard requires explicit confirmation",
+      "status": "pass"
+    },
+    {
+      "name": "No obsolete controls, drawer links, v1 redirect or browser errors",
+      "status": "pass"
+    }
+  ],
+  "errors": [],
+  "scope": "MyRoadmap v2; completion/MyPlan/migration remain integration work."
+}

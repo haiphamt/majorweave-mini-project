@@ -1,0 +1,107 @@
+- heading "MW-TEAM-01 / kiểm thử feedback" [level=1]
+- paragraph: "Storage: IndexedDB. Database thử: majorweave-mw01-feedback-4671b346-54ed-4093-b708-6e58f60731b2 Không dùng dữ liệu app chính."
+- button "Cho lần ghi tiếp theo lỗi"
+- button "Giữ lần ghi tiếp theo"
+- button "Cho phép ghi tiếp tục"
+- button "Đọc dữ liệu đã lưu" [active]
+- button "Đổi revision từ writer khác"
+- button "Thử retry đã hủy"
+- generic: "{\"storage\":\"IndexedDB\",\"status\":\"ready\",\"pending\":false,\"revision\":12,\"done\":2,\"history\":1,\"writes\":1,\"tick\":1}"
+- generic: "{\"storage\":\"IndexedDB\",\"revision\":12,\"done\":2,\"history\":1,\"taskStatus\":[\"todo\",\"done\",\"done\",\"todo\",\"todo\",\"todo\",\"todo\",\"todo\",\"todo\",\"todo\",\"todo\",\"todo\",\"todo\",\"todo\",\"todo\",\"todo\",\"todo\",\"todo\",\"todo\",\"todo\",\"todo\",\"todo\",\"todo\",\"todo\",\"todo\",\"todo\",\"todo\",\"todo\",\"todo\",\"todo\",\"todo\",\"todo\",\"todo\",\"todo\",\"todo\",\"todo\",\"todo\",\"todo\",\"todo\"],\"displayName\":\"External writer\"}"
+- status: NO_PENDING_SAVE
+- text: Kế hoạch đang xem
+- combobox "Kế hoạch đang xem":
+  - option "Chọn kế hoạch" [disabled]
+  - option "Node.js / Express — MW01 feedback test · backend.node" [selected]
+- generic: MY PLAN / backend.node
+- heading "Make room for progress." [level=1]:
+  - text: Make room
+  - emphasis: for progress.
+- paragraph: MW01 feedback test
+- text: Phiên bản kế hoạch
+- combobox "Phiên bản kế hoạch":
+  - option "Hiện tại · 2026-10-09T12:56:10.747Z" [selected]
+  - option "Lịch sử · 2026-10-09T12:56:10.743Z · backend.node"
+- navigation "Chế độ xem kế hoạch":
+  - button "Plan" [pressed]
+  - button "Stats"
+  - button "Weeks"
+- generic: Node.js / Express — MW01 feedback test
+- strong:
+  - text: "2"
+  - generic: / 39 việc
+- generic: 5% hoàn thành · 150/3270 phút dự kiến
+- complementary:
+  - text: ONE WEEK AT A TIME
+  - button "Tuần 1 Mở" [pressed]:
+    - strong: Tuần 1
+    - generic: Mở
+  - button "Tuần 2 Mở":
+    - strong: Tuần 2
+    - generic: Mở
+  - button "Tuần 3 Mở":
+    - strong: Tuần 3
+    - generic: Mở
+  - button "Tuần 4 Mở":
+    - strong: Tuần 4
+    - generic: Mở
+  - button "Tuần 5 Mở":
+    - strong: Tuần 5
+    - generic: Mở
+  - button "Tuần 6 Mở":
+    - strong: Tuần 6
+    - generic: Mở
+  - button "Tuần 7 Mở":
+    - strong: Tuần 7
+    - generic: Mở
+  - button "Tuần 8 Mở":
+    - strong: Tuần 8
+    - generic: Mở
+  - button "Tuần 9 Mở":
+    - strong: Tuần 9
+    - generic: Mở
+  - button "Tuần 10 Mở":
+    - strong: Tuần 10
+    - generic: Mở
+  - button "Tuần 11 Mở":
+    - strong: Tuần 11
+    - generic: Mở
+  - button "Tuần 12 Mở":
+    - strong: Tuần 12
+    - generic: Mở
+  - button "Backlog"
+- heading "Tuần 1." [level=2]
+- generic: 2/2 việc đã xong
+- generic: 150 phút / 300 phút
+- article:
+  - 'checkbox "Hoàn thành: Thực hành Promise và async / await" [checked]'
+  - generic: JavaScript foundations
+  - generic: 90 phút
+  - heading "Thực hành Promise và async / await" [level=3]
+  - list:
+    - listitem: Viết được chương trình nhỏ và sử dụng Promise / async-await.
+  - link "F8 · JavaScript cơ bản":
+    - /url: https://f8.edu.vn/courses/javascript-co-ban
+    - text: F8 · JavaScript cơ bản
+  - paragraph: "Hoàn thành: 2026-10-09 · Asia/Ho_Chi_Minh"
+  - 'button "Sửa: Thực hành Promise và async / await"':
+    - text: Sửa
+  - 'button "Backlog: Thực hành Promise và async / await"': Đưa vào backlog
+- article:
+  - 'checkbox "Hoàn thành: Làm bài tập xử lý danh sách công việc" [checked]'
+  - generic: JavaScript foundations
+  - generic: 60 phút
+  - heading "Làm bài tập xử lý danh sách công việc" [level=3]
+  - list:
+    - listitem: Viết được chương trình nhỏ và sử dụng Promise / async-await.
+  - link "F8 · JavaScript cơ bản":
+    - /url: https://f8.edu.vn/courses/javascript-co-ban
+    - text: F8 · JavaScript cơ bản
+  - paragraph: "Hoàn thành: 2026-10-09 · Asia/Ho_Chi_Minh"
+  - 'button "Sửa: Làm bài tập xử lý danh sách công việc"':
+    - text: Sửa
+  - 'button "Backlog: Làm bài tập xử lý danh sách công việc"': Đưa vào backlog
+- button "Thêm việc":
+  - text: Thêm việc
+- button "Chốt tuần"
+- status: Đã bỏ thay đổi chưa lưu; giữ dữ liệu đã lưu

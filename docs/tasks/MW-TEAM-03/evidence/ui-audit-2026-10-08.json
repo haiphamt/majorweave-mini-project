@@ -1,0 +1,701 @@
+{
+  "codeSha": "1ce77b1491d09c2134fe4cd9ebf652fe3b7582fc",
+  "origin": "http://127.0.0.1:5194",
+  "viewports": [
+    {
+      "controls": [
+        {
+          "label": "Tìm hướng học",
+          "tag": "INPUT",
+          "type": null
+        },
+        {
+          "label": "Nhóm hướng học",
+          "tag": "SELECT",
+          "type": null
+        },
+        {
+          "label": "",
+          "tag": "INPUT",
+          "type": "checkbox"
+        },
+        {
+          "label": "Xem tổng quan ",
+          "tag": "BUTTON",
+          "type": null
+        },
+        {
+          "label": "Xem tổng quan ",
+          "tag": "BUTTON",
+          "type": null
+        },
+        {
+          "label": "Xem tổng quan ",
+          "tag": "BUTTON",
+          "type": null
+        },
+        {
+          "label": "Xem tổng quan ",
+          "tag": "BUTTON",
+          "type": null
+        },
+        {
+          "label": "Xem tổng quan ",
+          "tag": "BUTTON",
+          "type": null
+        },
+        {
+          "label": "Xem tổng quan ",
+          "tag": "BUTTON",
+          "type": null
+        },
+        {
+          "label": "Xem tổng quan ",
+          "tag": "BUTTON",
+          "type": null
+        },
+        {
+          "label": "Xem tổng quan ",
+          "tag": "BUTTON",
+          "type": null
+        },
+        {
+          "label": "Xem tổng quan ",
+          "tag": "BUTTON",
+          "type": null
+        },
+        {
+          "label": "Xem tổng quan ",
+          "tag": "BUTTON",
+          "type": null
+        },
+        {
+          "label": "Xem tổng quan ",
+          "tag": "BUTTON",
+          "type": null
+        },
+        {
+          "label": "Xem tổng quan ",
+          "tag": "BUTTON",
+          "type": null
+        },
+        {
+          "label": "Xem tổng quan ",
+          "tag": "BUTTON",
+          "type": null
+        },
+        {
+          "label": "Xem tổng quan ",
+          "tag": "BUTTON",
+          "type": null
+        },
+        {
+          "label": "Xem tổng quan ",
+          "tag": "BUTTON",
+          "type": null
+        }
+      ],
+      "headings": [
+        "One major.Many possible paths.",
+        "Find your direction."
+      ],
+      "scrollWidth": 1425,
+      "url": "http://127.0.0.1:5194/#/explore",
+      "width": 1440
+    },
+    {
+      "controls": [
+        {
+          "label": "Roadmap15",
+          "tag": "BUTTON",
+          "type": null
+        },
+        {
+          "label": "Nguồn học26",
+          "tag": "BUTTON",
+          "type": null
+        },
+        {
+          "label": "Chứng nhận6",
+          "tag": "BUTTON",
+          "type": null
+        },
+        {
+          "label": "JavaScript foundationsĐã biếtHàm, mảng, đối tượng và xử lý bất đồng bộ",
+          "tag": "BUTTON",
+          "type": null
+        },
+        {
+          "label": "02Object-Oriented ProgrammingNhập môn class, đối tượng, đóng gói và tr",
+          "tag": "BUTTON",
+          "type": null
+        },
+        {
+          "label": "03Data Structures & AlgorithmsNhập môn Big O, mảng, hash map, stack / ",
+          "tag": "BUTTON",
+          "type": null
+        },
+        {
+          "label": "04Git & your workspaceLưu thay đổi và tổ chức dự án từ bước đầu tiên.F",
+          "tag": "BUTTON",
+          "type": null
+        },
+        {
+          "label": "05Computer NetworkingNhập môn IP, DNS, port, TCP và TLS trong một lần ",
+          "tag": "BUTTON",
+          "type": null
+        },
+        {
+          "label": "06Operating Systems & LinuxNhập môn process, thread, memory, file và q",
+          "tag": "BUTTON",
+          "type": null
+        },
+        {
+          "label": "07Computer Systems · first principlesCác lớp của hệ thống: chương trìn",
+          "tag": "BUTTON",
+          "type": null
+        },
+        {
+          "label": "08HTTP & the webRequest, response, method và status code.FOUNDATION3 n",
+          "tag": "BUTTON",
+          "type": null
+        },
+        {
+          "label": "09Node.js essentialsChạy JavaScript phía máy chủ, module và npm.BUILD5",
+          "tag": "BUTTON",
+          "type": null
+        },
+        {
+          "label": "10Build your first APIRouting, middleware và API thêm, sửa, xóa.BUILD6",
+          "tag": "BUTTON",
+          "type": null
+        },
+        {
+          "label": "11SQL & data persistenceBảng, truy vấn và lưu dữ liệu của ứng dụng.BUI",
+          "tag": "BUTTON",
+          "type": null
+        },
+        {
+          "label": "12Authentication & safetyĐăng nhập, quyền truy cập và các lỗi thường g",
+          "tag": "BUTTON",
+          "type": null
+        },
+        {
+          "label": "13Test what you buildKiểm tra trường hợp đúng, sai và dữ liệu thiếu.SH",
+          "tag": "BUTTON",
+          "type": null
+        },
+        {
+          "label": "14Ship a small projectCấu hình, đưa ứng dụng lên mạng và viết README.S",
+          "tag": "BUTTON",
+          "type": null
+        },
+        {
+          "label": "15System Design · next stepsChọn thêmMở rộng sau API đầu tiên: cache, ",
+          "tag": "BUTTON",
+          "type": null
+        }
+      ],
+      "headings": [
+        "Backend Developer.",
+        "Một hướng. Ba cách bắt đầu.",
+        "Roadmap tham khảo",
+        "A small API.A real first step."
+      ],
+      "scrollWidth": 1425,
+      "url": "http://127.0.0.1:5194/#/path",
+      "width": 1440
+    },
+    {
+      "controls": [
+        {
+          "label": "",
+          "tag": "INPUT",
+          "type": "checkbox"
+        },
+        {
+          "label": "Nguồn học cho Authentication & safety",
+          "tag": "SELECT",
+          "type": null
+        },
+        {
+          "label": "Test what you build",
+          "tag": "BUTTON",
+          "type": null
+        },
+        {
+          "label": "Đưa Test what you build lên",
+          "tag": "BUTTON",
+          "type": null
+        },
+        {
+          "label": "Đưa Test what you build xuống",
+          "tag": "BUTTON",
+          "type": null
+        },
+        {
+          "label": "Bỏ Test what you build",
+          "tag": "BUTTON",
+          "type": null
+        },
+        {
+          "label": "",
+          "tag": "INPUT",
+          "type": "checkbox"
+        },
+        {
+          "label": "Nguồn học cho Test what you build",
+          "tag": "SELECT",
+          "type": null
+        },
+        {
+          "label": "Ship a small project",
+          "tag": "BUTTON",
+          "type": null
+        },
+        {
+          "label": "Đưa Ship a small project lên",
+          "tag": "BUTTON",
+          "type": null
+        },
+        {
+          "label": "Đưa Ship a small project xuống",
+          "tag": "BUTTON",
+          "type": null
+        },
+        {
+          "label": "Bỏ Ship a small project",
+          "tag": "BUTTON",
+          "type": null
+        },
+        {
+          "label": "",
+          "tag": "INPUT",
+          "type": "checkbox"
+        },
+        {
+          "label": "Nguồn học cho Ship a small project",
+          "tag": "SELECT",
+          "type": null
+        },
+        {
+          "label": "",
+          "tag": "INPUT",
+          "type": null
+        },
+        {
+          "label": "Số giờ học mỗi tuần",
+          "tag": "INPUT",
+          "type": "range"
+        },
+        {
+          "label": "",
+          "tag": "INPUT",
+          "type": "date"
+        },
+        {
+          "label": "Tạo kế hoạch của tôi ",
+          "tag": "BUTTON",
+          "type": null
+        }
+      ],
+      "headings": [
+        "Your path.Your pace.",
+        "Small steps, in order.",
+        "Turn curiosityinto a habit."
+      ],
+      "scrollWidth": 1425,
+      "url": "http://127.0.0.1:5194/#/roadmap",
+      "width": 1440
+    },
+    {
+      "controls": [
+        {
+          "label": " Về bản thử này",
+          "tag": "BUTTON",
+          "type": null
+        }
+      ],
+      "headings": [
+        "A little roomfor progress."
+      ],
+      "scrollWidth": 1440,
+      "url": "http://127.0.0.1:5194/#/plan",
+      "width": 1440
+    },
+    {
+      "controls": [
+        {
+          "label": "Thứ Năm, 24/09/2026: 0 việc hoàn thành",
+          "tag": "BUTTON",
+          "type": "button"
+        },
+        {
+          "label": "Thứ Sáu, 25/09/2026: 0 việc hoàn thành",
+          "tag": "BUTTON",
+          "type": "button"
+        },
+        {
+          "label": "Thứ Bảy, 26/09/2026: 0 việc hoàn thành",
+          "tag": "BUTTON",
+          "type": "button"
+        },
+        {
+          "label": "Chủ Nhật, 27/09/2026: 0 việc hoàn thành",
+          "tag": "BUTTON",
+          "type": "button"
+        },
+        {
+          "label": "Thứ Hai, 28/09/2026: 0 việc hoàn thành",
+          "tag": "BUTTON",
+          "type": "button"
+        },
+        {
+          "label": "Thứ Ba, 29/09/2026: 0 việc hoàn thành",
+          "tag": "BUTTON",
+          "type": "button"
+        },
+        {
+          "label": "Thứ Tư, 30/09/2026: 0 việc hoàn thành",
+          "tag": "BUTTON",
+          "type": "button"
+        },
+        {
+          "label": "Thứ Năm, 01/10/2026: 0 việc hoàn thành",
+          "tag": "BUTTON",
+          "type": "button"
+        },
+        {
+          "label": "Thứ Sáu, 02/10/2026: 0 việc hoàn thành",
+          "tag": "BUTTON",
+          "type": "button"
+        },
+        {
+          "label": "Thứ Bảy, 03/10/2026: 0 việc hoàn thành",
+          "tag": "BUTTON",
+          "type": "button"
+        },
+        {
+          "label": "Chủ Nhật, 04/10/2026: 0 việc hoàn thành",
+          "tag": "BUTTON",
+          "type": "button"
+        },
+        {
+          "label": "Thứ Hai, 05/10/2026: 0 việc hoàn thành",
+          "tag": "BUTTON",
+          "type": "button"
+        },
+        {
+          "label": "Thứ Ba, 06/10/2026: 0 việc hoàn thành",
+          "tag": "BUTTON",
+          "type": "button"
+        },
+        {
+          "label": "Thứ Tư, 07/10/2026: 0 việc hoàn thành",
+          "tag": "BUTTON",
+          "type": "button"
+        },
+        {
+          "label": "Thứ Năm, 08/10/2026: 0 việc hoàn thành",
+          "tag": "BUTTON",
+          "type": "button"
+        },
+        {
+          "label": "Thứ Sáu, 09/10/2026: ngày sắp tới",
+          "tag": "BUTTON",
+          "type": "button"
+        },
+        {
+          "label": "Thứ Bảy, 10/10/2026: ngày sắp tới",
+          "tag": "BUTTON",
+          "type": "button"
+        },
+        {
+          "label": "Chủ Nhật, 11/10/2026: ngày sắp tới",
+          "tag": "BUTTON",
+          "type": "button"
+        }
+      ],
+      "headings": [
+        "Your learningrhythm.",
+        "Hồ sơ học tập",
+        "Đang khám phá",
+        "Nhịp học của bạn."
+      ],
+      "scrollWidth": 1425,
+      "url": "http://127.0.0.1:5194/#/profile",
+      "width": 1440
+    },
+    {
+      "headings": [
+        "One major.Many possible paths."
+      ],
+      "nav": [
+        {
+          "rect": {
+            "width": 64.53125,
+            "x": 18
+          },
+          "text": "ExploreKhám phá hướng học01"
+        },
+        {
+          "rect": {
+            "width": 64.53125,
+            "x": 86.53125
+          },
+          "text": "Path detailKỹ năng & nguồn học02"
+        },
+        {
+          "rect": {
+            "width": 64.53125,
+            "x": 155.0625
+          },
+          "text": "My roadmapLộ trình của bạn03"
+        },
+        {
+          "rect": {
+            "width": 64.53125,
+            "x": 223.59375
+          },
+          "text": "My planMột tuần một bước04"
+        },
+        {
+          "rect": {
+            "width": 64.54167175292969,
+            "x": 292.125
+          },
+          "text": "ProfileHồ sơ & nhịp học05"
+        }
+      ],
+      "scrollWidth": 375,
+      "url": "http://127.0.0.1:5194/#/explore",
+      "width": 390
+    },
+    {
+      "headings": [
+        "Backend Developer."
+      ],
+      "nav": [
+        {
+          "rect": {
+            "width": 64.53125,
+            "x": 18
+          },
+          "text": "ExploreKhám phá hướng học01"
+        },
+        {
+          "rect": {
+            "width": 64.53125,
+            "x": 86.53125
+          },
+          "text": "Path detailKỹ năng & nguồn học02"
+        },
+        {
+          "rect": {
+            "width": 64.53125,
+            "x": 155.0625
+          },
+          "text": "My roadmapLộ trình của bạn03"
+        },
+        {
+          "rect": {
+            "width": 64.53125,
+            "x": 223.59375
+          },
+          "text": "My planMột tuần một bước04"
+        },
+        {
+          "rect": {
+            "width": 64.54167175292969,
+            "x": 292.125
+          },
+          "text": "ProfileHồ sơ & nhịp học05"
+        }
+      ],
+      "scrollWidth": 375,
+      "url": "http://127.0.0.1:5194/#/path",
+      "width": 390
+    },
+    {
+      "headings": [
+        "Your path.Your pace."
+      ],
+      "nav": [
+        {
+          "rect": {
+            "width": 64.53125,
+            "x": 18
+          },
+          "text": "ExploreKhám phá hướng học01"
+        },
+        {
+          "rect": {
+            "width": 64.53125,
+            "x": 86.53125
+          },
+          "text": "Path detailKỹ năng & nguồn học02"
+        },
+        {
+          "rect": {
+            "width": 64.53125,
+            "x": 155.0625
+          },
+          "text": "My roadmapLộ trình của bạn03"
+        },
+        {
+          "rect": {
+            "width": 64.53125,
+            "x": 223.59375
+          },
+          "text": "My planMột tuần một bước04"
+        },
+        {
+          "rect": {
+            "width": 64.54167175292969,
+            "x": 292.125
+          },
+          "text": "ProfileHồ sơ & nhịp học05"
+        }
+      ],
+      "scrollWidth": 375,
+      "url": "http://127.0.0.1:5194/#/roadmap",
+      "width": 390
+    },
+    {
+      "headings": [
+        "A little roomfor progress."
+      ],
+      "nav": [
+        {
+          "rect": {
+            "width": 64.53125,
+            "x": 18
+          },
+          "text": "ExploreKhám phá hướng học01"
+        },
+        {
+          "rect": {
+            "width": 64.53125,
+            "x": 86.53125
+          },
+          "text": "Path detailKỹ năng & nguồn học02"
+        },
+        {
+          "rect": {
+            "width": 64.53125,
+            "x": 155.0625
+          },
+          "text": "My roadmapLộ trình của bạn03"
+        },
+        {
+          "rect": {
+            "width": 64.53125,
+            "x": 223.59375
+          },
+          "text": "My planMột tuần một bước04"
+        },
+        {
+          "rect": {
+            "width": 64.54167175292969,
+            "x": 292.125
+          },
+          "text": "ProfileHồ sơ & nhịp học05"
+        }
+      ],
+      "scrollWidth": 375,
+      "url": "http://127.0.0.1:5194/#/plan",
+      "width": 390
+    },
+    {
+      "headings": [
+        "Your learningrhythm."
+      ],
+      "nav": [
+        {
+          "rect": {
+            "width": 64.53125,
+            "x": 18
+          },
+          "text": "ExploreKhám phá hướng học01"
+        },
+        {
+          "rect": {
+            "width": 64.53125,
+            "x": 86.53125
+          },
+          "text": "Path detailKỹ năng & nguồn học02"
+        },
+        {
+          "rect": {
+            "width": 64.53125,
+            "x": 155.0625
+          },
+          "text": "My roadmapLộ trình của bạn03"
+        },
+        {
+          "rect": {
+            "width": 64.53125,
+            "x": 223.59375
+          },
+          "text": "My planMột tuần một bước04"
+        },
+        {
+          "rect": {
+            "width": 64.54167175292969,
+            "x": 292.125
+          },
+          "text": "ProfileHồ sơ & nhịp học05"
+        }
+      ],
+      "scrollWidth": 375,
+      "url": "http://127.0.0.1:5194/#/profile",
+      "width": 390
+    }
+  ],
+  "interactions": [
+    {
+      "case": "app-v1-done-reload",
+      "checked": ""
+    },
+    {
+      "case": "fixture-empty",
+      "expectedVisible": true
+    },
+    {
+      "case": "fixture-loading",
+      "expectedVisible": true
+    },
+    {
+      "case": "fixture-load-error",
+      "expectedVisible": true
+    },
+    {
+      "case": "fixture-archived",
+      "expectedVisible": true
+    },
+    {
+      "case": "fixture-normal",
+      "expectedVisible": true
+    },
+    {
+      "case": "fixture-add-retry",
+      "count": 1
+    },
+    {
+      "case": "week 1 -> blank -> 2 retains Tuesday",
+      "result": "PASS; Cần làm · Thứ Ba; Saves: 2"
+    },
+    {
+      "case": "close preview cancel",
+      "result": "PASS; week 2 remains open; Saves: 2"
+    },
+    {
+      "case": "app v1 done reload",
+      "result": "PASS; first task checkbox checked after reload"
+    }
+  ],
+  "limitations": [
+    "No v2 persistence integration",
+    "Keyboard sample, not complete accessibility audit"
+  ]
+}

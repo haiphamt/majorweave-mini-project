@@ -1,0 +1,13 @@
+<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>MW-TEAM-05 — Content QA</title></head><body>
+<h1>MW-TEAM-05 — 10 track nội dung</h1>
+<p>Trang QA độc lập với registry app chính. Core stages lấy từ backendPack. Bài/tiên quyết chờ reviewer; nguồn đã mở không đồng nghĩa đã học xong lab.</p>
+<p><label for="track">Track</label> <select id="track"></select> <label for="hours">Giờ/tuần</label> <select id="hours"><option value="2">2</option><option value="20">20</option></select> <button id="preview" type="button">Xem các chặng</button></p>
+<div id="stages"></div>
+<button id="generate" type="button">Tạo preview kế hoạch (không lưu)</button>
+<pre id="plan" aria-live="polite">Chưa tạo preview.</pre>
+<hr>
+<p>Kiểm native: 10 track × tạo plan → lưu QA → ghi một completion fixture → reload → export/parse. Không dùng UI progress/controller app chính; không chứng minh toàn hành trình app đã tích hợp.</p>
+<button id="run" type="button">Chạy 10 track trên DB QA</button>
+<pre id="output" aria-live="polite">Chưa chạy.</pre>
+<script type="module" src="./content-preview.ts"></script>
+</body></html>

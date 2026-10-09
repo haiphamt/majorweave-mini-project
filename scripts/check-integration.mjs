@@ -1,0 +1,37 @@
+import assert from 'node:assert/strict';
+import {randomUUID} from 'node:crypto';
+import {build} from 'esbuild';
+const b=await build({stdin:{contents:"export {contentPacks} from './src/content';export * from './src/app/workspace-controller';export * from './src/persistence/roadmap-store';export * from './src/persistence/migration-preview';export {backendPack,legacyStageMap} from './src/content/paths/backend';export * from './src/domain/validate';export * from './src/domain/progress';export * from './src/domain/activity';",resolveDir:process.cwd()},bundle:true,platform:'node',format:'esm',write:false});
+const api=await import('data:text/javascript;base64,'+Buffer.from(b.outputFiles[0].text).toString('base64'));
+const {contentPacks,createWorkspaceController,emptyWorkspace,validateWorkspace,setTaskCompletion,previewLegacyV1,backendPack,legacyStageMap,summarizeActivity}=api;
+const ok=r=>{assert.equal(r.ok,true,r.ok?'':JSON.stringify(r));return r.value;};
+let disk=emptyWorkspace('Asia/Bangkok'),fail=false;
+const rawFixture=()=>{const stage=backendPack.stages.find(s=>s.id===legacyStageMap.node.js),work=stage.work[0];return JSON.stringify({version:1,stack:'node',profileName:'QA',major:'software',browseFaculty:'all',level:'basic',preferFree:true,language:'all',selected:['js'],known:[],sourceByModule:{js:stage.defaultResourceId.replace('resource.','')},goal:'Draft',hours:5,startDate:'2026-10-05',credentials:[],planMeta:{stack:'node',goal:'Legacy QA',hours:5,startDate:'2026-10-05'},tasks:[{id:'js-0',moduleId:'js',title:work.title,minutes:work.minutes,sourceId:stage.defaultResourceId.replace('resource.',''),week:0,completed:true,notes:'Old'}]});};
+const raw=rawFixture();
+const options={packs:contentPacks,persistence:{loadWorkspace:async()=>({ok:true,value:structuredClone(disk)}),saveWorkspace:async(next,revision)=>{if(fail){fail=false;return {ok:false,code:'storage',issues:[{code:'QA_FAILURE',field:'workspace',message:'Injected'}]};}assert.equal(revision,disk.revision);ok(validateWorkspace(next));disk=structuredClone({...next,revision:revision+1});return {ok:true,value:structuredClone(disk)};}},readLegacy:()=>raw,now:()=> '2026-10-09T04:00:00Z',today:()=> '2026-10-09',nextId:randomUUID};
+const controller=createWorkspaceController(options);ok(await controller.initialize());
+assert.equal(contentPacks.length,18);assert.equal(contentPacks.flatMap(p=>p.tracks).length,50);
+for(const t of contentPacks.flatMap(p=>p.tracks)){
+  ok(controller.selectTrack(t.id));ok(controller.updateDraft(t.id,{goal:`Integration ${t.id}`,startDate:'2026-10-05'}));
+  const plan=ok(await controller.createPlan(t.id));const expected=controller.getSnapshot().workspace.plans.find(p=>p.id===plan.id);
+  const done=ok(setTaskCompletion(expected,expected.current.tasks[0].id,true,{now:'2026-10-09T04:00:00Z',today:'2026-10-09',timeZone:'Asia/Bangkok',nextCompletionId:randomUUID}));
+  ok(await controller.savePlan(done,expected));ok(await controller.reloadWorkspace());
+  assert.equal(controller.getSnapshot().workspace.plans.find(p=>p.id===plan.id).current.tasks[0].status,'done');
+}
+assert.equal(summarizeActivity(disk.plans).completedTasks,50);console.log('PASS 50/50 tracks through shared controller create/done/reload with semantic validation (RAM port)');
+const profile=ok(await controller.saveProfile({displayName:'Integration QA',majorId:'software',timeZone:'Asia/Tokyo'}));assert.equal(profile.profile.timeZone,'Asia/Tokyo');
+assert.equal(summarizeActivity(profile.plans).days[0].date,'2026-10-09');
+const backup=ok(controller.exportBackupFile());assert.equal(backup.containsUnsavedChanges,false);
+const before=disk.revision;ok(await controller.prepareImport(backup.json,{}));ok(controller.cancelTransfer());assert.equal(disk.revision,before);
+ok(await controller.prepareImport(backup.json,{}));ok(await controller.confirmTransfer());assert.equal(disk.revision,before);
+const sourceId=disk.plans[0].id;ok(await controller.prepareImport(backup.json,{planActions:{[sourceId]:'copy'}}));
+assert.equal((await controller.saveProfile(disk.profile)).ok,false,'Preview must lock competing writes');
+fail=true;assert.equal((await controller.confirmTransfer()).ok,false);assert.ok(controller.getSnapshot().transfer);assert.equal(disk.plans.length,50);
+ok(await controller.confirmTransfer());assert.equal(disk.plans.length,51);
+console.log('PASS profile/timezone, backup skip/cancel/copy, preview locks and failed-confirm retry');
+const beforeMigration=disk.revision;ok(await controller.prepareMigration({mode:'append',importDraft:false,importCredentials:false}));ok(controller.cancelTransfer());assert.equal(disk.revision,beforeMigration);
+ok(await controller.prepareMigration({mode:'append',importDraft:false,importCredentials:false}));ok(await controller.confirmTransfer());assert.equal(disk.plans.length,52);
+assert.equal(ok(await controller.prepareMigration({mode:'append'})).kind,'already-imported');assert.equal(controller.getLegacyRaw().value,raw);
+const stage=backendPack.stages.find(s=>s.id===legacyStageMap.node.js);const template=structuredClone(stage.work[0]);
+const preview=ok(await previewLegacyV1(raw,{now:options.now(),timeZone:'Asia/Bangkok',nextId:randomUUID}));preview.plan.current.tasks[0].acceptance.push('Output only');assert.deepEqual(stage.work[0],template);
+console.log('PASS migration cancel/confirm/idempotence/source preservation and detached preview acceptance');

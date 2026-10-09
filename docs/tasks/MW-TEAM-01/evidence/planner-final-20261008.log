@@ -1,0 +1,85 @@
+
+=== MW-TEAM-02 Test Script ===
+
+--- Section 1: isValidDate va isMonday ---
+  PASS: 2026-10-05 la ngay hop le
+  PASS: 2024-02-30 khong hop le (rollover)
+  PASS: 2024-13-01 khong hop le (thang 13)
+  PASS: khong dung format khong hop le
+  PASS: 2026-10-05 la Thu Hai
+  PASS: 2026-10-06 khong phai Thu Hai
+
+--- Section 2: validateDraft ---
+  PASS: Draft hop le khong co issue
+  PASS: hoursPerWeek = 1 -> INVALID_HOURS_PER_WEEK
+  PASS: hoursPerWeek = 21 -> INVALID_HOURS_PER_WEEK
+  PASS: hoursPerWeek = 2 hop le
+  PASS: hoursPerWeek = 20 hop le
+  PASS: startDate khong that -> INVALID_START_DATE
+  PASS: startDate la Thu Ba -> START_DATE_NOT_MONDAY
+  PASS: selectedStageIds rong -> NO_STAGES_SELECTED
+  PASS: ID khong ton tai -> UNKNOWN_STAGE_ID
+  PASS: chon B ma khong chon A -> MISSING_PREREQUISITE
+  PASS: chon B nhung da biet A -> hop le
+  PASS: tat ca da biet -> NOTHING_TO_PLAN
+  PASS: goal rong -> MISSING_GOAL
+  PASS: Thu tu dao nguoc [B, A] -> INVALID_STAGE_ORDER
+  PASS: Chon trung [A, A, B] -> DUPLICATE_STAGE_SELECTION
+  PASS: Chon nguon r2 khong thuoc chang A -> RESOURCE_NOT_IN_STAGE
+
+--- Section 3: generatePlan invariants ---
+  PASS: generatePlan tra ok: true voi draft hop le
+  PASS: Tong phut tasks bang tong phut tat ca work
+  PASS: Doan <= 120 phut (work 200 phut bi chia)
+  PASS: work 200 phut tao ra 2 chunks voi segment dung
+  PASS: work <= 120 phut -> segment = null
+  PASS: hoursPerWeek = 20 -> tat ca task vao tuan 0
+  PASS: dayIndex luon la null
+  PASS: Thu tu task: stage A truoc B
+  PASS: Tat ca task status = todo
+  PASS: generatePlan that bai voi draft loi -> ok: false
+  PASS: Plan.history = [] khi moi tao
+
+--- Section 4: regeneratePlan ---
+  PASS: regeneratePlan giu task ID neu workId/revision/segment khop
+  PASS: regeneratePlan day oldPlan.current vao history
+  PASS: regeneratePlan giu status/completionId/notes cua task da khop
+  PASS: regeneratePlan dua customized task vao backlog
+  PASS: regeneratePlan that bai voi draft loi
+  PASS: regeneratePlan khong mutate plan cu (pure function)
+  PASS: generatePlan va regeneratePlan tao snapshot doc lap cho selectedStageIds/knownStageIds
+
+--- Section 5: Cau truc noi dung Mobile ---
+  PASS: mobilePack schemaVersion = 1
+  PASS: mobilePack co 4 tracks
+  PASS: Co track mobile.android
+  PASS: Co track mobile.ios
+  PASS: Co track mobile.flutter
+  PASS: Co track mobile.react-native
+  PASS: Moi stageId trong track ton tai trong stages
+  PASS: Moi defaultResourceId thuoc resourceIds
+  PASS: Moi resourceId ton tai trong resources
+  PASS: Moi prerequisite cua stage ton tai
+  PASS: Prerequisite xep truoc trong moi track mobile
+  PASS: Moi work co minutes > 0 va revision > 0
+  PASS: Moi resource URL dung https
+  PASS: Moi track co portfolio va roadmapLinks
+  PASS: generatePlan chay duoc voi mobile.android (2 chang dau khong tien quyet)
+
+--- Section 6: Cau truc noi dung Game ---
+  PASS: gamePack schemaVersion = 1
+  PASS: gamePack co 3 tracks
+  PASS: Co track game.unity
+  PASS: Co track game.unreal
+  PASS: Co track game.godot
+  PASS: Moi stageId trong track ton tai
+  PASS: Moi defaultResourceId thuoc resourceIds
+  PASS: Moi resourceId ton tai trong resources
+  PASS: Moi prerequisite cua stage ton tai
+  PASS: Prerequisite xep truoc trong moi track game
+  PASS: Moi work co minutes > 0 va revision > 0
+  PASS: Moi resource URL dung https
+  PASS: Moi track co portfolio va roadmapLinks
+  PASS: generatePlan chay duoc voi game.godot (git + gdscript)
+
+=== Ket qua: 69 PASS, 0 FAIL ===

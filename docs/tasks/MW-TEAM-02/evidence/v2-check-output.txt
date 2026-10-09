@@ -1,0 +1,22 @@
+npm notice run majorweave-prototype@0.1.0 check
+npm notice run node scripts/check-project.mjs
+PASS: 3 registered content pack(s), 29 modules; content references, prerequisites, storage/CSS boundaries and import cycles checked.
+PASS: legacy save uses the existing key and returns failure without mutating input when storage throws.
+PASS: 3 Backend tracks, 15 stages/track; 35 shared/contextual stages, 40 resources, 8 credential goals; prerequisites, source applicability and legacy maps checked.
+PASS Initialize once and do not save defaults
+PASS Concurrent reload is rejected before it can overwrite later edits
+PASS Ten registered tracks generate independent plans
+PASS Explore another track does not change profile or active plan
+PASS Invalid draft returns issues without storage writes
+PASS Checkbox selection order is normalized to curriculum order
+PASS Preview and cancel do not save or change current generation
+PASS Confirmation ignores caller tampering and preserves old history
+PASS Draft edit invalidates previous regeneration preview
+PASS Storage failure keeps proposed plan; retry creates exactly one plan
+PASS Pending save blocks edits and double submit; no early activation
+PASS Revision conflict preserves proposed data and does not overwrite disk
+PASS Selecting a plan persists its ID; reload keeps all plans and drafts
+PASS Exposed snapshots cannot be mutated by feature code
+PASS Resolver fails on missing references, not partial success
+PASS Bootstrap persistence rejects malformed/future workspace
+16 context checks passed

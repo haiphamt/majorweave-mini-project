@@ -1,0 +1,22 @@
+PASS TC-R01 customized duration preserves segment and completion through JSON round trip
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: {"ok":false,"code":"validation","issues":[{"code":"missing_prerequisite","field":"workspace.drafts.analyst.spreadsheet","message":"Thiếu tiên quyết data.quality."}]}
+
+false !== true
+
+    at valid (file:///C:/Users/hhieu/Desktop/dev%20web/codex/majorweave-mini-project/scripts/tasks/MW-TEAM-04.mjs:43:91)
+    at file:///C:/Users/hhieu/Desktop/dev%20web/codex/majorweave-mini-project/scripts/tasks/MW-TEAM-04.mjs:87:3
+    at test (file:///C:/Users/hhieu/Desktop/dev%20web/codex/majorweave-mini-project/scripts/tasks/MW-TEAM-04.mjs:23:28)
+    at file:///C:/Users/hhieu/Desktop/dev%20web/codex/majorweave-mini-project/scripts/tasks/MW-TEAM-04.mjs:81:1 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.14.1

@@ -1,0 +1,144 @@
+{
+  "date": "2026-10-08",
+  "baseUrl": "http://127.0.0.1:5173",
+  "surface": "isolated Codex in-app browser",
+  "results": [
+    {
+      "track": "frontend.angular",
+      "source": "resource.fe.html-freecodecamp",
+      "created": true,
+      "completed": true,
+      "reloaded": true,
+      "cancelKeepsOldSource": true,
+      "emptyFilterKeepsSelection": true
+    },
+    {
+      "track": "backend.node",
+      "chosenSource": "https://www.freecodecamp.org/learn/",
+      "created": true,
+      "completed": true,
+      "reloaded": true,
+      "selectedPlan": "Node.js / Express — API quản lý công việc · backend.node"
+    },
+    {
+      "track": "backend.python",
+      "chosenSource": "https://docs.python.org/3/tutorial/",
+      "created": true,
+      "completed": true,
+      "reloaded": true,
+      "selectedPlan": "Python / FastAPI — API quản lý công việc · backend.python"
+    },
+    {
+      "track": "backend.java",
+      "chosenSource": "https://cs144.github.io/",
+      "created": true,
+      "completed": true,
+      "reloaded": true,
+      "selectedPlan": "Java / Spring Boot — API quản lý công việc · backend.java"
+    },
+    {
+      "track": "frontend.react",
+      "chosenSource": "https://www.freecodecamp.org/learn/2022/responsive-web-design/",
+      "created": true,
+      "completed": true,
+      "reloaded": true,
+      "selectedPlan": "React / TypeScript — Ứng dụng Web Dashboard tương tác với Rea · frontend.react"
+    },
+    {
+      "track": "frontend.vue",
+      "chosenSource": "https://www.freecodecamp.org/learn/2022/responsive-web-design/",
+      "created": true,
+      "completed": true,
+      "reloaded": true,
+      "selectedPlan": "Vue 3 / Pinia — Cổng thông tin Truyền thông Tương tác vớ · frontend.vue"
+    },
+    {
+      "track": "fullstack.react-node",
+      "chosenSource": "https://cs144.github.io/",
+      "created": true,
+      "completed": true,
+      "reloaded": true,
+      "selectedPlan": "React + Node.js — Hệ thống Ứng dụng Quản lý Doanh nghiệp T · fullstack.react-node"
+    },
+    {
+      "track": "fullstack.react-python",
+      "chosenSource": "https://cs144.github.io/",
+      "created": true,
+      "completed": true,
+      "reloaded": true,
+      "selectedPlan": "React + Python — Hệ thống Ứng dụng Quản lý Doanh nghiệp T · fullstack.react-python"
+    },
+    {
+      "track": "fullstack.react-java",
+      "chosenSource": "https://cs144.github.io/",
+      "created": true,
+      "completed": true,
+      "reloaded": true,
+      "selectedPlan": "React + Java — Hệ thống Ứng dụng Quản lý Doanh nghiệp T · fullstack.react-java"
+    },
+    {
+      "track": "fullstack.angular-node",
+      "chosenSource": "https://cs144.github.io/",
+      "created": true,
+      "completed": true,
+      "reloaded": true,
+      "selectedPlan": "Angular + Node.js — Hệ thống Ứng dụng Quản lý Doanh nghiệp T · fullstack.angular-node"
+    },
+    {
+      "track": "fullstack.angular-python",
+      "chosenSource": "https://cs144.github.io/",
+      "created": true,
+      "completed": true,
+      "reloaded": true,
+      "selectedPlan": "Angular + Python — Hệ thống Ứng dụng Quản lý Doanh nghiệp T · fullstack.angular-python"
+    },
+    {
+      "track": "fullstack.angular-java",
+      "chosenSource": "https://cs144.github.io/",
+      "created": true,
+      "completed": true,
+      "reloaded": true,
+      "selectedPlan": "Angular + Java — Hệ thống Ứng dụng Quản lý Doanh nghiệp T · fullstack.angular-java"
+    },
+    {
+      "track": "fullstack.vue-node",
+      "chosenSource": "https://cs144.github.io/",
+      "created": true,
+      "completed": true,
+      "reloaded": true,
+      "selectedPlan": "Vue + Node.js — Hệ thống Ứng dụng Quản lý Doanh nghiệp T · fullstack.vue-node"
+    },
+    {
+      "track": "fullstack.vue-python",
+      "chosenSource": "https://cs144.github.io/",
+      "created": true,
+      "completed": true,
+      "reloaded": true,
+      "selectedPlan": "Vue + Python — Hệ thống Ứng dụng Quản lý Doanh nghiệp T · fullstack.vue-python"
+    },
+    {
+      "track": "fullstack.vue-java",
+      "chosenSource": "https://cs144.github.io/",
+      "created": true,
+      "completed": true,
+      "reloaded": true,
+      "selectedPlan": "Vue + Java — Hệ thống Ứng dụng Quản lý Doanh nghiệp T · fullstack.vue-java"
+    },
+    {
+      "track": "ux.research",
+      "chosenSource": "https://www.interaction-design.org/literature/article/what-is-design-thinking-and-why-is-it-so-popular",
+      "created": true,
+      "completed": true,
+      "reloaded": true,
+      "selectedPlan": "UX Research & Interaction — Báo cáo Nghiên cứu & Cải tiến Trải nghiệ · ux.research"
+    },
+    {
+      "track": "ux.product",
+      "chosenSource": "https://www.interaction-design.org/literature/article/what-is-design-thinking-and-why-is-it-so-popular",
+      "created": true,
+      "completed": true,
+      "reloaded": true,
+      "selectedPlan": "UI & Product Design — Hệ thống Thiết kế Ứng dụng Di động & Bản · ux.product"
+    }
+  ]
+}

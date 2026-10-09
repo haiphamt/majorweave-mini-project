@@ -1,7 +1,7 @@
 # MW-TEAM-02 — Roadmap cá nhân, sinh kế hoạch và nội dung Mobile/Game
 
 **Người làm:** Phạm Công Định (`Dinglebell`). **Reviewer cuối:** Phạm Tuấn Hải. **Review chéo:** Chung Minh Hiếu.
-**Branch:** `feat/mw-team-02`. **Trạng thái:** Được giao; chưa bắt đầu, chưa có kết quả test/PR.
+**Branch:** `feat/mw-team-02`. **Trạng thái 08/10/2026:** Đã ghép Context v2 của Hải và nối/simplify My Roadmap trong allowlist. Planner + 7 track và UI v2 đã kiểm thử: 123 domain/content + 17 browser checks Pass; check/build Pass. Bản bàn giao được commit trên branch cá nhân, dựa trên base kiểm thử `5ff66ba66ee094c5af388885a109578bf1c96ace`; chưa push. Chờ review chéo, Hải nghiệm thu và ghép My Plan/migration của các task khác. Xem [review UI hiện tại](UI_REVIEW_2026-10-08.md).
 
 Đọc [phân công chung](../../team/PHAN_CONG_MINI_PROJECT.md), [quy trình Antigravity](../../team/QUY_TRINH_ANTIGRAVITY.md), [kiến trúc](../../KIEN_TRUC_MAJORWEAVE.md) và [chuẩn nội dung](../../architecture/HUONG_DAN_DU_LIEU.md). Scope chi tiết/nhánh là baseline từ bảng đích; ghi thay đổi được Hải chốt vào task, không tự thu hẹp.
 
@@ -14,7 +14,7 @@
 - `scripts/tasks/MW-TEAM-02.mjs`: kiểm thử module/nội dung task với công cụ đã có; không hạ assertion chung.
 - `docs/tasks/MW-TEAM-02/**`: story, flow, test, AI log, minh chứng và yêu cầu phối hợp.
 
-Đây là allowlist của task. Hải giữ `src/app/**`, `src/components/**`, `src/styles.css`, `src/domain/contracts.ts`, `src/content/index.ts`, file nguồn v1 `src/data.ts`/`src/catalog.ts`/`src/state.ts`, package/config/check/CI và tài liệu sinh tự động. File mới được liệt kê ở trên là **cần triển khai**, chưa tồn tại. Không tạo type/callback/registry thứ hai để né file chung; báo yêu cầu đổi hợp đồng trong task.
+Đây là allowlist của task. Hải giữ `src/app/**`, `src/components/**`, `src/styles.css`, `src/domain/contracts.ts`, `src/content/index.ts`, file nguồn v1 `src/data.ts`/`src/catalog.ts`/`src/state.ts`, package/config/check/CI và tài liệu sinh tự động. Các file mới trong allowlist đã được triển khai; xem bằng chứng và phần còn chờ tích hợp bên dưới. Không tạo type/callback/registry thứ hai để né file chung; báo yêu cầu đổi hợp đồng trong task.
 
 ## 2. Nội dung phải hoàn thiện
 
@@ -79,7 +79,7 @@ Copy mẫu [FLOW](../../templates/FLOW.md) thành `FLOW.md`; mỗi hành động
 - **FL-MW-TEAM-02-05:** Xem preview tạo lại, xác nhận hoặc hủy.
 - **FL-MW-TEAM-02-06:** Giữ việc tự thêm/sửa và lịch sử khi tạo lại.
 
-Copy mẫu [QA và AI log](../../templates/QA_AI_LOG.md) thành `QA_AI_LOG.md`. Test có steps/expected/actual, SHA, môi trường, ảnh/log khi cần. Hiện tất cả test của task **chưa chạy**.
+Copy mẫu [QA và AI log](../../templates/QA_AI_LOG.md) thành `QA_AI_LOG.md`. Test có steps/expected/actual, SHA, môi trường, ảnh/log khi cần. Kết quả hiện tại: **123 domain/content + 17 UI v2 checks Pass**. Cả 7 track đã chạy chọn → đổi nguồn → tạo → reload; bước hoàn thành thuộc My Plan v2 chưa tích hợp.
 
 - Unit/invariant planner: tổng phút, thứ tự, quỹ tuần, đoạn ổn định; không chỉ snapshot một lịch mẫu.
 - Tạo lại: cùng work/revision/đoạn giữ ID/notes/completion; đổi nghĩa không chuyển hoàn thành; history không bị sửa.
@@ -99,3 +99,11 @@ Copy mẫu [QA và AI log](../../templates/QA_AI_LOG.md) thành `QA_AI_LOG.md`. 
 - [ ] Review chéo và Hải nghiệm thu cuối; sửa feedback xong trước khi đánh Done.
 
 Không cập nhật Notion, không tự merge/push main và không giao lại toàn bộ kiểm thử cho một thành viên.
+
+## 8. Cập nhật 07/10/2026
+
+- [Rà nội dung và sổ nguồn](CONTENT_REVIEW.md): Mobile/Game sang review; bỏ chứng nhận retired/placeholder, sửa nguồn lệch nội dung, bổ sung portfolio/lab và điều kiện thiết bị.
+- [QA và AI log](QA_AI_LOG.md): 130 pass, check/build pass; có ảnh desktop/mobile và manifest file để đối chiếu với base SHA.
+- [Bàn giao tích hợp](INTEGRATION_HANDOFF.md): chữ ký hàm, quy tắc giữ backlog/history/completion, callback chung còn thiếu và thứ tự tích hợp.
+- MyRoadmap v1 có kiểm tra giờ/ngày và xác nhận quy đổi Thứ Hai. Vẫn chưa có UI nhiều plan/preview v2; không nhân bản context/registry để lách allowlist.
+- Chưa cập nhật Notion, chưa push/merge main, chưa đánh dấu Done. Pack ready và nghiệm thu cuối thuộc Hải.

@@ -1,0 +1,34 @@
+[
+  {
+    "path": "src/domain/activity.ts",
+    "sha256": "d7432a23c3b04394ad2946736e4805eaf291f58ec63854f5346e4b3fbce6f4ec"
+  },
+  {
+    "path": "src/domain/validate.ts",
+    "sha256": "d9634739ba3dd2ff9bc0e6416d32fbda8c03904d74889bc91706b7ca75db9057"
+  },
+  {
+    "path": "src/features/profile/Profile.tsx",
+    "sha256": "70675765e38c21c227e5454ed1a6e30518701cd60601c5efb3e2927e497e22c9"
+  },
+  {
+    "path": "src/content/paths/analyst.ts",
+    "sha256": "721e9e5225742b48d414144768f1586c4f5b6cd22ed7926e01bf2ab0172e883d"
+  },
+  {
+    "path": "src/content/paths/bi.ts",
+    "sha256": "456d96b65b418ca13e9a65c9e4e8b4415ca5c7a68a2cd7ffdb849a7e9e627417"
+  },
+  {
+    "path": "src/content/paths/engineer.ts",
+    "sha256": "9408b7351aab7ca51edbf80fd5c1142eb59f37bfc522e9c14492a7c6ff5b0072"
+  },
+  {
+    "path": "src/content/paths/business-analyst.ts",
+    "sha256": "fe02ae75d8cf3192ce12772594c4934b5a338b2c393dce9cfaf364e37fc4980b"
+  },
+  {
+    "path": "scripts/tasks/MW-TEAM-04.mjs",
+    "sha256": "fa5ca3ce929617d29d2f874a1eee44d3a9294492016b1e3af9b167f3d21821ad"
+  }
+]

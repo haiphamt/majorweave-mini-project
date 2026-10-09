@@ -1,0 +1,509 @@
+{
+  "date": "2026-10-09",
+  "environment": "Chrome / isolated IndexedDB",
+  "session": "186adb30-ef0c-436a-ba56-1e759aa52f1e",
+  "source": "Downloaded QA backup after 50 browser journeys",
+  "count": 50,
+  "tracks": [
+    {
+      "trackId": "backend.node",
+      "planId": "8dc64432-c09c-4f1c-a7e2-a89bce46ac7a",
+      "goal": "QA backend.node",
+      "doneTaskId": "513b7bfe-5ec5-4715-a5e2-5ef8a8ffe2e7",
+      "localDate": "2026-10-09",
+      "sourceId": "resource.exercism",
+      "status": "PASS",
+      "scope": "Browser create/done/wait-save/reload observed, exported persisted snapshot"
+    },
+    {
+      "trackId": "backend.python",
+      "planId": "86f3d924-65d9-443a-b37f-50a35bb669f1",
+      "goal": "QA backend.python",
+      "doneTaskId": "9a83479e-e7f6-433f-abb2-bbf2f23c8598",
+      "localDate": "2026-10-09",
+      "sourceId": "resource.python-mooc",
+      "status": "PASS",
+      "scope": "Browser create/done/wait-save/reload observed, exported persisted snapshot"
+    },
+    {
+      "trackId": "backend.java",
+      "planId": "b5ba33ce-8a8a-4c7a-8645-3d6bbbadfdb3",
+      "goal": "QA backend.java",
+      "doneTaskId": "f0d2a92d-0f42-417e-bd7a-2af925dd9bcb",
+      "localDate": "2026-10-09",
+      "sourceId": "resource.java-mooc",
+      "status": "PASS",
+      "scope": "Browser create/done/wait-save/reload observed, exported persisted snapshot"
+    },
+    {
+      "trackId": "frontend.react",
+      "planId": "9c16f7e2-f030-4d89-811f-ec0384be016c",
+      "goal": "QA frontend.react",
+      "doneTaskId": "06ed4ea7-0afb-432e-b3c1-fd92a093249c",
+      "localDate": "2026-10-09",
+      "sourceId": "resource.progit",
+      "status": "PASS",
+      "scope": "Browser create/done/wait-save/reload observed, exported persisted snapshot"
+    },
+    {
+      "trackId": "frontend.angular",
+      "planId": "07e0ddbc-8d17-48d5-b904-78baba5adf3f",
+      "goal": "QA frontend.angular",
+      "doneTaskId": "dbe43a43-29d5-4fb8-82d7-5e7dfff22338",
+      "localDate": "2026-10-09",
+      "sourceId": "resource.progit",
+      "status": "PASS",
+      "scope": "Browser create/done/wait-save/reload observed, exported persisted snapshot"
+    },
+    {
+      "trackId": "frontend.vue",
+      "planId": "d6519568-f6c4-4177-b632-804f5fc85585",
+      "goal": "QA frontend.vue",
+      "doneTaskId": "173c56ba-1282-470b-812c-17aefad222d6",
+      "localDate": "2026-10-09",
+      "sourceId": "resource.progit",
+      "status": "PASS",
+      "scope": "Browser create/done/wait-save/reload observed, exported persisted snapshot"
+    },
+    {
+      "trackId": "fullstack.react-node",
+      "planId": "20c247d8-6373-46fb-a079-d2582f3a2fdf",
+      "goal": "QA fullstack.react-node",
+      "doneTaskId": "0b3ff3f2-5a2a-4803-9144-ee3b7e1c3b5b",
+      "localDate": "2026-10-09",
+      "sourceId": "resource.progit",
+      "status": "PASS",
+      "scope": "Browser create/done/wait-save/reload observed, exported persisted snapshot"
+    },
+    {
+      "trackId": "fullstack.react-python",
+      "planId": "d700a753-e9eb-4d62-921e-9710e762db60",
+      "goal": "QA fullstack.react-python",
+      "doneTaskId": "6248ea8e-4b88-46a4-be1d-6a51f9032d96",
+      "localDate": "2026-10-09",
+      "sourceId": "resource.progit",
+      "status": "PASS",
+      "scope": "Browser create/done/wait-save/reload observed, exported persisted snapshot"
+    },
+    {
+      "trackId": "fullstack.react-java",
+      "planId": "1f210cf5-a370-40f0-bdf2-3c60b5cc5430",
+      "goal": "QA fullstack.react-java",
+      "doneTaskId": "c971dbc9-13d0-449b-b448-eb9c87c2c990",
+      "localDate": "2026-10-09",
+      "sourceId": "resource.progit",
+      "status": "PASS",
+      "scope": "Browser create/done/wait-save/reload observed, exported persisted snapshot"
+    },
+    {
+      "trackId": "fullstack.angular-node",
+      "planId": "99b3f446-d278-46ba-8f42-940196df2554",
+      "goal": "QA fullstack.angular-node",
+      "doneTaskId": "a153c498-0c51-4475-ba6a-8361084e23f8",
+      "localDate": "2026-10-09",
+      "sourceId": "resource.progit",
+      "status": "PASS",
+      "scope": "Browser create/done/wait-save/reload observed, exported persisted snapshot"
+    },
+    {
+      "trackId": "fullstack.angular-python",
+      "planId": "3cf6e9d7-467a-4896-b5eb-7205d71eed99",
+      "goal": "QA fullstack.angular-python",
+      "doneTaskId": "5b4802c9-6702-46a0-b6a6-546e70ae7006",
+      "localDate": "2026-10-09",
+      "sourceId": "resource.progit",
+      "status": "PASS",
+      "scope": "Browser create/done/wait-save/reload observed, exported persisted snapshot"
+    },
+    {
+      "trackId": "fullstack.angular-java",
+      "planId": "3f5ee65d-2b96-4dc4-8570-61342b0c3b02",
+      "goal": "QA fullstack.angular-java",
+      "doneTaskId": "6cf55d5f-6b06-414b-b540-8cc0612a57d9",
+      "localDate": "2026-10-09",
+      "sourceId": "resource.progit",
+      "status": "PASS",
+      "scope": "Browser create/done/wait-save/reload observed, exported persisted snapshot"
+    },
+    {
+      "trackId": "fullstack.vue-node",
+      "planId": "5a2f2473-4203-46b3-b41d-2fb6924ca555",
+      "goal": "QA fullstack.vue-node",
+      "doneTaskId": "9b049ff8-38f9-4832-b2c3-3f9590f80380",
+      "localDate": "2026-10-09",
+      "sourceId": "resource.progit",
+      "status": "PASS",
+      "scope": "Browser create/done/wait-save/reload observed, exported persisted snapshot"
+    },
+    {
+      "trackId": "fullstack.vue-python",
+      "planId": "92c4ec48-3e72-4e8c-9668-50e965842043",
+      "goal": "QA fullstack.vue-python",
+      "doneTaskId": "2192477c-347e-4d7b-bb8b-31a1d58dcbc7",
+      "localDate": "2026-10-09",
+      "sourceId": "resource.progit",
+      "status": "PASS",
+      "scope": "Browser create/done/wait-save/reload observed, exported persisted snapshot"
+    },
+    {
+      "trackId": "fullstack.vue-java",
+      "planId": "53fa9608-da5a-4e0c-bd0f-7ae3e4c5bb46",
+      "goal": "QA fullstack.vue-java",
+      "doneTaskId": "686aec6a-ac23-40ca-9a49-52436541167b",
+      "localDate": "2026-10-09",
+      "sourceId": "resource.progit",
+      "status": "PASS",
+      "scope": "Browser create/done/wait-save/reload observed, exported persisted snapshot"
+    },
+    {
+      "trackId": "ux.research",
+      "planId": "422850fc-e5e7-44a7-b061-b4c6bd250d8f",
+      "goal": "QA ux.research",
+      "doneTaskId": "36bc714a-1b41-41a4-b04a-ff972865ea43",
+      "localDate": "2026-10-09",
+      "sourceId": "resource.ux.interaction-design-dt",
+      "status": "PASS",
+      "scope": "Browser create/done/wait-save/reload observed, exported persisted snapshot"
+    },
+    {
+      "trackId": "ux.product",
+      "planId": "32035978-7aba-40bb-bb29-7f307ea08dc1",
+      "goal": "QA ux.product",
+      "doneTaskId": "076d042c-367b-4e13-a64f-e712b49c5f22",
+      "localDate": "2026-10-09",
+      "sourceId": "resource.ux.interaction-design-dt",
+      "status": "PASS",
+      "scope": "Browser create/done/wait-save/reload observed, exported persisted snapshot"
+    },
+    {
+      "trackId": "mobile.android",
+      "planId": "fafe8bf5-86cf-40b1-871d-3a966a57c2cc",
+      "goal": "QA mobile.android",
+      "doneTaskId": "d9747b9d-c245-4275-ac1a-cc2fdc2a088d",
+      "localDate": "2026-10-09",
+      "sourceId": "resource.mobile.git-docs",
+      "status": "PASS",
+      "scope": "Browser create/done/wait-save/reload observed, exported persisted snapshot"
+    },
+    {
+      "trackId": "mobile.ios",
+      "planId": "d31620bf-b510-4402-bc89-8d2adcf77fd3",
+      "goal": "QA mobile.ios",
+      "doneTaskId": "5fc0a701-be69-41c9-8097-040dee8dc4cd",
+      "localDate": "2026-10-09",
+      "sourceId": "resource.mobile.git-docs",
+      "status": "PASS",
+      "scope": "Browser create/done/wait-save/reload observed, exported persisted snapshot"
+    },
+    {
+      "trackId": "mobile.flutter",
+      "planId": "1784b6f6-3408-47a1-89f6-790d428ff16b",
+      "goal": "QA mobile.flutter",
+      "doneTaskId": "76765724-ce11-4bac-97a9-0d1848864007",
+      "localDate": "2026-10-09",
+      "sourceId": "resource.mobile.git-docs",
+      "status": "PASS",
+      "scope": "Browser create/done/wait-save/reload observed, exported persisted snapshot"
+    },
+    {
+      "trackId": "mobile.react-native",
+      "planId": "854a8811-b507-4635-b98d-ee7f74ffd07b",
+      "goal": "QA mobile.react-native",
+      "doneTaskId": "55533f4e-81bd-4f3e-98c2-735c40f02edb",
+      "localDate": "2026-10-09",
+      "sourceId": "resource.mobile.git-docs",
+      "status": "PASS",
+      "scope": "Browser create/done/wait-save/reload observed, exported persisted snapshot"
+    },
+    {
+      "trackId": "game.unity",
+      "planId": "e4b1cfc0-5d60-49c1-8b6a-8adffb003916",
+      "goal": "QA game.unity",
+      "doneTaskId": "7698088f-29cd-445b-bb5c-1d3e945a51b2",
+      "localDate": "2026-10-09",
+      "sourceId": "resource.game.git-lfs",
+      "status": "PASS",
+      "scope": "Browser create/done/wait-save/reload observed, exported persisted snapshot"
+    },
+    {
+      "trackId": "game.unreal",
+      "planId": "f50bc5c8-5803-4939-906e-c5191d5a01b2",
+      "goal": "QA game.unreal",
+      "doneTaskId": "67c6c2e5-bbfb-4eb5-85ef-119732b21bab",
+      "localDate": "2026-10-09",
+      "sourceId": "resource.game.git-lfs",
+      "status": "PASS",
+      "scope": "Browser create/done/wait-save/reload observed, exported persisted snapshot"
+    },
+    {
+      "trackId": "game.godot",
+      "planId": "2d75eb90-6be3-41c5-bb2b-5f4170bcbcf2",
+      "goal": "QA game.godot",
+      "doneTaskId": "6835da12-f3a7-4446-893f-82be3ba90032",
+      "localDate": "2026-10-09",
+      "sourceId": "resource.game.git-lfs",
+      "status": "PASS",
+      "scope": "Browser create/done/wait-save/reload observed, exported persisted snapshot"
+    },
+    {
+      "trackId": "scientist.python",
+      "planId": "eb1d623b-dd6e-449f-b6b6-562b742f1fdf",
+      "goal": "QA scientist.python",
+      "doneTaskId": "a09003fa-3ee2-476a-9d9b-0c8840796161",
+      "localDate": "2026-10-09",
+      "sourceId": "scientist.resource.python",
+      "status": "PASS",
+      "scope": "Browser create/done/wait-save/reload observed, exported persisted snapshot"
+    },
+    {
+      "trackId": "ml.classical",
+      "planId": "c819ebc8-74e2-42a6-a44e-e74405bc477c",
+      "goal": "QA ml.classical",
+      "doneTaskId": "5f86fe56-9608-4739-8b8a-b26313b40cec",
+      "localDate": "2026-10-09",
+      "sourceId": "scientist.resource.python",
+      "status": "PASS",
+      "scope": "Browser create/done/wait-save/reload observed, exported persisted snapshot"
+    },
+    {
+      "trackId": "ml.cv",
+      "planId": "ac048f59-b8ec-47f6-a9f2-9744bccae3a6",
+      "goal": "QA ml.cv",
+      "doneTaskId": "11d162b6-d5cf-4e58-899a-381371449920",
+      "localDate": "2026-10-09",
+      "sourceId": "scientist.resource.python",
+      "status": "PASS",
+      "scope": "Browser create/done/wait-save/reload observed, exported persisted snapshot"
+    },
+    {
+      "trackId": "ml.nlp",
+      "planId": "bc86164c-ac2b-4522-848c-d47b8fe5ac2f",
+      "goal": "QA ml.nlp",
+      "doneTaskId": "1059cef2-0fc0-4d0d-9c19-eefc7d52348f",
+      "localDate": "2026-10-09",
+      "sourceId": "scientist.resource.python",
+      "status": "PASS",
+      "scope": "Browser create/done/wait-save/reload observed, exported persisted snapshot"
+    },
+    {
+      "trackId": "mlops.serving",
+      "planId": "2bb032c9-9868-44ed-8d55-1e6ed68a4caf",
+      "goal": "QA mlops.serving",
+      "doneTaskId": "78f6898b-5f78-4ab7-b35b-62333fe41b53",
+      "localDate": "2026-10-09",
+      "sourceId": "scientist.resource.python",
+      "status": "PASS",
+      "scope": "Browser create/done/wait-save/reload observed, exported persisted snapshot"
+    },
+    {
+      "trackId": "mlops.pipeline",
+      "planId": "3d8d659d-ef1d-4b03-a235-538b99ac694b",
+      "goal": "QA mlops.pipeline",
+      "doneTaskId": "6b559052-f119-4574-874f-871bd2e4e72f",
+      "localDate": "2026-10-09",
+      "sourceId": "scientist.resource.python",
+      "status": "PASS",
+      "scope": "Browser create/done/wait-save/reload observed, exported persisted snapshot"
+    },
+    {
+      "trackId": "ai-engineer.rag",
+      "planId": "70f7b213-6246-4ed2-bce3-2dead3cb0c0c",
+      "goal": "QA ai-engineer.rag",
+      "doneTaskId": "1e70344f-c632-4a9c-9c35-945551662ed6",
+      "localDate": "2026-10-09",
+      "sourceId": "scientist.resource.python",
+      "status": "PASS",
+      "scope": "Browser create/done/wait-save/reload observed, exported persisted snapshot"
+    },
+    {
+      "trackId": "ai-engineer.agents",
+      "planId": "e6dbaef8-1386-4e21-9229-d53f148df403",
+      "goal": "QA ai-engineer.agents",
+      "doneTaskId": "4b32d6e4-13bd-4a99-ac5f-badc9b21250c",
+      "localDate": "2026-10-09",
+      "sourceId": "scientist.resource.python",
+      "status": "PASS",
+      "scope": "Browser create/done/wait-save/reload observed, exported persisted snapshot"
+    },
+    {
+      "trackId": "analyst.spreadsheet",
+      "planId": "437e3773-4045-4522-9b52-bedf0102305e",
+      "goal": "QA analyst.spreadsheet",
+      "doneTaskId": "497d07a6-540d-44c7-8130-969afa83f1d8",
+      "localDate": "2026-10-09",
+      "sourceId": "resource.data-quality",
+      "status": "PASS",
+      "scope": "Browser create/done/wait-save/reload observed, exported persisted snapshot"
+    },
+    {
+      "trackId": "analyst.pandas",
+      "planId": "4cea2649-854b-420a-af17-1d1ed1b157f9",
+      "goal": "QA analyst.pandas",
+      "doneTaskId": "22865480-28ad-47c0-956e-dede7e24196d",
+      "localDate": "2026-10-09",
+      "sourceId": "resource.data-quality",
+      "status": "PASS",
+      "scope": "Browser create/done/wait-save/reload observed, exported persisted snapshot"
+    },
+    {
+      "trackId": "bi.powerbi",
+      "planId": "1b6fc33a-ec09-48c1-97c3-58601bf59401",
+      "goal": "QA bi.powerbi",
+      "doneTaskId": "5654d8fd-d089-4120-92ec-730b8f319b30",
+      "localDate": "2026-10-09",
+      "sourceId": "resource.data-quality",
+      "status": "PASS",
+      "scope": "Browser create/done/wait-save/reload observed, exported persisted snapshot"
+    },
+    {
+      "trackId": "bi.tableau",
+      "planId": "5be32b33-114c-48eb-9d9b-c06198b2c513",
+      "goal": "QA bi.tableau",
+      "doneTaskId": "a2b2b58f-250d-47c6-a5ba-5c7ab4fabeb0",
+      "localDate": "2026-10-09",
+      "sourceId": "resource.data-quality",
+      "status": "PASS",
+      "scope": "Browser create/done/wait-save/reload observed, exported persisted snapshot"
+    },
+    {
+      "trackId": "engineer.batch",
+      "planId": "603d2faa-3138-47a4-ba89-e671ee9c7138",
+      "goal": "QA engineer.batch",
+      "doneTaskId": "5cf30277-2143-49c0-8eb1-aea9b0296adf",
+      "localDate": "2026-10-09",
+      "sourceId": "resource.data-quality",
+      "status": "PASS",
+      "scope": "Browser create/done/wait-save/reload observed, exported persisted snapshot"
+    },
+    {
+      "trackId": "engineer.streaming",
+      "planId": "7cb44a02-8b5e-4a6c-91b9-9a727be66eb8",
+      "goal": "QA engineer.streaming",
+      "doneTaskId": "c2057f88-76dc-466b-84d8-c18700db524b",
+      "localDate": "2026-10-09",
+      "sourceId": "resource.data-quality",
+      "status": "PASS",
+      "scope": "Browser create/done/wait-save/reload observed, exported persisted snapshot"
+    },
+    {
+      "trackId": "business-analyst.software-ba",
+      "planId": "cc70cdc1-eb4d-42bf-b7ff-4824b3fb52a1",
+      "goal": "QA business-analyst.software-ba",
+      "doneTaskId": "37163c88-3c1c-4796-b90b-5a2dd769d2c6",
+      "localDate": "2026-10-09",
+      "sourceId": "resource.ba-intro",
+      "status": "PASS",
+      "scope": "Browser create/done/wait-save/reload observed, exported persisted snapshot"
+    },
+    {
+      "trackId": "business-analyst.data-ba",
+      "planId": "1af90624-0e72-4086-b765-7d318aed665a",
+      "goal": "QA business-analyst.data-ba",
+      "doneTaskId": "87eac648-0285-4c1a-b0fb-ff4b9fafb9e9",
+      "localDate": "2026-10-09",
+      "sourceId": "resource.ba-intro",
+      "status": "PASS",
+      "scope": "Browser create/done/wait-save/reload observed, exported persisted snapshot"
+    },
+    {
+      "trackId": "devops.devops",
+      "planId": "86cfd15d-95e1-48ed-a95a-fb065e737ec5",
+      "goal": "QA devops.devops",
+      "doneTaskId": "d0b11d7a-f322-435f-aea1-7d3589c0c726",
+      "localDate": "2026-10-09",
+      "sourceId": "resource.progit",
+      "status": "PASS",
+      "scope": "Browser create/done/wait-save/reload observed, exported persisted snapshot"
+    },
+    {
+      "trackId": "devops.sre",
+      "planId": "d10dd7c7-897e-409f-b830-a3b4d3ddc96d",
+      "goal": "QA devops.sre",
+      "doneTaskId": "d9bd28da-01bd-423d-9033-58d428eb6503",
+      "localDate": "2026-10-09",
+      "sourceId": "resource.progit",
+      "status": "PASS",
+      "scope": "Browser create/done/wait-save/reload observed, exported persisted snapshot"
+    },
+    {
+      "trackId": "network.network",
+      "planId": "b900d8d6-fb47-4ab5-b7fb-beca923dc279",
+      "goal": "QA network.network",
+      "doneTaskId": "5da4fe76-3b40-42bf-a502-72bfb8679969",
+      "localDate": "2026-10-09",
+      "sourceId": "resource.progit",
+      "status": "PASS",
+      "scope": "Browser create/done/wait-save/reload observed, exported persisted snapshot"
+    },
+    {
+      "trackId": "network.automation",
+      "planId": "311dc57a-a6b0-45d3-b5c3-538920a43cd4",
+      "goal": "QA network.automation",
+      "doneTaskId": "4c7aa144-9cf1-4682-98a8-2c273cb71117",
+      "localDate": "2026-10-09",
+      "sourceId": "resource.progit",
+      "status": "PASS",
+      "scope": "Browser create/done/wait-save/reload observed, exported persisted snapshot"
+    },
+    {
+      "trackId": "security.soc",
+      "planId": "ed9607ed-15fa-4f4e-8844-094bc26597dc",
+      "goal": "QA security.soc",
+      "doneTaskId": "da60e7e7-041d-4757-99e0-579e4c8d84d6",
+      "localDate": "2026-10-09",
+      "sourceId": "resource.progit",
+      "status": "PASS",
+      "scope": "Browser create/done/wait-save/reload observed, exported persisted snapshot"
+    },
+    {
+      "trackId": "security.appsec",
+      "planId": "efa4cf9b-667e-4706-9164-80928d291408",
+      "goal": "QA security.appsec",
+      "doneTaskId": "e73a4c33-3d5e-4a35-8b71-f9c069386a99",
+      "localDate": "2026-10-09",
+      "sourceId": "resource.progit",
+      "status": "PASS",
+      "scope": "Browser create/done/wait-save/reload observed, exported persisted snapshot"
+    },
+    {
+      "trackId": "security.devsecops",
+      "planId": "72645a8f-6869-4282-9eab-83d138356a27",
+      "goal": "QA security.devsecops",
+      "doneTaskId": "77253c5e-12ba-4202-8c1e-5215811c48bb",
+      "localDate": "2026-10-09",
+      "sourceId": "resource.progit",
+      "status": "PASS",
+      "scope": "Browser create/done/wait-save/reload observed, exported persisted snapshot"
+    },
+    {
+      "trackId": "qa.manual",
+      "planId": "791f47e9-10ac-4dab-860e-ec39095cbde2",
+      "goal": "QA qa.manual",
+      "doneTaskId": "9fba3482-31a2-4b90-9d3e-26c81027b515",
+      "localDate": "2026-10-09",
+      "sourceId": "resource.progit",
+      "status": "PASS",
+      "scope": "Browser create/done/wait-save/reload observed, exported persisted snapshot"
+    },
+    {
+      "trackId": "qa.playwright",
+      "planId": "d997fed3-c5d1-46de-a533-d9ffba2c1b30",
+      "goal": "QA qa.playwright",
+      "doneTaskId": "16d4013f-242b-4848-a728-590b63c019d4",
+      "localDate": "2026-10-09",
+      "sourceId": "resource.progit",
+      "status": "PASS",
+      "scope": "Browser create/done/wait-save/reload observed, exported persisted snapshot"
+    },
+    {
+      "trackId": "qa.postman",
+      "planId": "b25c9ba7-e745-49c5-b0ea-cda612bad3fa",
+      "goal": "QA qa.postman",
+      "doneTaskId": "922a3a75-c18e-450c-8ce2-d8598a8648a4",
+      "localDate": "2026-10-09",
+      "sourceId": "resource.progit",
+      "status": "PASS",
+      "scope": "Browser create/done/wait-save/reload observed, exported persisted snapshot"
+    }
+  ]
+}

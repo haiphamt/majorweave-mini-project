@@ -1,0 +1,56 @@
+
+> majorweave-prototype@0.1.0 check
+> node scripts/check-project.mjs
+
+PASS: 6 registered content pack(s), 40 modules; content references, prerequisites, storage/CSS boundaries and import cycles checked.
+PASS: legacy save uses the existing key and returns failure without mutating input when storage throws.
+PASS: 3 Backend tracks, 15 stages/track; 35 shared/contextual stages, 51 resources, 10 credential goals; prerequisites, source applicability and legacy maps checked.
+PASS Initialize once and do not save defaults
+PASS Concurrent reload is rejected before it can overwrite later edits
+PASS All registered tracks generate independent plans (including the original ten)
+PASS Explore another track does not change profile or active plan
+PASS Invalid draft returns issues without storage writes
+PASS Checkbox selection order is normalized to curriculum order
+PASS Preview and cancel do not save or change current generation
+PASS Confirmation ignores caller tampering and preserves old history
+PASS Draft edit invalidates previous regeneration preview
+PASS Storage failure keeps proposed plan; retry creates exactly one plan
+PASS Pending save blocks edits and double submit; no early activation
+PASS Revision conflict preserves proposed data and does not overwrite disk
+PASS Selecting a plan persists its ID; reload keeps all plans and drafts
+PASS Exposed snapshots cannot be mutated by feature code
+PASS Resolver fails on missing references, not partial success
+PASS Bootstrap persistence rejects malformed/future workspace
+16 context checks passed
+--- KIỂM THỬ TASK MW-TEAM-01 (Nguyễn Thị Quỳnh Hân) ---
+PASS: Catalog 6 khoa, 12 ngành, 18 hướng hợp lệ.
+PASS: Toàn bộ 17 cấu hình track (3 BE, 3 FE, 9 FS, 2 UX) giải quyết thành công với đầy đủ bài tập và tiên quyết.
+PASS: Các trường hợp lỗi not_found và missing_stage được kiểm soát an toàn.
+PASS resolver missing resource
+PASS resolver missing credential
+PASS resolver duplicate ID
+PASS resolver bad default
+PASS resolver missing prerequisite
+PASS resolver cycle
+PASS resolver reversed order
+PASS resolver duplicate stage reference
+PASS resolver wrong path
+PASS detached resolver, dependency version and nine FE/BE source/credential pairs
+PASS integration source/create/complete/reload/independent backend.node
+PASS integration source/create/complete/reload/independent backend.python
+PASS integration source/create/complete/reload/independent backend.java
+PASS integration source/create/complete/reload/independent frontend.react
+PASS integration source/create/complete/reload/independent frontend.angular
+PASS integration source/create/complete/reload/independent frontend.vue
+PASS integration source/create/complete/reload/independent fullstack.react-node
+PASS integration source/create/complete/reload/independent fullstack.react-python
+PASS integration source/create/complete/reload/independent fullstack.react-java
+PASS integration source/create/complete/reload/independent fullstack.angular-node
+PASS integration source/create/complete/reload/independent fullstack.angular-python
+PASS integration source/create/complete/reload/independent fullstack.angular-java
+PASS integration source/create/complete/reload/independent fullstack.vue-node
+PASS integration source/create/complete/reload/independent fullstack.vue-python
+PASS integration source/create/complete/reload/independent fullstack.vue-java
+PASS integration source/create/complete/reload/independent ux.research
+PASS integration source/create/complete/reload/independent ux.product
+PASS failed save preserves old plan, retry, stale plan and credential persistence

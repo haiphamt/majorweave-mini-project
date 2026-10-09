@@ -1,4 +1,4 @@
-# MajorWeave — 28 luồng sự kiện chức năng
+# MajorWeave — 36 luồng sự kiện chức năng
 
 Cập nhật 03/10/2026. Danh mục hướng là gợi ý khám phá; luồng roadmap / plan hoàn chỉnh hiện dành cho Backend.
 
@@ -32,6 +32,14 @@ Cập nhật 03/10/2026. Danh mục hướng là gợi ý khám phá; luồng ro
 | EF26 | Chọn / đổi nhánh Backend | Path Detail |
 | EF27 | Sửa hồ sơ học tập | Profile |
 | EF28 | Thêm các chặng nền tảng còn thiếu | Path Detail |
+| EF29 | Chọn nhánh và tạo plan v2 | My roadmap |
+| EF30 | Tạo lại có preview/history | My roadmap |
+| EF31 | Hoàn thành và undo v2 | My Plan |
+| EF32 | Chốt tuần và giữ snapshot | My Plan |
+| EF33 | Lưu Profile và timezone | Profile |
+| EF34 | Xuất và nhập backup v2 | Profile |
+| EF35 | Chuyển dữ liệu v1 an toàn | Profile |
+| EF36 | Lưu lỗi và hai tab | Workspace |
 
 ## EF01 — Chọn khoa và ngành hiện tại
 
@@ -575,3 +583,165 @@ Cập nhật 03/10/2026. Danh mục hướng là gợi ý khám phá; luồng ro
 - Nếu đủ năm chặng, nút thêm nền tảng không hiển thị.
 - System Design là chặng mở rộng: chỉ thêm riêng khi muốn học, không thêm mặc định.
 - Bản cũ giữ nguyên lựa chọn và kế hoạch khi tải lại; sinh viên tự bấm để bổ sung.
+
+## EF29 — Chọn nhánh và tạo plan v2
+
+**Trang:** My roadmap.
+
+**Điều kiện:** Workspace đã tải; draft hợp lệ.
+
+**Sự kiện:** Tạo kế hoạch mới.
+
+### Luồng chính
+
+1. Chọn nhánh, chặng và nguồn. 18 hướng / 50 cấu hình.
+2. Kiểm tra draft và sinh lịch. Tiên quyết, giờ/tuần, ngày.
+3. Chờ transaction hoàn tất. Tạo ID mới, giữ plan cũ.
+4. Plan mới được lưu. Mở My Plan để tiếp tục.
+
+### Thay thế / lỗi
+
+- Draft lỗi: hiển thị lỗi, không ghi.
+- Save lỗi: giữ candidate để retry hoặc xuất.
+
+## EF30 — Tạo lại có preview/history
+
+**Trang:** My roadmap.
+
+**Điều kiện:** Có active plan và draft hợp lệ.
+
+**Sự kiện:** Xem trước tạo lại.
+
+### Luồng chính
+
+1. Sinh preview và đối chiếu. Chưa sửa plan đã lưu.
+2. Chọn xác nhận hoặc hủy. Hủy không ghi.
+3. Lưu bản mới và history. Chỉ cập nhật sau commit.
+4. Plan được tạo lại. Giữ completion phù hợp.
+
+### Thay thế / lỗi
+
+- Plan/draft thay đổi: báo conflict, xem lại preview.
+- Lưu lỗi: giữ proposal, không báo success.
+
+## EF31 — Hoàn thành và undo v2
+
+**Trang:** My Plan.
+
+**Điều kiện:** Plan đang xem và tuần còn mở.
+
+**Sự kiện:** Đổi dấu hoàn thành.
+
+### Luồng chính
+
+1. Tạo completion hoặc undo. Giữ ngày/timezone lần ghi.
+2. Lưu với expected revision. Không ghi đè tab mới.
+3. Cập nhật plan và nhịp học. Chờ lưu xong trước reload.
+4. Tiến độ được cập nhật. Completion ledger giữ lịch sử.
+
+### Thay thế / lỗi
+
+- Save lỗi: giữ candidate, retry hoặc bỏ có xác nhận.
+- Snapshot tuần chốt chỉ đọc.
+
+## EF32 — Chốt tuần và giữ snapshot
+
+**Trang:** My Plan.
+
+**Điều kiện:** Tuần mở, chưa có candidate chờ.
+
+**Sự kiện:** Chốt tuần.
+
+### Luồng chính
+
+1. Xem việc xong/chưa xong. Snapshot trước xử lý.
+2. Chọn xử lý việc chưa xong. Dời tuần / backlog / skip.
+3. Xác nhận và lưu plan. Hủy giữ tuần mở.
+4. Tuần đã chốt chỉ đọc. Stats/Weeks đọc snapshot.
+
+### Thay thế / lỗi
+
+- Lỗi/conflict: không chốt âm thầm.
+- Không có tuần đích hợp lệ: từ chối.
+
+## EF33 — Lưu Profile và timezone
+
+**Trang:** Profile.
+
+**Điều kiện:** Workspace đã tải.
+
+**Sự kiện:** Lưu hồ sơ.
+
+### Luồng chính
+
+1. Sửa tên, ngành, múi giờ. Validate IANA và tên.
+2. Lưu qua callback chung. Chờ transaction complete.
+3. Cập nhật hồ sơ/nhịp học. Ngày completion cũ giữ.
+4. Hồ sơ được giữ khi reload. Không cần đăng nhập.
+
+### Thay thế / lỗi
+
+- Hủy: trả form về profile đã lưu.
+- Giá trị sai/lưu lỗi: giữ form và báo lỗi.
+
+## EF34 — Xuất và nhập backup v2
+
+**Trang:** Profile.
+
+**Điều kiện:** Workspace đã tải; chọn JSON hợp lệ.
+
+**Sự kiện:** Xem trước nhập file.
+
+### Luồng chính
+
+1. Kiểm tra file và phiên bản. Không lọc bỏ lỗi âm thầm.
+2. Chọn skip hoặc copy. Preview chưa ghi dữ liệu.
+3. Xác nhận rồi chờ commit. Giữ proposal nếu lỗi.
+4. Nhập giữ plan hiện có. Có thể xuất JSON để chuyển máy.
+
+### Thay thế / lỗi
+
+- Cancel không ghi; ID trùng mặc định skip.
+- File lỗi/version lạ: từ chối toàn bộ.
+- Save lỗi: retry cùng ID hoặc xuất proposal.
+
+## EF35 — Chuyển dữ liệu v1 an toàn
+
+**Trang:** Profile.
+
+**Điều kiện:** Đọc được raw v1; draft đã lưu/bỏ.
+
+**Sự kiện:** Xem trước chuyển v1.
+
+### Luồng chính
+
+1. Đọc raw và fingerprint. Không sửa key nguồn.
+2. Xem preview và cảnh báo. Thiếu bối cảnh: cần bổ sung.
+3. Xác nhận append vào v2. Ghi migration fingerprint.
+4. Dữ liệu v1 được giữ. Chuyển lại không nhập trùng.
+
+### Thay thế / lỗi
+
+- Cancel không ghi.
+- Unknown IDs và completion thiếu ngày được giữ.
+- Lỗi/conflict giữ proposal để retry.
+
+## EF36 — Lưu lỗi và hai tab
+
+**Trang:** Workspace.
+
+**Điều kiện:** Hai tab cùng DB, cùng revision ban đầu.
+
+**Sự kiện:** Tab cũ lưu thay đổi.
+
+### Luồng chính
+
+1. Tab A commit dữ liệu mới. Revision trên disk tăng.
+2. Tab B lưu với revision cũ. Phát hiện conflict.
+3. Giữ bản đang sửa của B. Retry / xuất / bỏ có xác nhận.
+4. Không ghi đè tab A. Không báo lưu thành công giả.
+
+### Thay thế / lỗi
+
+- Abort/quota: giữ candidate, disk nguyên.
+- Load lỗi không thay defaults rồi ghi đè.

@@ -1,0 +1,11 @@
+<!doctype html>
+<html lang="vi">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>MW-TEAM-05 — Migration QA</title></head>
+<body>
+<h1>MW-TEAM-05 — Migration native IndexedDB</h1>
+<p>Chỉ tạo DB QA với UUID. Nguồn v1 là fixture trong bộ nhớ; không đọc/sửa localStorage thật, không xóa DB.</p>
+<p>Validator cấu trúc của adapter; chưa nghiệm thu validator semantic hoặc UI chính. Hai controller cùng trang chưa thay cho hai tab thật.</p>
+<button id="run" type="button">Chạy kiểm thử migration</button>
+<pre id="output" aria-live="polite">Chưa chạy.</pre>
+<script type="module" src="./migration-tests.ts"></script>
+</body></html>

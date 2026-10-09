@@ -1,0 +1,31 @@
+PASS TC-R01 customized duration preserves segment and completion through JSON round trip
+PASS TC-R02 incomplete draft does not block profile or valid plan persistence validation
+PASS TC-V01 malformed unknown and sparse arrays
+PASS TC-V02 schema and backup versions
+PASS TC-V03 types, enums and numeric boundaries
+PASS TC-V04 real dates, Monday, timezone and localDate
+PASS TC-V05 UUID uniqueness and active plan
+PASS TC-V06 safe source URLs
+PASS TC-V07 current task and ledger relations
+PASS TC-V08 immutable historical done survives later undo
+PASS TC-V09 closed week totals and duplicate indices
+PASS TC-V10 generation, segment, backlog and import relations
+PASS TC-V11 removed catalog preserves plan/history and draft
+PASS TC-V12 backup round trip, frozen data and known catalog errors
+PASS TC-A01 empty activity
+PASS TC-A02 archived and repeated snapshots count ledger once
+PASS TC-A03 done undo done again
+PASS TC-A04 legacy completion has no fabricated date
+PASS TC-A05 original timezone survives profile change
+PASS TC-A06 no input mutation and sorted days
+PASS TC-P02 profile validation and empty name policy
+PASS TC-C01 analyst.spreadsheet content/dependencies
+PASS TC-C02 analyst.pandas content/dependencies
+PASS TC-C03 bi.powerbi content/dependencies
+PASS TC-C04 bi.tableau content/dependencies
+PASS TC-C05 engineer.batch content/dependencies
+PASS TC-C06 engineer.streaming content/dependencies
+PASS TC-C07 business-analyst.software-ba content/dependencies
+PASS TC-C08 business-analyst.data-ba content/dependencies
+PASS Content metadata and track-specific coverage
+PASS 30 groups; 8 tracks, 29 owned stages, 43 exercises. V2 integration is not tested.

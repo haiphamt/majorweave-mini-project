@@ -1,0 +1,50 @@
+Planner review SHA 44595b90d54d5e18cd5055d8f8f36ae03fab1f95; MW-TEAM-03 working tree, domain only
+PASS scientist.python 2h: full minutes/budget, repeated done, close snapshot, custom backlog, regenerate identity/history/input
+PASS scientist.python 20h: full minutes/budget, repeated done, close snapshot, custom backlog, regenerate identity/history/input
+PASS ml.classical 2h: full minutes/budget, repeated done, close snapshot, custom backlog, regenerate identity/history/input
+PASS ml.classical 20h: full minutes/budget, repeated done, close snapshot, custom backlog, regenerate identity/history/input
+PASS ml.cv 2h: full minutes/budget, repeated done, close snapshot, custom backlog, regenerate identity/history/input
+PASS ml.cv 20h: full minutes/budget, repeated done, close snapshot, custom backlog, regenerate identity/history/input
+PASS ml.nlp 2h: full minutes/budget, repeated done, close snapshot, custom backlog, regenerate identity/history/input
+PASS ml.nlp 20h: full minutes/budget, repeated done, close snapshot, custom backlog, regenerate identity/history/input
+PASS mlops.serving 2h: full minutes/budget, repeated done, close snapshot, custom backlog, regenerate identity/history/input
+PASS mlops.serving 20h: full minutes/budget, repeated done, close snapshot, custom backlog, regenerate identity/history/input
+PASS mlops.pipeline 2h: full minutes/budget, repeated done, close snapshot, custom backlog, regenerate identity/history/input
+PASS mlops.pipeline 20h: full minutes/budget, repeated done, close snapshot, custom backlog, regenerate identity/history/input
+PASS ai-engineer.rag 2h: full minutes/budget, repeated done, close snapshot, custom backlog, regenerate identity/history/input
+PASS ai-engineer.rag 20h: full minutes/budget, repeated done, close snapshot, custom backlog, regenerate identity/history/input
+PASS ai-engineer.agents 2h: full minutes/budget, repeated done, close snapshot, custom backlog, regenerate identity/history/input
+PASS ai-engineer.agents 20h: full minutes/budget, repeated done, close snapshot, custom backlog, regenerate identity/history/input
+PASS backend.node 2h: full minutes/budget, repeated done, close snapshot, custom backlog, regenerate identity/history/input
+PASS backend.node 20h: full minutes/budget, repeated done, close snapshot, custom backlog, regenerate identity/history/input
+PASS backend.python 2h: full minutes/budget, repeated done, close snapshot, custom backlog, regenerate identity/history/input
+PASS backend.python 20h: full minutes/budget, repeated done, close snapshot, custom backlog, regenerate identity/history/input
+PASS backend.java 2h: full minutes/budget, repeated done, close snapshot, custom backlog, regenerate identity/history/input
+PASS backend.java 20h: full minutes/budget, repeated done, close snapshot, custom backlog, regenerate identity/history/input
+22/22 cross-review cases passed (8 AI + 3 Backend tracks at 2/20 hours). No persistence test.
+
+=== MW-TEAM-02 Test Script ===
+
+X [ERROR] Could not resolve "src/domain/planner.ts"
+
+C:\Đại học\UIT\Năm 3\HKI\Phát triển ứng dụng Web - IS207.R11\dự án nhóm\majorweave-mini-project\node_modules\esbuild\lib\main.js:1467
+  let error = new Error(text);
+              ^
+
+Error: Build failed with 1 error:
+error: Could not resolve "src/domain/planner.ts"
+    at failureErrorWithLog (C:\Đại học\UIT\Năm 3\HKI\Phát triển ứng dụng Web - IS207.R11\dự án nhóm\majorweave-mini-project\node_modules\esbuild\lib\main.js:1467:15)
+    at C:\Đại học\UIT\Năm 3\HKI\Phát triển ứng dụng Web - IS207.R11\dự án nhóm\majorweave-mini-project\node_modules\esbuild\lib\main.js:926:25
+    at C:\Đại học\UIT\Năm 3\HKI\Phát triển ứng dụng Web - IS207.R11\dự án nhóm\majorweave-mini-project\node_modules\esbuild\lib\main.js:878:52
+    at buildResponseToResult (C:\Đại học\UIT\Năm 3\HKI\Phát triển ứng dụng Web - IS207.R11\dự án nhóm\majorweave-mini-project\node_modules\esbuild\lib\main.js:924:7)
+    at C:\Đại học\UIT\Năm 3\HKI\Phát triển ứng dụng Web - IS207.R11\dự án nhóm\majorweave-mini-project\node_modules\esbuild\lib\main.js:951:16
+    at responseCallbacks.<computed> (C:\Đại học\UIT\Năm 3\HKI\Phát triển ứng dụng Web - IS207.R11\dự án nhóm\majorweave-mini-project\node_modules\esbuild\lib\main.js:603:9)
+    at handleIncomingPacket (C:\Đại học\UIT\Năm 3\HKI\Phát triển ứng dụng Web - IS207.R11\dự án nhóm\majorweave-mini-project\node_modules\esbuild\lib\main.js:658:12)
+    at Socket.readFromStdout (C:\Đại học\UIT\Năm 3\HKI\Phát triển ứng dụng Web - IS207.R11\dự án nhóm\majorweave-mini-project\node_modules\esbuild\lib\main.js:581:7)
+    at Socket.emit (node:events:509:28)
+    at addChunk (node:internal/streams/readable:563:12) {
+  errors: [Getter/Setter],
+  warnings: [Getter/Setter]
+}
+
+Node.js v24.15.0

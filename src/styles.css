@@ -44,3 +44,22 @@ dialog{padding:0;border:1px solid var(--line);border-radius:7px;background:var(-
 @media(max-width:600px){.study-activity{padding:16px}.activity-heading h2{font-size:25px}.activity-layout{gap:18px}.activity-grid{grid-template-rows:repeat(7,14px);grid-template-columns:repeat(12,14px);gap:4px}.activity-cell{width:14px;height:14px}.activity-weekdays{grid-template-rows:repeat(7,14px);gap:4px}.activity-months{grid-template-columns:repeat(12,14px);gap:4px}.activity-totals strong{font-size:26px}}
 @media(max-width:760px){.stack-chooser{padding:20px 16px}.stack-options{grid-template-columns:1fr}.stack-option{padding:14px 16px}.stack-option strong{font-size:13px}.stack-intro h2{font-size:26px}.profile-layout{grid-template-columns:1fr;gap:0}.profile-paper{padding:22px 18px}.profile-learning{padding:24px 6px}.profile-plan-link,.plan-rhythm-summary{flex-direction:column;align-items:flex-start;padding:20px 16px}.profile-plan-link a,.plan-rhythm-summary a{align-self:stretch}.sidebar nav{grid-template-columns:repeat(5,minmax(0,1fr))}.nav-item{min-width:0}.nav-item strong{font-size:10px}.reference-roadmap-links{max-width:100%}.reference-roadmap-links>a{white-space:normal;text-align:center}}
 .foundation-add-note{padding:18px 20px;border:1px solid var(--line);border-radius:5px;display:flex;align-items:center;gap:22px;margin-top:20px}.foundation-add-note p{flex:1;font-size:11px;color:var(--muted)}.foundation-add-note button{flex-shrink:0}@media(max-width:760px){.foundation-add-note{flex-direction:column;align-items:flex-start;padding:16px}.foundation-add-note button{align-self:stretch}}
+
+/* My Roadmap: typography adjustment requested by Dinh, 08/10/2026. */
+.roadmap-page{font-size:14px}
+.roadmap-page .page-heading h1{font-size:66px}
+.roadmap-page .paper-heading h2{font-size:28px}
+.roadmap-page .plan-builder h2{font-size:35px}
+.roadmap-page .roadmap-course-title{font-size:16px;font-weight:600;line-height:1.65;color:var(--ink)}
+.roadmap-page .is-known .roadmap-course-title{color:var(--muted)}
+.roadmap-page .page-heading p,.roadmap-page .builder-note,.roadmap-page .module-duration,.roadmap-page .soft-note,.roadmap-page .form-error{font-size:13px;line-height:1.8}
+.roadmap-page .browse-select,.roadmap-page .plan-builder>label,.roadmap-page .selected-module-bottom .checkbox-label{font-size:14px}
+.roadmap-page .browse-select select,.roadmap-page .source-select select{font-size:13px;font-weight:500}
+.roadmap-page .plan-builder input:not([type=range]){font-size:14px}
+.roadmap-page .primary-button,.roadmap-page .secondary-button,.roadmap-dialog .primary-button,.roadmap-dialog .secondary-button{font-size:13px;line-height:1.5}
+.roadmap-dialog .dialog-head h2{font-size:34px}
+.roadmap-dialog .dialog-body>p,.roadmap-dialog .form-error{font-size:14px;line-height:1.8}
+@media(max-width:1200px){.roadmap-page .page-heading h1{font-size:55px}}
+@media(max-width:990px){.roadmap-page .page-heading h1{font-size:47px}}
+@media(max-width:760px){.roadmap-page .page-heading h1{font-size:50px}}
+@media(max-width:540px){.roadmap-page .page-heading h1{font-size:53px}.roadmap-page .roadmap-course-title{font-size:15px}.roadmap-page .paper-heading h2{font-size:27px}.roadmap-page .plan-builder h2{font-size:34px}.roadmap-dialog .dialog-head h2{font-size:31px}}

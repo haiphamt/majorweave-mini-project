@@ -1,0 +1,84 @@
+{
+  "date": "2026-10-06",
+  "environment": "IAB/Vite 6.4.3 loopback:5183",
+  "fixtureOnly": true,
+  "persistenceEndToEnd": false,
+  "matrix": [
+    {
+      "track": "scientist.python",
+      "action": "Dời đến tuần mở tiếp theo",
+      "doneUndoRedo": true,
+      "closedReadonly": true
+    },
+    {
+      "track": "ml.classical",
+      "action": "Đưa vào backlog",
+      "doneUndoRedo": true,
+      "closedReadonly": true
+    },
+    {
+      "track": "ml.cv",
+      "action": "Bỏ qua (skipped)",
+      "doneUndoRedo": true,
+      "closedReadonly": true
+    },
+    {
+      "track": "ml.nlp",
+      "action": "Dời đến tuần mở tiếp theo",
+      "doneUndoRedo": true,
+      "closedReadonly": true
+    },
+    {
+      "track": "mlops.serving",
+      "action": "Đưa vào backlog",
+      "doneUndoRedo": true,
+      "closedReadonly": true
+    },
+    {
+      "track": "mlops.pipeline",
+      "action": "Bỏ qua (skipped)",
+      "doneUndoRedo": true,
+      "closedReadonly": true
+    },
+    {
+      "track": "ai-engineer.rag",
+      "action": "Dời đến tuần mở tiếp theo",
+      "doneUndoRedo": true,
+      "closedReadonly": true
+    },
+    {
+      "track": "ai-engineer.agents",
+      "action": "Đưa vào backlog",
+      "doneUndoRedo": true,
+      "closedReadonly": true
+    }
+  ],
+  "destinationChecks": [
+    "scientist.python",
+    "ml.classical",
+    "ml.cv",
+    "ml.nlp",
+    "mlops.serving",
+    "mlops.pipeline",
+    "ai-engineer.rag",
+    "ai-engineer.agents"
+  ],
+  "checks": [
+    "done/undo/redo",
+    "validation",
+    "save failure/retry one add",
+    "edit title/minutes/week",
+    "backlog",
+    "cancel preview",
+    "keyboard Tab/Escape",
+    "Stats frozen 1/2",
+    "Weeks",
+    "history readonly",
+    "empty/error/loading/archived",
+    "390x844 no horizontal overflow",
+    "reload resets fixture only",
+    "legacy app smoke",
+    "selection save failure preserves selected plan",
+    "failed completion discard preserves unchecked task, Saves0"
+  ]
+}

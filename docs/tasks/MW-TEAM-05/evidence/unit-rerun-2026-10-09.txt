@@ -1,0 +1,95 @@
+Actor: Codex; ngày 09/10/2026; Node.js v24.19.0, Linux.
+Source: majorweave-mini-project(2).zip Huy gửi; không gán SHA Git chưa xác minh.
+Command: node scripts/tasks/MW-TEAM-05.mjs
+PASS Không có nguồn: null, không defaults
+PASS Raw/unknown work/source/credential và phút/tuần giữ nguyên
+PASS Done thiếu timestamp: cảnh báo, không bịa ngày
+PASS Timestamp thực giữ nguyên
+PASS SHA256 ổn định theo raw, đổi khi raw đổi
+PASS JSON lỗi không thay defaults
+PASS Version tương lai bị từ chối
+PASS Null/mảng/object thiếu trường/empty bị từ chối
+PASS Task lỗi: từ chối cả nguồn, không lọc
+PASS ID task trùng bị từ chối
+PASS Ngày sai và timestamp thiếu timezone bị từ chối
+PASS PlanMeta độc lập với draft
+PASS PlanMeta chưa có: giữ nguyên, cảnh báo
+PASS Extra fields không bị xóa
+PASS Reader chỉ đọc đúng key v1
+PASS Reader throw trả storage, không defaults
+PASS Preview khớp template: maps thật, segment nguyên bài và không chia lại
+PASS Title/phút sửa: customized, segment null, không reset template
+PASS Unknown module/work giữ nguyên title/phút/tuần/notes
+PASS Nguồn thiếu không loại bỏ task, giữ ID nguồn trong notes/raw
+PASS Done thiếu timestamp: completion null ngày/timezone
+PASS Timestamp thực giữ, ngày tính theo timezone preview
+PASS Plan khác draft giữ track/mục tiêu/quỹ giờ riêng
+PASS PlanMeta thiếu: chặn plan cho tới khi chọn rõ bối cảnh
+PASS Không có tasks: không dựng plan mặc định
+PASS Ngày không Thứ Hai giữ nguyên và cảnh báo chặn, không tự dời lịch
+PASS Nháp thiếu prerequisite không được tự thêm/đánh dấu biết
+PASS Unmapped selection/source/credential có inventory và raw
+PASS ID factory lỗi/trùng và clock/timezone lỗi trả validation
+PASS Preview không sửa input, sửa output không ảnh hưởng preview kế tiếp
+PASS Prepare không ghi; caller sửa candidate không đổi bản riêng
+PASS Cancel không ghi và vô hiệu ticket
+PASS Confirm lưu plan và fingerprint cùng revision; giữ nguồn/profile
+PASS Fingerprint đã nhập không tạo plan hoặc save thứ hai
+PASS Hai controller: tab sau nhận marker đã nhập, không ghi trùng
+PASS Lỗi save giữ IDs; retry chỉ tạo một plan
+PASS Save pending không success sớm; chặn confirm/cancel/prepare
+PASS Workspace đổi revision: giữ đề xuất, không ghi đè
+PASS Nguồn đổi sau preview chặn confirm
+PASS Nguồn đổi khi prepare: không phát ticket cũ
+PASS Nguồn đổi khi commit: báo changed, giữ raw đã chuyển
+PASS Đọc nguồn lỗi sau commit: báo unreadable, không giả rollback
+PASS Workspace có dữ liệu yêu cầu append rõ; giữ active/history/draft
+PASS Factory trùng ID workspace bị chặn trước save
+PASS Unmapped draft/credential chặn; bỏ nhập phải chọn rõ, nguồn còn nguyên
+PASS Profile/preferences chỉ nhập khi chọn rõ
+PASS Validator throw được trả lỗi, không ghi
+PASS Không nguồn hoặc reader lỗi không tạo defaults
+PASS Preview mới vô hiệu ticket trước đó
+PASS Backup round trip giữ toàn workspace và không sửa đầu vào
+PASS Export bản chưa lưu dùng snapshot cung cấp, có nhãn rõ
+PASS Backup JSON/format/version hỏng bị từ chối
+PASS Export clock lỗi và workspace lỗi không dựng defaults
+PASS Import dùng revision thiết bị, giữ profile/preferences/mục tiêu mặc định
+PASS Duplicate mặc định skip, không ghi hay tăng revision
+PASS Copy remap current/history/closed snapshots/completion và marker
+PASS Nested ID collision yêu cầu copy rõ, không tự đổi ID
+PASS Factory copy UUID lỗi/trùng bị từ chối
+PASS Nhập profile/preferences/draft/credential phải chọn rõ; draft hiện có giữ
+PASS Import cancel không ghi; ticket hết hiệu lực
+PASS Import caller tamper không thay candidate riêng
+PASS Import storage failure giữ bản copy/IDs để retry và xuất
+PASS Import revision conflict giữ bản đề xuất, không ghi đè
+PASS Import pending chặn double submit và cancel; không success sớm
+PASS Backup validator throw và lựa chọn sai không ghi
+PASS Nội dung đúng 4 pack / 10 track được giao, review chưa ready
+PASS ID stage/resource/work/credential không trùng với nền tảng Backend
+PASS Bài thực hành có thời lượng/chấp nhận cụ thể, không placeholder
+PASS Nguồn mới có provider/điều kiện/ngày mở riêng; URL an toàn không trùng
+PASS Portfolio và chứng nhận có yêu cầu/phí rõ, không Postman badge đã đóng
+PASS devops.devops: resolver giữ đủ nền tảng/tiên quyết và nguồn
+PASS devops.devops: planner 2h/20h giữ tổng phút, tuần đúng quỹ và source
+PASS devops.sre: resolver giữ đủ nền tảng/tiên quyết và nguồn
+PASS devops.sre: planner 2h/20h giữ tổng phút, tuần đúng quỹ và source
+PASS network.network: resolver giữ đủ nền tảng/tiên quyết và nguồn
+PASS network.network: planner 2h/20h giữ tổng phút, tuần đúng quỹ và source
+PASS network.automation: resolver giữ đủ nền tảng/tiên quyết và nguồn
+PASS network.automation: planner 2h/20h giữ tổng phút, tuần đúng quỹ và source
+PASS security.soc: resolver giữ đủ nền tảng/tiên quyết và nguồn
+PASS security.soc: planner 2h/20h giữ tổng phút, tuần đúng quỹ và source
+PASS security.appsec: resolver giữ đủ nền tảng/tiên quyết và nguồn
+PASS security.appsec: planner 2h/20h giữ tổng phút, tuần đúng quỹ và source
+PASS security.devsecops: resolver giữ đủ nền tảng/tiên quyết và nguồn
+PASS security.devsecops: planner 2h/20h giữ tổng phút, tuần đúng quỹ và source
+PASS qa.manual: resolver giữ đủ nền tảng/tiên quyết và nguồn
+PASS qa.manual: planner 2h/20h giữ tổng phút, tuần đúng quỹ và source
+PASS qa.playwright: resolver giữ đủ nền tảng/tiên quyết và nguồn
+PASS qa.playwright: planner 2h/20h giữ tổng phút, tuần đúng quỹ và source
+PASS qa.postman: resolver giữ đủ nền tảng/tiên quyết và nguồn
+PASS qa.postman: planner 2h/20h giữ tổng phút, tuần đúng quỹ và source
+PASS Chọn chặng nâng cao thiếu tiên quyết bị chặn, không tự đánh dấu đã biết
+91 PASS / 0 FAIL — persistence/migration/backup unit tests và 10 track isolated resolver/planner; native/semantic/UI có minh chứng riêng.
