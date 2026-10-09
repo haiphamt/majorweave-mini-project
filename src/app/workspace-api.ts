@@ -45,6 +45,8 @@ export type WorkspaceActions = {
   confirmRegeneration(token: string): Promise<OperationResult<LearningPlan>>;
   cancelRegeneration(): void;
   retrySave(): Promise<OperationResult<Workspace>>;
+  /** Confirm discarding this exact pending snapshot; reload committed data, never write. */
+  discardPendingSave(expected: Workspace): Promise<OperationResult<Workspace>>;
   reloadWorkspace(discardUnsaved?: boolean): Promise<OperationResult<Workspace>>;
 };
 

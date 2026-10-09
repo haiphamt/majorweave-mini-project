@@ -229,3 +229,64 @@ assert.equal((await controller.toggleCredential('missing')).ok,false);
 const credential=packs[0].tracks[0].credentialIds[0];ok(await controller.toggleCredential(credential));ok(await controller.reloadWorkspace());assert.ok(disk.savedCredentialIds.includes(credential));
 ok(await controller.toggleCredential(credential));assert.ok(!disk.savedCredentialIds.includes(credential));
 console.log('PASS failed save preserves old plan, retry, stale plan and credential persistence');
+// 09/10 review regressions: shared discard, saving guard and conflict refresh.
+const {parseTaskForm,taskForm}=await loadIntegration('src/features/my-plan/viewModel.ts');
+for(let day=0;day<7;day++){
+  const form={stageId:'test',title:'Study',minutes:'60',acceptance:'One output',notes:'',week:'1',day:String(day)};
+  const temporary={...form,week:''};
+  assert.equal(temporary.day,String(day));
+  assert.equal(ok(parseTaskForm({...temporary,week:'2'})).dayIndex,day);
+  assert.equal(ok(parseTaskForm(temporary)).dayIndex,null);
+  assert.equal(temporary.day,String(day));
+}
+assert.equal(parseTaskForm({stageId:'test',title:'Study',minutes:'60',acceptance:'Output',notes:'',week:'',day:'7'}).ok,false);
+console.log('PASS Chung Hieu 1ce77b1: all seven days retained while week is blank; only backlog submit clears day');
+async function feedbackFixture(){
+  let committed=emptyWorkspace('Asia/Ho_Chi_Minh'),writes=0,fail=false,gate=null;
+  const store={loadWorkspace:async()=>({ok:true,value:structuredClone(committed)}),saveWorkspace:async(next,revision)=>{
+    writes++;if(gate)await gate;
+    if(fail){fail=false;return {ok:false,code:'storage',issues:[{code:'TEST_SAVE_FAILED',field:'workspace',message:'Controlled failure'}]};}
+    if(revision!==committed.revision)return {ok:false,code:'conflict',issues:[{code:'REVISION_CONFLICT',field:'revision',message:'Another writer'}]};
+    committed=structuredClone({...next,revision:revision+1});return {ok:true,value:structuredClone(committed)};
+  }};
+  const c=createWorkspaceController({persistence:store,packs,now:()=> '2026-10-09T03:00:00Z',today:()=> '2026-10-09',nextId:randomUUID});
+  ok(await c.initialize());ok(c.updateDraft('backend.node',{goal:'Review regression'}));const plan=ok(await c.createPlan('backend.node'));
+  const preview=ok(c.previewRegeneration(plan.id));ok(await c.confirmRegeneration(preview.token));
+  const complete=(index)=>{const expected=c.getSnapshot().workspace.plans[0];return {expected,next:ok(setTaskCompletion(expected,expected.current.tasks[index].id,true,{now:'2026-10-09T04:00:00Z',today:'2026-10-09',timeZone:'Asia/Ho_Chi_Minh',nextCompletionId:randomUUID}))};};
+  return {c,complete,disk:()=>structuredClone(committed),writes:()=>writes,fail:()=>{fail=true;},gate:p=>{gate=p;},external:()=>{committed={...committed,revision:committed.revision+1,profile:{...committed.profile,displayName:'External writer'}};}};
+}
+{
+  const f=await feedbackFixture(),before=f.disk(),a=f.complete(0);f.fail();assert.equal((await f.c.savePlan(a.next,a.expected)).ok,false);
+  const candidate=f.c.getSnapshot().unsavedWorkspace,writes=f.writes();
+  assert.equal((await f.c.discardPendingSave(structuredClone(candidate))).ok,false,'stale confirmation must not discard current candidate');
+  assert.ok(f.c.getSnapshot().unsavedWorkspace);ok(await f.c.discardPendingSave(candidate));
+  assert.equal(f.c.getSnapshot().unsavedWorkspace,null);assert.equal(f.c.getSnapshot().dirty,false);assert.equal(f.c.getSnapshot().status,'ready');
+  assert.deepEqual(f.disk(),before);assert.equal(f.writes(),writes,'discard is read-only');
+  assert.equal((await f.c.retrySave()).ok,false);assert.equal(f.writes(),writes,'banner cannot revive discarded change');
+  const b=f.complete(1);ok(await f.c.savePlan(b.next,b.expected));
+  assert.equal(f.disk().plans[0].current.tasks[0].status,'todo');assert.equal(f.disk().plans[0].current.tasks[1].status,'done');
+  assert.deepEqual(f.disk().plans[0].history,before.plans[0].history);
+  console.log('PASS save fail → shared discard → no retry resurrection → edit other task; history retained');
+}
+{
+  const f=await feedbackFixture(),a=f.complete(0);f.fail();assert.equal((await f.c.savePlan(a.next,a.expected)).ok,false);
+  const pending=f.c.getSnapshot().unsavedWorkspace;let release;f.gate(new Promise(resolve=>{release=resolve;}));
+  const retry=f.c.retrySave();assert.equal(f.c.getSnapshot().status,'saving');
+  assert.equal((await f.c.discardPendingSave(pending)).ok,false,'cannot cancel in-flight transaction');
+  assert.ok(f.c.getSnapshot().unsavedWorkspace);release();ok(await retry);
+  assert.equal(f.disk().plans[0].current.tasks[0].status,'done');assert.equal(f.disk().plans[0].completions.length,1);
+  assert.equal(f.c.getSnapshot().unsavedWorkspace,null);
+  console.log('PASS failed save retry once, discard during saving rejected');
+}
+{
+  const f=await feedbackFixture(),a=f.complete(0);f.external();const external=f.disk();
+  const conflict=await f.c.savePlan(a.next,a.expected);assert.equal(conflict.code,'conflict');
+  assert.equal(f.c.getSnapshot().status,'conflict');assert.ok(f.c.getSnapshot().unsavedWorkspace);
+  assert.equal((await f.c.reloadWorkspace()).ok,false,'requires confirmed discard');
+  ok(await f.c.discardPendingSave(f.c.getSnapshot().unsavedWorkspace));
+  assert.equal(f.c.getSnapshot().unsavedWorkspace,null);assert.deepEqual(f.c.getSnapshot().workspace,external);
+  assert.deepEqual(f.disk(),external);assert.equal((await f.c.retrySave()).ok,false);
+  const b=f.complete(1);ok(await f.c.savePlan(b.next,b.expected));
+  assert.equal(f.disk().profile.displayName,'External writer');assert.equal(f.disk().plans[0].current.tasks[0].status,'todo');
+  console.log('PASS revision conflict → confirm discard → latest committed revision → new edit');
+}

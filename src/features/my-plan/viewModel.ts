@@ -15,8 +15,11 @@ export function parseTaskForm(form: TaskForm): { ok: true; value: NewTask } | { 
   if (!acceptance.length) invalid('acceptance', 'Nhập ít nhất một yêu cầu.');
   const weekIndex = form.week.trim() ? Number(form.week) - 1 : null;
   if (weekIndex !== null && (!Number.isSafeInteger(weekIndex) || weekIndex < 0)) invalid('week', 'Tuần phải là số nguyên từ 1; để trống cho backlog.');
-  const dayIndex = form.day === '' ? null : Number(form.day);
-  if (dayIndex !== null && (!Number.isInteger(dayIndex) || dayIndex < 0 || dayIndex > 6 || weekIndex === null)) invalid('day', 'Ngày phải trong tuần được chọn; backlog không có ngày.');
+  // Keep the selected day in the editable draft while a week is temporarily
+  // blank. Only committing backlog removes the schedule's day (contracts).
+  const selectedDay = form.day === '' ? null : Number(form.day);
+  if (selectedDay !== null && (!Number.isInteger(selectedDay) || selectedDay < 0 || selectedDay > 6)) invalid('day', 'Ngày phải trong khoảng Thứ Hai đến Chủ nhật.');
+  const dayIndex = weekIndex === null ? null : selectedDay;
   if (!form.stageId) invalid('stageId', 'Chọn chặng học.');
   return issues.length ? { ok: false, issues } : { ok: true, value: { stageId: form.stageId, title: form.title.trim(), minutes, acceptance, notes: form.notes, weekIndex, dayIndex } };
 }

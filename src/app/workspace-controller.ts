@@ -166,6 +166,15 @@ export function createWorkspaceController(options: WorkspaceOptions): WorkspaceC
       if (!snapshot.unsavedWorkspace) return Promise.resolve(failure('validation', 'NO_PENDING_SAVE', 'workspace', 'Không có bản đang chờ lưu.'));
       return commit(snapshot.unsavedWorkspace);
     },
+    discardPendingSave(expected) {
+      if (snapshot.status === 'saving' || snapshot.status === 'loading')
+        return Promise.resolve(failure('conflict', 'WORKSPACE_BUSY', 'workspace', 'Đang xử lý dữ liệu; chưa thể bỏ thay đổi.'));
+      if (!snapshot.unsavedWorkspace || snapshot.unsavedWorkspace !== expected)
+        return Promise.resolve(failure('conflict', 'STALE_PENDING_SAVE', 'workspace', 'Bản chưa lưu đã thay đổi; cần xác nhận lại.'));
+      // Confirmed cancellation reads the committed revision (also after a conflict).
+      // No database reset, write, or deletion; failed reload keeps the candidate.
+      return load(true);
+    },
     reloadWorkspace: load,
   };
   return actions;

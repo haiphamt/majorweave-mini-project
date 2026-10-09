@@ -11,6 +11,8 @@ export type MyPlanV2Props = Pick<Workspace, 'plans' | 'activePlanId'> & {
   stages: readonly LearningStage[];
   onSelectPlan: (id: string) => Promise<OperationResult<void>>;
   onSavePlan: (next: LearningPlan, expected: LearningPlan) => Promise<OperationResult<void>>;
+  // Supply this when the caller retains a shared candidate after a failed save.
+  onDiscardPendingPlan?: (candidate: LearningPlan) => Promise<OperationResult<void>>;
   getProgressContext: () => ProgressContext;
   nextTaskId: () => string;
   loading?: boolean;
@@ -50,6 +52,8 @@ function PlanView({ plan, selecting, onBlockedChange, ...props }: MyPlanV2Props 
   const [action, setAction] = useState<'move_next' | 'move_backlog' | 'skip'>('move_next');
   const [pending, setPending] = useState<PendingSave | null>(null);
   const [saving, setSaving] = useState(false);
+  const [discarding, setDiscarding] = useState(false);
+  const [confirmDiscard, setConfirmDiscard] = useState(false);
   const [error, setError] = useState('');
   const [notice, setNotice] = useState('');
   const lock = useRef(false);
@@ -59,9 +63,21 @@ function PlanView({ plan, selecting, onBlockedChange, ...props }: MyPlanV2Props 
   const tasks = visibleTasks(generation, week);
   const weeks = weekIndices(generation);
   const readonly = readOnly(plan, generation, week);
-  const busy = saving || selecting;
+  const busy = saving || selecting || discarding;
   const blocked = busy || !!pending;
-  useEffect(() => { onBlockedChange(saving || !!pending); return () => onBlockedChange(false); }, [saving, pending, onBlockedChange]);
+  useEffect(() => { onBlockedChange(saving || discarding || !!pending); return () => onBlockedChange(false); }, [saving, discarding, pending, onBlockedChange]);
+  // A retry from the shared banner can commit before this local editor retries.
+  // Retire that local candidate too; never keep the UI blocked on an old object.
+  useEffect(() => {
+    if (!pending || pending.expected === plan || busy || lock.current) return;
+    setPending(null);
+    if (JSON.stringify(pending.next) === JSON.stringify(plan)) {
+      pending.after(); setError(''); setNotice(pending.message);
+    } else {
+      setForm(null); setPreview(false); setConfirmDiscard(false);
+      setError('Kế hoạch đã thay đổi; bản thao tác cũ đã được đóng.');
+    }
+  }, [plan, pending, busy]);
   const summary = calculatePlanStats({ ...plan, current: generation });
   const weekResult = calculateWeekStats(plan, week, generation.id);
   const weekStats = weekResult.ok ? weekResult.value : null;
@@ -89,7 +105,22 @@ function PlanView({ plan, selecting, onBlockedChange, ...props }: MyPlanV2Props 
       void persist({ next: result.value, expected: plan, message, after });
     } catch { setError('Không chuẩn bị được thao tác. Kiểm tra đồng hồ, múi giờ hoặc bộ tạo ID.'); }
   }
-  function dismiss() { if (busy) return; setPending(null); setError(''); setForm(null); setPreview(false); }
+  function closeEditor() { setPending(null); setError(''); setForm(null); setPreview(false); setConfirmDiscard(false); }
+  function dismiss() {
+    if (lock.current || busy) return;
+    if (pending) { setConfirmDiscard(true); return; }
+    closeEditor();
+  }
+  async function discard() {
+    if (lock.current || busy || !pending) return;
+    lock.current = true; setDiscarding(true);
+    try {
+      const result = props.onDiscardPendingPlan ? await props.onDiscardPendingPlan(pending.next) : { ok: true as const, value: undefined };
+      if (!result.ok) { setError(describe(result)); return; }
+      closeEditor(); setNotice('Đã bỏ thay đổi chưa lưu; giữ bản đã lưu.');
+    } catch { setError('Không bỏ được bản chưa lưu. Bản đã lưu vẫn được giữ; hãy thử lại.'); }
+    finally { lock.current = false; setDiscarding(false); }
+  }
   function openAdd() {
     setEditingId(null); setFormIssues([]);
     setForm({ stageId: selectableStages[0]?.id ?? '', title: '', minutes: '60', acceptance: '', notes: '', week: week === null ? '' : String(week + 1), day: '' });
@@ -141,13 +172,14 @@ function PlanView({ plan, selecting, onBlockedChange, ...props }: MyPlanV2Props 
         })}</div>
         {!readonly && <div className="dialog-actions"><button className="add-task-button" disabled={blocked || !selectableStages.length} onClick={openAdd}><Plus size={17}/>Thêm việc</button>{week !== null && <button className="secondary-button" disabled={blocked || !tasks.length} onClick={() => { setAction('move_next'); setPreview(true); }}>Chốt tuần</button>}</div>}
       </section></div>}
-    {form && <Dialog title={editingId ? 'Chỉnh công việc.' : 'Thêm công việc.'} eyebrow="MY PLAN" onClose={dismiss}><form className="dialog-body task-edit-form" noValidate onSubmit={submit}>
+    {confirmDiscard && <Dialog title="Bỏ thay đổi chưa lưu?" eyebrow="MY PLAN" onClose={()=>{if(!lock.current&&!busy)setConfirmDiscard(false);}}><div className="dialog-body"><p>Thay đổi vừa lưu thất bại sẽ bị bỏ ở cả My Plan và Context. Kế hoạch và lịch sử đã lưu được giữ nguyên; bản đã bỏ không thể thử lưu lại.</p><div className="dialog-actions"><button className="secondary-button" disabled={busy} onClick={()=>setConfirmDiscard(false)}>Giữ thay đổi để thử lưu lại</button><button className="primary-button" disabled={busy} onClick={()=>void discard()}>{discarding?'Đang bỏ thay đổi…':'Xác nhận bỏ thay đổi'}</button></div></div></Dialog>}
+    {form && !confirmDiscard && <Dialog title={editingId ? 'Chỉnh công việc.' : 'Thêm công việc.'} eyebrow="MY PLAN" onClose={dismiss}><form className="dialog-body task-edit-form" noValidate onSubmit={submit}>
       {formIssues.length > 0 && <div role="alert" id="task-form-errors">{formIssues.map((message,i) => <p key={i}>{message}</p>)}</div>}
       {error && <p role="alert">{error}</p>}
       <fieldset disabled={blocked} style={{ border: 0, padding: 0, margin: 0 }}>
         <label>Chặng học<select aria-label="Chặng học" value={form.stageId} disabled={!!editingId} onChange={e => setForm({...form,stageId:e.target.value})}>{selectableStages.map(s => <option key={s.id} value={s.id}>{s.title}</option>)}</select></label>
         <label>Tiêu đề<input autoFocus aria-label="Tiêu đề" aria-describedby={formIssues.length ? 'task-form-errors' : undefined} required value={form.title} onChange={e => setForm({...form,title:e.target.value})}/></label>
-        <div className="form-row"><label>Phút<input aria-label="Phút" type="number" required min={1} step={1} value={form.minutes} onChange={e => setForm({...form,minutes:e.target.value})}/></label><label>Tuần (trống = backlog)<input aria-label="Tuần đích" type="number" min={1} step={1} value={form.week} onChange={e => setForm({...form,week:e.target.value,day:e.target.value.trim() ? form.day : ''})}/></label></div>
+        <div className="form-row"><label>Phút<input aria-label="Phút" type="number" required min={1} step={1} value={form.minutes} onChange={e => setForm({...form,minutes:e.target.value})}/></label><label>Tuần (trống = backlog)<input aria-label="Tuần đích" type="number" min={1} step={1} value={form.week} onChange={e => setForm({...form,week:e.target.value})}/></label></div>
         <label>Ngày học<select aria-label="Ngày học" value={form.day} disabled={!form.week.trim()} onChange={e => setForm({...form,day:e.target.value})}><option value="">Chưa chọn ngày</option>{['Thứ Hai','Thứ Ba','Thứ Tư','Thứ Năm','Thứ Sáu','Thứ Bảy','Chủ nhật'].map((day,i) => <option key={i} value={i}>{day}</option>)}</select></label>
         <label>Yêu cầu (mỗi dòng một yêu cầu)<textarea aria-label="Yêu cầu" required rows={3} value={form.acceptance} onChange={e => setForm({...form,acceptance:e.target.value})}/></label>
         <label>Ghi chú<textarea aria-label="Ghi chú" rows={3} value={form.notes} onChange={e => setForm({...form,notes:e.target.value})}/></label>
@@ -155,6 +187,6 @@ function PlanView({ plan, selecting, onBlockedChange, ...props }: MyPlanV2Props 
       {formOvertime > 0 && <p className="capacity-note">Sau khi lưu, tuần đích vượt quỹ giờ {formOvertime} phút.</p>}
       <div className="dialog-actions"><button type="button" className="secondary-button" disabled={busy} onClick={dismiss}>Hủy</button>{pending ? <button type="button" className="primary-button" disabled={busy} onClick={() => void persist(pending)}>Thử lưu lại</button> : <button type="submit" className="primary-button" disabled={blocked}>Lưu công việc</button>}</div>
     </form></Dialog>}
-    {preview && week !== null && <Dialog title={`Chốt tuần ${week+1}?`} eyebrow="MY PLAN" onClose={dismiss}><div className="dialog-body"><p>{tasks.filter(t => t.status === 'todo').length} việc chưa xong. Snapshot sẽ giữ {weekStats?.done}/{weekStats?.total} trước xử lý.</p><ul className="practice-list">{tasks.filter(t => t.status === 'todo').map(t => <li key={t.id}>{t.title} · {t.minutes} phút</li>)}</ul><fieldset disabled={blocked} style={{ border: 0, padding: 0 }}>{(['move_next','move_backlog','skip'] as const).map(value => <label key={value} className="checkbox-label"><input type="radio" name="unfinished" value={value} checked={action===value} onChange={() => setAction(value)}/>{value==='move_next' ? 'Dời đến tuần mở tiếp theo' : value==='move_backlog' ? 'Đưa vào backlog' : 'Bỏ qua (skipped)'}</label>)}</fieldset>{error && <p role="alert">{error}</p>}<p className="source-note">{action === 'move_next' && movingMinutes > 0 ? Number.isSafeInteger(nextWeek) ? `Đích: tuần ${nextWeek+1}. ${movingMinutes} phút được dời; vượt quỹ giờ tại đích ${closeOvertime} phút.` : 'Không còn tuần đích hợp lệ; thao tác sẽ bị từ chối.' : action === 'move_backlog' ? 'Việc chưa xong trở về backlog, chưa xếp ngày.' : 'Việc chưa xong giữ vị trí với trạng thái skipped.'} Tuần đã chốt sẽ chỉ đọc. Hủy giữ nguyên kế hoạch.</p><div className="dialog-actions"><button className="secondary-button" disabled={busy} onClick={dismiss}>Hủy</button>{pending ? <button className="primary-button" disabled={busy} onClick={() => void persist(pending)}>Thử lưu lại</button> : <button className="primary-button" disabled={blocked} onClick={() => run(() => closeWeek(plan,week,action,props.getProgressContext()),'Đã chốt tuần.',() => setPreview(false))}>Xác nhận chốt tuần</button>}</div></div></Dialog>}
+    {preview && !confirmDiscard && week !== null && <Dialog title={`Chốt tuần ${week+1}?`} eyebrow="MY PLAN" onClose={dismiss}><div className="dialog-body"><p>{tasks.filter(t => t.status === 'todo').length} việc chưa xong. Snapshot sẽ giữ {weekStats?.done}/{weekStats?.total} trước xử lý.</p><ul className="practice-list">{tasks.filter(t => t.status === 'todo').map(t => <li key={t.id}>{t.title} · {t.minutes} phút</li>)}</ul><fieldset disabled={blocked} style={{ border: 0, padding: 0 }}>{(['move_next','move_backlog','skip'] as const).map(value => <label key={value} className="checkbox-label"><input type="radio" name="unfinished" value={value} checked={action===value} onChange={() => setAction(value)}/>{value==='move_next' ? 'Dời đến tuần mở tiếp theo' : value==='move_backlog' ? 'Đưa vào backlog' : 'Bỏ qua (skipped)'}</label>)}</fieldset>{error && <p role="alert">{error}</p>}<p className="source-note">{action === 'move_next' && movingMinutes > 0 ? Number.isSafeInteger(nextWeek) ? `Đích: tuần ${nextWeek+1}. ${movingMinutes} phút được dời; vượt quỹ giờ tại đích ${closeOvertime} phút.` : 'Không còn tuần đích hợp lệ; thao tác sẽ bị từ chối.' : action === 'move_backlog' ? 'Việc chưa xong trở về backlog, chưa xếp ngày.' : 'Việc chưa xong giữ vị trí với trạng thái skipped.'} Tuần đã chốt sẽ chỉ đọc. Hủy giữ nguyên kế hoạch.</p><div className="dialog-actions"><button className="secondary-button" disabled={busy} onClick={dismiss}>Hủy</button>{pending ? <button className="primary-button" disabled={busy} onClick={() => void persist(pending)}>Thử lưu lại</button> : <button className="primary-button" disabled={blocked} onClick={() => run(() => closeWeek(plan,week,action,props.getProgressContext()),'Đã chốt tuần.',() => setPreview(false))}>Xác nhận chốt tuần</button>}</div></div></Dialog>}
   </div>;
 }
