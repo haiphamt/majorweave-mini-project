@@ -1,0 +1,7 @@
+
+> majorweave-prototype@0.1.0 check
+> node scripts/check-project.mjs
+
+PASS: 1 registered content pack(s), 27 modules; content references, prerequisites, storage/CSS boundaries and import cycles checked.
+PASS: legacy save uses the existing key and returns failure without mutating input when storage throws.
+PASS: 3 Backend tracks, 15 stages/track; 35 shared/contextual stages, 40 resources, 8 credential goals; prerequisites, source applicability and legacy maps checked.

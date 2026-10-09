@@ -1,0 +1,10 @@
+[
+  {
+    "path": "src/domain/validate.ts",
+    "sha256": "41658551c3bc74fb1d0d0511b870111206aa032003e65ab4c1c8a05765853466"
+  },
+  {
+    "path": "scripts/tasks/MW-TEAM-04.mjs",
+    "sha256": "ccaee11f76d22c3cc0901fdabf8fe2f7ba1ed7a239946d9e405756928df770e6"
+  }
+]

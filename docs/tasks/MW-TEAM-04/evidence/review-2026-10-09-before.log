@@ -1,0 +1,21 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: {"ok":false,"code":"validation","issues":[{"code":"relation","field":"workspace.plans[0].current.tasks[0].segment","message":"Đoạn phải khớp số phút và có workId."}]}
+
+false !== true
+
+    at valid (file:///C:/Users/hhieu/Desktop/dev%20web/codex/majorweave-mini-project/scripts/tasks/MW-TEAM-04.mjs:43:91)
+    at file:///C:/Users/hhieu/Desktop/dev%20web/codex/majorweave-mini-project/scripts/tasks/MW-TEAM-04.mjs:60:52
+    at test (file:///C:/Users/hhieu/Desktop/dev%20web/codex/majorweave-mini-project/scripts/tasks/MW-TEAM-04.mjs:23:28)
+    at file:///C:/Users/hhieu/Desktop/dev%20web/codex/majorweave-mini-project/scripts/tasks/MW-TEAM-04.mjs:51:1 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.14.1
