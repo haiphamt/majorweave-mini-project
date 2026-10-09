@@ -144,3 +144,4 @@ await import('../docs/architecture/check-example.mjs'); // Kiểm tra giữ ngu�
 await import('./tasks/MW-CONTEXT-V2.mjs'); // Context/callback regressions also run in CI.
 
 await import('./tasks/MW-TEAM-01.mjs'); // Own resolver/content regressions must run in CI.
+await import('./check-integration.mjs'); // Shared product and persistence boundary regressions.

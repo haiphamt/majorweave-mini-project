@@ -2,6 +2,10 @@ import type { LearningPlan, OperationResult, RoadmapDraft, Workspace } from '../
 import { generatePlan, regeneratePlan } from '../domain/planner';
 import { resolveRegisteredTrack } from './resolve-track';
 import type { RegenerationPreview, WorkspaceController, WorkspaceOptions, WorkspaceSnapshot } from './workspace-api';
+import { validateWorkspace, validateBackupFile } from '../domain/validate';
+import { createLegacyMigration } from '../persistence/migration';
+import { createBackupImport, exportBackup, parseBackup } from '../persistence/backup';
+import type { PlanMeta } from '../state';
 
 type Failure = Extract<OperationResult<never>, { ok: false }>;
 const failure = (code: Failure['code'], issue: string, field: string, message: string): Failure =>
@@ -15,7 +19,7 @@ function freeze<T>(value: T): T {
 }
 
 export function createWorkspaceController(options: WorkspaceOptions): WorkspaceController {
-  let snapshot: WorkspaceSnapshot = freeze({ workspace: null, selectedTrackId: null, status: 'loading', dirty: false, error: null, preview: null, unsavedWorkspace: null });
+  let snapshot: WorkspaceSnapshot = freeze({ workspace: null, selectedTrackId: null, status: 'loading', dirty: false, error: null, preview: null, unsavedWorkspace: null, transfer:null });
   const listeners = new Set<() => void>();
   let initialization: Promise<OperationResult<Workspace>> | null = null;
   let loading = false;
@@ -29,6 +33,7 @@ export function createWorkspaceController(options: WorkspaceOptions): WorkspaceC
     if (!snapshot.workspace || snapshot.status === 'loading') return failure('storage', 'WORKSPACE_NOT_READY', 'workspace', 'Workspace chưa được tải.');
     if (snapshot.status === 'saving') return failure('conflict', 'SAVE_IN_PROGRESS', 'workspace', 'Đang lưu, vui lòng chờ.');
     if (snapshot.unsavedWorkspace) return failure('conflict', 'PENDING_SAVE', 'workspace', 'Cần thử lưu lại hoặc xử lý bản chưa lưu trước khi tiếp tục.');
+    if (snapshot.transfer) return failure('conflict', 'TRANSFER_PREVIEW', 'workspace', 'Xác nhận hoặc hủy bản xem trước ở Profile trước khi chỉnh dữ liệu.');
     return null;
   };
   const resolveTrack = (trackId: string) => resolveRegisteredTrack(options.packs, trackId);
@@ -44,6 +49,19 @@ export function createWorkspaceController(options: WorkspaceOptions): WorkspaceC
       resourceByStage: Object.fromEntries(resolved.value.stages.map(stage => [stage.id, stage.defaultResourceId])),
       goal: '', hoursPerWeek: 5, startDate: monday.toISOString().slice(0, 10) };
   };
+  const validators={workspace:validateWorkspace,backup:validateBackupFile};
+  let migrationMetadata:PlanMeta|undefined;
+  function readLegacy():OperationResult<string|null>{
+    try{return {ok:true,value:options.readLegacy?.()??null};}
+    catch{return failure('storage','LEGACY_READ','legacy','Không đọc được dữ liệu cũ; nguồn vẫn được giữ.');}
+  }
+  const migration=createLegacyMigration({persistence:options.persistence,validate:validateWorkspace,
+    readLegacy:()=>{const result=readLegacy();if(!result.ok)throw Error('Legacy read failed');return result.value;},
+    context:()=>({now:options.now(),timeZone:snapshot.workspace?.profile.timeZone??'UTC',nextId:options.nextId,missingPlanMeta:migrationMetadata})});
+  const importer=createBackupImport({persistence:options.persistence,validators,nextId:options.nextId});
+  function transferGuard():Failure|null {
+    return guard()??(snapshot.dirty?failure('conflict','UNSAVED_DRAFT','draft','Lưu hoặc bỏ thay đổi roadmap trước khi nhập/chuyển dữ liệu.'):null);
+  }
   async function load(discardUnsaved = false): Promise<OperationResult<Workspace>> {
     if (loading) return failure('conflict', 'LOAD_IN_PROGRESS', 'workspace', 'Đang tải dữ liệu, vui lòng chờ.');
     if (snapshot.status === 'saving') return failure('conflict', 'SAVE_IN_PROGRESS', 'workspace', 'Đang lưu, vui lòng chờ.');
@@ -176,6 +194,58 @@ export function createWorkspaceController(options: WorkspaceOptions): WorkspaceC
       return load(true);
     },
     reloadWorkspace: load,
+    saveProfile(profile) {
+      const blocked=guard(); if(blocked) return Promise.resolve(blocked);
+      const candidate={...snapshot.workspace!,profile:structuredClone(profile)};
+      const valid=validateWorkspace(candidate); if(!valid.ok)return Promise.resolve(valid);
+      return commit(candidate);
+    },
+    exportBackupFile() {
+      const candidate=snapshot.unsavedWorkspace ?? snapshot.transfer?.value.candidate ?? snapshot.workspace;
+      return exportBackup(candidate,{exportedAt:options.now(),unsaved:!!snapshot.unsavedWorkspace||!!snapshot.transfer||snapshot.dirty},validators);
+    },
+    savePreferences(preferences) {
+      const blocked=guard();if(blocked)return Promise.resolve(blocked);
+      const candidate={...snapshot.workspace!,preferences:structuredClone(preferences)};
+      const valid=validateWorkspace(candidate);if(!valid.ok)return Promise.resolve(valid);
+      return commit(candidate);
+    },
+    inspectBackup: raw=>parseBackup(raw,validators),
+    getLegacyRaw: readLegacy,
+    async prepareMigration(choices, metadata) {
+      const blocked=transferGuard(); if(blocked)return blocked;
+      migrationMetadata=metadata ? structuredClone(metadata) : undefined;
+      emit({status:'loading',error:null});
+      const result=await migration.prepare(choices);
+      emit({status:result.ok?'ready':'error',error:result.ok?null:result,
+        transfer:result.ok&&result.value.kind==='preview'?{kind:'migration',value:structuredClone(result.value)}:null});
+      return result;
+    },
+    async prepareImport(raw, choices) {
+      const blocked=transferGuard(); if(blocked)return blocked;
+      emit({status:'loading',error:null});
+      const result=await importer.prepare(raw,choices);
+      emit({status:result.ok?'ready':'error',error:result.ok?null:result,transfer:result.ok?{kind:'backup',value:structuredClone(result.value)}:null});
+      return result;
+    },
+    async confirmTransfer() {
+      if(!snapshot.transfer)return failure('validation','NO_TRANSFER','transfer','Chưa có bản xem trước.');
+      if(snapshot.status==='saving'||snapshot.status==='loading')return failure('conflict','WORKSPACE_BUSY','workspace','Đang xử lý dữ liệu.');
+      const transfer=snapshot.transfer; emit({status:'saving',error:null});
+      const result=transfer.kind==='migration'?await migration.confirm(transfer.value.ticket):await importer.confirm(transfer.value.ticket);
+      if(!result.ok){emit({status:result.code==='conflict'?'conflict':'error',error:result});return result;}
+      const workspace='workspace' in result.value?result.value.workspace:result.value;
+      emit({workspace:structuredClone(workspace),transfer:null,preview:null,unsavedWorkspace:null,dirty:false,status:'ready',error:null});
+      pendingPreview=null;editVersion++;
+      return {ok:true,value:structuredClone(workspace)};
+    },
+    cancelTransfer() {
+      if(!snapshot.transfer)return {ok:true,value:undefined};
+      const t=snapshot.transfer;
+      const result=t.kind==='migration'?migration.cancel(t.value.ticket):importer.cancel(t.value.ticket);
+      if(result.ok)emit({transfer:null,status:'ready',error:null});
+      return result;
+    },
   };
   return actions;
 }

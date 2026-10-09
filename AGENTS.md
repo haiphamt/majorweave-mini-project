@@ -27,7 +27,7 @@
 - `src/components/`: UI dùng chung; thay đổi ảnh hưởng các trang phải được phối hợp trước tích hợp.
 - `src/domain/contracts.ts`: một nguồn kiểu v2. Không chép kiểu sang file cá nhân; không dùng `any`/ép kiểu để né lỗi. Domain độc lập React/browser/storage.
 - `src/content/paths/<pathId>.ts`: dữ liệu theo hướng; ID toàn cục ổn định, không trùng. Một chặng dùng chung chỉ định nghĩa một lần, nhánh khác tham chiếu ID. `src/content/index.ts` đăng ký qua người tích hợp.
-- `src/persistence/`: nơi ghi dữ liệu. UI vẫn dùng State v1 tạm thời; `src/state.ts` và `src/data.ts` là bản cũ được giữ, không phải cấu trúc để nhân bản cho mọi hướng.
+- `src/persistence/`: nơi ghi dữ liệu. UI dùng Workspace v2/IndexedDB qua shared controller. `src/state.ts` và `src/data.ts` giữ tương thích/khám phá cũ; key v1 chỉ đọc để migration, không tự ghi lại khi mở app. Trạng thái mới: `docs/team/INTEGRATION_V2.md`.
 - `src/styles.css`, contracts, catalog, registry, app, package/lock/config, script kiểm tra và workflow là file phối hợp qua nhóm trưởng. Task được giao sửa file chung là đủ ủy quyền; không mở rộng sang file khác chỉ để làm mất lỗi.
 - Thay hợp đồng dùng chung: ghi đề xuất, tác động, migration và test trong task; phối hợp nhóm trưởng và module bị ảnh hưởng trước khi merge. Không đổi ID âm thầm.
 - Dùng dependency hiện có và API trình duyệt phù hợp. Thêm dependency phải nêu nhu cầu và thống nhất với nhóm trưởng; không tự chuyển framework.

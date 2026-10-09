@@ -1,4 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
+import { paths } from '../../content/catalog';
 import { useWorkspace } from '../../app/context';
 import { contentPacks } from '../../content';
 import type { OperationResult, RoadmapDraft } from '../../domain/contracts';
@@ -14,6 +16,14 @@ export function MyRoadmap() {
   const [notice, setNotice] = useState('');
   const [proposedDate, setProposedDate] = useState<{ original: string; monday: string; action: PlanAction } | null>(null);
   const [confirmDiscard, setConfirmDiscard] = useState(false);
+  const [params] = useSearchParams();
+  const queryTrack = params.get('track');
+  useEffect(() => {
+    if (workspace && queryTrack && status !== 'loading') {
+      const result = actions.selectTrack(queryTrack);
+      if (!result.ok) setIssues(result.issues.map(issue => issue.message));
+    }
+  }, [actions, queryTrack, status === 'loading']);
   const busy = status === 'loading' || status === 'saving';
   const blocked = busy || !!unsavedWorkspace;
   const report = <T,>(result: OperationResult<T>): boolean => {
@@ -134,13 +144,14 @@ export function MyRoadmap() {
       <div><h1>My roadmap</h1><p>Chọn nội dung muốn học và thời gian dành cho kế hoạch.</p></div>
       <label className="browse-select">Nhánh học
         <select aria-label="Nhánh học" disabled={blocked} value={track.id} onChange={event => { setNotice(''); report(actions.selectTrack(event.target.value)); }}>
-          {contentPacks.map(pack => <optgroup key={pack.pathId} label={pack.pathId === 'mobile' ? 'Mobile' : pack.pathId === 'game' ? 'Game' : 'Backend'}>
+          {contentPacks.map(pack => <optgroup key={pack.pathId} label={paths.find(path => path.id === pack.pathId)?.name ?? pack.pathId}>
             {pack.tracks.map(item => <option key={item.id} value={item.id}>{item.label}</option>)}
           </optgroup>)}
         </select>
       </label>
     </div>
     {notice && <p className="soft-note" role="status">{notice}</p>}
+    <p><Link className="text-link" to="/plan">Mở My Plan để học theo kế hoạch đã lưu →</Link></p>
     {messages.length > 0 && <div className="form-error" role="alert">{messages.map(message => <p key={message}>{message}</p>)}</div>}
     {unsavedWorkspace && <div className="soft-note">
       <p>{status === 'conflict' ? 'Dữ liệu đã thay đổi ở nơi khác. Bản chưa lưu vẫn được giữ.' : 'Thay đổi chưa lưu được. Thử lưu lại đúng bản này.'}</p>

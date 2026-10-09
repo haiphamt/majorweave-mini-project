@@ -1,8 +1,8 @@
 import { useRef, useState } from 'react';
 import { localISO, shortDate, type Task } from '../state';
 
-export function StudyActivity({ tasks }: { tasks: Task[] }) {
-  const today = new Date(); today.setHours(0, 0, 0, 0);
+export function StudyActivity({ tasks, completionDays, undatedCount, todayKey }: { tasks: Task[]; completionDays?:{date:string;completedTasks:number}[]; undatedCount?:number; todayKey?:string }) {
+  const today = todayKey ? new Date(`${todayKey}T00:00:00`) : new Date(); today.setHours(0, 0, 0, 0);
   const monday = new Date(today); monday.setDate(today.getDate() - (today.getDay() + 6) % 7);
   const start = new Date(monday); start.setDate(start.getDate() - 11 * 7);
   const days = Array.from({ length: 84 }, (_, index) => {
@@ -18,9 +18,10 @@ export function StudyActivity({ tasks }: { tasks: Task[] }) {
     if (!Number.isFinite(date.getTime())) continue;
     const key = localISO(date); counts[key] = (counts[key] || 0) + 1;
   }
+  if(completionDays)for(const day of completionDays)counts[day.date]=day.completedTasks;
   const activeDays = days.filter(day => !day.future && counts[day.key] > 0);
   const completions = activeDays.reduce((sum, day) => sum + counts[day.key], 0);
-  const undated = tasks.filter(task => task.completed && !task.completedAt).length;
+  const undated = undatedCount ?? tasks.filter(task => task.completed && !task.completedAt).length;
   const chosenDay = days.find(day => day.key === selected) || days.find(day => day.key === localISO(today))!;
   const dateLabel = (date: Date) => date.toLocaleDateString('vi-VN', { weekday: 'long', day: '2-digit', month: '2-digit', year: 'numeric' });
   const countLabel = (key: string) => `${counts[key] || 0} việc hoàn thành`;

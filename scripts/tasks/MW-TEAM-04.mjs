@@ -272,7 +272,25 @@ test('Content metadata and track-specific coverage', () => {
     assert.equal(new URL(source.url).protocol, 'https:'); assert.equal(source.checkedAt, '2026-10-07'); assert.ok(source.provider);
     assert.ok(source.accessNote || (source.prerequisites && source.requirements));
   }
-  assert.equal(new Set([...resources.values()].map(r => r.url)).size, resources.size, 'Repeated URL definitions');
+  // TEAM-01 later added verified IDs for seven existing Backend sources.
+  // Keep both persisted IDs compatible; only these exact URL pairs are aliases.
+  const aliases = new Map([
+    ['resource.verified.nodejs-official-learn','resource.node-learn'],
+    ['resource.verified.mit-ocw-6006','resource.mit-dsa'],
+    ['resource.verified.stanford-cs144','resource.stanford-network'],
+    ['resource.verified.ostep','resource.ostep'],
+    ['resource.verified.fastapi-tutorial','resource.fastapi'],
+    ['resource.verified.java-mooc-helsinki','resource.java-mooc'],
+    ['resource.verified.spring-gs-rest','resource.spring-rest'],
+  ]);
+  for(const [alias,canonical] of aliases) {
+    assert.ok(resources.has(alias) && resources.has(canonical), 'Declared source alias missing');
+    assert.equal(resources.get(alias).url,resources.get(canonical).url, `Alias URL changed: ${alias}`);
+  }
+  const canonicalResources=[...resources.values()].filter(r=>!aliases.has(r.id));
+  assert.equal(new Set(canonicalResources.map(r=>r.url)).size,canonicalResources.length,'Unexpected repeated URL definitions');
+  const ownedResources=packs.flatMap(p=>p.resources);
+  assert.equal(new Set(ownedResources.map(r=>r.url)).size,ownedResources.length,'TEAM-04 repeated URL definitions');
   assert.ok(tracks.get('engineer.batch').stageIds.every(id => tracks.get('engineer.streaming').stageIds.includes(id)));
   assert.ok(!tracks.get('business-analyst.software-ba').stageIds.some(id => /python|sql|dsa|os-linux/.test(id)));
 });

@@ -3,13 +3,16 @@ import { contentPacks } from '../content';
 import { createRoadmapStore } from '../persistence/roadmap-store';
 import { createWorkspaceController } from './workspace-controller';
 import type { WorkspaceController, WorkspaceOptions } from './workspace-api';
+import { validateWorkspace } from '../domain/validate';
+import { LEGACY_V1_KEY } from '../persistence/migration-source';
 
 const WorkspaceContext = createContext<WorkspaceController | null>(null);
 
 function browserOptions(): WorkspaceOptions {
   return {
     packs: contentPacks,
-    persistence: createRoadmapStore({ timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone }),
+    persistence: createRoadmapStore({ timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone, validate:validateWorkspace }),
+    readLegacy:()=>localStorage.getItem(LEGACY_V1_KEY),
     now: () => new Date().toISOString(),
     today: () => {
       const date = new Date();

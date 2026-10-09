@@ -1,7 +1,7 @@
 {
-  "executedAt": "2026-10-09T04:40:01.555Z",
-  "baseline": "acb065de0561a5f654d1c7527b9dbd6380138573",
-  "node": "v24.14.1",
+  "executedAt": "2026-10-09T14:03:04.860Z",
+  "baseline": "6beec2f2b3d90357930fceaf988b5a2599e7ad98",
+  "node": "v24.11.1",
   "passed": 30,
   "tests": [
     "TC-R01 customized duration preserves segment and completion through JSON round trip",

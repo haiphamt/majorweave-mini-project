@@ -9,6 +9,7 @@
     "build": "tsc -b && vite build",
     "preview": "vite preview --host 127.0.0.1 --port 5173 --strictPort",
     "check": "node scripts/check-project.mjs",
+    "check:team": "node scripts/tasks/MW-TEAM-01.mjs && node scripts/tasks/MW-TEAM-02.mjs && node scripts/tasks/MW-TEAM-03.mjs && node scripts/tasks/MW-TEAM-04.mjs && node scripts/tasks/MW-TEAM-05.mjs",
     "check:prototype": "node scripts/check-prototype.mjs"
   },
   "dependencies": {

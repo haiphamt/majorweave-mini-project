@@ -1,7 +1,13 @@
 import type {
   ContentPack, CredentialGoal, LearningPlan, LearningResource, LearningStage, LearningTrack,
-  OperationResult, RoadmapDraft, Workspace, WorkspacePersistence,
+  OperationResult, RoadmapDraft, Workspace, WorkspacePersistence, BackupFile,
 } from '../domain/contracts';
+import type { MigrationChoices, MigrationPreparation } from '../persistence/migration';
+import type { BackupPreview, ImportChoices, exportBackup } from '../persistence/backup';
+import type { PlanMeta } from '../state';
+
+export type TransferReview = { kind: 'migration'; value: Extract<MigrationPreparation, {kind:'preview'}> }
+  | { kind: 'backup'; value: BackupPreview & {ticket:string} };
 
 export type { WorkspacePersistence } from '../domain/contracts';
 
@@ -28,6 +34,7 @@ export type WorkspaceSnapshot = {
   error: Extract<OperationResult<never>, { ok: false }> | null;
   preview: RegenerationPreview | null;
   unsavedWorkspace: Workspace | null;
+  transfer: TransferReview | null;
 };
 
 /** Shared UI contract. Features never access storage directly. */
@@ -48,6 +55,15 @@ export type WorkspaceActions = {
   /** Confirm discarding this exact pending snapshot; reload committed data, never write. */
   discardPendingSave(expected: Workspace): Promise<OperationResult<Workspace>>;
   reloadWorkspace(discardUnsaved?: boolean): Promise<OperationResult<Workspace>>;
+  saveProfile(profile: Workspace['profile']): Promise<OperationResult<Workspace>>;
+  savePreferences(preferences: Workspace['preferences']): Promise<OperationResult<Workspace>>;
+  inspectBackup(raw: string): OperationResult<BackupFile>;
+  exportBackupFile(): ReturnType<typeof exportBackup>;
+  getLegacyRaw(): OperationResult<string | null>;
+  prepareMigration(choices: Partial<MigrationChoices>, metadata?: PlanMeta): Promise<OperationResult<MigrationPreparation>>;
+  prepareImport(raw: string, choices: Partial<ImportChoices>): Promise<OperationResult<BackupPreview & {ticket:string}>>;
+  confirmTransfer(): Promise<OperationResult<Workspace>>;
+  cancelTransfer(): OperationResult<void>;
 };
 
 export type WorkspaceController = WorkspaceActions & {
@@ -62,4 +78,5 @@ export type WorkspaceOptions = {
   now: () => string;
   today: () => string;
   nextId: () => string;
+  readLegacy?: () => string | null;
 };
