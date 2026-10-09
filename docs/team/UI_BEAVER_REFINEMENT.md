@@ -27,3 +27,10 @@
 ## Bàn giao
 
 Nhánh `fix/beaver-ui`; gửi bản local để Hải kiểm tra trước khi merge. Chưa thay bản Netlify, chưa sửa Notion.
+
+## Điều chỉnh ngày 10/10/2026
+
+- Tên hiển thị mới: UIT - Path.
+- Explore bỏ nhãn “Bản trải nghiệm” và cách tô nổi bật riêng cho Backend. Nút mở đầu dẫn xuống danh sách hướng học.
+- Profile giữ tên/ngành học, đổi tiêu đề thành “Hồ sơ học tập”; tên là tùy chọn. Bỏ khối “Đang khám phá” và thông tin kế hoạch lặp với My Plan.
+- Múi giờ nằm trong “Tùy chọn nâng cao”, mặc định thu gọn. Giữ thao tác lưu/hủy, nhịp học, chứng nhận và sao lưu.

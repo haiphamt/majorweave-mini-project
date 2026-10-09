@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+
 import { useApp, useWorkspace } from '../../app/context';
-import { faculties, paths } from '../../content/catalog';
+import { faculties } from '../../content/catalog';
 import { contentPacks } from '../../content';
-import { majorName } from '../../data';
+
 import { summarizeActivity } from '../../domain/activity';
 import { validateProfile } from '../../domain/validate';
 import type { BackupFile, OperationResult, Workspace } from '../../domain/contracts';
@@ -17,7 +17,7 @@ function download(name:string,text:string){
   setTimeout(()=>URL.revokeObjectURL(url),1000);
 }
 export function ProfileV2(){
-  const {workspace,activePlan,status,error,dirty,unsavedWorkspace,transfer,actions}=useWorkspace();
+  const {workspace,status,error,dirty,unsavedWorkspace,transfer,actions}=useWorkspace();
   const {toast}=useApp();
   const [form,setForm]=useState<Workspace['profile']>({displayName:'',majorId:null,timeZone:'UTC'});
   const [message,setMessage]=useState('');
@@ -59,12 +59,12 @@ export function ProfileV2(){
     <div className="page-heading"><div><h1>Hồ sơ & nhịp học</h1><p>Thông tin của bạn và những việc đã hoàn thành.</p></div><span className="heading-tag">{workspace.profile.displayName||'Người học'}</span></div>
     {(message||error)&&<p className="form-error" role="alert">{message||error?.issues.map(i=>i.message).join(' ')}</p>}
     {(dirty||unsavedWorkspace)&&<div className="soft-note"><p>Có thay đổi chưa lưu. Xuất bản sao trước khi bỏ hoặc tải lại.</p><button className="secondary-button" disabled={busy||!!transfer} onClick={()=>{void(unsavedWorkspace?actions.retrySave():actions.saveDraft()).then(report);}}>Thử lưu lại thay đổi</button>{' '}<button className="secondary-button" onClick={exportFile}>Xuất bản đang sửa</button>{' '}<button className="secondary-button" disabled={busy} onClick={()=>setDiscardOpen(true)}>Bỏ thay đổi và tải lại</button></div>}
-    <div className="profile-layout"><form className="profile-paper" onSubmit={e=>{e.preventDefault();void save();}}><span className="eyebrow">A LITTLE ABOUT YOU</span><h2>Hồ sơ trên thiết bị</h2><fieldset disabled={blocked} style={{border:0,padding:0,margin:0}}>
+    <div className="profile-layout"><form className="profile-paper" onSubmit={e=>{e.preventDefault();void save();}}><span className="eyebrow">A LITTLE ABOUT YOU</span><h2>Hồ sơ học tập</h2><p className="source-note">Tên hiển thị là tùy chọn. Ngành học giúp ưu tiên gợi ý; thông tin lưu trên trình duyệt này.</p><fieldset disabled={blocked} style={{border:0,padding:0,margin:0}}>
       <label>Tên hiển thị<input maxLength={60} value={form.displayName} onChange={e=>setForm({...form,displayName:e.target.value})}/></label>
       <label>Ngành đang theo học<select aria-label="Ngành đang theo học" value={form.majorId??''} onChange={e=>setForm({...form,majorId:e.target.value||null})}><option value="">Chưa chọn ngành</option>{form.majorId&&!faculties.some(f=>f.majors.some(m=>m.id===form.majorId))&&<option value={form.majorId}>{form.majorId} (từ bản cũ)</option>}{faculties.map(f=><optgroup key={f.id} label={f.name}>{f.majors.map(m=><option key={m.id} value={m.id}>{m.name}</option>)}</optgroup>)}</select></label>
-      <label>Múi giờ<input aria-label="Múi giờ" value={form.timeZone} onChange={e=>setForm({...form,timeZone:e.target.value})} list="profile-zones"/><datalist id="profile-zones">{['Asia/Ho_Chi_Minh','Asia/Bangkok','Asia/Tokyo','UTC','America/New_York'].map(z=><option key={z} value={z}/>)}</datalist></label><p className="source-note">Múi giờ áp dụng cho lần ghi nhận mới; ngày hoàn thành cũ giữ nguyên.</p>
+      <details className="profile-options"><summary>Tùy chọn nâng cao</summary><label>Múi giờ<input aria-label="Múi giờ" value={form.timeZone} onChange={e=>setForm({...form,timeZone:e.target.value})} list="profile-zones"/><datalist id="profile-zones">{['Asia/Ho_Chi_Minh','Asia/Bangkok','Asia/Tokyo','UTC','America/New_York'].map(z=><option key={z} value={z}/>)}</datalist></label><p className="source-note">Múi giờ áp dụng cho lần ghi nhận mới; ngày hoàn thành cũ giữ nguyên.</p></details>
       <button className="primary-button" type="submit">Lưu hồ sơ</button>{' '}<button className="quiet-button" type="button" onClick={()=>{setForm({...workspace.profile});setMessage('');}}>Hủy thay đổi</button></fieldset>
-    </form><section className="profile-learning"><span className="eyebrow">WHERE YOU ARE HEADING</span><h2>Đang khám phá</h2><div className="profile-direction"><div><strong>{majorName(workspace.profile.majorId??'')}</strong><span>{activePlan?`${paths.find(p=>p.id===activePlan.pathId)?.name??activePlan.pathId} · ${activePlan.name}`:'Chưa có kế hoạch đang học'}</span></div></div><p>{workspace.plans.length} kế hoạch được giữ độc lập trên thiết bị.</p><Link className="text-link" to="/plan">Mở My Plan →</Link><div className="profile-device"><span className="eyebrow">ON THIS DEVICE</span><strong>Hồ sơ cục bộ</strong><p>Không cần đăng nhập. Dữ liệu không tự đồng bộ; tải file sao lưu để chuyển thiết bị.</p></div></section></div>
+    </form></div>
     <StudyActivity tasks={[]} completionDays={activity.days} undatedCount={activity.undatedTasks} todayKey={todayKey}/><p className="profile-history-note">Tổng hợp từ tất cả kế hoạch. Bỏ đánh dấu hoàn thành sẽ cập nhật lại nhịp học.</p>
     <section className="week-paper"><h2>Mục tiêu chứng nhận đã lưu</h2>{workspace.savedCredentialIds.length?workspace.savedCredentialIds.map(id=>{const c=knownCredentials.get(id);return <p key={id}>{c?<External href={c.url}>{c.name} · {c.provider}</External>:`${id} — nguồn không còn trong danh mục; mục tiêu vẫn được giữ.`}</p>}):<p>Chưa lưu mục tiêu. Mở Path detail để xem điều kiện và chọn mục tiêu phù hợp.</p>}</section>
     <details className="profile-backup"><summary>Sao lưu & chuyển thiết bị</summary><div className="backup-body"><p>Tải bản sao để giữ kế hoạch hoặc chuyển sang máy khác.</p><button className="secondary-button" onClick={exportFile}>Xuất file sao lưu</button>
