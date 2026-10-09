@@ -115,3 +115,23 @@ Baseline `685435047a58f05d1bb3a90ae901425bdcb31074`; code tại working tree c�
 | 5 | Codex shell: check/build, rà allowlist và bàn giao | Log thật; file catalog/event do prebuild sinh ngoài allowlist được trả về baseline, không commit. Cần Hải review API/tích hợp và Hân review chéo. |
 
 Không có người dùng/Hải/Hân nghiệm thu trong phiên này. Phần timezone/heatmap v2/import-export và E2E tám track còn mở; toàn task **chưa Done**.
+
+## Review và AI log bổ sung — 09/10/2026
+
+- Nguồn phản hồi: GUI_NGUYEN_HUU_HIEU.md do người dùng cung cấp. Hai lỗi thật ở HEAD acb065d được tái hiện trước sửa; bộ 28 nhóm trước đó chưa đủ bao phủ chúng. [Chi tiết story/quy tắc/test](REVIEW_RESPONSE_2026-10-09.md).
+- R01 trước sửa FAIL vì segment120/minutes45; log `review-2026-10-09-before.log`. Sửa để customized giữ provenance, vẫn kiểm biên/workId; completion và history không bị sửa.
+- R02 trước sửa FAIL missing_prerequisite chặn workspace; log `review-2026-10-09-draft-before.log`. Chuyển kiểm catalog sang `validateDraftForGeneration`; giữ kiểm cấu trúc draft ở persistence. Assertion nguồn sai/thiếu prerequisite được giữ ở bước tạo plan, thêm assertion workspace lưu được.
+- Lượt sandbox: pure tests qua, esbuild FAIL EACCES thư mục cha (`review-2026-10-09-tests.log`). Chạy lại ngoài sandbox; 30 nhóm pass, check pass, build pass. Không ghi lỗi sandbox thành lỗi sản phẩm hoặc bỏ assertion.
+- Test mới dùng fixture giống planner/migrated và JSON round trip; **không phải** generate/save/reload v2 thật. UI tám track/backup/timezone vẫn chờ tích hợp, không chạy lại UI v1 và không nhận 14 pass cũ là của lượt này.
+- Code gốc acb065d; code sửa chưa commit. Manifest riêng `review-2026-10-09-source-hashes.json`; giữ manifest cũ cho evidence cũ. Kết quả unit-content.json được cập nhật bởi lượt mới, có baseline rõ ràng.
+- Diễn biến Git: phiên trước đã tạo commit local acb065d và push bị từ chối; người dùng yêu cầu dừng commit/push/PR. Ngày 09/10 đọc GitHub xác nhận PR #7 hiện tồn tại trên cùng HEAD, body template. Không suy đoán ai đã push/tạo sau phiên trước. Lượt sửa này không commit/push/sửa PR/request review; chỉ soạn PR_DESCRIPTION.md local.
+
+| Vòng | Công cụ | Công việc / kết quả |
+|---|---|---|
+| 6 | Codex, đọc file và GitHub chỉ đọc | Đối chiếu phản hồi, HEAD/allowlist/callers/contracts. Không thay contracts/context. |
+| 7 | Codex + Node asserts | Thêm R01/R02 trước sửa, ghi hai lỗi đỏ riêng; sửa nguyên nhân ở validator; kiểm positive/negative, nguồn/prerequisite/cycle/unknown track. |
+| 8 | Codex shell | Chạy test/check/build, ghi log; cập nhật flow/task/bàn giao và bản nháp PR. Sự đồng thuận API và E2E thật còn mở. |
+
+### Tiếp tục bàn giao PR
+
+Người dùng yêu cầu gửi PR, cho phép tiếp tục commit/push và cập nhật PR #7, yêu cầu haiphamt review. Các ghi chú tạm dừng phía trên phản ánh trạng thái trước yêu cầu này. Không thay code sau lượt test cuối; không tự merge. Kết quả gửi thực tế được báo trong chat/PR.

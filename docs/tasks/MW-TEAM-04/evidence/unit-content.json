@@ -1,9 +1,11 @@
 {
-  "executedAt": "2026-10-07T13:13:07.250Z",
-  "baseline": "685435047a58f05d1bb3a90ae901425bdcb31074",
+  "executedAt": "2026-10-09T04:40:01.555Z",
+  "baseline": "acb065de0561a5f654d1c7527b9dbd6380138573",
   "node": "v24.14.1",
-  "passed": 28,
+  "passed": 30,
   "tests": [
+    "TC-R01 customized duration preserves segment and completion through JSON round trip",
+    "TC-R02 incomplete draft does not block profile or valid plan persistence validation",
     "TC-V01 malformed unknown and sparse arrays",
     "TC-V02 schema and backup versions",
     "TC-V03 types, enums and numeric boundaries",

@@ -12,7 +12,7 @@ async function load(file) {
   const result = ts.transpileModule(source, { compilerOptions: { target: ts.ScriptTarget.ES2022, module: ts.ModuleKind.ESNext } });
   return import(`data:text/javascript;base64,${Buffer.from(result.outputText).toString('base64')}`);
 }
-const { validateWorkspace, validateBackupFile, validateProfile } = await load('src/domain/validate.ts');
+const { validateWorkspace, validateBackupFile, validateProfile, validateDraftForGeneration } = await load('src/domain/validate.ts');
 const { summarizeActivity } = await load('src/domain/activity.ts');
 const packs = [];
 for (const name of ['analyst', 'bi', 'engineer', 'business-analyst']) {
@@ -48,6 +48,65 @@ function invalid(mutate, field, code) {
   assert.ok(result.issues.some(i => i.field.includes(field) && (!code || i.code === code)), JSON.stringify(result));
   assert.deepEqual(value, before, 'Invalid input was mutated');
 }
+test('TC-R01 customized duration preserves segment and completion through JSON round trip', () => {
+  // Planner-shaped fixture, not an invocation of the unavailable v2 planner/storage.
+  const v = fixture(), p = v.plans[0], t = p.current.tasks[0];
+  t.segment = { fromMinute: 0, toMinute: 120 }; t.minutes = 120;
+  p.current.tasks.push({ ...clone(t), id: uid(8), segment: { fromMinute: 120, toMinute: 200 }, minutes: 80, status: 'todo', completionId: null });
+  p.completions[0].estimatedMinutes = 120;
+  valid(v);
+  const originalSegment = clone(t.segment), originalLedger = clone(p.completions);
+  t.customized = true; t.minutes = 45;
+  const before = clone(v);
+  const restored = valid(JSON.parse(JSON.stringify(valid(freeze(v)))));
+  assert.deepEqual(restored, before);
+  assert.deepEqual(restored.plans[0].current.tasks[0].segment, originalSegment);
+  assert.deepEqual(restored.plans[0].completions, originalLedger);
+  assert.equal(summarizeActivity(restored.plans).estimatedMinutes, 120);
+  const migrated = clone(restored);
+  Object.assign(migrated.plans[0].completions[0], { completedAt: null, localDate: null, timeZone: null });
+  const backup = { format: 'majorweave-backup', formatVersion: 1, exportedAt: now, workspace: migrated };
+  assert.deepEqual(validateBackupFile(JSON.parse(JSON.stringify(backup))).value, backup);
+  assert.equal(summarizeActivity(migrated.plans).undatedEstimatedMinutes, 120);
+  const history = historyFixture();
+  history.plans[0].current.tasks[0].customized = true;
+  history.plans[0].current.tasks[0].minutes = 45;
+  const oldHistory = clone(history.plans[0].history);
+  assert.deepEqual(valid(history).plans[0].history, oldHistory);
+  for (const segment of [{ fromMinute: 60, toMinute: 60 }, { fromMinute: 61, toMinute: 60 }, { fromMinute: -1, toMinute: 60 }, { fromMinute: 0.5, toMinute: 60 }]) {
+    invalid(x => { Object.assign(x.plans[0].current.tasks[0], { customized: true, minutes: 45, segment }); }, 'segment');
+  }
+  invalid(x => { Object.assign(x.plans[0].current.tasks[0], { customized: true, workId: null, workRevision: null }); }, 'tasks[0]');
+  invalid(x => { x.plans[0].current.tasks[0].minutes = 45; }, 'segment');
+});
+test('TC-R02 incomplete draft does not block profile or valid plan persistence validation', () => {
+  const v = fixture();
+  const draft = { trackId: 'analyst.spreadsheet', selectedStageIds: ['data.sql'], knownStageIds: [], resourceByStage: {}, goal: '', hoursPerWeek: 2, startDate: '2026-10-05' };
+  v.drafts[draft.trackId] = draft;
+  v.profile.displayName = 'Hồ sơ cập nhật';
+  const planBefore = clone(v.plans);
+  valid(freeze(v), { contentPacks: packs });
+  const backup = { format: 'majorweave-backup', formatVersion: 1, exportedAt: now, workspace: v };
+  const result = validateBackupFile(JSON.parse(JSON.stringify(backup)), { contentPacks: packs });
+  assert.equal(result.ok, true, JSON.stringify(result));
+  assert.deepEqual(result.value.workspace.plans, planBefore);
+  assert.deepEqual(result.value.workspace.drafts[draft.trackId], draft);
+  assert.equal(result.value.workspace.profile.displayName, 'Hồ sơ cập nhật');
+  const readiness = validateDraftForGeneration(draft, packs);
+  assert.equal(readiness.ok, false);
+  assert.ok(readiness.issues.some(i => i.code === 'missing_prerequisite'));
+  const ready = { ...clone(draft), knownStageIds: ['data.quality'] };
+  assert.equal(validateDraftForGeneration(ready, packs).ok, true);
+  const malformed = clone(v); malformed.drafts[draft.trackId].hoursPerWeek = '2';
+  assert.equal(validateWorkspace(malformed, { contentPacks: packs }).ok, false);
+  const retired = { ...clone(draft), trackId: 'retired.track' };
+  assert.equal(validateDraftForGeneration(retired, packs).ok, false);
+  const cyclic = clone(packs);
+  cyclic[0].stages.find(s => s.id === 'data.quality').prerequisiteIds = ['data.sql'];
+  const cycleResult = validateDraftForGeneration({ ...clone(draft), selectedStageIds: ['data.quality', 'data.sql'] }, cyclic);
+  assert.equal(cycleResult.ok, false);
+  assert.ok(cycleResult.issues.some(i => i.code === 'prerequisite_cycle'));
+});
 test('TC-V01 malformed unknown and sparse arrays', () => {
   for (const value of [null, undefined, [], 1, 'x', true, {}, new Date()]) {
     assert.equal(validateWorkspace(value).ok, false); assert.equal(validateBackupFile(value).ok, false);
@@ -137,9 +196,11 @@ test('TC-V12 backup round trip, frozen data and known catalog errors', () => {
   const v = fixture(); v.drafts['analyst.spreadsheet'] = clone(v.plans[0].current);
   valid(v, { contentPacks: packs });
   v.drafts['analyst.spreadsheet'].resourceByStage['data.quality'] = 'resource.bi-dax';
-  assert.equal(validateWorkspace(v, { contentPacks: packs }).ok, false);
+  valid(v, { contentPacks: packs });
+  assert.equal(validateDraftForGeneration(v.drafts['analyst.spreadsheet'], packs).ok, false);
   v.drafts['analyst.spreadsheet'].resourceByStage = {}; v.drafts['analyst.spreadsheet'].selectedStageIds = ['data.sql'];
-  assert.equal(validateWorkspace(v, { contentPacks: packs }).ok, false);
+  valid(v, { contentPacks: packs });
+  assert.equal(validateDraftForGeneration(v.drafts['analyst.spreadsheet'], packs).ok, false);
 });
 test('TC-A01 empty activity', () => assert.deepEqual(summarizeActivity([]), { days: [], completedTasks: 0, estimatedMinutes: 0, undatedTasks: 0, undatedEstimatedMinutes: 0 }));
 test('TC-A02 archived and repeated snapshots count ledger once', () => {

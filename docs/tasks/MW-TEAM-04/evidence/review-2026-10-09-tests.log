@@ -1,0 +1,49 @@
+PASS TC-R01 customized duration preserves segment and completion through JSON round trip
+PASS TC-R02 incomplete draft does not block profile or valid plan persistence validation
+PASS TC-V01 malformed unknown and sparse arrays
+PASS TC-V02 schema and backup versions
+PASS TC-V03 types, enums and numeric boundaries
+PASS TC-V04 real dates, Monday, timezone and localDate
+PASS TC-V05 UUID uniqueness and active plan
+PASS TC-V06 safe source URLs
+PASS TC-V07 current task and ledger relations
+PASS TC-V08 immutable historical done survives later undo
+PASS TC-V09 closed week totals and duplicate indices
+PASS TC-V10 generation, segment, backlog and import relations
+PASS TC-V11 removed catalog preserves plan/history and draft
+PASS TC-V12 backup round trip, frozen data and known catalog errors
+PASS TC-A01 empty activity
+PASS TC-A02 archived and repeated snapshots count ledger once
+PASS TC-A03 done undo done again
+PASS TC-A04 legacy completion has no fabricated date
+PASS TC-A05 original timezone survives profile change
+PASS TC-A06 no input mutation and sorted days
+PASS TC-P02 profile validation and empty name policy
+X [ERROR] Cannot read directory "../../../..": Access is denied.
+
+X [ERROR] Could not resolve "./src/content/paths/backend.ts"
+
+  Use the relative path "././src/content/paths/backend.ts" to reference the file "src/content/paths/backend.ts". Without the leading "./", the path "./src/content/paths/backend.ts" is being interpreted as a package path instead.
+
+C:\Users\hhieu\Desktop\dev web\codex\majorweave-mini-project\node_modules\esbuild\lib\main.js:1467
+  let error = new Error(text);
+              ^
+
+Error: Build failed with 2 errors:
+error: Cannot read directory "../../../..": Access is denied.
+error: Could not resolve "./src/content/paths/backend.ts"
+    at failureErrorWithLog (C:\Users\hhieu\Desktop\dev web\codex\majorweave-mini-project\node_modules\esbuild\lib\main.js:1467:15)
+    at C:\Users\hhieu\Desktop\dev web\codex\majorweave-mini-project\node_modules\esbuild\lib\main.js:926:25
+    at C:\Users\hhieu\Desktop\dev web\codex\majorweave-mini-project\node_modules\esbuild\lib\main.js:878:52
+    at buildResponseToResult (C:\Users\hhieu\Desktop\dev web\codex\majorweave-mini-project\node_modules\esbuild\lib\main.js:924:7)
+    at C:\Users\hhieu\Desktop\dev web\codex\majorweave-mini-project\node_modules\esbuild\lib\main.js:951:16
+    at responseCallbacks.<computed> (C:\Users\hhieu\Desktop\dev web\codex\majorweave-mini-project\node_modules\esbuild\lib\main.js:603:9)
+    at handleIncomingPacket (C:\Users\hhieu\Desktop\dev web\codex\majorweave-mini-project\node_modules\esbuild\lib\main.js:658:12)
+    at Socket.readFromStdout (C:\Users\hhieu\Desktop\dev web\codex\majorweave-mini-project\node_modules\esbuild\lib\main.js:581:7)
+    at Socket.emit (node:events:508:28)
+    at addChunk (node:internal/streams/readable:563:12) {
+  errors: [Getter/Setter],
+  warnings: [Getter/Setter]
+}
+
+Node.js v24.14.1

@@ -3,6 +3,8 @@ import type {
   PlanTask, ResourceSnapshot, RoadmapDraft, StudyCompletion, ValidationIssue, Workspace,
 } from './contracts';
 
+// contentPacks remains accepted for existing callers; catalog readiness is checked
+// separately at generation time, never when persisting an editable draft.
 type Options = { majorIds?: readonly string[]; contentPacks?: readonly ContentPack[] };
 type Check<T> = (value: unknown, field: string) => value is T;
 const record = (value: unknown): value is Record<string, unknown> =>
@@ -183,7 +185,10 @@ function checker(issues: ValidationIssue[], options: Options) {
         claim(t.id, `task:${pi}:${t.id}`, `${tf}.id`);
         test((t.workId === null) === (t.workRevision === null), `${tf}.workRevision`, 'workId/revision phải cùng có hoặc cùng null.', 'relation');
         test(t.workId !== null || (t.customized && t.segment === null), tf, 'Việc tự thêm phải customized và không có segment.', 'relation');
-        if (t.segment) test(t.workId !== null && t.segment.toMinute - t.segment.fromMinute === t.minutes, `${tf}.segment`, 'Đoạn phải khớp số phút và có workId.', 'relation');
+        // Segment preserves source provenance; customized minutes are the learner's estimate.
+        if (t.segment) test(t.workId !== null && t.segment.toMinute > t.segment.fromMinute
+          && (t.customized || t.segment.toMinute - t.segment.fromMinute === t.minutes),
+        `${tf}.segment`, 'Đoạn phải có workId, biên tăng và khớp số phút khi chưa customized.', 'relation');
         test(t.weekIndex !== null || t.dayIndex === null, `${tf}.dayIndex`, 'Backlog không có ngày trong tuần.', 'relation');
         if (t.status !== 'done') {
           test(t.completionId === null, `${tf}.completionId`, 'Todo/skipped không có completion hiện hành.', 'relation');
@@ -221,34 +226,29 @@ function checker(issues: ValidationIssue[], options: Options) {
         });
       });
     });
-    // Catalog checks only apply to editable drafts whose track still exists.
-    // Historical plans are snapshots, not requests to regenerate against today's catalog.
-    const packs = options.contentPacks;
-    if (!packs) return;
+  }
+  function draftCatalog(d: RoadmapDraft, packs: readonly ContentPack[], f: string) {
     const stages = new Map(packs.flatMap(p => p.stages).map(s => [s.id, s]));
     const resources = new Set(packs.flatMap(p => p.resources).map(r => r.id));
-    Object.entries(w.drafts).forEach(([key, d]) => {
-      const f = `${root}.drafts.${key}`;
-      const track = packs.flatMap(p => p.tracks).find(t => t.id === d.trackId);
-      if (!track) return; // Removed catalog: keep draft; resolver must block regeneration.
-      const allowed = new Set(track.stageIds);
-      const available = new Set([...d.selectedStageIds, ...d.knownStageIds]);
-      [...available].forEach(id => test(allowed.has(id), f, `Chặng ${id} không thuộc track.`, 'catalog_reference'));
-      const visiting = new Set<string>(), visited = new Set<string>();
-      function visit(id: string) {
-        if (visiting.has(id)) { issue('prerequisite_cycle', f, `Vòng tiên quyết tại ${id}.`); return; }
-        if (visited.has(id)) return;
-        const stage = stages.get(id);
-        if (!stage) { issue('catalog_reference', f, `Thiếu pack chứa chặng ${id}.`); return; }
-        visiting.add(id);
-        stage.prerequisiteIds.forEach(pre => { test(available.has(pre), f, `Thiếu tiên quyết ${pre}.`, 'missing_prerequisite'); if (available.has(pre)) visit(pre); });
-        visiting.delete(id); visited.add(id);
-      }
-      d.selectedStageIds.filter(id => !d.knownStageIds.includes(id)).forEach(visit);
-      Object.entries(d.resourceByStage).forEach(([id, resource]) => test(allowed.has(id) && !!stages.get(id)?.resourceIds.includes(resource) && resources.has(resource), `${f}.resourceByStage.${id}`, 'Nguồn không thuộc chặng/track hoặc thiếu pack.', 'catalog_reference'));
-    });
+    const track = packs.flatMap(p => p.tracks).find(t => t.id === d.trackId);
+    if (!track) { issue('catalog_reference', `${f}.trackId`, 'Không tìm thấy track để tạo kế hoạch.'); return; }
+    const allowed = new Set(track.stageIds);
+    const available = new Set([...d.selectedStageIds, ...d.knownStageIds]);
+    [...available].forEach(id => test(allowed.has(id), f, `Chặng ${id} không thuộc track.`, 'catalog_reference'));
+    const visiting = new Set<string>(), visited = new Set<string>();
+    function visit(id: string) {
+      if (visiting.has(id)) { issue('prerequisite_cycle', f, `Vòng tiên quyết tại ${id}.`); return; }
+      if (visited.has(id)) return;
+      const stage = stages.get(id);
+      if (!stage) { issue('catalog_reference', f, `Thiếu pack chứa chặng ${id}.`); return; }
+      visiting.add(id);
+      stage.prerequisiteIds.forEach(pre => { test(available.has(pre), f, `Thiếu tiên quyết ${pre}.`, 'missing_prerequisite'); if (available.has(pre)) visit(pre); });
+      visiting.delete(id); visited.add(id);
+    }
+    d.selectedStageIds.filter(id => !d.knownStageIds.includes(id)).forEach(visit);
+    Object.entries(d.resourceByStage).forEach(([id, resource]) => test(allowed.has(id) && !!stages.get(id)?.resourceIds.includes(resource) && resources.has(resource), `${f}.resourceByStage.${id}`, 'Nguồn không thuộc chặng/track hoặc thiếu pack.', 'catalog_reference'));
   }
-  return { workspace, profile, timestamp, issue, relations };
+  return { workspace, profile, draft, draftCatalog, timestamp, issue, relations };
 }
 
 function failure<T>(issues: ValidationIssue[]): OperationResult<T> {
@@ -267,6 +267,16 @@ export function validateWorkspace(value: unknown, options: Options = {}): Operat
   const check = checker(issues, options);
   if (!check.workspace(value, 'workspace')) return failure(issues);
   check.relations(value, 'workspace');
+  return issues.length ? failure(issues) : { ok: true, value };
+}
+
+// Optional catalog preflight for the resolver/planner, not a persistence gate.
+// The planner still owns scheduling, capacity and generation-specific checks.
+export function validateDraftForGeneration(value: unknown, contentPacks: readonly ContentPack[]): OperationResult<RoadmapDraft> {
+  const issues: ValidationIssue[] = [];
+  const check = checker(issues, {});
+  if (!check.draft(value, 'draft') || issues.length) return failure(issues);
+  check.draftCatalog(value, contentPacks, 'draft');
   return issues.length ? failure(issues) : { ok: true, value };
 }
 

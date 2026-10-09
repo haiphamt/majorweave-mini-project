@@ -12,6 +12,8 @@ Người làm: Lê Nguyễn Hữu Hiếu (`hiuanhutiu`). Branch: `feat/mw-team-0
 
 ## Kết quả kiểm tra
 
+**Sửa review 09/10:** [Hai lỗi validator và chính sách draft](REVIEW_RESPONSE_2026-10-09.md) đã sửa trong working tree, 30 nhóm test/check/build pass. Chưa commit/push; mô tả PR được chuẩn bị local. Những kết quả dưới đây là của lượt bàn giao trước.
+
 Lượt chạy ngày 07/10/2026: 28 nhóm module/content và 14 kiểm tra UI pass; `npm run check` và `npm run build` pass. Build 1613 module, 17.68s. Các lượt lỗi ban đầu được ghi trong QA log. Không chạy test tích hợp v2 khi dependency chưa tồn tại.
 
 - [QA và AI log](QA_AI_LOG.md)

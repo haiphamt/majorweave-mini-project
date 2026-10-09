@@ -102,6 +102,8 @@ flowchart TD
 
 ## FL-04-05 — Chọn file và xem preview
 
+**Cập nhật review 09/10:** validateBackupFile cho phép draft cấu trúc hợp lệ nhưng thiếu tiên quyết/catalog. Thiếu readiness là cảnh báo để sửa trước tạo plan, không làm backup/workspace hợp lệ bị từ chối. Task customized giữ segment gốc dù minutes đã chỉnh. Chi tiết/test R01–R02 ở REVIEW_RESPONSE_2026-10-09.md.
+
 US-04-05 / AC-03/04/05 / TC-V01–V12, TC-I02. Callback persistence đọc file; feature không JSON.parse/FileReader/storage. Input unknown → validateBackupFile → preview số plan, trùng ID, profile, catalog thiếu.
 
 | Bước | UI | Domain / persistence | Dữ liệu |

@@ -144,6 +144,8 @@ Timezone lưu/reload v2; heatmap nhiều plan; UI preview/confirm/copy/export; l
 
 ## 9. Bản triển khai độc lập để review
 
+**Cập nhật 09/10/2026:** Review phát hiện hai lỗi chưa được bộ test cũ bao phủ. Đã sửa local quy tắc customized segment và tách catalog readiness khỏi lưu draft; xem [phản hồi và API cần chốt](REVIEW_RESPONSE_2026-10-09.md). Kết quả hiện tại 30 nhóm module/content pass; chưa có E2E v2. Không dùng nhận định phần độc lập đủ trước đó như nghiệm thu. Các API/chính sách mới chưa được Hải xác nhận trực tiếp sau sửa.
+
 - Validator/activity, Profile v1 có validation/hủy/phản hồi lưu trung thực; bốn pack đủ tám track, 29 chặng mới/43 bài/24 nguồn/6 mục tiêu chứng nhận. [Nguồn và dependency](SOURCE_INVENTORY.md).
 - 28 nhóm test module/content và 14 check UI pass; chi tiết [QA/AI log](QA_AI_LOG.md). Không đánh dấu hoàn thành toàn task khi v2 chưa tích hợp.
 - `language.python` phụ thuộc backendPack của Hân; analystPack sở hữu Data shared stages. Chữ ký ở mục 8 là code đã triển khai nhưng **chưa được đồng thuận liên nhóm**.
