@@ -1,4 +1,4 @@
-# MajorWeave — quy tắc chung cho AI và thành viên
+# UIT - Path — quy tắc chung cho AI và thành viên
 
 Đọc file này khi mở repo. Áp dụng cho mini project, không áp dụng cho project chính. Yêu cầu trực tiếp mới nhất của nhóm trưởng được ưu tiên; ghi lại quyết định thay thế trong tài liệu liên quan.
 
@@ -13,9 +13,10 @@
 
 ## Phạm vi và giao diện
 
+- Quyết định ngày 10/10/2026: tên hiển thị mới là UIT - Path (lộ trình học tập cho sinh viên UIT). Giữ các khóa lưu dữ liệu, định dạng backup và ID hiện có để dữ liệu cũ tiếp tục dùng được.
 - Sáu thành viên: nhóm trưởng kiến trúc/thiết kế/tích hợp/duyệt cuối; năm bạn triển khai theo bảng phân công bước 5. Chỉ làm task có mã và phạm vi file được giao; mỗi người làm cả module và nội dung học được chỉ định.
 - Hoàn thiện mọi hướng/nhánh trong danh mục được duyệt; không thu hẹp về Backend. Không nhận placeholder hoặc chỉ liên kết ngoài là một kế hoạch đã hoàn chỉnh.
-- Quyết định mới của Hải ngày 09/10/2026: chuyển app sang top nav, tham chiếu Beaver Plans. Giữ palette kem/gạch và thương hiệu MajorWeave; ưu tiên thao tác học, nội dung gọn và tùy chọn nâng cao thu gọn. `src/prototype/` vẫn là thử nghiệm lịch sử.
+- Quyết định mới của Hải ngày 09/10/2026: chuyển app sang top nav, tham chiếu Beaver Plans. Giữ palette kem/gạch và thương hiệu UIT - Path; ưu tiên thao tác học, nội dung gọn và tùy chọn nâng cao thu gọn. `src/prototype/` vẫn là thử nghiệm lịch sử.
 - Không tự thay thiết kế đã được duyệt. Điều chỉnh top nav/Profile/Path detail/My Plan hiện tại theo yêu cầu trực tiếp của Hải; skill chỉ hỗ trợ cách thực hiện. Xem `docs/team/UI_BEAVER_REFINEMENT.md`.
 - Giai đoạn hiện tại không đăng nhập. Profile cục bộ không phải tài khoản online. Không thêm OAuth/Supabase, nút đăng nhập giả hoặc thông báo đồng bộ giả.
 - Không cập nhật Notion. Không tự làm project chính từ task mini.

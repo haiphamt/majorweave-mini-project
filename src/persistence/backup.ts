@@ -49,7 +49,7 @@ export function exportBackup(snapshot: unknown, options: { exportedAt: string; u
 export function parseBackup(raw: string, validators: BackupValidators): OperationResult<BackupFile> {
   let value: unknown;
   try { value = JSON.parse(raw); } catch { return failure('validation', 'BACKUP_JSON', 'File không phải JSON hợp lệ; giữ file nguồn.'); }
-  if (typeof value !== 'object' || value === null || Array.isArray(value) || !('format' in value) || value.format !== 'majorweave-backup') return failure('validation', 'BACKUP_FORMAT', 'Không phải file backup MajorWeave.');
+  if (typeof value !== 'object' || value === null || Array.isArray(value) || !('format' in value) || value.format !== 'majorweave-backup') return failure('validation', 'BACKUP_FORMAT', 'Không phải file backup UIT - Path.');
   if (!('formatVersion' in value) || value.formatVersion !== 1) return failure('unsupported_version', 'BACKUP_VERSION', 'Phiên bản backup không hỗ trợ; không đoán cấu trúc.');
   return checked(validators.backup, value);
 }

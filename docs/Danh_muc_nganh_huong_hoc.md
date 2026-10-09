@@ -1,4 +1,4 @@
-# MajorWeave — Danh mục ngành và hướng khám phá
+# UIT - Path — Danh mục ngành và hướng khám phá
 
 Cập nhật 04/10/2026 (baseline phạm vi nhóm): 6 khoa, 12 ngành gốc, 18 hướng. Các chương trình tiếng Anh, tài năng, Việt–Nhật được gộp về ngành gốc.
 
