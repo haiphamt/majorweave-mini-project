@@ -9,7 +9,7 @@ Ngày 09/10/2026, Codex chạy:
 - `node scripts/tasks/MW-TEAM-05.mjs`: 65 PASS / 0 FAIL, giữ 49 test trước và thêm 16 test backup/import. Controller test dùng memory port và validator cấu trúc, không phải bằng chứng native/semantic.
 - TypeScript strict cho module và trang QA: PASS.
 - Sáu kiểm tra tương thích với `src/domain/validate.ts` từ ZIP MW-TEAM-04 do người làm cung cấp: export; round trip; copy history/closed-week/completion vào workspace hiện có; copy vào workspace rỗng và remap marker; từ chối URL javascript; từ chối completion không tồn tại. PASS. Đây là kiểm tra độc lập của Codex, chưa phải nghiệm thu tích hợp hoặc toàn bộ suite MW-TEAM-04. Không chép validator sang thư mục persistence.
-- Trang `backup-tests.html`: chưa chạy trên Chrome của người làm. Chỉ ghi PASS khi có output thật.
+- Trang `backup-tests.html`: Ngày 09/10/2026, người làm chạy trên Chrome: 7 PASS / 0 FAIL qua native IndexedDB. Đã tải backup QA mẫu, chọn lại file JSON và kiểm tra hợp lệ: 1 plan. Lỗi save dùng injection; chưa nghiệm thu semantic, hai tab thật, quota/abort native và UI app chính.
 
 ## API và phối hợp
 
