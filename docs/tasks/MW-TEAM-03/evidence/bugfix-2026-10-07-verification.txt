@@ -1,0 +1,70 @@
+2026-10-07 / baseline 30d67122d94aa9784fb688f5e3eb7ade112c5c9a / uncommitted bug A+B fixes
+Content under review: 4 packs, 8 tracks, 39 unique stages, 37 resources, 78 work items; dependencies: 1 registered pack(s).
+PASS TC01 done / repeated done / undo / repeated undo / redo
+PASS TC02 clock: real calendar, offset, timezone, midnight, leap year and DST
+PASS TC03 rejects duplicate, malformed and throwing ID factories
+PASS TC04 invalid task, status and completion relationships
+PASS TC05 undo preserves legacy unknown dates and rejects backwards clock
+PASS TC06 edit title / requirements / minutes sets sticky customized; notes / schedule do not
+PASS TC07 edit validates all fields and rejects metadata injection
+PASS TC08 add custom task; ID, stage, field and closed destination validation
+PASS TC09 move done / backlog / move back preserves provenance and completion dates
+PASS TC10 editing completed estimate does not rewrite historical completion minutes
+PASS TC11 move_next chooses next OPEN week; snapshot precedes movement
+PASS TC12-move_next unfinished handling and repeated close
+PASS TC12-move_backlog unfinished handling and repeated close
+PASS TC12-skip unfinished handling and repeated close
+PASS TC13 closed origin and destination reject edit, completion and moves
+PASS TC14 close validates index/action, empty week and index overflow
+PASS TC15 stats exclude skipped, include backlog exactly once, empty and overtime
+PASS TC16 snapshot and history immutable across edit/done/undo; no double count
+PASS TC17 archived plan read-only, history-only task not editable
+PASS TC18 caller patch/input references cannot mutate returned plan
+PASS CONTENT01 all four packs + registered dependencies: IDs, DAG, references, order, work and portfolios
+PASS CONTENT02 resource and credential metadata match official-page evidence
+PASS CONTENT03 cross-pack sharing: foundations, default sources and prerequisite closure
+PASS CONTENT04 branch-specific content + cost/hardware/API and optional credentials
+PASS CONTENT05 guard detects duplicate definitions across packs
+PASS CONTENT06 guard detects missing dependency and cycles
+PASS CONTENT07 guard detects invalid order and omitted prerequisites
+PASS CONTENT08 guard detects missing source and invalid default
+PASS CONTENT09 guard detects invalid minutes and empty acceptance
+PASS CONTENT10 guard detects missing credential, foreign track path and repeated track stage
+PASS UI01 form parsing validates and normalizes user input
+PASS UI02 sparse week list and snapshot display never duplicate/mutate tasks
+PASS UI03 readonly includes closed weeks, archived plans and history
+PASS UI04 form roundtrip keeps ID, source and completion when editing schedule
+PASS UI05 server render empty/loading/load-error and missing selection states
+PASS UI06 server render controlled plan, navigation, overtime and source snapshot
+PASS UI07 archived render hides mutation buttons and disables completion
+PASS UI08 source links are escaped and unsafe URLs are not rendered as links
+PASS UI09 week edit with temporary blank preserves all seven weekdays and task identity
+PASS UI10 committing blank week clears backlog day; cancel/invalid input leave plan unchanged
+PASS UI11 fixture loads the same Vietnamese-capable fonts as the app entry
+41/41 tests passed
+
+> majorweave-prototype@0.1.0 check
+> node scripts/check-project.mjs
+
+PASS: 1 registered content pack(s), 28 modules; content references, prerequisites, storage/CSS boundaries and import cycles checked.
+PASS: legacy save uses the existing key and returns failure without mutating input when storage throws.
+PASS: 3 Backend tracks, 15 stages/track; 35 shared/contextual stages, 40 resources, 8 credential goals; prerequisites, source applicability and legacy maps checked.
+Build uses --ignore-scripts to run the exact build script without prebuild, preserving three pre-existing modified generated files.
+
+> majorweave-prototype@0.1.0 build
+> tsc -b && vite build
+
+vite v6.4.3 building for production...
+transforming...
+✓ 1612 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                          1.16 kB │ gzip:  0.63 kB
+dist/prototype.html                      1.26 kB │ gzip:  0.66 kB
+dist/assets/prototype-B-fdeq31.css      39.10 kB │ gzip:  8.14 kB
+dist/assets/app-JNuuwcQV.css            57.17 kB │ gzip: 11.00 kB
+dist/assets/app-Bpfm2k9D.js             63.99 kB │ gzip: 17.92 kB
+dist/assets/prototype-DFokGpJM.js       64.96 kB │ gzip: 20.32 kB
+dist/assets/StudyActivity-CN9f6m-d.js  315.95 kB │ gzip: 99.31 kB
+✓ built in 10.44s
+git diff --check exit=0; preview TypeScript exit=0; protected files SHA256 unchanged; no commit/push/merge

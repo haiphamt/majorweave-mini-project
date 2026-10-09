@@ -1,0 +1,139 @@
+
+=== MW-TEAM-02 Test Script ===
+
+--- Section 1: isValidDate va isMonday ---
+  PASS: 2026-10-05 la ngay hop le
+  PASS: 2024-02-30 khong hop le (rollover)
+  PASS: 2024-13-01 khong hop le (thang 13)
+  PASS: khong dung format khong hop le
+  PASS: 2026-10-05 la Thu Hai
+  PASS: 2026-10-06 khong phai Thu Hai
+
+--- Section 2: validateDraft ---
+  PASS: Draft hop le khong co issue
+  PASS: hoursPerWeek = 1 -> INVALID_HOURS_PER_WEEK
+  PASS: hoursPerWeek = 21 -> INVALID_HOURS_PER_WEEK
+  PASS: hoursPerWeek = 2 hop le
+  PASS: hoursPerWeek = 20 hop le
+  PASS: startDate khong that -> INVALID_START_DATE
+  PASS: startDate la Thu Ba -> START_DATE_NOT_MONDAY
+  PASS: selectedStageIds rong -> NO_STAGES_SELECTED
+  PASS: ID khong ton tai -> UNKNOWN_STAGE_ID
+  PASS: chon B ma khong chon A -> MISSING_PREREQUISITE
+  PASS: chon B nhung da biet A -> hop le
+  PASS: tat ca da biet -> NOTHING_TO_PLAN
+  PASS: goal rong -> MISSING_GOAL
+  PASS: Thu tu dao nguoc [B, A] -> INVALID_STAGE_ORDER
+  PASS: Chon trung [A, A, B] -> DUPLICATE_STAGE_SELECTION
+  PASS: Chon nguon r2 khong thuoc chang A -> RESOURCE_NOT_IN_STAGE
+
+--- Section 3: generatePlan invariants ---
+  PASS: generatePlan tra ok: true voi draft hop le
+  PASS: Tong phut tasks bang tong phut tat ca work
+  PASS: Doan <= 120 phut (work 200 phut bi chia)
+  PASS: work 200 phut tao ra 2 chunks voi segment dung
+  PASS: work <= 120 phut -> segment = null
+  PASS: hoursPerWeek = 20 -> tat ca task vao tuan 0
+  PASS: dayIndex luon la null
+  PASS: Thu tu task: stage A truoc B
+  PASS: Tat ca task status = todo
+  PASS: generatePlan that bai voi draft loi -> ok: false
+  PASS: Plan.history = [] khi moi tao
+
+--- Section 4: regeneratePlan ---
+  PASS: regeneratePlan giu task ID neu workId/revision/segment khop
+  PASS: regeneratePlan day oldPlan.current vao history
+  PASS: regeneratePlan giu status/completionId/notes cua task da khop
+  PASS: regeneratePlan dua customized task vao backlog
+  PASS: regeneratePlan that bai voi draft loi
+  PASS: regeneratePlan khong mutate plan cu (pure function)
+  PASS: generatePlan va regeneratePlan tao snapshot doc lap cho selectedStageIds/knownStageIds
+
+--- Section 5: Cau truc noi dung Mobile ---
+  PASS: mobilePack schemaVersion = 1
+  PASS: mobilePack co 4 tracks
+  PASS: Co track mobile.android
+  PASS: Co track mobile.ios
+  PASS: Co track mobile.flutter
+  PASS: Co track mobile.react-native
+  PASS: Moi stageId trong track ton tai trong stages
+  PASS: Moi defaultResourceId thuoc resourceIds
+  PASS: Moi resourceId ton tai trong resources
+  PASS: Moi prerequisite cua stage ton tai
+  PASS: Prerequisite xep truoc trong moi track mobile
+  PASS: Moi work co minutes > 0 va revision > 0
+  PASS: Moi resource URL dung https
+  PASS: Moi track co portfolio va roadmapLinks
+  PASS: generatePlan chay duoc voi mobile.android (2 chang dau khong tien quyet)
+
+--- Section 6: Cau truc noi dung Game ---
+  PASS: gamePack schemaVersion = 1
+  PASS: gamePack co 3 tracks
+  PASS: Co track game.unity
+  PASS: Co track game.unreal
+  PASS: Co track game.godot
+  PASS: Moi stageId trong track ton tai
+  PASS: Moi defaultResourceId thuoc resourceIds
+  PASS: Moi resourceId ton tai trong resources
+  PASS: Moi prerequisite cua stage ton tai
+  PASS: Prerequisite xep truoc trong moi track game
+  PASS: Moi work co minutes > 0 va revision > 0
+  PASS: Moi resource URL dung https
+  PASS: Moi track co portfolio va roadmapLinks
+  PASS: generatePlan chay duoc voi game.godot (git + gdscript)
+  PASS: 30/120/121/300 minutes preserve exact segments at 2 and 20 hours
+  PASS: Empty work and invalid minutes fail without allocating IDs
+  PASS: Fractional/NaN hours, foreign known IDs and stale sources fail
+  PASS: Prerequisite order is checked independently of track ordering
+  PASS: Already-known prerequisites do not need their own prerequisites selected
+  PASS: Monday proposal handles leap dates, year boundaries and invalid input
+  PASS: Generated tasks and content have independent nested snapshots
+  PASS: Regeneration preserves ledger once, closed weeks, notes and snapshot isolation
+  PASS: Changed revision or work identity does not inherit completion
+  PASS: Customized and manually added work survive a track change without duplicate template
+  PASS: Migrated [0, minutes] segments match unsegmented unchanged template
+  PASS: Two generated plans do not overwrite or share mutable data
+  PASS: Backend + Mobile + Game IDs are globally unique and references resolve
+  PASS: backend.node: full track, 2 hours, ordering/minutes/identity
+  PASS: backend.node: full track, 20 hours, ordering/minutes/identity
+  PASS: backend.node: every offered source generates a full plan with the correct snapshot
+  PASS: backend.node: required-only draft is valid; all-known draft is rejected
+  PASS: backend.python: full track, 2 hours, ordering/minutes/identity
+  PASS: backend.python: full track, 20 hours, ordering/minutes/identity
+  PASS: backend.python: every offered source generates a full plan with the correct snapshot
+  PASS: backend.python: required-only draft is valid; all-known draft is rejected
+  PASS: backend.java: full track, 2 hours, ordering/minutes/identity
+  PASS: backend.java: full track, 20 hours, ordering/minutes/identity
+  PASS: backend.java: every offered source generates a full plan with the correct snapshot
+  PASS: backend.java: required-only draft is valid; all-known draft is rejected
+  PASS: mobile.android: full track, 2 hours, ordering/minutes/identity
+  PASS: mobile.android: full track, 20 hours, ordering/minutes/identity
+  PASS: mobile.android: every offered source generates a full plan with the correct snapshot
+  PASS: mobile.android: required-only draft is valid; all-known draft is rejected
+  PASS: mobile.ios: full track, 2 hours, ordering/minutes/identity
+  PASS: mobile.ios: full track, 20 hours, ordering/minutes/identity
+  PASS: mobile.ios: every offered source generates a full plan with the correct snapshot
+  PASS: mobile.ios: required-only draft is valid; all-known draft is rejected
+  PASS: mobile.flutter: full track, 2 hours, ordering/minutes/identity
+  PASS: mobile.flutter: full track, 20 hours, ordering/minutes/identity
+  PASS: mobile.flutter: every offered source generates a full plan with the correct snapshot
+  PASS: mobile.flutter: required-only draft is valid; all-known draft is rejected
+  PASS: mobile.react-native: full track, 2 hours, ordering/minutes/identity
+  PASS: mobile.react-native: full track, 20 hours, ordering/minutes/identity
+  PASS: mobile.react-native: every offered source generates a full plan with the correct snapshot
+  PASS: mobile.react-native: required-only draft is valid; all-known draft is rejected
+  PASS: game.unity: full track, 2 hours, ordering/minutes/identity
+  PASS: game.unity: full track, 20 hours, ordering/minutes/identity
+  PASS: game.unity: every offered source generates a full plan with the correct snapshot
+  PASS: game.unity: required-only draft is valid; all-known draft is rejected
+  PASS: game.unreal: full track, 2 hours, ordering/minutes/identity
+  PASS: game.unreal: full track, 20 hours, ordering/minutes/identity
+  PASS: game.unreal: every offered source generates a full plan with the correct snapshot
+  PASS: game.unreal: required-only draft is valid; all-known draft is rejected
+  PASS: game.godot: full track, 2 hours, ordering/minutes/identity
+  PASS: game.godot: full track, 20 hours, ordering/minutes/identity
+  PASS: game.godot: every offered source generates a full plan with the correct snapshot
+  PASS: game.godot: required-only draft is valid; all-known draft is rejected
+  PASS: Reviewed Mobile/Game sources have real review dates; retired/fake credentials are not offered
+
+=== Ket qua: 123 PASS, 0 FAIL ===
