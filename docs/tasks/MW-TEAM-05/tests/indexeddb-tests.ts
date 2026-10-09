@@ -1,5 +1,5 @@
-import { createRoadmapStore, emptyWorkspace } from '../../../src/persistence/roadmap-store';
-import type { OperationResult, Workspace } from '../../../src/domain/contracts';
+import { createRoadmapStore, emptyWorkspace } from '../../../../src/persistence/roadmap-store';
+import type { OperationResult, Workspace } from '../../../../src/domain/contracts';
 
 const output = document.querySelector<HTMLPreElement>('#output')!;
 const button = document.querySelector<HTMLButtonElement>('#run')!;

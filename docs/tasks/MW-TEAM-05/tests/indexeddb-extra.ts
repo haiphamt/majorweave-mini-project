@@ -1,5 +1,5 @@
-import { createRoadmapStore, emptyWorkspace } from '../../../src/persistence/roadmap-store';
-import type { OperationResult, Workspace } from '../../../src/domain/contracts';
+import { createRoadmapStore, emptyWorkspace } from '../../../../src/persistence/roadmap-store';
+import type { OperationResult, Workspace } from '../../../../src/domain/contracts';
 
 function element<T extends HTMLElement>(id: string): T {
   const value = document.getElementById(id);

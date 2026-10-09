@@ -1,13 +1,13 @@
-import { backendPack } from '../../../src/content/paths/backend';
-import { devopsPack } from '../../../src/content/paths/devops';
-import { networkPack } from '../../../src/content/paths/network';
-import { securityPack } from '../../../src/content/paths/security';
-import { qaPack } from '../../../src/content/paths/qa';
-import { resolveRegisteredTrack } from '../../../src/app/resolve-track';
-import { generatePlan } from '../../../src/domain/planner';
-import { createRoadmapStore, validateRoadmapWorkspace } from '../../../src/persistence/roadmap-store';
-import { exportBackup, parseBackup } from '../../../src/persistence/backup';
-import type { BackupFile, OperationResult, RoadmapDraft } from '../../../src/domain/contracts';
+import { backendPack } from '../../../../src/content/paths/backend';
+import { devopsPack } from '../../../../src/content/paths/devops';
+import { networkPack } from '../../../../src/content/paths/network';
+import { securityPack } from '../../../../src/content/paths/security';
+import { qaPack } from '../../../../src/content/paths/qa';
+import { resolveRegisteredTrack } from '../../../../src/app/resolve-track';
+import { generatePlan } from '../../../../src/domain/planner';
+import { createRoadmapStore, validateRoadmapWorkspace } from '../../../../src/persistence/roadmap-store';
+import { exportBackup, parseBackup } from '../../../../src/persistence/backup';
+import type { BackupFile, OperationResult, RoadmapDraft } from '../../../../src/domain/contracts';
 
 const packs = [backendPack, devopsPack, networkPack, securityPack, qaPack];
 const tracks = [devopsPack, networkPack, securityPack, qaPack].flatMap(p => p.tracks);

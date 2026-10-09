@@ -1,7 +1,7 @@
-import { createLegacyMigration } from '../../../src/persistence/migration';
-import { createRoadmapStore, validateRoadmapWorkspace } from '../../../src/persistence/roadmap-store';
-import { backendPack, legacyStageMap } from '../../../src/content/paths/backend';
-import type { OperationResult, Workspace, WorkspacePersistence } from '../../../src/domain/contracts';
+import { createLegacyMigration } from '../../../../src/persistence/migration';
+import { createRoadmapStore, validateRoadmapWorkspace } from '../../../../src/persistence/roadmap-store';
+import { backendPack, legacyStageMap } from '../../../../src/content/paths/backend';
+import type { OperationResult, Workspace, WorkspacePersistence } from '../../../../src/domain/contracts';
 
 const output = document.querySelector<HTMLPreElement>('#output')!;
 const button = document.querySelector<HTMLButtonElement>('#run')!;

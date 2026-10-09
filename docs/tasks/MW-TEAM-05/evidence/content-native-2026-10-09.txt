@@ -1,0 +1,15 @@
+MW-TEAM-05 — output do Huy cung cấp ngày 09/10/2026
+Không phải lần Codex chạy browser. SHA cuối chưa xác nhận.
+Database QA prefix: majorweave.qa.team05.content.cfc4c005-d643-4719-b361-820f67d649e5
+PASS devops.devops: generate/save/completion fixture/reload/export, 29 đoạn việc.
+PASS devops.sre: generate/save/completion fixture/reload/export, 31 đoạn việc.
+PASS network.network: generate/save/completion fixture/reload/export, 24 đoạn việc.
+PASS network.automation: generate/save/completion fixture/reload/export, 33 đoạn việc.
+PASS security.soc: generate/save/completion fixture/reload/export, 20 đoạn việc.
+PASS security.appsec: generate/save/completion fixture/reload/export, 18 đoạn việc.
+PASS security.devsecops: generate/save/completion fixture/reload/export, 27 đoạn việc.
+PASS qa.manual: generate/save/completion fixture/reload/export, 20 đoạn việc.
+PASS qa.playwright: generate/save/completion fixture/reload/export, 25 đoạn việc.
+PASS qa.postman: generate/save/completion fixture/reload/export, 20 đoạn việc.
+10 PASS / 0 FAIL — 10 track isolated, native IndexedDB, validator cấu trúc.
+Completion do fixture QA tạo; chưa kiểm UI progress/Context thật, semantic, hai tab hay toàn hành trình app chính. Không đọc/xóa DB học thật.

@@ -47,28 +47,11 @@ Ngày 09/10/2026, actor Codex trên bản bàn giao chưa có SHA Git người l
 - Mười track resolve giữ nền tảng/tiên quyết; planner chạy 2h và 20h/tuần, đổi sang nguồn cuối của từng chặng, giữ tổng phút, UUID, tuần và source snapshot. Thiếu prerequisite bị chặn.
 - TypeScript strict cho bốn pack và trang preview: PASS.
 - Mười kiểm tra tương thích với validator semantic từ ZIP MW-TEAM-04 do người làm cung cấp: generated workspace + một completion fixture trên mỗi track PASS. Không chép validator/contract và không gọi đây là nghiệm thu toàn bộ validator hay UI progress.
-- Chưa chạy browser native content suite tại thời điểm bàn giao. Người làm cần lưu output thực, version môi trường và SHA sau chạy.
+- Ngày 09/10/2026, người làm chạy trên Chrome: 10 PASS / 0 FAIL qua native IndexedDB. Mỗi track đã tạo plan, lưu, ghi completion fixture, reload và export/parse. Chưa nghiệm thu callback progress/Context hoặc toàn hành trình app chính.
 
 Script dùng resolver/planner hiện có trên nhánh Context của người làm. File chung dùng để kiểm tra local không nằm trong gói bàn giao. Không đổi registry/check/CI để làm test pass. Check chung chưa đăng ký 4 pack sẽ không bao phủ nội dung như test task isolated.
 
-## Chạy trên máy người làm
-
-Chép đúng đường dẫn của gói, thay script task nhưng giữ toàn bộ test cũ. Chạy:
-
-```powershell
-node scripts/tasks/MW-TEAM-05.mjs
-npm run check
-npm run build
-npm run dev -- --port 5174
-```
-
-Mở HTTP theo cổng Vite thực:
-
-`http://127.0.0.1:5174/docs/tasks/MW-TEAM-05/content-preview.html`
-
-Chọn track, xem chặng và điều kiện nguồn; đổi nguồn khi chặng có lựa chọn; thử 2h/20h rồi tạo preview. Preview không ghi DB.
-
-Bấm **Chạy 10 track trên DB QA**: tạo plan → save → ghi một completion fixture → reload → export/parse cho mỗi track. DB `majorweave.qa.team05.content.<UUID>.<trackId>`, không đọc/xóa DB hoặc localStorage thật. Validator trong trang là cấu trúc. Completion do fixture QA tạo theo contracts, không đi qua UI progress thật; kết quả này không chứng minh controller/React hoặc toàn hành trình app chính.
+Hướng dẫn chạy: [README của task](../README.md#chạy-kiểm-tra).
 
 ## Reviewer và tích hợp còn lại
 
@@ -76,4 +59,4 @@ Hữu Hiếu review chéo nội dung/nguồn/validator và Hải chốt core ID/
 
 Sau Hải tích hợp: trên app chính chạy đủ 10 cấu hình chọn → đổi nguồn → tạo plan → hoàn thành bằng callback thật → reload; kiểm draft/plan độc lập, cancel/error/loading, bàn phím/mobile và storage lỗi. Ghi Pass/Fail/Not run thật, không dùng harness isolated thay nghiệm thu này.
 
-MW-TEAM-05 còn ghép semantic/UI cho migration/backup, QA lỗi native/hai tab liên quan, tài liệu tổng hợp và nghiệm thu cuối. TASK/FLOW/QA_AI_LOG cần được đồng bộ sau khi có SHA/PR mới nhất; chưa đánh Done.
+MW-TEAM-05 còn ghép semantic/UI cho migration/backup, QA lỗi native/hai tab liên quan, tài liệu tổng hợp và nghiệm thu cuối. TASK/FLOW/QA_AI_LOG đã đồng bộ trong đợt dọn tài liệu; SHA/PR nội dung cuối và kết quả tích hợp còn cần bổ sung. Chưa đánh Done.

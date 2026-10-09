@@ -1,8 +1,8 @@
-import { exportBackup, parseBackup, createBackupImport } from '../../../src/persistence/backup';
-import { createLegacyMigration } from '../../../src/persistence/migration';
-import { createRoadmapStore, validateRoadmapWorkspace } from '../../../src/persistence/roadmap-store';
-import { backendPack, legacyStageMap } from '../../../src/content/paths/backend';
-import type { BackupFile, OperationResult, Workspace, WorkspacePersistence } from '../../../src/domain/contracts';
+import { exportBackup, parseBackup, createBackupImport } from '../../../../src/persistence/backup';
+import { createLegacyMigration } from '../../../../src/persistence/migration';
+import { createRoadmapStore, validateRoadmapWorkspace } from '../../../../src/persistence/roadmap-store';
+import { backendPack, legacyStageMap } from '../../../../src/content/paths/backend';
+import type { BackupFile, OperationResult, Workspace, WorkspacePersistence } from '../../../../src/domain/contracts';
 
 const output = document.querySelector<HTMLPreElement>('#output')!;
 const button = document.querySelector<HTMLButtonElement>('#run')!;
@@ -46,7 +46,7 @@ const validators = {
   }
 };
 async function sample() {
-  const p = unwrap(await import('../../../src/persistence/migration-preview').then(m => m.previewLegacyV1(fixture(), context())));
+  const p = unwrap(await import('../../../../src/persistence/migration-preview').then(m => m.previewLegacyV1(fixture(), context())));
   assert(p?.plan, 'Không tạo được plan mẫu');
   const w = { schemaVersion: 2 as const, revision: 99, profile: { displayName: 'QA file', majorId: null, timeZone: 'Asia/Ho_Chi_Minh' }, preferences: { resourceLanguage: 'all' as const, preferFree: true }, activePlanId: p.plan.id, plans: [p.plan], drafts: { [p.draft.trackId]: p.draft }, savedCredentialIds: [], imports: [{ fingerprint: p.fingerprint, importedAt: context().now, planIds: [p.plan.id] }] };
   return unwrap(exportBackup(w, { exportedAt: context().now, unsaved: true }, validators));

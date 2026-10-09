@@ -57,24 +57,7 @@ Storage lỗi/throw: giữ candidate cùng UUID để retry hoặc export, khôn
 
 Pending save chặn double confirm/prepare/cancel. Không hứa hủy transaction đang commit. Confirm chỉ success khi adapter resolve success; adapter phải tuân transaction.complete.
 
-## Kiểm tra trên Chrome
-
-Chép toàn bộ gói đúng đường dẫn. Chạy:
-
-```powershell
-node scripts/tasks/MW-TEAM-05.mjs
-npm run check
-npm run build
-npm run dev -- --port 5174
-```
-
-Mở bằng HTTP, không double-click file:
-
-`http://127.0.0.1:5174/docs/tasks/MW-TEAM-05/backup-tests.html`
-
-Dùng cổng Vite thực tế nếu khác 5174. Bấm chạy 7 test; giữ output/prefix UUID. Các test: round trip/reload/revision/profile; duplicate skip/copy; cancel; conflict; injected failure/retry; JSON/version lỗi; export proposal chưa lưu. Lỗi save là injection, không chứng minh quota/abort native. DB chỉ thuộc `majorweave.qa.team05.backup.<UUID>`, không xóa DB; fixture không đọc localStorage thật.
-
-Sau suite, bấm tải backup QA mẫu → chọn lại file JSON vừa tải → kiểm tra file. Ghi kết quả thực, không suy ra toàn bộ UI/Profile đã tích hợp.
+Hướng dẫn chạy trang QA và thử tải/chọn lại JSON: [README của task](../README.md#chạy-kiểm-tra). Kết quả thực và giới hạn: [QA log](../QA_AI_LOG.md).
 
 ## Việc còn lại
 
