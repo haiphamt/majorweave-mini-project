@@ -15,8 +15,8 @@
 
 - Sáu thành viên: nhóm trưởng kiến trúc/thiết kế/tích hợp/duyệt cuối; năm bạn triển khai theo bảng phân công bước 5. Chỉ làm task có mã và phạm vi file được giao; mỗi người làm cả module và nội dung học được chỉ định.
 - Hoàn thiện mọi hướng/nhánh trong danh mục được duyệt; không thu hẹp về Backend. Không nhận placeholder hoặc chỉ liên kết ngoài là một kế hoạch đã hoàn chỉnh.
-- Dùng sidebar/style của app gốc `/`; `src/prototype/` là thử nghiệm lịch sử. Không lấy điều hướng ngang làm nền.
-- Giữ CSS, font, palette, khoảng cách và thành phần đã có. Thêm UI theo mẫu hiện có; đề xuất thay đổi thiết kế cho nhóm trưởng review. Skill không được tự thay thiết kế.
+- Quyết định mới của Hải ngày 09/10/2026: chuyển app sang top nav, tham chiếu Beaver Plans. Giữ palette kem/gạch và thương hiệu MajorWeave; ưu tiên thao tác học, nội dung gọn và tùy chọn nâng cao thu gọn. `src/prototype/` vẫn là thử nghiệm lịch sử.
+- Không tự thay thiết kế đã được duyệt. Điều chỉnh top nav/Profile/Path detail/My Plan hiện tại theo yêu cầu trực tiếp của Hải; skill chỉ hỗ trợ cách thực hiện. Xem `docs/team/UI_BEAVER_REFINEMENT.md`.
 - Giai đoạn hiện tại không đăng nhập. Profile cục bộ không phải tài khoản online. Không thêm OAuth/Supabase, nút đăng nhập giả hoặc thông báo đồng bộ giả.
 - Không cập nhật Notion. Không tự làm project chính từ task mini.
 

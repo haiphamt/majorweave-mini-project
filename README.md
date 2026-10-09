@@ -4,7 +4,7 @@ Mini Project môn **Phát triển ứng dụng web — IS207.R11**, nhóm **PHP 
 
 ## Bản tích hợp v2 — 09/10/2026
 
-- Giữ giao diện sidebar, màu sắc và style đã chọn.
+- Dùng thanh điều hướng trên cùng theo yêu cầu mới; giữ màu sắc và thương hiệu MajorWeave.
 - **6 khoa, 12 ngành, 18 hướng, 50 cấu hình kế hoạch**, nối vào cùng bộ tạo lịch và kho dữ liệu.
 - Nguồn học, roadmap tham khảo, mục tiêu portfolio và chứng nhận theo nhánh. BA dùng nguồn nghề ngoài roadmap.sh.
 - Nhiều kế hoạch độc lập; draft không tự sửa plan đang học. Tạo lại có preview, xác nhận và lịch sử.
@@ -63,7 +63,7 @@ UI dùng callback, không tự ghi storage. Domain độc lập React/storage. D
 - [Danh mục ngành/hướng](docs/Danh_muc_nganh_huong_hoc.md), [phạm vi](docs/PHAM_VI_MAJORWEAVE.md).
 - [Quy tắc AI/PR](AGENTS.md), [quy trình Antigravity](docs/team/QUY_TRINH_ANTIGRAVITY.md).
 
-Tài liệu bước 3/4 và `src/prototype/` là lịch sử; INTEGRATION_V2 là trạng thái hiện tại. `events.html` giữ luồng nền trước đây và bổ sung luồng v2, không phải báo cáo chạy test.
+Tài liệu bước 3/4 và `src/prototype/` là lịch sử; INTEGRATION_V2 là trạng thái hiện tại. `events.html` mô tả 36 thao tác hiện tại cho các hướng học, không phải báo cáo chạy test. Quyết định giao diện mới nằm trong [UI_BEAVER_REFINEMENT](docs/team/UI_BEAVER_REFINEMENT.md).
 
 ## Đóng góp
 
