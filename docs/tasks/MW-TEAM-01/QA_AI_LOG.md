@@ -45,3 +45,18 @@ Ngày nguồn kế thừa Backend giữ nguyên lịch sử 03/10, nguồn bổ 
 5. Ghi evidence, SHA và PR. Không xác nhận các log model hoặc Pass lịch sử trong clone nếu thiếu bằng chứng. So sánh hai công cụ AI là hoạt động chung của nhóm, chưa được thực hiện trong lượt này.
 
 Xem COMPLETION_20261008.md để biết SHA chính xác và phạm vi cần Hải review.
+## Bổ sung feedback — 09/10/2026 (thay thế kết luận lỗi lưu TC-07 cũ)
+
+SHA kiểm tra cuối: `52d9e1583cf2c53ef6bdb19c0d68be74a4859dd7`. Xem FEEDBACK_20261009.md cho hợp đồng đề xuất, phạm vi file chung cần Hải review và minh chứng. Check/build PASS; trình duyệt đã chạy là Codex in-app browser, không phải Chrome.
+
+| Test bổ sung | Steps / expected | Actual |
+|---|---|---|
+| TC-11 Hủy pending tích hợp | Save fail → Bỏ → giữ dialog: pending còn; xác nhận bỏ: local/shared hết, committed/history nguyên, banner hết, retry không ghi, sửa task khác được | PASS controller và UI RAM / IndexedDB riêng. Bản bị bỏ không hồi sinh |
+| TC-11b Retry / saving | Fail → banner retry hoặc feature retry thành công; đang saving không cho bỏ | PASS UI hai storage; banner retry cũng dọn pending local, không khóa editor cũ |
+| TC-11c Conflict | Writer khác ghi revision → save conflict → xác nhận bỏ → tải committed của writer → sửa tiếp | PASS RAM và IndexedDB riêng, history=1 giữ nguyên; profile external writer còn |
+| TC-12 Ngày học | Tuần 1 → tạm trống → 2 giữ Thứ Ba; Hủy/tuần 0 không ghi; submit backlog mới xóa ngày và reload giữ | PASS parser cả 7 ngày, PASS UI IndexedDB riêng |
+| TC-05 chạy lại | Chọn/đổi nguồn/create/complete/reload từng track | PASS 17/17 UI app thật cùng SHA; 17 plan gốc còn nguyên ID và Angular cũ vẫn done |
+
+Lỗi save UI được chèn trước transaction; không ghi nhận thử quota thật. IndexedDB test dùng adapter thật và đọc/ghi/reload thật trong database riêng, RAM được ghi tách biệt. Dữ liệu người dùng không bị reset/xóa. JSON/DOM/ảnh/log nằm trong evidence/*20261009*.
+
+AI log lượt feedback: đọc phản hồi nhóm trưởng; đối chiếu và giữ patch Chung Hiếu 1ce77b1; bổ sung callback hủy có kiểm tra candidate và trạng thái; nối feature/local/shared, giữ success sau persistence; viết regression không hạ assertion; tạo harness tích hợp thật có lỗi có kiểm soát; chạy RAM riêng và IndexedDB riêng rồi toàn bộ 17 nhánh app thật; ghi SHA/bằng chứng và cập nhật PR. Chưa xác nhận Hải/Chung Hiếu đã duyệt hợp đồng, chưa tự đánh Done hoặc merge main.

@@ -1,0 +1,23 @@
+Tested code SHA: 52d9e1583cf2c53ef6bdb19c0d68be74a4859dd7
+> majorweave-prototype@0.1.0 prebuild
+> node scripts/prepare-docs.mjs
+
+Catalog generated: 12 majors, 18 directions.
+Event document generated: 28 individual flows, 2 overview/detail figures.
+
+> majorweave-prototype@0.1.0 build
+> tsc -b && vite build
+
+vite v6.4.3 building for production...
+transforming...
+✓ 1631 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                          1.16 kB │ gzip:  0.64 kB
+dist/prototype.html                      1.26 kB │ gzip:  0.66 kB
+dist/assets/prototype-B-fdeq31.css      39.10 kB │ gzip:  8.14 kB
+dist/assets/app-JNuuwcQV.css            57.17 kB │ gzip: 11.00 kB
+dist/assets/prototype-CNrb7ZNj.js       64.95 kB │ gzip: 20.32 kB
+dist/assets/app-SOIcGHW1.js            250.23 kB │ gzip: 65.33 kB
+dist/assets/StudyActivity-DjjVKizs.js  315.18 kB │ gzip: 99.02 kB
+✓ built in 1.95s

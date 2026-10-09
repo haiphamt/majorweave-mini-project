@@ -1,0 +1,285 @@
+{
+  "date": "2026-10-09",
+  "sha": "52d9e1583cf2c53ef6bdb19c0d68be74a4859dd7",
+  "browser": "Codex in-app browser",
+  "storage": "actual app IndexedDB in isolated browser profile",
+  "initialPlanCount": 34,
+  "finalPlanCount": 51,
+  "retainedOriginalPlans": [
+    {
+      "id": "ec8a6713-7342-4350-bfc9-6a48db49773b",
+      "label": "Angular / TypeScript — Hệ thống Quản lý Đơn hàng Doanh nghiệp v · frontend.angular"
+    },
+    {
+      "id": "336e53a2-5cbd-42ae-8821-2514e97b9da6",
+      "label": "Node.js / Express — API quản lý công việc · backend.node"
+    },
+    {
+      "id": "3e9d902a-c4b4-4fd0-8711-e88b820d740a",
+      "label": "Python / FastAPI — API quản lý công việc · backend.python"
+    },
+    {
+      "id": "f1f3dbd4-251d-4323-892f-454fa1e4b455",
+      "label": "Java / Spring Boot — API quản lý công việc · backend.java"
+    },
+    {
+      "id": "46d5daa1-d397-4d57-b7e1-3e82b75d673b",
+      "label": "React / TypeScript — Ứng dụng Web Dashboard tương tác với Rea · frontend.react"
+    },
+    {
+      "id": "f0145aae-9a2c-42a9-824b-bfd565b4a07f",
+      "label": "Vue 3 / Pinia — Cổng thông tin Truyền thông Tương tác vớ · frontend.vue"
+    },
+    {
+      "id": "479ba3d1-5c99-45a3-b800-15ec3e6ce703",
+      "label": "React + Node.js — Hệ thống Ứng dụng Quản lý Doanh nghiệp T · fullstack.react-node"
+    },
+    {
+      "id": "05da8f8f-79fc-4a38-bc03-3340bbf3db25",
+      "label": "React + Python — Hệ thống Ứng dụng Quản lý Doanh nghiệp T · fullstack.react-python"
+    },
+    {
+      "id": "7ef7eeed-4dc2-45a5-9af2-72d8c92c46f1",
+      "label": "React + Java — Hệ thống Ứng dụng Quản lý Doanh nghiệp T · fullstack.react-java"
+    },
+    {
+      "id": "3c3c0935-d0dc-4701-a9db-b026672a2b81",
+      "label": "Angular + Node.js — Hệ thống Ứng dụng Quản lý Doanh nghiệp T · fullstack.angular-node"
+    },
+    {
+      "id": "57bc5ffc-e942-4d76-a27d-e2b3e0722ddc",
+      "label": "Angular + Python — Hệ thống Ứng dụng Quản lý Doanh nghiệp T · fullstack.angular-python"
+    },
+    {
+      "id": "f91f34c7-ea93-497d-b944-74f25e3b8d46",
+      "label": "Angular + Java — Hệ thống Ứng dụng Quản lý Doanh nghiệp T · fullstack.angular-java"
+    },
+    {
+      "id": "da7cbac0-1cd2-481c-ab0f-a47a8f08ee18",
+      "label": "Vue + Node.js — Hệ thống Ứng dụng Quản lý Doanh nghiệp T · fullstack.vue-node"
+    },
+    {
+      "id": "568fc71c-af1d-4f92-9b7f-b3aa0ee0cca8",
+      "label": "Vue + Python — Hệ thống Ứng dụng Quản lý Doanh nghiệp T · fullstack.vue-python"
+    },
+    {
+      "id": "cae7481e-1b60-4cb1-82aa-0d9a716381fe",
+      "label": "Vue + Java — Hệ thống Ứng dụng Quản lý Doanh nghiệp T · fullstack.vue-java"
+    },
+    {
+      "id": "cdb216f7-5dd7-40a0-9567-e4116e4cab47",
+      "label": "UX Research & Interaction — Báo cáo Nghiên cứu & Cải tiến Trải nghiệ · ux.research"
+    },
+    {
+      "id": "dd00597e-d472-456f-81af-515df3571d37",
+      "label": "UI & Product Design — Hệ thống Thiết kế Ứng dụng Di động & Bản · ux.product"
+    }
+  ],
+  "oldAngularStillDone": true,
+  "results": [
+    {
+      "track": "backend.node",
+      "source": "https://www.freecodecamp.org/learn/",
+      "selected": {
+        "count": 35,
+        "text": "Node.js / Express — API quản lý công việc · backend.node",
+        "value": "903cc03c-fced-45ca-bbcf-fedf3dde5cd8"
+      },
+      "task": "Hoàn thành: Ôn hàm, mảng và đối tượng trong JavaScript",
+      "checkedAfterReload": true,
+      "result": "PASS"
+    },
+    {
+      "track": "backend.python",
+      "source": "https://docs.python.org/3/tutorial/",
+      "selected": {
+        "count": 36,
+        "text": "Python / FastAPI — API quản lý công việc · backend.python",
+        "value": "2e390e3b-0a13-4122-9601-98519ecff624"
+      },
+      "task": "Hoàn thành: Ôn hàm, list và dict trong Python",
+      "checkedAfterReload": true,
+      "result": "PASS"
+    },
+    {
+      "track": "backend.java",
+      "source": "https://cs144.github.io/",
+      "selected": {
+        "count": 37,
+        "text": "Java / Spring Boot — API quản lý công việc · backend.java",
+        "value": "e0f184c4-91ac-4aa7-9ac6-8792ae2c2aa3"
+      },
+      "task": "Hoàn thành: Ôn kiểu dữ liệu, vòng lặp và phương thức Java",
+      "checkedAfterReload": true,
+      "result": "PASS"
+    },
+    {
+      "track": "frontend.react",
+      "source": "https://www.freecodecamp.org/learn/2022/responsive-web-design/",
+      "selected": {
+        "count": 38,
+        "text": "React / TypeScript — Ứng dụng Web Dashboard tương tác với Rea · frontend.react",
+        "value": "0cc19714-d206-4007-9a98-ffeea97d577c"
+      },
+      "task": "Hoàn thành: Thiết lập Git và repository cho dự án",
+      "checkedAfterReload": true,
+      "result": "PASS"
+    },
+    {
+      "track": "frontend.angular",
+      "source": "https://www.freecodecamp.org/learn/2022/responsive-web-design/",
+      "selected": {
+        "count": 39,
+        "text": "Angular / TypeScript — Hệ thống Quản lý Đơn hàng Doanh nghiệp v · frontend.angular",
+        "value": "ceeb96e5-8559-4e3c-87a6-004de69b9f1a"
+      },
+      "task": "Hoàn thành: Thiết lập Git và repository cho dự án",
+      "checkedAfterReload": true,
+      "result": "PASS"
+    },
+    {
+      "track": "frontend.vue",
+      "source": "https://www.freecodecamp.org/learn/2022/responsive-web-design/",
+      "selected": {
+        "count": 40,
+        "text": "Vue 3 / Pinia — Cổng thông tin Truyền thông Tương tác vớ · frontend.vue",
+        "value": "1eea99f0-48f5-4822-abe1-31365c2270d8"
+      },
+      "task": "Hoàn thành: Thiết lập Git và repository cho dự án",
+      "checkedAfterReload": true,
+      "result": "PASS"
+    },
+    {
+      "track": "fullstack.react-node",
+      "source": "https://cs144.github.io/",
+      "selected": {
+        "count": 41,
+        "text": "React + Node.js — Hệ thống Ứng dụng Quản lý Doanh nghiệp T · fullstack.react-node",
+        "value": "37d27134-43f5-4daf-af3f-2a3ac6c419aa"
+      },
+      "task": "Hoàn thành: Thiết lập Git và repository cho dự án",
+      "checkedAfterReload": true,
+      "result": "PASS"
+    },
+    {
+      "track": "fullstack.react-python",
+      "source": "https://cs144.github.io/",
+      "selected": {
+        "count": 42,
+        "text": "React + Python — Hệ thống Ứng dụng Quản lý Doanh nghiệp T · fullstack.react-python",
+        "value": "98bf6a39-411c-436b-b0d1-bad90e605683"
+      },
+      "task": "Hoàn thành: Thiết lập Git và repository cho dự án",
+      "checkedAfterReload": true,
+      "result": "PASS"
+    },
+    {
+      "track": "fullstack.react-java",
+      "source": "https://cs144.github.io/",
+      "selected": {
+        "count": 43,
+        "text": "React + Java — Hệ thống Ứng dụng Quản lý Doanh nghiệp T · fullstack.react-java",
+        "value": "c2465a82-f3cc-4a81-96cb-0cba895f264f"
+      },
+      "task": "Hoàn thành: Thiết lập Git và repository cho dự án",
+      "checkedAfterReload": true,
+      "result": "PASS"
+    },
+    {
+      "track": "fullstack.angular-node",
+      "source": "https://cs144.github.io/",
+      "selected": {
+        "count": 44,
+        "text": "Angular + Node.js — Hệ thống Ứng dụng Quản lý Doanh nghiệp T · fullstack.angular-node",
+        "value": "0d44cddf-6d54-4f29-97f6-182872bcf84f"
+      },
+      "task": "Hoàn thành: Thiết lập Git và repository cho dự án",
+      "checkedAfterReload": true,
+      "result": "PASS"
+    },
+    {
+      "track": "fullstack.angular-python",
+      "source": "https://cs144.github.io/",
+      "selected": {
+        "count": 45,
+        "text": "Angular + Python — Hệ thống Ứng dụng Quản lý Doanh nghiệp T · fullstack.angular-python",
+        "value": "0cb212a3-fc71-49b8-8167-54462f495ebe"
+      },
+      "task": "Hoàn thành: Thiết lập Git và repository cho dự án",
+      "checkedAfterReload": true,
+      "result": "PASS"
+    },
+    {
+      "track": "fullstack.angular-java",
+      "source": "https://cs144.github.io/",
+      "selected": {
+        "count": 46,
+        "text": "Angular + Java — Hệ thống Ứng dụng Quản lý Doanh nghiệp T · fullstack.angular-java",
+        "value": "2b40b9b0-a5e8-48db-a17b-8eeaa19ca559"
+      },
+      "task": "Hoàn thành: Thiết lập Git và repository cho dự án",
+      "checkedAfterReload": true,
+      "result": "PASS"
+    },
+    {
+      "track": "fullstack.vue-node",
+      "source": "https://cs144.github.io/",
+      "selected": {
+        "count": 47,
+        "text": "Vue + Node.js — Hệ thống Ứng dụng Quản lý Doanh nghiệp T · fullstack.vue-node",
+        "value": "d613b531-2c4e-4d3d-94fe-6c0a0343477e"
+      },
+      "task": "Hoàn thành: Thiết lập Git và repository cho dự án",
+      "checkedAfterReload": true,
+      "result": "PASS"
+    },
+    {
+      "track": "fullstack.vue-python",
+      "source": "https://cs144.github.io/",
+      "selected": {
+        "count": 48,
+        "text": "Vue + Python — Hệ thống Ứng dụng Quản lý Doanh nghiệp T · fullstack.vue-python",
+        "value": "09c6f0d7-2f6b-4849-a96e-610a60af54d0"
+      },
+      "task": "Hoàn thành: Thiết lập Git và repository cho dự án",
+      "checkedAfterReload": true,
+      "result": "PASS"
+    },
+    {
+      "track": "fullstack.vue-java",
+      "source": "https://cs144.github.io/",
+      "selected": {
+        "count": 49,
+        "text": "Vue + Java — Hệ thống Ứng dụng Quản lý Doanh nghiệp T · fullstack.vue-java",
+        "value": "b4dc0187-48c9-47db-8841-e109f5b6f76b"
+      },
+      "task": "Hoàn thành: Thiết lập Git và repository cho dự án",
+      "checkedAfterReload": true,
+      "result": "PASS"
+    },
+    {
+      "track": "ux.research",
+      "source": "https://www.interaction-design.org/literature/article/what-is-design-thinking-and-why-is-it-so-popular",
+      "selected": {
+        "count": 50,
+        "text": "UX Research & Interaction — Báo cáo Nghiên cứu & Cải tiến Trải nghiệ · ux.research",
+        "value": "09cf520d-5446-4bfa-9870-9f110290966e"
+      },
+      "task": "Hoàn thành: Lập bản đồ thấu cảm (Empathy Map) cho nhóm người dùng mục tiêu",
+      "checkedAfterReload": true,
+      "result": "PASS"
+    },
+    {
+      "track": "ux.product",
+      "source": "https://www.interaction-design.org/literature/article/what-is-design-thinking-and-why-is-it-so-popular",
+      "selected": {
+        "count": 51,
+        "text": "UI & Product Design — Hệ thống Thiết kế Ứng dụng Di động & Bản · ux.product",
+        "value": "daa24f31-8606-4c80-b5fb-20f87e580b94"
+      },
+      "task": "Hoàn thành: Lập bản đồ thấu cảm (Empathy Map) cho nhóm người dùng mục tiêu",
+      "checkedAfterReload": true,
+      "result": "PASS"
+    }
+  ]
+}

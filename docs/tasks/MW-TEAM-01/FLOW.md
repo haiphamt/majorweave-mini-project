@@ -12,3 +12,10 @@ Các luồng áp dụng app gốc với sidebar hiện có. Liên kết test TC 
 | FL-06 Mục tiêu và plan; US-01 / AC-03/05 | Track đã resolve; credential ID có trong registry | Lưu/bỏ lưu bookmark qua callback, success sau save → Profile hiển thị mục tiêu. My roadmap đặt goal/hours/date → tạo plan → My plan hoàn thành → reload giữ kết quả | Date chưa Monday cần xác nhận; tạo lại plan có preview và Hủy giữ lịch sử. Quota/conflict không kích hoạt candidate sớm; retry. Mọi plan khác giữ nguyên khi đổi track | TC-05/06/07 |
 
 Nguồn/phút của plan chốt tại thời điểm tạo; sửa draft không tự viết lại kế hoạch đang học. Dữ liệu v1 vẫn truy cập được qua My plan legacy khi có kế hoạch cũ. Review cuối của Hải là bước độc lập với kiểm thử kỹ thuật.
+## Bổ sung FL-06 — hủy bản chưa lưu / giữ ngày (09/10/2026)
+
+US-01 / AC-05 / TC-11: mutation save thất bại giữ plan committed và candidate local/shared. Bấm Bỏ hoặc đóng editor có pending mở xác nhận; Giữ thay đổi để thử lưu lại / Escape chỉ đóng xác nhận, pending vẫn còn. Xác nhận bỏ → callback Context đọc committed thành công → dọn shared/local → banner biến mất, sửa task khác được. Retry sau bỏ không ghi (`NO_PENDING_SAVE`). Nếu đọc lại lỗi, giữ candidate và báo lỗi; không báo đã bỏ thành công. Khi saving/loading, callback hủy bị từ chối; UI saving/discarding chặn thao tác. Conflict → xác nhận bỏ tải revision đã commit mới nhất của writer khác và giữ history. Không reset database.
+
+Fail → retry từ feature hoặc banner → commit thành công mới kích hoạt plan; cả hai tầng pending hết. Banner retry thành công cũng dọn editor local; không để thao tác khóa bởi candidate cũ.
+
+TC-12: sửa ngày Thứ Ba / tuần 1 → xóa tuần tạm → nhập 2 vẫn Thứ Ba; Hủy không ghi, tuần không hợp lệ không ghi. Chỉ khi submit tuần trống (backlog) mới chuẩn hóa dayIndex=null; reload giữ kết quả. Patch kế thừa Chung Hiếu 1ce77b1. Chi tiết bằng chứng theo SHA trong FEEDBACK_20261009.md.
