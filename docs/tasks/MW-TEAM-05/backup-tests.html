@@ -1,0 +1,12 @@
+<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>MW-TEAM-05 Backup QA</title></head><body>
+<h1>MW-TEAM-05 — Backup/import QA</h1>
+<p>DB QA riêng với UUID; fixture trong bộ nhớ. Không đọc/sửa localStorage hoặc DB học thật. Validator cấu trúc; chưa nghiệm thu semantic/UI chính.</p>
+<button id="run" type="button">Chạy 7 kiểm thử backup/import</button>
+<pre id="output" aria-live="polite">Chưa chạy.</pre>
+<p>Kiểm tra file mẫu: tải file JSON, chọn lại chính file đó, bấm kiểm tra. Chỉ parse/validate, không nhập vào DB.</p>
+<button id="download" type="button">Tải backup QA mẫu</button>
+<input id="file" type="file" accept=".json,application/json" aria-label="Chọn backup QA">
+<button id="inspect" type="button">Kiểm tra file đã chọn</button>
+<pre id="file-result" aria-live="polite">Chưa chọn file.</pre>
+<script type="module" src="./backup-tests.ts"></script>
+</body></html>
