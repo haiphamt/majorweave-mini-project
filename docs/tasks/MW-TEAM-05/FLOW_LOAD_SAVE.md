@@ -27,7 +27,7 @@ Bằng chứng: suite indexeddb-tests và suite Context native đã được ng�
 4. Nếu hợp lệ, ghi bản mới có revision tăng một.
 5. Chỉ trả success khi transaction.complete. Caller mới dùng kết quả thành công để cập nhật trạng thái đã lưu.
 
-Bằng chứng bổ sung dự kiến: test complete trong indexeddb-extra. Không ghi PASS trước khi chạy.
+Bằng chứng: test complete trong indexeddb-extra đã PASS ngày 08/10/2026; TRACE transaction.complete → save.promise.resolved. Xem [minh chứng](evidence/load-save-extra-2026-10-08.txt).
 
 ## Conflict giữa hai tab
 
@@ -37,7 +37,7 @@ Bằng chứng bổ sung dự kiến: test complete trong indexeddb-extra. Khôn
 4. Adapter đọc disk r+1, trả conflict, không ghi đè.
 5. Caller giữ bản B chưa lưu. Trong luồng Context đã kiểm tra, plan đề xuất không được kích hoạt khi save conflict.
 
-Bằng chứng bổ sung dự kiến: mục Hai tab thật trong indexeddb-extra. Suite cũ dùng hai writer trong cùng trang; không coi đó là bằng chứng hai tab.
+Bằng chứng: hai tab thật đã PASS ngày 08/10/2026. A lưu revision 0 → 1; B trả REVISION_CONFLICT, giữ candidate chưa lưu và không ghi đè dữ liệu A. Xem [minh chứng](evidence/load-save-extra-2026-10-08.txt).
 
 ## Lỗi lưu và retry
 
@@ -45,7 +45,7 @@ Bằng chứng bổ sung dự kiến: mục Hai tab thật trong indexeddb-extra
 2. Không sửa candidate của caller; transaction abort không để lại bản ghi chưa commit.
 3. Caller giữ candidate để thử lại. Nếu tab khác thay đổi revision trong thời gian đó, retry có thể conflict và phải xử lý theo luồng conflict.
 
-Bằng chứng bổ sung dự kiến: native abort và quota injection trong indexeddb-extra. Quota injection không chứng minh tình huống disk thật đầy.
+Bằng chứng: native abort và quota injection trong indexeddb-extra đã PASS ngày 08/10/2026; dữ liệu disk/input được giữ và retry thành công. Quota injection chưa chứng minh tình huống disk thật đầy. Xem [minh chứng](evidence/load-save-extra-2026-10-08.txt).
 
 ## Hủy
 
