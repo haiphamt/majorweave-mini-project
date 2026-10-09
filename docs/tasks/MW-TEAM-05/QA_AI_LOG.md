@@ -5,7 +5,7 @@
 - Người chạy: Triệu Quang Huy (`1can5ez`). Ngày: 08/10/2026.
 - Branch: `feat/mw-team-05`.
 - Commit chứa mã đã kiểm tra: `aafd1f6ece1eaa895f4e2ca41674fb8e3f5b12cf`.
-- Máy: Windows, Terminal PowerShell, Antigravity. Tên/phiên bản trình duyệt và viewport: chưa ghi nhận, người chạy cần bổ sung.
+- Máy: Windows, Terminal PowerShell, Antigravity. Tên/phiên bản trình duyệt và viewport: Google Chrome. Phiên bản quan sát ngày 09/10/2026: 154.0.8037.99 (64-bit), đang cập nhật; chưa xác nhận phiên bản chính xác tại lần chạy 08/10/2026.
 - Server: `npm run dev -- --port 5174`; URL `http://127.0.0.1:5174`.
 - DB load/save: `majorweave.qa.team05.ae4569a7-b490-462c-8900-81ebd8f38dbb` cùng các suffix từng test.
 - DB Context: `majorweave-context-qa-aac532d4-b9ea-482d-b789-da0fc1d08ef6`.
