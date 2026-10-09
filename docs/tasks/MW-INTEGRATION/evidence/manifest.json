@@ -1,0 +1,10 @@
+{
+  "checkedCommit": "b158cf1a6092edab1ead377f15a28d271ccd6f99",
+  "testedAt": "2026-10-09T21:06:23.0247799+07:00",
+  "node": "v24.11.1",
+  "check": 0,
+  "team": 0,
+  "build": 0,
+  "browser": "See QA_AI_LOG: 50-track native UI on same product working tree, isolated DB",
+  "limitation": "File-picker import blocked by browser extension permission"
+}
