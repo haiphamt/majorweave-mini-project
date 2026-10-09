@@ -1,4 +1,4 @@
-# UIT - Path — 36 luồng thao tác hiện tại
+# uitplans. — 36 luồng thao tác hiện tại
 
 Cập nhật 09/10/2026. Áp dụng cho mọi hướng học đã tích hợp.
 

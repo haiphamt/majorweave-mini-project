@@ -1,12 +1,12 @@
-# UIT - Path
+# uitplans.
 
-Lộ trình học tập cho sinh viên UIT. Tên hiển thị đổi từ MajorWeave sang UIT - Path ngày 10/10/2026; dữ liệu đã lưu vẫn được giữ.
+Lộ trình học tập cho sinh viên UIT. Tên hiển thị đổi từ MajorWeave sang uitplans. ngày 10/10/2026; dữ liệu đã lưu vẫn được giữ.
 
 Mini Project môn **Phát triển ứng dụng web — IS207.R11**, nhóm **PHP Is Awesome**. Khám phá hướng học, chọn nguồn phù hợp và biến roadmap thành kế hoạch tự học theo tuần.
 
 ## Bản tích hợp v2 — 09/10/2026
 
-- Dùng thanh điều hướng trên cùng theo yêu cầu mới; giữ màu sắc và thương hiệu UIT - Path.
+- Dùng thanh điều hướng trên cùng theo yêu cầu mới; giữ màu sắc và thương hiệu uitplans..
 - **6 khoa, 12 ngành, 18 hướng, 50 cấu hình kế hoạch**, nối vào cùng bộ tạo lịch và kho dữ liệu.
 - Nguồn học, roadmap tham khảo, mục tiêu portfolio và chứng nhận theo nhánh. BA dùng nguồn nghề ngoài roadmap.sh.
 - Nhiều kế hoạch độc lập; draft không tự sửa plan đang học. Tạo lại có preview, xác nhận và lịch sử.

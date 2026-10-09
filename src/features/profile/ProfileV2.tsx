@@ -41,8 +41,8 @@ export function ProfileV2(){
     if(!report(checked)||!checked.ok)return;
     const result=await actions.saveProfile(checked.value);if(report(result)&&result.ok)toast('Đã lưu hồ sơ trên thiết bị');
   }
-  function exportFile(){const result=actions.exportBackupFile();if(report(result)&&result.ok){download(`uitpath-${todayKey}.json`,result.value.json);toast(result.value.containsUnsavedChanges?'Đã xuất bản sao gồm thay đổi chưa lưu':'Đã xuất bản sao workspace');}}
-  function exportLegacy(){const result=actions.getLegacyRaw();if(report(result)&&result.ok){if(result.value===null){setMessage('Không có dữ liệu v1 trên trình duyệt này.');return;}download(`uitpath-v1-${todayKey}.json`,result.value);}}
+  function exportFile(){const result=actions.exportBackupFile();if(report(result)&&result.ok){download(`uitplans-${todayKey}.json`,result.value.json);toast(result.value.containsUnsavedChanges?'Đã xuất bản sao gồm thay đổi chưa lưu':'Đã xuất bản sao workspace');}}
+  function exportLegacy(){const result=actions.getLegacyRaw();if(report(result)&&result.ok){if(result.value===null){setMessage('Không có dữ liệu v1 trên trình duyệt này.');return;}download(`uitplans-v1-${todayKey}.json`,result.value);}}
   async function chooseFile(selected:File|undefined){
     setFile(null);setPlanActions({});setMessage('');if(!selected)return;
     if(selected.size>10*1024*1024){setMessage('File lớn hơn 10 MB; chọn bản sao lưu nhỏ hơn.');return;}

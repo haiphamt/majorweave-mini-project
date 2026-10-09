@@ -30,7 +30,13 @@ Nhánh `fix/beaver-ui`; gửi bản local để Hải kiểm tra trước khi me
 
 ## Điều chỉnh ngày 10/10/2026
 
-- Tên hiển thị mới: UIT - Path.
+- Tên hiển thị mới nhất: **uitplans.** — chữ thường, dấu chấm cuối, không logo biểu tượng.
 - Explore bỏ nhãn “Bản trải nghiệm” và cách tô nổi bật riêng cho Backend. Nút mở đầu dẫn xuống danh sách hướng học.
 - Profile giữ tên/ngành học, đổi tiêu đề thành “Hồ sơ học tập”; tên là tùy chọn. Bỏ khối “Đang khám phá” và thông tin kế hoạch lặp với My Plan.
 - Múi giờ nằm trong “Tùy chọn nâng cao”, mặc định thu gọn. Giữ thao tác lưu/hủy, nhịp học, chứng nhận và sao lưu.
+
+### Wordmark và thanh điều hướng
+
+Theo ảnh Beaver Plans Hải cung cấp: tên dùng Be Vietnam Pro 700, 24px desktop / 22px mobile, tracking −0.03em, chữ đứng và dấu chấm cùng màu chữ. Giữ palette kem/gạch; bỏ icon của các mục điều hướng, dùng nhãn chữ gọn. Không thêm font hoặc dependency. Tên browser/tab và trang hướng dẫn thống nhất với wordmark; khóa dữ liệu/format backup cũ giữ nguyên.
+
+Kiểm chứng: `npm run check` và `npm run build` đạt. Scan typography của Impeccable không có finding. Chrome 1280px và 390px: wordmark không có ảnh, computed font là Be Vietnam Pro 700 / normal, đúng 24px và 22px; body không tràn ngang. Ảnh thực tế nằm trong `D:/IS207/artifacts/uitplans-2026-10-10`.
