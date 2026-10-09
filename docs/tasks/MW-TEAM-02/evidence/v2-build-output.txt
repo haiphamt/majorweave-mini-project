@@ -1,0 +1,19 @@
+npm notice run majorweave-prototype@0.1.0 prebuild
+npm notice run node scripts/prepare-docs.mjs
+Catalog generated: 12 majors, 16 directions.
+Event document generated: 28 individual flows, 2 overview/detail figures.
+npm notice run majorweave-prototype@0.1.0 build
+npm notice run tsc -b && vite build
+vite v6.4.3 building for production...
+transforming...
+✓ 1621 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                          1.16 kB │ gzip:  0.63 kB
+dist/prototype.html                      1.26 kB │ gzip:  0.66 kB
+dist/assets/prototype-B-fdeq31.css      39.10 kB │ gzip:  8.14 kB
+dist/assets/app-CHo9kfUT.css            58.75 kB │ gzip: 11.21 kB
+dist/assets/prototype-YXxa6HwZ.js       64.95 kB │ gzip: 20.32 kB
+dist/assets/app-Vfj_ezOD.js            157.38 kB │ gzip: 41.11 kB
+dist/assets/StudyActivity-C8gdt07m.js  315.36 kB │ gzip: 99.09 kB
+✓ built in 2.00s

@@ -1,0 +1,22 @@
+{
+  "checkedAt": "2026-10-08",
+  "branch": "feat/mw-team-02",
+  "baseCommit": "5ff66ba66ee094c5af388885a109578bf1c96ace",
+  "scope": "Working tree including user-requested My Roadmap typography adjustment; isolated v2 UI suite rerun",
+  "results": {
+    "domainContent": 123,
+    "browser": 17,
+    "failed": 0,
+    "projectCheck": "pass",
+    "productionBuild": "pass"
+  },
+  "files": {
+    "src/features/my-roadmap/MyRoadmap.tsx": "11a5acbe09257ba11e71c31aedcca6ced48da2e203530a31ed868eb6a5c67d59",
+    "src/features/my-roadmap/MyRoadmap.ui-tests.mjs": "0fdf5d33eaa01c47bc974f2c2a4c4b7f79fdc19642ac72d1992aae7fa0b59db9",
+    "scripts/tasks/MW-TEAM-02.mjs": "32c661e5b7c3f3e19400e323dba1c21885cc3808c6833973aa603cd501658fc1",
+    "src/domain/planner.ts": "0eb8b780e8222c140402839922909adb1e79171cb86438f993064e5b5c51d026",
+    "src/content/paths/mobile.ts": "22c49085a3b9cd090a97ce05e17e3580e7bc008364a13310acf2e185bb11bf5f",
+    "src/content/paths/game.ts": "cbf0032510c5d50799ae1af11ea770c73422ff86a8bd411f44c4e9418c80f616",
+    "src/styles.css": "c70fd6431ef33095e6ebc1378bd6d8318a92bb18f05b9f247bdb8b80eaab9999"
+  }
+}

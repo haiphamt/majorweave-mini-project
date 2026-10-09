@@ -1,0 +1,38 @@
+{
+  "date": "2026-10-07",
+  "browser": "154.0.4258.62",
+  "baseUrl": "http://127.0.0.1:5174",
+  "isolatedContext": true,
+  "results": [
+    {
+      "name": "Required goal error keeps draft",
+      "status": "pass"
+    },
+    {
+      "name": "Tuesday proposal: cancel and Escape preserve date and restore keyboard focus",
+      "status": "pass"
+    },
+    {
+      "name": "Confirm Monday, create plan and reload",
+      "status": "pass"
+    },
+    {
+      "name": "Cancel rebuild preserves current plan and tasks",
+      "status": "pass"
+    },
+    {
+      "name": "Source selection and known toggle persist without changing active plan",
+      "status": "pass"
+    },
+    {
+      "name": "Mobile dialog fits viewport and keyboard confirms proposed date",
+      "status": "pass"
+    },
+    {
+      "name": "All-known selection rejects empty plan; no browser errors",
+      "status": "pass"
+    }
+  ],
+  "errors": [],
+  "scope": "Legacy MyRoadmap only; v2 registry/context/persistence not integrated."
+}

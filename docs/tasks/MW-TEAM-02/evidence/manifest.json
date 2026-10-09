@@ -1,0 +1,22 @@
+{
+  "checkedAt": "2026-10-07",
+  "branch": "feat/mw-team-02",
+  "baseCommit": "20b38a2f6a0640aff8e9f6d8de2426cf26e1515c",
+  "scope": "Uncommitted working tree; final content changes after tests are whitespace-only",
+  "node": "v24.21.0",
+  "browser": "Microsoft Edge 154.0.4258.62",
+  "results": {
+    "domainContent": 123,
+    "browser": 7,
+    "failed": 0,
+    "projectCheck": "pass",
+    "productionBuild": "pass"
+  },
+  "files": {
+    "src/domain/planner.ts": "0eb8b780e8222c140402839922909adb1e79171cb86438f993064e5b5c51d026",
+    "src/features/my-roadmap/MyRoadmap.tsx": "998222855f4d2dd56c98c560b029bb7ed55271012ee184ffb128caa7dfb61230",
+    "src/content/paths/mobile.ts": "22c49085a3b9cd090a97ce05e17e3580e7bc008364a13310acf2e185bb11bf5f",
+    "src/content/paths/game.ts": "cbf0032510c5d50799ae1af11ea770c73422ff86a8bd411f44c4e9418c80f616",
+    "scripts/tasks/MW-TEAM-02.mjs": "d05255ccef38f27454e5654a81c60f81028449218656e34cbdbc7626fd38f8a6"
+  }
+}
