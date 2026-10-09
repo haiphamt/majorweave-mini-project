@@ -10,7 +10,12 @@ assert.equal(pack.reviewStatus,'review');
 assert.deepEqual(pack.tracks.map(t=>t.id),['backend.node','backend.python','backend.java']);
 for (const r of [...pack.resources,...pack.credentials]) {
   assert.equal(new URL(r.url).protocol,'https:');
-  assert.equal(r.checkedAt,'2026-10-03'); // Ngày kế thừa, không phải kiểm tra web hôm nay.
+  if (!r.id.startsWith('resource.verified.') && !r.id.startsWith('credential.verified.')) {
+    assert.equal(r.checkedAt,'2026-10-03'); // Ngày kế thừa vẫn được giữ và kiểm tra.
+  } else {
+    assert.ok(r.checkedAt === null || /^\d{4}-\d{2}-\d{2}$/.test(r.checkedAt), `Invalid checkedAt: ${r.id}`);
+    if (r.checkedAt !== null) assert.equal(new Date(r.checkedAt).toISOString().slice(0,10),r.checkedAt, r.id);
+  }
 }
 for (const r of pack.resources) {
   assert.ok(['vi','en'].includes(r.language),r.id);

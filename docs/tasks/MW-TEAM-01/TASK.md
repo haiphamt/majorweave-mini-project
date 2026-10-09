@@ -1,7 +1,7 @@
 # MW-TEAM-01 — Khám phá, chi tiết hướng và nội dung Web/UX
 
 **Người làm:** Nguyễn Thị Quỳnh Hân (`QuynhHan486`). **Reviewer cuối:** Phạm Tuấn Hải. **Review chéo:** Phạm Công Định.
-**Branch:** `feat/mw-team-01`. **Trạng thái:** Được giao; chưa bắt đầu, chưa có kết quả test/PR.
+**Branch:** `feat/mw-team-01`. **Trạng thái:** Đã sửa feedback và kiểm thử kỹ thuật ngày 09/10/2026; PR #5 chờ Hải/Chung Hiếu review callback chung và Định/Hải nghiệm thu. Xem FEEDBACK_20261009.md và QA_AI_LOG.md.
 
 Đọc [phân công chung](../../team/PHAN_CONG_MINI_PROJECT.md), [quy trình Antigravity](../../team/QUY_TRINH_ANTIGRAVITY.md), [kiến trúc](../../KIEN_TRUC_MAJORWEAVE.md) và [chuẩn nội dung](../../architecture/HUONG_DAN_DU_LIEU.md). Scope chi tiết/nhánh là baseline từ bảng đích; ghi thay đổi được Hải chốt vào task, không tự thu hẹp.
 
@@ -84,7 +84,7 @@ Copy mẫu [FLOW](../../templates/FLOW.md) thành `FLOW.md`; mỗi hành động
 - **FL-MW-TEAM-01-05:** Mở roadmap/nguồn ở tab mới.
 - **FL-MW-TEAM-01-06:** Lưu/bỏ lưu mục tiêu chứng nhận; chuyển My roadmap.
 
-Copy mẫu [QA và AI log](../../templates/QA_AI_LOG.md) thành `QA_AI_LOG.md`. Test có steps/expected/actual, SHA, môi trường, ảnh/log khi cần. Hiện tất cả test của task **chưa chạy**.
+Copy mẫu [QA và AI log](../../templates/QA_AI_LOG.md) thành `QA_AI_LOG.md`. Test có steps/expected/actual, SHA, môi trường, ảnh/log khi cần. Kết quả chạy lại và minh chứng hiện tại nằm trong QA_AI_LOG.md.
 
 - Resolver thiếu ID, tham chiếu sai, prerequisite thiếu/vòng, thứ tự hợp lệ và nguồn theo track.
 - Nội dung cho 17 cấu hình; chín Full-stack kiểm tra riêng từng cặp; nguồn/chứng nhận kiểm tra bằng trang chính thức.
@@ -96,9 +96,9 @@ Copy mẫu [QA và AI log](../../templates/QA_AI_LOG.md) thành `QA_AI_LOG.md`. 
 
 ## 7. Định nghĩa bàn giao hoàn tất
 
-- [ ] Tất cả hướng/track và module được giao đã làm; không còn placeholder thiếu nguồn/bài.
-- [ ] `TASK.md`, `FLOW.md`, `QA_AI_LOG.md` có nội dung do người làm bổ sung, bằng chứng và SHA/PR.
-- [ ] Kiểm tra đơn vị/nội dung, check/build và UI liên quan có kết quả thực.
+- [x] Tất cả hướng/track và module được giao đã làm; không còn placeholder thiếu nguồn/bài.
+- [x] `TASK.md`, `FLOW.md`, `QA_AI_LOG.md` có nội dung do người làm bổ sung, bằng chứng và SHA/PR.
+- [x] Kiểm tra đơn vị/nội dung, check/build và UI liên quan có kết quả thực.
 - [ ] Hợp đồng/ID dùng chung đã phối hợp; diff đúng allowlist, style/sidebar cũ được giữ.
 - [ ] Hải đã tích hợp; kiểm tra lại mọi cấu hình của task trên app chính, dữ liệu cũ còn nguyên.
 - [ ] Review chéo và Hải nghiệm thu cuối; sửa feedback xong trước khi đánh Done.
