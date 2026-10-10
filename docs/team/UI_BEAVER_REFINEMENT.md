@@ -162,3 +162,9 @@ Hải yêu cầu 4 cột thay cho khung ngang một cột. Giữ viền gạch 2
 Theo yêu cầu của Hải, tab Nguồn học thay ngày đối chiếu bằng tên website hoặc đơn vị cung cấp lấy từ provider. Loại tài liệu (khóa học, bài viết, video, bài tập, thực hành) lấy từ format hiện có. Bỏ nhãn provider bị ẩn ở đầu mục; giữ checkedAt trong dữ liệu, không đổi nội dung/URL hoặc dữ liệu học đã lưu. Sửa cách gọi draft thành lựa chọn học.
 
 Kiểm tra: build và check đạt; trình duyệt Backend hiển thị 25 tên nhà cung cấp, loại tài liệu đúng dữ liệu; không còn ngày đối chiếu trong tab Nguồn học. Màn hình 390px: nội dung 375px, không tràn ngang.
+
+## Chứng nhận — 10/10/2026
+
+Hải yêu cầu thiết kế lại tab Chứng nhận. Mỗi mục dùng nền giấy, khung gạch bo góc; 3 cột desktop, 2 dưới 1100px và 1 dưới 760px. Hiện loại chứng nhận, phí, đơn vị cấp, nền tảng và yêu cầu nhận. Thay bookmark rời bằng nút Lưu mục tiêu có aria-pressed và trạng thái đã lưu. Bỏ ngày đối chiếu khỏi phần hiển thị; giữ checkedAt trong dữ liệu. Không thay thông tin chương trình, URL, callback lưu hoặc ID.
+
+Kiểm tra: build/check đạt; Backend hiện đủ 6 mục. Trên bản QA dùng database riêng, lưu → tải lại vẫn đã lưu → bỏ lưu trở về chưa lưu. Desktop 1280px: 3 cột; mobile 390px: 1 cột, body 375px, nút lưu cao 44px. Dữ liệu học thật không dùng cho thử lưu/bỏ lưu. Ảnh ở artifacts/credentials-2026-10-10 bên ngoài repo.

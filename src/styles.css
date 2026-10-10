@@ -804,3 +804,26 @@ dialog{padding:0;border:1px solid var(--line);border-radius:7px;background:var(-
  .beaver-app .profile-page .backup-body{gap:24px}
  .backup-export{border-bottom:1px solid var(--line);padding-bottom:24px}
 }
+
+/* Credential goals: issuer, requirements and a visible save action. */
+.beaver-app .learning-path .credential-intro{display:flex;justify-content:space-between;align-items:start;gap:32px;margin-bottom:24px}
+.beaver-app .learning-path .credential-intro h2{font-size:22px;line-height:1.4;margin:0 0 8px}
+.beaver-app .learning-path .credential-intro p{margin:0;max-width:54ch;line-height:1.7}
+.beaver-app .learning-path .credential-intro>.source-note{max-width:42ch;font-size:12px}
+.beaver-app .learning-path .credential-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.beaver-app .learning-path .credential-card{display:flex;flex-direction:column;min-width:0;background:var(--paper);border:2px solid var(--rust);border-radius:14px;padding:24px}
+.beaver-app .learning-path .credential-labels{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:11px;line-height:1.6;color:var(--muted)}
+.beaver-app .learning-path .credential-labels>span{padding:4px 8px;background:var(--bg);border-radius:4px}
+.beaver-app .learning-path .credential-labels>.credential-free{color:#476044;background:#e8ece2}
+.beaver-app .learning-path .credential-card h3{font-size:19px;line-height:1.45;margin:18px 0 8px;overflow-wrap:anywhere}
+.beaver-app .learning-path .credential-card>.credential-provider{font-size:12px;line-height:1.7;margin:0 0 20px;overflow-wrap:anywhere}
+.beaver-app .learning-path .credential-provider strong{font-weight:600;color:var(--ink)}
+.beaver-app .learning-path .credential-requirements{display:grid;gap:18px;margin:0 0 24px;border-top:1px solid var(--line);padding-top:20px}
+.beaver-app .learning-path .credential-requirements dt{font-size:11px;font-weight:600;color:var(--muted);margin-bottom:5px}
+.beaver-app .learning-path .credential-requirements dd{font-size:13px;line-height:1.75;margin:0;overflow-wrap:anywhere}
+.beaver-app .learning-path .credential-actions{display:flex;flex-direction:column;align-items:start;gap:16px;margin-top:auto}
+.beaver-app .learning-path .credential-actions>a{font-size:12px;line-height:1.6;color:var(--rust);display:inline-flex;gap:6px;align-items:center}
+.beaver-app .learning-path .credential-save{width:100%;min-height:44px;display:flex;align-items:center;justify-content:center;gap:8px;font-size:12px;border-color:var(--rust);color:var(--rust)}
+.beaver-app .learning-path .credential-save.is-saved{background:var(--rust);color:var(--paper)}
+@media(max-width:1100px){.beaver-app .learning-path .credential-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:760px){.beaver-app .learning-path .credential-intro{flex-direction:column;gap:12px}.beaver-app .learning-path .credential-grid{grid-template-columns:1fr}.beaver-app .learning-path .credential-card{padding:20px}}
