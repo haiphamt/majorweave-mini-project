@@ -141,3 +141,11 @@ Kiểm chứng: build/check và scan layout đạt. Chrome 1280×900 render đ�
 ### Điều chỉnh thành 4 cột
 
 Hải yêu cầu 4 cột thay cho khung ngang một cột. Giữ viền gạch 2px hiện sẵn, nền giấy, số thứ tự và các hành động; nội dung xếp dọc, CTA căn cuối khung. Desktop 1280px có 4 cột khoảng 290px; tablet 900px có 2 cột khoảng 406px; mobile 390px có 1 cột khoảng 335px. Cả ba kích thước không tràn ngang body. Build/check đạt. Ảnh: `D:/IS207/artifacts/explore-four-columns-2026-10-10/`.
+
+## Explore tools & Profile — 10/10/2026
+
+- Hải bác bộ lọc trong hộp lớn, hai khối cuối đặt cạnh nhau và các khung lớn trong Profile. Thay cách tổ chức theo phản hồi mới nhất.
+- Explore dùng thanh lọc trên canvas: tìm kiếm, khoa, nhóm, liên quan ngành. Bảng ngành trở thành một hàng mở rộng gọn; ghi chú ngắn ở dưới. Giữ khung gạch hiện sẵn và 4 cột của danh mục.
+- Profile chia ba mục Activity / Profile / Data. Activity mặc định hiển thị nhịp học; Profile chứa form và chứng nhận; Data chứa xuất/nhập. Nút chọn có trạng thái aria-pressed, liên kết aria-controls, vùng không chọn dùng hidden. Nội dung đang chỉnh được giữ khi chuyển mục. Giữ validation, hủy thay đổi, bảo vệ dữ liệu và preview/xác nhận nhập.
+- Build/check đạt. Detector layout không có findings. Đã thử chuyển ba mục, sửa tên → đổi mục → quay lại (tên đang sửa giữ nguyên) → hủy (trở về tên đã lưu), tìm không khớp → xóa bộ lọc, bảng 12 ngành, responsive và console. Không lưu tên thử, không nhập/xóa/ghi đè kế hoạch.
+- Trạng thái có chứng nhận và lỗi nhập/xung đột dùng code hiện có, kiểm tra nghiệp vụ qua bộ check; không tuyên bố đã chạy lại mọi luồng browser. Bàn giao trên fix/beaver-ui trước merge.

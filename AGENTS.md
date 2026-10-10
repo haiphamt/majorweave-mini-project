@@ -55,3 +55,5 @@
 - Chạy `npm run check` và `npm run build`. Kiểm tra luồng UI bị tác động bằng tay hoặc công cụ trình duyệt; có minh chứng và SHA. Check cấu trúc/build không chứng minh khóa học đã kiểm tra hoặc mọi hướng đã chạy.
 - Không sửa/xóa assertion, bỏ qua lỗi hoặc ghi Pass cho test chưa chạy để làm CI xanh. Nếu lỗi ngoài phạm vi: ghi rõ lỗi/tác động và báo người sở hữu, tiếp tục phần độc lập còn làm được.
 - Kết thúc task: liệt kê file đổi, cách thử, kết quả thực tế, giới hạn và việc cần tích hợp. Dừng tại ranh giới task; không tự nhận thêm phần của bạn khác.
+
+- 10/10/2026: Hải bác bộ lọc trong hộp lớn, hai khối cuối Explore cạnh nhau và các khung lớn trong Profile. Dùng thanh lọc gọn trên canvas, bảng ngành thành hàng mở rộng và ghi chú ngắn. Profile chia Activity / Profile / Data, mặc định Activity để nhịp học hiện đầu tiên. Giữ danh mục 4 cột có khung gạch và toàn bộ bảo vệ dữ liệu.
