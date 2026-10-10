@@ -1,0 +1,83 @@
+{
+  "commit": "1e9bff4",
+  "qaSession": "42055191-0b19-4b34-ade3-d574a2b1767b",
+  "tracks": [
+    {
+      "track": "mobile.android",
+      "source": "Kotlin Koans",
+      "completionAfterReload": true
+    },
+    {
+      "track": "iOS / Swift",
+      "source": "Apple · A Swift Tour",
+      "completionAfterReload": true,
+      "plan": "iOS / Swift — QA main iOS / Swift · mobile.ios"
+    },
+    {
+      "track": "Flutter / Dart",
+      "source": "Google / Dart team · Dart Language Tour",
+      "completionAfterReload": true,
+      "plan": "Flutter / Dart — QA main Flutter / Dart · mobile.flutter"
+    },
+    {
+      "track": "React Native / TypeScript",
+      "source": "Expo · Create an Expo project",
+      "completionAfterReload": true,
+      "plan": "React Native / TypeScript — QA main React Native / TypeScript · mobile.react-native"
+    },
+    {
+      "track": "Unity / C#",
+      "source": "GitHub · Git LFS (Large File Storage)",
+      "completionAfterReload": true,
+      "plan": "Unity / C# — QA main Unity / C# · game.unity"
+    },
+    {
+      "track": "Unreal Engine / C++ và Blueprint",
+      "source": "GitHub · Git LFS (Large File Storage)",
+      "completionAfterReload": true,
+      "plan": "Unreal Engine / C++ và Blueprint — QA main Unreal Engine / C++ và Blueprint · game.unreal"
+    },
+    {
+      "track": "Godot / GDScript",
+      "source": "GitHub · Git LFS (Large File Storage)",
+      "completionAfterReload": true,
+      "plan": "Godot / GDScript — QA main Godot / GDScript · game.godot"
+    }
+  ],
+  "independentPlans": [
+    {
+      "plan": "Android / Kotlin — QA main Android · mobile.android",
+      "visibleCompleted": 1
+    },
+    {
+      "plan": "iOS / Swift — QA main iOS / Swift · mobile.ios",
+      "visibleCompleted": 1
+    },
+    {
+      "plan": "Flutter / Dart — QA main Flutter / Dart · mobile.flutter",
+      "visibleCompleted": 1
+    },
+    {
+      "plan": "React Native / TypeScript — QA main React Native / TypeScript · mobile.react-native",
+      "visibleCompleted": 1
+    },
+    {
+      "plan": "Unity / C# — QA main Unity / C# · game.unity",
+      "visibleCompleted": 1
+    },
+    {
+      "plan": "Unreal Engine / C++ và Blueprint — QA main Unreal Engine / C++ và Blueprint · game.unreal",
+      "visibleCompleted": 1
+    },
+    {
+      "plan": "Godot / GDScript — QA main Godot / GDScript · game.godot",
+      "visibleCompleted": 1
+    }
+  ],
+  "regeneration": {
+    "previewCancelled": true,
+    "completedAfterReload": 1,
+    "historyVersions": 2
+  },
+  "consoleErrors": []
+}

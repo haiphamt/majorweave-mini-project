@@ -1,5 +1,7 @@
 # MW-TEAM-02 — Roadmap cá nhân, sinh kế hoạch và nội dung Mobile/Game
 
+**Cập nhật 10/10/2026:** Đã pull bản main tích hợp `1e9bff4`. Check, suite năm task và build Pass; bảy nhánh Mobile/Game đã chạy chọn nguồn → tạo → My Plan → hoàn thành → tải lại trên DB thử riêng. Nhiều kế hoạch và tạo lại giữ tiến độ/lịch sử cũng đạt. My Plan/migration đã được tích hợp; trạng thái ngày 08/10 bên dưới được giữ làm lịch sử. Xem [kiểm tra sau tích hợp](MAIN_REVIEW_2026-10-10.md). Nghiệm thu cuối vẫn thuộc Hải.
+
 **Người làm:** Phạm Công Định (`Dinglebell`). **Reviewer cuối:** Phạm Tuấn Hải. **Review chéo:** Chung Minh Hiếu.
 **Branch:** `feat/mw-team-02`. **Trạng thái 08/10/2026:** Đã ghép Context v2 của Hải và nối/simplify My Roadmap trong allowlist. Planner + 7 track và UI v2 đã kiểm thử: 123 domain/content + 17 browser checks Pass; check/build Pass. Bản bàn giao được commit trên branch cá nhân, dựa trên base kiểm thử `5ff66ba66ee094c5af388885a109578bf1c96ace`; chưa push. Chờ review chéo, Hải nghiệm thu và ghép My Plan/migration của các task khác. Xem [review UI hiện tại](UI_REVIEW_2026-10-08.md).
 

@@ -1,0 +1,1607 @@
+[
+  {
+    "slug": "01-overview",
+    "title": "Từ lộ trình đến tiến độ đã lưu",
+    "desc": "Hành trình chính của người học, từ chọn nhánh đến tải lại tiến độ trong My Plan.",
+    "nodes": [
+      {
+        "id": "A",
+        "x": 80,
+        "y": 120,
+        "w": 320,
+        "h": 64,
+        "title": "01 · Chọn nhánh học",
+        "sub": "Mobile hoặc Game",
+        "kind": "step",
+        "focal": false
+      },
+      {
+        "id": "B",
+        "x": 480,
+        "y": 120,
+        "w": 320,
+        "h": 64,
+        "title": "02 · Chỉnh bản nháp",
+        "sub": "Chặng, nguồn, mục tiêu, giờ, ngày",
+        "kind": "step",
+        "focal": false
+      },
+      {
+        "id": "C",
+        "x": 880,
+        "y": 120,
+        "w": 320,
+        "h": 64,
+        "title": "03 · Tạo và lưu kế hoạch",
+        "sub": "Các kế hoạch trước được giữ",
+        "kind": "step",
+        "focal": true
+      },
+      {
+        "id": "D",
+        "x": 880,
+        "y": 400,
+        "w": 320,
+        "h": 64,
+        "title": "04 · Mở My Plan",
+        "sub": "Kế hoạch vừa lưu là bản đang xem",
+        "kind": "step",
+        "focal": false
+      },
+      {
+        "id": "E",
+        "x": 480,
+        "y": 400,
+        "w": 320,
+        "h": 64,
+        "title": "05 · Hoàn thành một việc",
+        "sub": "Chờ lưu tiến độ thành công",
+        "kind": "step",
+        "focal": false
+      },
+      {
+        "id": "F",
+        "x": 80,
+        "y": 400,
+        "w": 320,
+        "h": 64,
+        "title": "06 · Tải lại để tiếp tục",
+        "sub": "Tiến độ đọc từ dữ liệu đã lưu",
+        "kind": "end",
+        "focal": false
+      }
+    ],
+    "edges": [
+      {
+        "a": "A",
+        "b": "B",
+        "points": [
+          [
+            400,
+            152
+          ],
+          [
+            480,
+            152
+          ]
+        ],
+        "label": "",
+        "at": null,
+        "dashed": false
+      },
+      {
+        "a": "B",
+        "b": "C",
+        "points": [
+          [
+            800,
+            152
+          ],
+          [
+            880,
+            152
+          ]
+        ],
+        "label": "",
+        "at": null,
+        "dashed": false
+      },
+      {
+        "a": "C",
+        "b": "D",
+        "points": [
+          [
+            1040,
+            184
+          ],
+          [
+            1040,
+            400
+          ]
+        ],
+        "label": "",
+        "at": null,
+        "dashed": false
+      },
+      {
+        "a": "D",
+        "b": "E",
+        "points": [
+          [
+            880,
+            432
+          ],
+          [
+            800,
+            432
+          ]
+        ],
+        "label": "",
+        "at": null,
+        "dashed": false
+      },
+      {
+        "a": "E",
+        "b": "F",
+        "points": [
+          [
+            480,
+            432
+          ],
+          [
+            400,
+            432
+          ]
+        ],
+        "label": "",
+        "at": null,
+        "dashed": false
+      }
+    ],
+    "notes": [
+      "Sơ đồ tổng quan chỉ mô tả luồng thành công. Các nhánh lỗi, hủy và tạo lại nằm ở các hình sau.",
+      "Bước 01–03 thuộc phần MW-TEAM-02; My Plan và ghi nhận hoàn thành nối với module của Chung Minh Hiếu qua dữ liệu chung."
+    ],
+    "refs": [
+      "FL-02-01 → FL-02-06",
+      "MyRoadmap.tsx",
+      "MyPlanV2.tsx"
+    ]
+  },
+  {
+    "slug": "02-draft",
+    "title": "Chỉnh và lưu bản nháp",
+    "desc": "Chỉnh bản nháp theo nhánh học rồi lưu độc lập với kế hoạch đang học.",
+    "nodes": [
+      {
+        "id": "A",
+        "x": 160,
+        "y": 64,
+        "w": 320,
+        "h": 64,
+        "title": "Chọn nhánh học",
+        "sub": "Lấy bản nháp riêng của nhánh",
+        "kind": "start",
+        "focal": false
+      },
+      {
+        "id": "B",
+        "x": 160,
+        "y": 176,
+        "w": 320,
+        "h": 64,
+        "title": "Chọn chặng và nguồn học",
+        "sub": "Đánh dấu những chặng đã biết",
+        "kind": "step",
+        "focal": false
+      },
+      {
+        "id": "C",
+        "x": 160,
+        "y": 288,
+        "w": 320,
+        "h": 96,
+        "title": "Giờ và ngày hợp lệ?",
+        "sub": "Giờ 2–20; ngày có thật",
+        "kind": "decision",
+        "focal": false
+      },
+      {
+        "id": "D",
+        "x": 800,
+        "y": 304,
+        "w": 320,
+        "h": 64,
+        "title": "Báo lỗi để sửa lại",
+        "sub": "Bản đang học được giữ nguyên",
+        "kind": "end",
+        "focal": false
+      },
+      {
+        "id": "E",
+        "x": 160,
+        "y": 448,
+        "w": 320,
+        "h": 64,
+        "title": "Bấm Lưu bản nháp",
+        "sub": "Chờ ghi dữ liệu hoàn tất",
+        "kind": "step",
+        "focal": false
+      },
+      {
+        "id": "F",
+        "x": 160,
+        "y": 560,
+        "w": 320,
+        "h": 64,
+        "title": "Bản nháp đã lưu",
+        "sub": "Tải lại giữ các lựa chọn",
+        "kind": "end",
+        "focal": true
+      },
+      {
+        "id": "G",
+        "x": 800,
+        "y": 464,
+        "w": 320,
+        "h": 64,
+        "title": "Lỗi lưu / dữ liệu thay đổi",
+        "sub": "Giữ bản chờ · xem hình 07–08",
+        "kind": "end",
+        "focal": false
+      }
+    ],
+    "edges": [
+      {
+        "a": "A",
+        "b": "B",
+        "points": [
+          [
+            320,
+            128
+          ],
+          [
+            320,
+            176
+          ]
+        ],
+        "label": "",
+        "at": null,
+        "dashed": false
+      },
+      {
+        "a": "B",
+        "b": "C",
+        "points": [
+          [
+            320,
+            240
+          ],
+          [
+            320,
+            288
+          ]
+        ],
+        "label": "",
+        "at": null,
+        "dashed": false
+      },
+      {
+        "a": "C",
+        "b": "D",
+        "points": [
+          [
+            480,
+            336
+          ],
+          [
+            800,
+            336
+          ]
+        ],
+        "label": "KHÔNG",
+        "at": [
+          640,
+          308,
+          "h"
+        ],
+        "dashed": false
+      },
+      {
+        "a": "C",
+        "b": "E",
+        "points": [
+          [
+            320,
+            384
+          ],
+          [
+            320,
+            448
+          ]
+        ],
+        "label": "CÓ",
+        "at": [
+          332,
+          416.0,
+          "v"
+        ],
+        "dashed": false
+      },
+      {
+        "a": "E",
+        "b": "F",
+        "points": [
+          [
+            320,
+            512
+          ],
+          [
+            320,
+            560
+          ]
+        ],
+        "label": "ĐÃ LƯU",
+        "at": [
+          332,
+          536.0,
+          "v"
+        ],
+        "dashed": false
+      },
+      {
+        "a": "E",
+        "b": "G",
+        "points": [
+          [
+            480,
+            480
+          ],
+          [
+            800,
+            480
+          ]
+        ],
+        "label": "THẤT BẠI",
+        "at": [
+          640,
+          452,
+          "h"
+        ],
+        "dashed": false
+      }
+    ],
+    "notes": [
+      "Bản nháp có thể chưa có mục tiêu hoặc chưa đủ chặng tiên quyết. Lưu nháp không phải tạo kế hoạch.",
+      "Thiếu nền tảng được chỉ rõ trên trang; không tự thêm chặng hay tự đánh dấu “đã biết”. Đổi lựa chọn không sửa kế hoạch hiện có."
+    ],
+    "refs": [
+      "FL-02-01 / FL-02-02",
+      "AC-01",
+      "updateDraft / saveDraft"
+    ]
+  },
+  {
+    "slug": "03-validation",
+    "title": "Kiểm tra đầu vào và ngày bắt đầu",
+    "desc": "Kiểm tra dữ liệu trước khi tạo mới hoặc xem trước tạo lại, và xin xác nhận nếu cần đổi ngày sang Thứ Hai.",
+    "nodes": [
+      {
+        "id": "A",
+        "x": 160,
+        "y": 64,
+        "w": 320,
+        "h": 64,
+        "title": "Bấm tạo mới hoặc tạo lại",
+        "sub": "Đọc dữ liệu bản nháp",
+        "kind": "start",
+        "focal": false
+      },
+      {
+        "id": "B",
+        "x": 160,
+        "y": 176,
+        "w": 320,
+        "h": 96,
+        "title": "Thông tin cơ bản hợp lệ?",
+        "sub": "Chặng · mục tiêu · giờ · ngày",
+        "kind": "decision",
+        "focal": false
+      },
+      {
+        "id": "C",
+        "x": 800,
+        "y": 192,
+        "w": 320,
+        "h": 64,
+        "title": "Báo lỗi và giữ bản nháp",
+        "sub": "Không tạo hoặc lưu kế hoạch",
+        "kind": "end",
+        "focal": false
+      },
+      {
+        "id": "D",
+        "x": 160,
+        "y": 336,
+        "w": 320,
+        "h": 96,
+        "title": "Ngày bắt đầu là Thứ Hai?",
+        "sub": "Ngày lịch đã được kiểm tra",
+        "kind": "decision",
+        "focal": false
+      },
+      {
+        "id": "E",
+        "x": 800,
+        "y": 336,
+        "w": 320,
+        "h": 96,
+        "title": "Chấp nhận ngày đề xuất?",
+        "sub": "Thứ Hai kế tiếp",
+        "kind": "decision",
+        "focal": false
+      },
+      {
+        "id": "F",
+        "x": 160,
+        "y": 560,
+        "w": 320,
+        "h": 64,
+        "title": "Tiếp tục tạo / xem trước",
+        "sub": "Kiểm tra nội dung và tiên quyết",
+        "kind": "end",
+        "focal": true
+      },
+      {
+        "id": "G",
+        "x": 800,
+        "y": 560,
+        "w": 320,
+        "h": 64,
+        "title": "Giữ ngày đã chọn",
+        "sub": "Dừng thao tác; kế hoạch cũ còn nguyên",
+        "kind": "end",
+        "focal": false
+      }
+    ],
+    "edges": [
+      {
+        "a": "A",
+        "b": "B",
+        "points": [
+          [
+            320,
+            128
+          ],
+          [
+            320,
+            176
+          ]
+        ],
+        "label": "",
+        "at": null,
+        "dashed": false
+      },
+      {
+        "a": "B",
+        "b": "C",
+        "points": [
+          [
+            480,
+            224
+          ],
+          [
+            800,
+            224
+          ]
+        ],
+        "label": "KHÔNG",
+        "at": [
+          640,
+          196,
+          "h"
+        ],
+        "dashed": false
+      },
+      {
+        "a": "B",
+        "b": "D",
+        "points": [
+          [
+            320,
+            272
+          ],
+          [
+            320,
+            336
+          ]
+        ],
+        "label": "CÓ",
+        "at": [
+          332,
+          304.0,
+          "v"
+        ],
+        "dashed": false
+      },
+      {
+        "a": "D",
+        "b": "E",
+        "points": [
+          [
+            480,
+            384
+          ],
+          [
+            800,
+            384
+          ]
+        ],
+        "label": "KHÔNG",
+        "at": [
+          640,
+          356,
+          "h"
+        ],
+        "dashed": false
+      },
+      {
+        "a": "D",
+        "b": "F",
+        "points": [
+          [
+            320,
+            432
+          ],
+          [
+            320,
+            560
+          ]
+        ],
+        "label": "CÓ",
+        "at": [
+          332,
+          496.0,
+          "v"
+        ],
+        "dashed": false
+      },
+      {
+        "a": "E",
+        "b": "G",
+        "points": [
+          [
+            1120,
+            384
+          ],
+          [
+            1200,
+            384
+          ],
+          [
+            1200,
+            592
+          ],
+          [
+            1120,
+            592
+          ]
+        ],
+        "label": "HỦY",
+        "at": [
+          1160,
+          356,
+          "h"
+        ],
+        "dashed": false
+      },
+      {
+        "a": "E",
+        "b": "F",
+        "points": [
+          [
+            880,
+            408
+          ],
+          [
+            880,
+            512
+          ],
+          [
+            640,
+            512
+          ],
+          [
+            640,
+            592
+          ],
+          [
+            480,
+            592
+          ]
+        ],
+        "label": "ĐỒNG Ý",
+        "at": [
+          652,
+          548,
+          "v"
+        ],
+        "dashed": false
+      }
+    ],
+    "notes": [
+      "Xác nhận mới cập nhật ngày. Hủy hoặc Escape giữ ngày cũ và không tiếp tục tạo.",
+      "Planner kiểm tra nguồn thuộc chặng, thứ tự và tiên quyết; chọn tất cả “đã biết” sẽ không sinh kế hoạch rỗng."
+    ],
+    "refs": [
+      "FL-02-03",
+      "AC-01",
+      "request / confirmMonday / validateDraft"
+    ]
+  },
+  {
+    "slug": "04-create",
+    "title": "Tạo một kế hoạch mới",
+    "desc": "Sinh lịch theo thời gian học, thêm kế hoạch mới và chỉ thông báo thành công sau khi lưu xong.",
+    "nodes": [
+      {
+        "id": "A",
+        "x": 160,
+        "y": 64,
+        "w": 320,
+        "h": 64,
+        "title": "Bản nháp hợp lệ",
+        "sub": "Nhánh và nguồn đã được đối chiếu",
+        "kind": "start",
+        "focal": false
+      },
+      {
+        "id": "B",
+        "x": 160,
+        "y": 176,
+        "w": 320,
+        "h": 64,
+        "title": "Sinh các việc cần học",
+        "sub": "Bỏ chặng đã biết · đoạn ≤120 phút",
+        "kind": "step",
+        "focal": false
+      },
+      {
+        "id": "C",
+        "x": 160,
+        "y": 288,
+        "w": 320,
+        "h": 64,
+        "title": "Xếp lịch theo quỹ giờ",
+        "sub": "Giữ tổng phút và thứ tự tiên quyết",
+        "kind": "step",
+        "focal": false
+      },
+      {
+        "id": "D",
+        "x": 160,
+        "y": 400,
+        "w": 320,
+        "h": 64,
+        "title": "Thêm kế hoạch và gửi lưu",
+        "sub": "Giữ mọi kế hoạch trước",
+        "kind": "step",
+        "focal": false
+      },
+      {
+        "id": "E",
+        "x": 160,
+        "y": 552,
+        "w": 320,
+        "h": 64,
+        "title": "Lưu thành công",
+        "sub": "Chọn kế hoạch mới; mở My Plan",
+        "kind": "end",
+        "focal": true
+      },
+      {
+        "id": "F",
+        "x": 800,
+        "y": 416,
+        "w": 320,
+        "h": 64,
+        "title": "Chưa lưu được",
+        "sub": "Giữ bản đề xuất · xem hình 07–08",
+        "kind": "end",
+        "focal": false
+      }
+    ],
+    "edges": [
+      {
+        "a": "A",
+        "b": "B",
+        "points": [
+          [
+            320,
+            128
+          ],
+          [
+            320,
+            176
+          ]
+        ],
+        "label": "",
+        "at": null,
+        "dashed": false
+      },
+      {
+        "a": "B",
+        "b": "C",
+        "points": [
+          [
+            320,
+            240
+          ],
+          [
+            320,
+            288
+          ]
+        ],
+        "label": "",
+        "at": null,
+        "dashed": false
+      },
+      {
+        "a": "C",
+        "b": "D",
+        "points": [
+          [
+            320,
+            352
+          ],
+          [
+            320,
+            400
+          ]
+        ],
+        "label": "",
+        "at": null,
+        "dashed": false
+      },
+      {
+        "a": "D",
+        "b": "E",
+        "points": [
+          [
+            320,
+            464
+          ],
+          [
+            320,
+            552
+          ]
+        ],
+        "label": "ĐÃ LƯU",
+        "at": [
+          332,
+          508.0,
+          "v"
+        ],
+        "dashed": false
+      },
+      {
+        "a": "D",
+        "b": "F",
+        "points": [
+          [
+            480,
+            448
+          ],
+          [
+            800,
+            448
+          ]
+        ],
+        "label": "THẤT BẠI",
+        "at": [
+          640,
+          420,
+          "h"
+        ],
+        "dashed": false
+      }
+    ],
+    "notes": [
+      "Tạo mới mặc định thêm một kế hoạch độc lập, kể cả khi đã có kế hoạch cùng nhánh. Ngày cụ thể trong tuần chưa được tự gán.",
+      "Trong lúc lưu, chặn chỉnh sửa và gửi lặp. Không báo “đã lưu” hoặc chuyển kế hoạch đang xem trước khi ghi thành công."
+    ],
+    "refs": [
+      "FL-02-04",
+      "AC-02 / AC-03",
+      "generatePlan / createPlan / commit"
+    ]
+  },
+  {
+    "slug": "05-regenerate",
+    "title": "Xem trước và tạo lại kế hoạch",
+    "desc": "Xem thay đổi trước khi xác nhận tạo lại một kế hoạch cùng nhánh, giữ bản cũ khi hủy hoặc xảy ra lỗi.",
+    "nodes": [
+      {
+        "id": "A",
+        "x": 160,
+        "y": 64,
+        "w": 320,
+        "h": 64,
+        "title": "Có kế hoạch cùng nhánh",
+        "sub": "Kế hoạch đang xem có thể tạo lại",
+        "kind": "start",
+        "focal": false
+      },
+      {
+        "id": "B",
+        "x": 160,
+        "y": 176,
+        "w": 320,
+        "h": 64,
+        "title": "Bấm Xem trước tạo lại",
+        "sub": "Xem số việc, tiến độ giữ, backlog",
+        "kind": "step",
+        "focal": false
+      },
+      {
+        "id": "C",
+        "x": 160,
+        "y": 288,
+        "w": 320,
+        "h": 96,
+        "title": "Xác nhận tạo lại?",
+        "sub": "Chưa ghi dữ liệu khi xem trước",
+        "kind": "decision",
+        "focal": false
+      },
+      {
+        "id": "D",
+        "x": 800,
+        "y": 304,
+        "w": 320,
+        "h": 64,
+        "title": "Đóng preview / Escape",
+        "sub": "Kế hoạch và lịch sử không đổi",
+        "kind": "end",
+        "focal": false
+      },
+      {
+        "id": "E",
+        "x": 160,
+        "y": 448,
+        "w": 320,
+        "h": 64,
+        "title": "Kiểm tra preview và gửi lưu",
+        "sub": "Đối chiếu bản nháp, phiên bản, revision",
+        "kind": "step",
+        "focal": false
+      },
+      {
+        "id": "F",
+        "x": 160,
+        "y": 560,
+        "w": 320,
+        "h": 64,
+        "title": "Lưu phiên bản mới",
+        "sub": "Giữ phiên bản trước trong lịch sử",
+        "kind": "end",
+        "focal": true
+      },
+      {
+        "id": "G",
+        "x": 800,
+        "y": 464,
+        "w": 320,
+        "h": 64,
+        "title": "Báo lỗi, giữ kế hoạch cũ",
+        "sub": "Preview cũ / lỗi lưu: xem 07–08",
+        "kind": "end",
+        "focal": false
+      }
+    ],
+    "edges": [
+      {
+        "a": "A",
+        "b": "B",
+        "points": [
+          [
+            320,
+            128
+          ],
+          [
+            320,
+            176
+          ]
+        ],
+        "label": "",
+        "at": null,
+        "dashed": false
+      },
+      {
+        "a": "B",
+        "b": "C",
+        "points": [
+          [
+            320,
+            240
+          ],
+          [
+            320,
+            288
+          ]
+        ],
+        "label": "",
+        "at": null,
+        "dashed": false
+      },
+      {
+        "a": "C",
+        "b": "D",
+        "points": [
+          [
+            480,
+            336
+          ],
+          [
+            800,
+            336
+          ]
+        ],
+        "label": "HỦY",
+        "at": [
+          640,
+          308,
+          "h"
+        ],
+        "dashed": false
+      },
+      {
+        "a": "C",
+        "b": "E",
+        "points": [
+          [
+            320,
+            384
+          ],
+          [
+            320,
+            448
+          ]
+        ],
+        "label": "XÁC NHẬN",
+        "at": [
+          332,
+          416.0,
+          "v"
+        ],
+        "dashed": false
+      },
+      {
+        "a": "E",
+        "b": "F",
+        "points": [
+          [
+            320,
+            512
+          ],
+          [
+            320,
+            560
+          ]
+        ],
+        "label": "ĐÃ LƯU",
+        "at": [
+          332,
+          536.0,
+          "v"
+        ],
+        "dashed": false
+      },
+      {
+        "a": "E",
+        "b": "G",
+        "points": [
+          [
+            480,
+            480
+          ],
+          [
+            800,
+            480
+          ]
+        ],
+        "label": "THẤT BẠI",
+        "at": [
+          640,
+          452,
+          "h"
+        ],
+        "dashed": false
+      }
+    ],
+    "notes": [
+      "UI chỉ cho tạo lại kế hoạch đang xem cùng nhánh. Muốn học nhánh khác thì tạo kế hoạch mới.",
+      "Sửa bản nháp làm preview cũ hết hiệu lực. Tiến độ được giữ theo quy tắc hình 06, không sao chép hoàn thành sang bài đã đổi nghĩa."
+    ],
+    "refs": [
+      "FL-02-05",
+      "AC-04",
+      "previewRegeneration / confirmRegeneration"
+    ]
+  },
+  {
+    "slug": "06-preserve",
+    "title": "Giữ việc tùy chỉnh và tiến độ",
+    "desc": "Phân biệt việc do người học chỉnh với bài từ nội dung mẫu để giữ đúng tiến độ khi tạo lại.",
+    "nodes": [
+      {
+        "id": "A",
+        "x": 160,
+        "y": 64,
+        "w": 320,
+        "h": 64,
+        "title": "Đối chiếu từng việc cũ",
+        "sub": "Khi dựng phiên bản tạo lại",
+        "kind": "start",
+        "focal": false
+      },
+      {
+        "id": "B",
+        "x": 160,
+        "y": 176,
+        "w": 320,
+        "h": 96,
+        "title": "Việc tự thêm / tùy chỉnh?",
+        "sub": "Không ghi đè việc tùy chỉnh",
+        "kind": "decision",
+        "focal": false
+      },
+      {
+        "id": "C",
+        "x": 800,
+        "y": 192,
+        "w": 320,
+        "h": 64,
+        "title": "Giữ trong backlog",
+        "sub": "Giữ ghi chú và trạng thái liên quan",
+        "kind": "end",
+        "focal": true
+      },
+      {
+        "id": "D",
+        "x": 160,
+        "y": 336,
+        "w": 320,
+        "h": 96,
+        "title": "Bài còn khớp định danh?",
+        "sub": "Bài / phiên bản / đoạn",
+        "kind": "decision",
+        "focal": false
+      },
+      {
+        "id": "E",
+        "x": 800,
+        "y": 352,
+        "w": 320,
+        "h": 64,
+        "title": "Giữ ID và tiến độ",
+        "sub": "Giữ notes / trạng thái / completion",
+        "kind": "end",
+        "focal": false
+      },
+      {
+        "id": "F",
+        "x": 160,
+        "y": 560,
+        "w": 320,
+        "h": 64,
+        "title": "Tạo bài mới khi cần",
+        "sub": "Không kế thừa hoàn thành cũ",
+        "kind": "end",
+        "focal": false
+      }
+    ],
+    "edges": [
+      {
+        "a": "A",
+        "b": "B",
+        "points": [
+          [
+            320,
+            128
+          ],
+          [
+            320,
+            176
+          ]
+        ],
+        "label": "",
+        "at": null,
+        "dashed": false
+      },
+      {
+        "a": "B",
+        "b": "C",
+        "points": [
+          [
+            480,
+            224
+          ],
+          [
+            800,
+            224
+          ]
+        ],
+        "label": "CÓ",
+        "at": [
+          640,
+          196,
+          "h"
+        ],
+        "dashed": false
+      },
+      {
+        "a": "B",
+        "b": "D",
+        "points": [
+          [
+            320,
+            272
+          ],
+          [
+            320,
+            336
+          ]
+        ],
+        "label": "KHÔNG",
+        "at": [
+          332,
+          304.0,
+          "v"
+        ],
+        "dashed": false
+      },
+      {
+        "a": "D",
+        "b": "E",
+        "points": [
+          [
+            480,
+            384
+          ],
+          [
+            800,
+            384
+          ]
+        ],
+        "label": "CÓ",
+        "at": [
+          640,
+          356,
+          "h"
+        ],
+        "dashed": false
+      },
+      {
+        "a": "D",
+        "b": "F",
+        "points": [
+          [
+            320,
+            432
+          ],
+          [
+            320,
+            560
+          ]
+        ],
+        "label": "KHÔNG",
+        "at": [
+          332,
+          496.0,
+          "v"
+        ],
+        "dashed": false
+      }
+    ],
+    "notes": [
+      "Đây là quy tắc giữ việc cũ; lịch mới vẫn được sinh từ các chặng cần học. Việc tùy chỉnh không thay thế bài mẫu mới.",
+      "Các việc cũ không còn trong lịch mới vẫn được giữ trong phiên bản lịch sử. Không sửa lịch sử hay nhân đôi bản ghi hoàn thành."
+    ],
+    "refs": [
+      "FL-02-06",
+      "AC-04",
+      "regeneratePlan / workId / revision / segment"
+    ]
+  },
+  {
+    "slug": "07-retry",
+    "title": "Thử lại khi lưu thất bại",
+    "desc": "Giữ đúng bản chưa lưu và thử lại mà không tạo thêm kế hoạch trùng.",
+    "nodes": [
+      {
+        "id": "A",
+        "x": 160,
+        "y": 64,
+        "w": 320,
+        "h": 64,
+        "title": "Lưu thất bại",
+        "sub": "Báo lỗi; giữ bản đề xuất",
+        "kind": "start",
+        "focal": false
+      },
+      {
+        "id": "B",
+        "x": 160,
+        "y": 176,
+        "w": 320,
+        "h": 64,
+        "title": "Bản chưa lưu được giữ",
+        "sub": "Chặn chỉnh sửa và thao tác mới",
+        "kind": "step",
+        "focal": false
+      },
+      {
+        "id": "C",
+        "x": 160,
+        "y": 288,
+        "w": 320,
+        "h": 64,
+        "title": "Bấm Thử lưu lại",
+        "sub": "Gửi đúng bản đề xuất và các ID cũ",
+        "kind": "step",
+        "focal": false
+      },
+      {
+        "id": "D",
+        "x": 160,
+        "y": 400,
+        "w": 320,
+        "h": 96,
+        "title": "Ghi thành công?",
+        "sub": "Chờ kết quả ghi thực tế",
+        "kind": "decision",
+        "focal": false
+      },
+      {
+        "id": "E",
+        "x": 160,
+        "y": 560,
+        "w": 320,
+        "h": 64,
+        "title": "Đã lưu thay đổi",
+        "sub": "Mở khóa; không tạo bản trùng",
+        "kind": "end",
+        "focal": true
+      },
+      {
+        "id": "F",
+        "x": 800,
+        "y": 416,
+        "w": 320,
+        "h": 64,
+        "title": "Vẫn chưa lưu được",
+        "sub": "Giữ bản chờ để xử lý",
+        "kind": "end",
+        "focal": false
+      }
+    ],
+    "edges": [
+      {
+        "a": "A",
+        "b": "B",
+        "points": [
+          [
+            320,
+            128
+          ],
+          [
+            320,
+            176
+          ]
+        ],
+        "label": "",
+        "at": null,
+        "dashed": false
+      },
+      {
+        "a": "B",
+        "b": "C",
+        "points": [
+          [
+            320,
+            240
+          ],
+          [
+            320,
+            288
+          ]
+        ],
+        "label": "",
+        "at": null,
+        "dashed": false
+      },
+      {
+        "a": "C",
+        "b": "D",
+        "points": [
+          [
+            320,
+            352
+          ],
+          [
+            320,
+            400
+          ]
+        ],
+        "label": "",
+        "at": null,
+        "dashed": false
+      },
+      {
+        "a": "D",
+        "b": "E",
+        "points": [
+          [
+            320,
+            496
+          ],
+          [
+            320,
+            560
+          ]
+        ],
+        "label": "CÓ",
+        "at": [
+          332,
+          528.0,
+          "v"
+        ],
+        "dashed": false
+      },
+      {
+        "a": "D",
+        "b": "F",
+        "points": [
+          [
+            480,
+            448
+          ],
+          [
+            800,
+            448
+          ]
+        ],
+        "label": "KHÔNG",
+        "at": [
+          640,
+          420,
+          "h"
+        ],
+        "dashed": false
+      }
+    ],
+    "notes": [
+      "Nếu vẫn là lỗi lưu, có thể thử lại hoặc chọn “Tải bản đã lưu…” rồi xác nhận bỏ bản chờ theo hình 08.",
+      "Nếu dữ liệu đã thay đổi ở tab khác, UI không hiện nút thử lưu lại để tránh ghi đè bản mới hơn. Khi đó đi thẳng đến hình 08."
+    ],
+    "refs": [
+      "FL-02-04 / FL-02-05",
+      "AC-03",
+      "retrySave / commit"
+    ]
+  },
+  {
+    "slug": "08-conflict",
+    "title": "Tải bản đã lưu và xử lý xung đột",
+    "desc": "Xin xác nhận trước khi bỏ dữ liệu chưa lưu; xung đột ở tab khác không được tự ghi đè.",
+    "nodes": [
+      {
+        "id": "A",
+        "x": 160,
+        "y": 64,
+        "w": 320,
+        "h": 64,
+        "title": "Có bản chưa lưu / xung đột",
+        "sub": "Giữ bản chờ; không tự ghi đè",
+        "kind": "start",
+        "focal": false
+      },
+      {
+        "id": "B",
+        "x": 160,
+        "y": 176,
+        "w": 320,
+        "h": 64,
+        "title": "Bấm Tải bản đã lưu…",
+        "sub": "Mở hộp thoại xác nhận",
+        "kind": "step",
+        "focal": false
+      },
+      {
+        "id": "C",
+        "x": 160,
+        "y": 288,
+        "w": 320,
+        "h": 96,
+        "title": "Bỏ thay đổi chưa lưu?",
+        "sub": "Nêu rõ phần sẽ bị bỏ",
+        "kind": "decision",
+        "focal": false
+      },
+      {
+        "id": "D",
+        "x": 800,
+        "y": 304,
+        "w": 320,
+        "h": 64,
+        "title": "Giữ thay đổi / Escape",
+        "sub": "Bản chờ vẫn được giữ",
+        "kind": "end",
+        "focal": false
+      },
+      {
+        "id": "E",
+        "x": 160,
+        "y": 448,
+        "w": 320,
+        "h": 64,
+        "title": "Tải dữ liệu đã lưu",
+        "sub": "Không bỏ bản chờ trước khi tải xong",
+        "kind": "step",
+        "focal": false
+      },
+      {
+        "id": "F",
+        "x": 160,
+        "y": 560,
+        "w": 320,
+        "h": 64,
+        "title": "Tải thành công",
+        "sub": "Thay dữ liệu trên màn; xóa bản chờ",
+        "kind": "end",
+        "focal": true
+      },
+      {
+        "id": "G",
+        "x": 800,
+        "y": 464,
+        "w": 320,
+        "h": 64,
+        "title": "Tải thất bại",
+        "sub": "Báo lỗi; bản chờ vẫn còn",
+        "kind": "end",
+        "focal": false
+      }
+    ],
+    "edges": [
+      {
+        "a": "A",
+        "b": "B",
+        "points": [
+          [
+            320,
+            128
+          ],
+          [
+            320,
+            176
+          ]
+        ],
+        "label": "",
+        "at": null,
+        "dashed": false
+      },
+      {
+        "a": "B",
+        "b": "C",
+        "points": [
+          [
+            320,
+            240
+          ],
+          [
+            320,
+            288
+          ]
+        ],
+        "label": "",
+        "at": null,
+        "dashed": false
+      },
+      {
+        "a": "C",
+        "b": "D",
+        "points": [
+          [
+            480,
+            336
+          ],
+          [
+            800,
+            336
+          ]
+        ],
+        "label": "HỦY",
+        "at": [
+          640,
+          308,
+          "h"
+        ],
+        "dashed": false
+      },
+      {
+        "a": "C",
+        "b": "E",
+        "points": [
+          [
+            320,
+            384
+          ],
+          [
+            320,
+            448
+          ]
+        ],
+        "label": "ĐỒNG Ý",
+        "at": [
+          332,
+          416.0,
+          "v"
+        ],
+        "dashed": false
+      },
+      {
+        "a": "E",
+        "b": "F",
+        "points": [
+          [
+            320,
+            512
+          ],
+          [
+            320,
+            560
+          ]
+        ],
+        "label": "ĐÃ TẢI",
+        "at": [
+          332,
+          536.0,
+          "v"
+        ],
+        "dashed": false
+      },
+      {
+        "a": "E",
+        "b": "G",
+        "points": [
+          [
+            480,
+            480
+          ],
+          [
+            800,
+            480
+          ]
+        ],
+        "label": "THẤT BẠI",
+        "at": [
+          640,
+          452,
+          "h"
+        ],
+        "dashed": false
+      }
+    ],
+    "notes": [
+      "Xung đột thường xuất hiện khi tab khác lưu phiên bản mới hơn. Tải lại lấy phiên bản đã lưu thay cho dữ liệu đang chỉnh trên màn này.",
+      "Trong lúc đang lưu, thao tác tải lại hoặc bỏ dữ liệu bị chặn. Không reset dữ liệu về mặc định để né lỗi."
+    ],
+    "refs": [
+      "FL-02-04 / FL-02-05",
+      "AC-03",
+      "reloadWorkspace(true) / revision"
+    ]
+  }
+]
