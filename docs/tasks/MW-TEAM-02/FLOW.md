@@ -1,5 +1,7 @@
 # Luồng chi tiết — MW-TEAM-02
 
+**Sơ đồ cập nhật 10/10/2026:** [Bộ tám sơ đồ trực quan](diagrams/flows.html) và [nguồn Mermaid có thể chỉnh sửa](FLOW_DIAGRAMS.md), đối chiếu main tích hợp `1e9bff4`. My Plan v2 và migration đã được ghép; bảy nhánh Mobile/Game đã thử đến hoàn thành → tải lại. Các trạng thái “chờ ghép” ngày 08/10 bên dưới được giữ làm lịch sử; xem [kết quả sau tích hợp](MAIN_REVIEW_2026-10-10.md).
+
 **Cập nhật 08/10/2026:** planner và My Roadmap hiện dùng shared Context v2 của Hải. UI không gọi storage, không ghi shadow plan v1, không chuyển tới My Plan cũ sau lưu. Các luồng tạo/lưu/preview/recovery dưới đây đã có browser test; completion/My Plan/migration vẫn chờ ghép. Xem [handoff](INTEGRATION_HANDOFF.md), [QA](QA_AI_LOG.md) và [review UI](UI_REVIEW_2026-10-08.md).
 
 ## FL-02-01 — Chọn chặng và prerequisite (AC-01; TC-02-01/07)
