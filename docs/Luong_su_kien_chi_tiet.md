@@ -350,17 +350,17 @@ Cập nhật 09/10/2026. Áp dụng cho mọi hướng học đã tích hợp.
 
 **Điều kiện:** Trang đã tải dữ liệu; thao tác ghi cần bản hiện tại và không có lần lưu đang chờ.
 
-**Bắt đầu:** Chọn tuần hoặc Chưa xếp lịch
+**Bắt đầu:** Chọn tuần, mũi tên, Today hoặc Chưa xếp lịch
 
 ### Luồng chính
 
-1. Nhóm theo ngày đã chọn. Thao tác của người học.
-2. Việc chưa chọn ngày có nhóm riêng. Phản hồi của hệ thống.
-3. Hiển thị tiến độ và nguồn. Kết quả có thể quan sát trên giao diện.
+1. Đọc khoảng ngày và tiến độ của tuần. Thao tác của người học.
+2. Lọc theo chặng rồi nhóm theo ngày. Phản hồi của hệ thống.
+3. Hiển thị việc và nguồn tương ứng. Kết quả có thể quan sát trên giao diện.
 
 ### Hủy, thay thế và lỗi
 
-- Tuần chốt hoặc phiên bản cũ chỉ đọc.
+- Today chỉ dùng khi ngày hiện tại thuộc kế hoạch; bộ lọc chặng không thay dữ liệu hoặc phạm vi chốt tuần. Tuần chốt hoặc phiên bản cũ chỉ đọc.
 
 ## EF21 — Thêm công việc
 

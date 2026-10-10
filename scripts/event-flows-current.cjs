@@ -19,7 +19,7 @@ const rows=[
 ['Lưu bản nháp','My roadmap','Lưu bản nháp','Kiểm tra lựa chọn đang sửa','Lưu trên thiết bị','Giữ kế hoạch đã tạo','Lỗi: thử lại hoặc bỏ bản chưa lưu có xác nhận.'],
 ['Chọn ngày bắt đầu','My roadmap','Chọn ngày và tạo lịch','Kiểm tra ngày bắt đầu','Đề nghị Thứ Hai nếu cần','Chờ đồng ý hoặc quay lại','Hủy đề nghị không tạo kế hoạch.'],
 ['Chọn kế hoạch đang xem','My plan','Đổi Kế hoạch đang xem','Tìm kế hoạch đã lưu','Lưu lựa chọn đang xem','Hiển thị việc của kế hoạch','Có bản lưu lỗi: xử lý trước khi đổi.'],
-['Xem tuần hoặc việc chưa xếp lịch','My plan · Việc học','Chọn tuần hoặc Chưa xếp lịch','Nhóm theo ngày đã chọn','Việc chưa chọn ngày có nhóm riêng','Hiển thị tiến độ và nguồn','Tuần chốt hoặc phiên bản cũ chỉ đọc.'],
+['Xem tuần hoặc việc chưa xếp lịch','My plan · Việc học','Chọn tuần, mũi tên, Today hoặc Chưa xếp lịch','Đọc khoảng ngày và tiến độ của tuần','Lọc theo chặng rồi nhóm theo ngày','Hiển thị việc và nguồn tương ứng','Today chỉ dùng khi ngày hiện tại thuộc kế hoạch; bộ lọc chặng không thay dữ liệu hoặc phạm vi chốt tuần. Tuần chốt hoặc phiên bản cũ chỉ đọc.'],
 ['Thêm công việc','My plan · Việc học','Thêm việc học','Nhập tiêu đề, chặng và phút','Chọn tuần hoặc chưa xếp','Kiểm tra rồi lưu','Hủy không thêm; nhập sai giữ form và hiện lỗi.'],
 ['Chỉnh công việc','My plan · Việc học','Mở menu công việc → Sửa','Mở nội dung hiện có','Sửa thời gian, ghi chú, vị trí','Kiểm tra rồi lưu','Lưu lỗi giữ bản sửa; tuần chốt không sửa.'],
 ['Chuyển việc về chưa xếp lịch','My plan · Việc học','Mở menu → Chuyển về chưa xếp lịch','Giữ công việc và nguồn','Bỏ vị trí tuần và ngày','Lưu kế hoạch đã chỉnh','Lỗi không làm mất việc; có thể thử lại.'],

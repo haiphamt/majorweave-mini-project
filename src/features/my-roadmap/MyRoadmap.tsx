@@ -161,6 +161,26 @@ export function MyRoadmap() {
       </div>
     </div>}
     <div className="roadmap-editor">
+      <aside className="plan-builder" style={{ display: 'block' }} aria-label="Thiết lập kế hoạch">
+        <h2>Kế hoạch học</h2>
+        <label>Mục tiêu của bạn
+          <input disabled={blocked} maxLength={120} value={draft.goal} onChange={event => edit({ goal: event.target.value })} placeholder="Bạn muốn làm được điều gì?" />
+        </label>
+        <label>Số giờ học mỗi tuần
+          <input type="number" min="2" max="20" step="1" disabled={blocked} value={Number.isFinite(draft.hoursPerWeek) ? draft.hoursPerWeek : ''} onChange={event => edit({ hoursPerWeek: event.target.value === '' ? NaN : Number(event.target.value) })} />
+        </label>
+        <label>Ngày bắt đầu
+          <input type="date" disabled={blocked} value={draft.startDate} onChange={event => edit({ startDate: event.target.value })} />
+        </label>
+        <p className="builder-note">{activeStages.length} chặng · {hoursText(minutes)} thực hành. Mỗi tuần bắt đầu vào Thứ Hai.</p>
+        <button className="primary-button full-width" disabled={blocked} onClick={() => request('create')}>{status === 'saving' ? 'Đang lưu…' : 'Tạo kế hoạch mới'}</button>
+        <div className="dialog-actions">
+          <button className="secondary-button" disabled={blocked || !dirty} onClick={saveDraft}>Lưu bản nháp</button>
+          {sameTrackPlan && <button className="secondary-button" disabled={blocked} onClick={() => request('regenerate')}>Xem trước tạo lại</button>}
+        </div>
+        <p className="builder-note" role="status">{status === 'saving' ? 'Đang lưu thay đổi…' : unsavedWorkspace ? 'Có thay đổi chưa lưu được.' : dirty ? 'Bản nháp có thay đổi chưa lưu.' : 'Bản nháp không có thay đổi chưa lưu.'}</p>
+        {sameTrackPlan && <p className="builder-note">Tạo lại áp dụng cho “{sameTrackPlan.name}”.</p>}
+      </aside>
       <section className="roadmap-paper" aria-label="Chặng học">
         <div className="paper-heading"><h2>Chặng học</h2></div>
         <p className="builder-note">Chọn chặng để học; đánh dấu “Đã biết” để bỏ qua. Các chặng giữ thứ tự nền tảng trước, chuyên sâu sau.</p>
@@ -203,26 +223,7 @@ export function MyRoadmap() {
           })}
         </div>
       </section>
-      <aside className="plan-builder" style={{ display: 'block' }} aria-label="Thiết lập kế hoạch">
-        <h2>Kế hoạch học</h2>
-        <label>Mục tiêu của bạn
-          <input disabled={blocked} maxLength={120} value={draft.goal} onChange={event => edit({ goal: event.target.value })} placeholder="Bạn muốn làm được điều gì?" />
-        </label>
-        <label>Số giờ học mỗi tuần
-          <input type="number" min="2" max="20" step="1" disabled={blocked} value={Number.isFinite(draft.hoursPerWeek) ? draft.hoursPerWeek : ''} onChange={event => edit({ hoursPerWeek: event.target.value === '' ? NaN : Number(event.target.value) })} />
-        </label>
-        <label>Ngày bắt đầu
-          <input type="date" disabled={blocked} value={draft.startDate} onChange={event => edit({ startDate: event.target.value })} />
-        </label>
-        <p className="builder-note">{activeStages.length} chặng · {hoursText(minutes)} thực hành. Mỗi tuần bắt đầu vào Thứ Hai.</p>
-        <button className="primary-button full-width" disabled={blocked} onClick={() => request('create')}>{status === 'saving' ? 'Đang lưu…' : 'Tạo kế hoạch mới'}</button>
-        <div className="dialog-actions">
-          <button className="secondary-button" disabled={blocked || !dirty} onClick={saveDraft}>Lưu bản nháp</button>
-          {sameTrackPlan && <button className="secondary-button" disabled={blocked} onClick={() => request('regenerate')}>Xem trước tạo lại</button>}
-        </div>
-        <p className="builder-note" role="status">{status === 'saving' ? 'Đang lưu thay đổi…' : unsavedWorkspace ? 'Có thay đổi chưa lưu được.' : dirty ? 'Bản nháp có thay đổi chưa lưu.' : 'Bản nháp không có thay đổi chưa lưu.'}</p>
-        {sameTrackPlan && <p className="builder-note">Tạo lại áp dụng cho “{sameTrackPlan.name}”.</p>}
-      </aside>
+
     </div>
     {proposedDate && <Dialog className="roadmap-dialog" title="Bắt đầu vào Thứ Hai?" onClose={() => { if (!busy) setProposedDate(null); }}>
       <div className="dialog-body">

@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Check, Pencil, Plus, BookOpen, CalendarDays, Ellipsis, ArrowRight } from 'lucide-react';
+import { Check, Pencil, Plus, BookOpen, CalendarDays, Ellipsis, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import type { LearningPlan, LearningStage, OperationResult, Workspace } from '../../domain/contracts';
 import { addTask, updateTask, moveTaskToBacklog, setTaskCompletion, closeWeek, calculatePlanStats, calculateWeekStats, type ProgressContext } from '../../domain/progress';
 import { Dialog, External } from '../../components/ui';
-import { parseTaskForm, taskForm, weekIndices, visibleTasks, readOnly, safeSourceUrl, type TaskForm } from './viewModel';
+import { parseTaskForm, taskForm, weekIndices, visibleTasks, readOnly, safeSourceUrl, weekRange, currentWeek, type TaskForm } from './viewModel';
 
 // Controlled feature: the caller owns the workspace, persistence and revision.
 // Resolve callbacks only after save/transaction success; never optimistically report a save.
@@ -47,6 +47,7 @@ function PlanView({ plan, selecting, onBlockedChange, ...props }: MyPlanV2Props 
   const [tab, setTab] = useState<'Plan' | 'Stats' | 'Weeks'>('Plan');
   const [generationId, setGenerationId] = useState(plan.current.id);
   const [week, setWeek] = useState<number | null>(0);
+  const [stageFilter, setStageFilter] = useState<string | null>(null);
   const [form, setForm] = useState<TaskForm | null>(null);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [formIssues, setFormIssues] = useState<string[]>([]);
@@ -63,10 +64,22 @@ function PlanView({ plan, selecting, onBlockedChange, ...props }: MyPlanV2Props 
   useEffect(() => { if (error) errorRef.current?.focus(); }, [error]);
   const generation = [plan.current, ...plan.history].find(g => g.id === generationId) ?? plan.current;
   const tasks = visibleTasks(generation, week);
+  const activeStage = stageFilter && tasks.some(task => task.stageId === stageFilter) ? stageFilter : null;
+  const filteredTasks = activeStage ? tasks.filter(task => task.stageId === activeStage) : tasks;
   const taskGroups = (week === null ? [null] : [0, 1, 2, 3, 4, 5, 6, null])
-    .map(day => ({ day, tasks: tasks.filter(task => task.dayIndex === day) }))
+    .map(day => ({ day, tasks: filteredTasks.filter(task => task.dayIndex === day) }))
     .filter(group => group.tasks.length > 0);
   const weeks = weekIndices(generation);
+  let todayWeek: number | null = null;
+  try { todayWeek = currentWeek(generation.startDate, props.getProgressContext().today, weeks); } catch { /* Clock errors are reported by mutation handlers. */ }
+  const weekPosition = week === null ? -1 : weeks.indexOf(week);
+  const range = week === null ? null : weekRange(generation.startDate, week);
+  const stagesInWeek = [...new Set(tasks.map(task => task.stageId))].map(id => ({
+    id, title: props.stages.find(stage => stage.id === id)?.title ?? 'Chặng học',
+    total: tasks.filter(task => task.stageId === id && task.status !== 'skipped').length,
+    done: tasks.filter(task => task.stageId === id && task.status === 'done').length,
+  }));
+  function chooseWeek(index: number | null) { setWeek(index); setStageFilter(null); }
   const readonly = readOnly(plan, generation, week);
   const busy = saving || selecting || discarding;
   const blocked = busy || !!pending;
@@ -128,7 +141,7 @@ function PlanView({ plan, selecting, onBlockedChange, ...props }: MyPlanV2Props 
   }
   function openAdd() {
     setEditingId(null); setFormIssues([]);
-    setForm({ stageId: selectableStages[0]?.id ?? '', title: '', minutes: '60', acceptance: '', notes: '', week: week === null ? '' : String(week + 1), day: '' });
+    setForm({ stageId: activeStage ?? selectableStages[0]?.id ?? '', title: '', minutes: '60', acceptance: '', notes: '', week: week === null ? '' : String(week + 1), day: '' });
   }
   function submit(e: React.FormEvent) {
     e.preventDefault(); if (!form || blocked) return;
@@ -148,18 +161,37 @@ function PlanView({ plan, selecting, onBlockedChange, ...props }: MyPlanV2Props 
   const closeOvertime = Math.max(0, generation.tasks.filter(t => t.weekIndex === nextWeek && t.status !== 'skipped').reduce((n,t) => n+t.minutes,0) + movingMinutes - generation.hoursPerWeek*60);
 
   return <div className="plan-page">
-    <div className="plan-context"><p><span>Mục tiêu</span>{generation.goal}</p>{plan.history.length>0&&<label>Phiên bản kế hoạch<select aria-label="Phiên bản kế hoạch" value={generation.id} disabled={blocked} onChange={e => { setGenerationId(e.target.value); setWeek(0); setNotice(''); setError(''); }}><option value={plan.current.id}>Hiện tại</option>{plan.history.map(g => <option key={g.id} value={g.id}>Lịch sử · {new Date(g.createdAt).toLocaleString('vi-VN')}</option>)}</select></label>}</div>
+    <div className="plan-context">{tab !== 'Plan' && <p><span>Mục tiêu</span>{generation.goal}</p>}{plan.history.length>0&&<label>Phiên bản kế hoạch<select aria-label="Phiên bản kế hoạch" value={generation.id} disabled={blocked} onChange={e => { setGenerationId(e.target.value); chooseWeek(0); setNotice(''); setError(''); }}><option value={plan.current.id}>Hiện tại</option>{plan.history.map(g => <option key={g.id} value={g.id}>Lịch sử · {new Date(g.createdAt).toLocaleString('vi-VN')}</option>)}</select></label>}</div>
     {readonly && <p className="capacity-note" role="status">{plan.status === 'archived' ? 'Kế hoạch đã lưu trữ: chỉ đọc.' : generation.id !== plan.current.id ? 'Phiên bản lịch sử: chỉ đọc.' : 'Tuần đã chốt: đang xem kết quả trước khi chuyển việc, chỉ đọc.'}</p>}
     {error && <p ref={errorRef} tabIndex={-1} role="alert" className="capacity-note">{error}</p>}
     {notice && <p role="status">{notice}</p>}
     {pending && !form && !preview && <div className="dialog-actions"><button className="primary-button" disabled={busy} onClick={() => void persist(pending)}>Thử lưu lại</button><button className="secondary-button" disabled={busy} onClick={dismiss}>Bỏ thay đổi chưa lưu</button></div>}
     {saving && <p role="status">Đang lưu…</p>}
     <div className="plan-view-toolbar"><nav className="tabs" aria-label="Chế độ xem kế hoạch">{(['Plan','Stats','Weeks'] as const).map(t => <button key={t} aria-pressed={tab === t} className={tab === t ? 'active' : ''} onClick={() => setTab(t)}>{{Plan:'Việc học',Stats:'Thống kê',Weeks:'Các tuần'}[t]}</button>)}</nav>
-    <div className="journey-progress"><div><strong>{summary.done}<span> / {summary.total} việc đã xong</span></strong></div><div className="journey-progress-bar"><div className="progress-track"><span style={{ width: `${summary.percentage}%` }}/></div><span>{summary.empty ? 'Chưa có việc được tính' : `${Math.round(summary.percentage)}% hoàn thành`} · {summary.estimatedCompletedMinutes}/{summary.totalMinutes} phút thực hành dự kiến</span></div></div></div>
+    {tab !== 'Plan' && <div className="journey-progress"><div><strong>{summary.done}<span> / {summary.total} việc đã xong</span></strong></div><div className="journey-progress-bar"><div className="progress-track"><span style={{ width: `${summary.percentage}%` }}/></div><span>{summary.empty ? 'Chưa có việc được tính' : `${Math.round(summary.percentage)}% hoàn thành`} · {summary.estimatedCompletedMinutes}/{summary.totalMinutes} phút thực hành dự kiến</span></div></div>}</div>
     {tab === 'Stats' && <section className="week-paper plan-stats"><h2>Tiến độ học tập</h2><p>Việc đã bỏ qua không tính vào tiến độ. Việc chưa xếp lịch vẫn nằm trong tổng kế hoạch.</p><dl className="plan-stat-totals"><div><dt>Đã hoàn thành</dt><dd>{summary.done}/{summary.total} việc</dd></div><div><dt>Thực hành dự kiến đã xong</dt><dd>{summary.estimatedCompletedMinutes} phút</dd></div><div><dt>Tuần đã chốt</dt><dd>{generation.closedWeeks.length}</dd></div></dl><h3>Theo từng tuần</h3>{weeks.map(index => { const result = calculateWeekStats(plan,index,generation.id); return result.ok && <div className="week-stat-row" key={index}><strong>Tuần {index+1}</strong><span>{result.value.empty ? 'Chưa có việc' : `${result.value.done}/${result.value.total} việc · ${Math.round(result.value.percentage)}%`}</span><span>{result.value.closed ? 'Đã chốt' : 'Đang mở'}{result.value.overtimeMinutes ? ` · Vượt ${result.value.overtimeMinutes} phút` : ''}</span></div>; })}</section>}
-    {tab === 'Weeks' && <section className="week-paper weeks-overview"><h2>Các tuần học</h2><p>Tuần đã chốt giữ lại kết quả tại thời điểm chốt.</p>{weeks.map(index => { const result = calculateWeekStats(plan,index,generation.id); return result.ok && <button className="week-overview-row" key={index} aria-label={`Xem tuần ${index+1}`} onClick={() => { setWeek(index); setTab('Plan'); }}><strong>Tuần {index+1}<small>{result.value.closed ? 'Đã chốt' : 'Đang mở'}</small></strong><span>{result.value.empty ? 'Chưa có việc' : `${result.value.done}/${result.value.total} việc đã xong`}</span><ArrowRight size={18}/></button>; })}<button className="text-link" onClick={() => { setWeek(null); setTab('Plan'); }}>Xem việc chưa xếp lịch<ArrowRight size={16}/></button></section>}
-    {tab === 'Plan' && <div className="planner-layout"><nav className="week-sidebar" aria-label="Chọn tuần học"><div className="week-list">{weeks.map(index => <button key={index} className={`week-button ${week === index ? 'active' : ''}`} aria-pressed={week === index} disabled={blocked} onClick={() => setWeek(index)}><strong>Tuần {index+1}</strong>{generation.closedWeeks.some(w => w.weekIndex === index) && <small>Đã chốt</small>}</button>)}<button className={`week-button ${week === null ? 'active' : ''}`} aria-pressed={week === null} disabled={blocked} onClick={() => setWeek(null)}>Chưa xếp lịch</button></div></nav>
-      <section className="week-paper"><div className="week-heading"><div><h2>{week === null ? 'Chưa xếp lịch' : `Tuần ${week+1}`}</h2><p>{week === null ? 'Đưa việc vào một tuần khi bạn sẵn sàng.' : `${weekStats?.done ?? 0}/${weekStats?.total ?? 0} việc đã xong · ${weekStats?.totalMinutes ?? 0}/${generation.hoursPerWeek*60} phút dự kiến`}</p></div>{!readonly && week !== null && <button className="secondary-button" disabled={blocked || !tasks.length} onClick={() => { setAction('move_next'); setPreview(true); }}>Chốt tuần</button>}</div>
+    {tab === 'Weeks' && <section className="week-paper weeks-overview"><h2>Các tuần học</h2><p>Tuần đã chốt giữ lại kết quả tại thời điểm chốt.</p>{weeks.map(index => { const result = calculateWeekStats(plan,index,generation.id); return result.ok && <button className="week-overview-row" key={index} aria-label={`Xem tuần ${index+1}`} onClick={() => { chooseWeek(index); setTab('Plan'); }}><strong>Tuần {index+1}<small>{result.value.closed ? 'Đã chốt' : 'Đang mở'}</small></strong><span>{result.value.empty ? 'Chưa có việc' : `${result.value.done}/${result.value.total} việc đã xong`}</span><ArrowRight size={18}/></button>; })}<button className="text-link" onClick={() => { chooseWeek(null); setTab('Plan'); }}>Xem việc chưa xếp lịch<ArrowRight size={16}/></button></section>}
+    {tab === 'Plan' && <>
+      <div className="plan-week-toolbar">
+        <nav className="plan-week-navigation" aria-label="Chọn tuần học">
+          <button className="icon-button" aria-label="Tuần trước" disabled={blocked || weekPosition <= 0} onClick={() => chooseWeek(weeks[weekPosition-1])}><ChevronLeft size={20}/></button>
+          <label className="plan-week-picker"><span>{week === todayWeek && week !== null ? 'This week' : week === null ? 'Unscheduled' : `Week ${week+1}`}</span><select aria-label="Tuần đang xem" value={week === null ? 'backlog' : week} disabled={blocked} onChange={e => chooseWeek(e.target.value === 'backlog' ? null : Number(e.target.value))}>{weeks.map(index => <option key={index} value={index}>Tuần {index+1} · {weekRange(generation.startDate,index) ?? 'Ngoài phạm vi ngày'}{generation.closedWeeks.some(w => w.weekIndex === index) ? ' · Đã chốt' : ''}</option>)}<option value="backlog">Chưa xếp lịch</option></select><span className="plan-week-date" aria-hidden="true">{range ?? (week === null ? 'Chưa xếp lịch' : 'Ngoài phạm vi ngày')}<ChevronRight size={14}/></span></label>
+          <button className="icon-button" aria-label="Tuần sau" disabled={blocked || weekPosition < 0 || weekPosition >= weeks.length-1} onClick={() => chooseWeek(weeks[weekPosition+1])}><ChevronRight size={20}/></button>
+          <button className="quiet-button" disabled={blocked || todayWeek === null || week === todayWeek} onClick={() => chooseWeek(todayWeek)}>Today</button>
+        </nav>
+        <div className="plan-week-actions"><button className="quiet-button" aria-pressed={week === null} disabled={blocked} onClick={() => chooseWeek(week === null ? weeks[0] : null)}>{week === null ? 'Về lịch tuần' : 'Chưa xếp lịch'}</button>{!readonly && week !== null && <button className="secondary-button" disabled={blocked || !tasks.length} onClick={() => { setAction('move_next'); setPreview(true); }}>Chốt tuần</button>}</div>
+      </div>
+      <div className="plan-week-progress"><div className="progress-track" role="progressbar" aria-label="Tiến độ tuần đang xem" aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(weekStats?.percentage ?? 0)}><span style={{width:`${weekStats?.percentage ?? 0}%`}}/></div><span>{weekStats?.done ?? 0}/{weekStats?.total ?? 0} · {Math.round(weekStats?.percentage ?? 0)}%</span></div>
+      <div className="planner-layout">
+        <aside className="plan-stage-sidebar" aria-label="Chặng trong tuần">
+          <div className="plan-sidebar-heading"><h2>Chặng học</h2><span>{stagesInWeek.length}</span></div>
+          <label className="plan-stage-picker">Lọc theo chặng<select aria-label="Chặng đang xem" value={activeStage ?? ''} onChange={e => setStageFilter(e.target.value || null)}><option value="">Tất cả công việc · {tasks.length}</option>{stagesInWeek.map(stage => <option key={stage.id} value={stage.id}>{stage.title} · {stage.done}/{stage.total}</option>)}</select></label>
+          <button className={`plan-stage-button ${activeStage === null ? 'active' : ''}`} aria-pressed={activeStage === null} onClick={() => setStageFilter(null)}><span>Tất cả công việc</span><small>{tasks.length}</small></button>
+          {stagesInWeek.map(stage => <button className={`plan-stage-button ${activeStage === stage.id ? 'active' : ''}`} key={stage.id} aria-pressed={activeStage === stage.id} onClick={() => setStageFilter(stage.id)}><span>{stage.title}</span><small>{stage.done}/{stage.total}</small></button>)}
+          <a className="plan-customize-link" href="#/roadmap">Tùy chỉnh lộ trình<ArrowRight size={15}/></a>
+          <div className="plan-sidebar-goal"><h3>Mục tiêu kế hoạch</h3><p>{generation.goal}</p><span>{generation.hoursPerWeek} giờ / tuần · {summary.done}/{summary.total} việc đã xong</span></div>
+        </aside>
+        <section className="week-paper"><div className="week-heading"><div><h2>{week === null ? 'Chưa xếp lịch' : activeStage ? stagesInWeek.find(stage => stage.id === activeStage)?.title : `Tuần ${week+1}`}</h2><p>{week === null ? 'Đưa việc vào một tuần khi bạn sẵn sàng.' : `${range ?? ''} · ${weekStats?.totalMinutes ?? 0}/${generation.hoursPerWeek*60} phút dự kiến`}</p></div></div>
         {!!weekStats?.overtimeMinutes && <p className="capacity-note">Vượt quỹ giờ {weekStats.overtimeMinutes} phút.{readonly ? ' Đây là số liệu của bản chỉ đọc.' : ' Bạn có thể dời việc; việc vẫn được giữ.'}</p>}
         {snapshot && <p className="source-note">Chốt lúc {snapshot.closedAt}. Công việc dưới đây là kết quả trước khi chuyển việc.</p>}
         {!tasks.length && <p className="empty-inline">{week === null ? 'Chưa có việc đang chờ xếp lịch.' : 'Tuần này chưa có việc.'}</p>}
@@ -172,7 +204,7 @@ function PlanView({ plan, selecting, onBlockedChange, ...props }: MyPlanV2Props 
           </article>;
         })}</section>)}</div>
         {!readonly && <button className="add-task-button" disabled={blocked || !selectableStages.length} onClick={openAdd}><Plus size={18}/>Thêm việc học</button>}
-      </section></div>}
+      </section></div></>}
     {confirmDiscard && <Dialog title="Bỏ thay đổi chưa lưu?" className="plan-dialog" onClose={()=>{if(!lock.current&&!busy)setConfirmDiscard(false);}}><div className="dialog-body"><p>Thay đổi vừa lưu thất bại sẽ bị bỏ. Kế hoạch và lịch sử đã lưu được giữ nguyên; bản đã bỏ không thể thử lưu lại.</p><div className="dialog-actions"><button className="secondary-button" disabled={busy} onClick={()=>setConfirmDiscard(false)}>Giữ thay đổi để thử lưu lại</button><button className="primary-button" disabled={busy} onClick={()=>void discard()}>{discarding?'Đang bỏ thay đổi…':'Xác nhận bỏ thay đổi'}</button></div></div></Dialog>}
     {form && !confirmDiscard && <Dialog title={editingId ? 'Chỉnh công việc' : 'Thêm việc học'} className="plan-dialog" onClose={dismiss}><form className="dialog-body task-edit-form" noValidate onSubmit={submit}>
       {formIssues.length > 0 && <div role="alert" id="task-form-errors">{formIssues.map((message,i) => <p key={i}>{message}</p>)}</div>}

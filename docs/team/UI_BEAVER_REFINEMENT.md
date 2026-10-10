@@ -73,3 +73,29 @@ Nhánh bàn giao vẫn là `fix/beaver-ui`. Chờ Hải kiểm tra hai trang tr�
 - Đã tạo trên trình duyệt Chrome tại 127.0.0.1:5195 một kế hoạch thử Backend Node.js / Express: mục tiêu Xây API quản lý công việc, 5 giờ/tuần, bắt đầu Thứ Hai 12/10/2026; 15 chặng, 39 việc, 12 tuần, 54.5 giờ thực hành. Dữ liệu thử được lưu qua giao diện thật; không đưa vào seed, không đánh dấu hoàn thành giả. Tải lại vẫn giữ kế hoạch.
 - Kiểm tra: build và check đạt; Profile desktop 1280×900 và mobile 390×844 không tràn ngang trang. Lịch/ngày chưa chọn vẫn do người học phân bổ; tạo plan hiện chỉ xếp theo tuần.
 - Minh chứng: D:/IS207/artifacts/profile-backend-2026-10-10/. Branch fix/beaver-ui; chờ Hải duyệt giao diện trước khi merge.
+
+## Canvas theo ảnh Beaver Plans · 10/10/2026
+
+Hải yêu cầu Plan giống style trong ảnh và áp dụng tương tự cho các trang khác. Quyết định này mở rộng bước hai trang trước đó sang cả năm trang; dùng Impeccable cho bố cục và kiểm tra responsive.
+
+### Đã thực hiện
+
+- Giữ wordmark **uitplans.**, nav tiếng Anh và palette kem/gạch. Nav cao 64px desktop; tiêu đề, form, nút và đường phân cách thống nhất, bỏ thẻ lớn và typography trang trí trong app hiện tại.
+- My Plan: thanh chọn tuần có khoảng ngày, mũi tên trước/sau và Today; thanh tiến độ riêng của tuần ở trên hai cột. Chặng bên trái lọc công việc bên phải; việc vẫn nhóm theo ngày đã chọn. Điện thoại dùng bộ chọn chặng để tiết kiệm chiều cao.
+- Mục tiêu, quỹ giờ và tiến độ toàn kế hoạch nằm trong phần tóm tắt bên trái. Chốt tuần vẫn xử lý toàn bộ công việc của tuần, kể cả khi đang lọc một chặng. Đổi tuần xóa bộ lọc; chặng không còn công việc tự trở về xem tất cả.
+- Today chỉ hoạt động khi ngày hiện tại nằm trong một tuần hiện có của kế hoạch. Kế hoạch Backend bắt đầu 12/10 nên ngày 10/10 nút này bị vô hiệu hóa đúng với dữ liệu. Thanh chọn tuần cũng truy cập được bằng bàn phím/native select; tính khoảng ngày bằng ngày UTC để không lệch vì múi giờ.
+- Explore: tiêu đề và bộ chọn ngành gọn; danh mục dùng hai cột hàng chia bằng đường kẻ trên desktop, một cột trên mobile. Giữ đủ 18 hướng, các bộ lọc và bảng 12 ngành.
+- My roadmap: phần mục tiêu/quỹ giờ/ngày bắt đầu ở cột trái, lựa chọn chặng ở cột phải; trên mobile form đặt trước danh sách. Giữ callback lưu/tạo/tạo lại và kiểm tra tiên quyết.
+- Path detail: cùng kiểu chữ, tab dạng pill, danh sách nguồn/chứng nhận chia bằng đường kẻ. Profile: nhịp học vẫn ở đầu; form, mục tiêu và sao lưu dùng cùng canvas, tùy chọn nâng cao vẫn thu gọn.
+- Giữ controller, persistence, ID, nội dung và dữ liệu người học. Không thêm dependency hoặc tạo số liệu hoàn thành giả. Các luồng thao tác công bố đã cập nhật cho bộ chọn tuần/bộ lọc chặng.
+
+### Kiểm chứng thực tế
+
+- `npm run check` và `npm run build`: đạt. MW-TEAM-03: **42/42** đạt; thêm kiểm tra khoảng ngày qua tháng/năm nhuận, chỉ số tuần không hợp lệ và Today ngoài các tuần hiện có.
+- Impeccable layout scan trước/sau: không có finding cơ học. Đã xem Chrome desktop 1280×900 và mobile 390×844 cho cả năm trang; mobile không tràn ngang body, nav cuộn trong vùng riêng.
+- Trên kế hoạch Backend của Hải: chuyển tuần 1 → 2 → 1, chọn chặng bằng native select; đổi tuần xóa bộ lọc. Các thao tác xem không sửa dữ liệu kế hoạch.
+- Database QA riêng `uitplans-layout-qa-20261010`: tuần 1 có 4 việc ở 2 chặng, 1 việc hoàn thành. Lọc Git hiển thị đúng 2 việc và tiến độ tuần giữ 1/4. Xem trước Chốt tuần vẫn có toàn bộ 3 việc chưa xong; Hủy giữ tuần mở. Mở menu sửa → Hủy, xem Thống kê và đủ 6 tuần; không có console error.
+- Chưa kiểm thử lại quota/hai tab hoặc nhập file backup trực tiếp trong lượt chỉnh style này; các kiểm tra domain/controller hiện có vẫn đạt.
+- Ảnh thực tế: `D:/IS207/artifacts/beaver-workspace-2026-10-10/` gồm Plan, Explore, My roadmap, Path detail và Profile, mỗi trang có desktop/mobile. Ảnh Plan bàn giao dùng kế hoạch Backend của Hải, chưa có việc hoàn thành.
+
+Bàn giao trên nhánh `fix/beaver-ui`, xem local tại http://127.0.0.1:5195/#/plan. Chờ Hải kiểm tra trước merge; chưa cập nhật Notion hoặc bản Netlify.

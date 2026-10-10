@@ -43,7 +43,7 @@ function AppContent() {
   const activeLabel = activePlan ? (contentPacks.flatMap(p=>p.tracks).find(t=>t.id===activePlan.trackId)?.label ?? activePlan.trackId) : (contentPacks.flatMap(p=>p.tracks).find(t=>t.id===selectedTrackId)?.label ?? 'Chưa chọn hướng học');
   const newStage = moduleId ? contentPacks.flatMap(p=>p.stages).find(s=>s.id===moduleId) : undefined;
   const oldModule = moduleId ? modules.find(m=>m.id===moduleId) : undefined;
-  return <Context.Provider value={{ state, update, toast, openModule: setModuleId }}><div className="app-shell">
+  return <Context.Provider value={{ state, update, toast, openModule: setModuleId }}><div className="app-shell beaver-app">
     <header className="sidebar top-nav">
       <Link className="brand brand-wordmark" to="/explore"><span>uitplans<span className="brand-dot">.</span></span></Link>
       <nav aria-label="Các trang chính">{steps.map((step, i) => <NavLink key={step.to} to={step.to} className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}><step.icon size={19} strokeWidth={1.6} /><span><strong>{step.label}</strong><small>{step.desc}</small></span><span className="nav-number">0{i + 1}</span></NavLink>)}</nav>

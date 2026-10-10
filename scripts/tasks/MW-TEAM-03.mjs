@@ -409,6 +409,20 @@ test('UI02 sparse week list and snapshot display never duplicate/mutate tasks', 
  p.current.tasks.filter(t=>t.weekIndex===1).forEach(t=>t.weekIndex=1000000);
  assert.deepEqual(ui.weekIndices(p.current),[0,1000000]);
 });
+test('UI12 week navigation uses calendar dates and only available current weeks', () => {
+ assert.equal(ui.weekRange('2026-10-12',0),'Oct 12 – Oct 18');
+ assert.equal(ui.weekRange('2026-10-12',2),'Oct 26 – Nov 01');
+ assert.equal(ui.weekRange('2024-02-26',0),'Feb 26 – Mar 03');
+ assert.equal(ui.weekRange('invalid',0),null);
+ assert.equal(ui.weekRange('2026-10-12',-1),null);
+ assert.equal(ui.weekRange('2026-10-12',Number.MAX_SAFE_INTEGER),null);
+ assert.equal(ui.currentWeek('2026-10-12','2026-10-10',[0,1]),null);
+ assert.equal(ui.currentWeek('2026-10-12','2026-10-18',[0,1]),0);
+ assert.equal(ui.currentWeek('2026-10-12','2026-10-19',[0,1]),1);
+ assert.equal(ui.currentWeek('2026-10-12','2026-10-26',[0,1]),null);
+ assert.equal(ui.currentWeek('invalid','2026-10-12',[0]),null);
+});
+
 test('UI03 readonly includes closed weeks, archived plans and history', () => {
  const p=fixture(); assert.equal(ui.readOnly(p,p.current,0),false);
  const c=ok(close(p,0,'skip',context())); assert.equal(ui.readOnly(c,c.current,0),true);
