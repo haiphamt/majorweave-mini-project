@@ -137,3 +137,7 @@ Hải không duyệt thẻ hai cột với viền trung tính. Thay bằng một
 Bảng ngành và ghi chú cuối đổi sang cùng khung trắng viền gạch. Giữ bộ lọc, số nhánh, nội dung, URL và hành động hiện có; bỏ các icon nghề khỏi danh mục để ô số có đúng vai trò như ảnh.
 
 Kiểm chứng: build/check và scan layout đạt. Chrome 1280×900 render đủ 18 khung trong một cột, mỗi khung rộng khoảng 1209px; border thực tế `2px solid rgb(167, 65, 39)`. Mobile 390×844 giữ viền, body 375px không tràn ngang. Ảnh: `D:/IS207/artifacts/beaver-horizontal-frames-2026-10-10/`. Branch `fix/beaver-ui`, chưa merge.
+
+### Điều chỉnh thành 4 cột
+
+Hải yêu cầu 4 cột thay cho khung ngang một cột. Giữ viền gạch 2px hiện sẵn, nền giấy, số thứ tự và các hành động; nội dung xếp dọc, CTA căn cuối khung. Desktop 1280px có 4 cột khoảng 290px; tablet 900px có 2 cột khoảng 406px; mobile 390px có 1 cột khoảng 335px. Cả ba kích thước không tràn ngang body. Build/check đạt. Ảnh: `D:/IS207/artifacts/explore-four-columns-2026-10-10/`.
