@@ -168,3 +168,8 @@ Kiểm tra: build và check đạt; trình duyệt Backend hiển thị 25 tên 
 Hải yêu cầu thiết kế lại tab Chứng nhận. Mỗi mục dùng nền giấy, khung gạch bo góc; 3 cột desktop, 2 dưới 1100px và 1 dưới 760px. Hiện loại chứng nhận, phí, đơn vị cấp, nền tảng và yêu cầu nhận. Thay bookmark rời bằng nút Lưu mục tiêu có aria-pressed và trạng thái đã lưu. Bỏ ngày đối chiếu khỏi phần hiển thị; giữ checkedAt trong dữ liệu. Không thay thông tin chương trình, URL, callback lưu hoặc ID.
 
 Kiểm tra: build/check đạt; Backend hiện đủ 6 mục. Trên bản QA dùng database riêng, lưu → tải lại vẫn đã lưu → bỏ lưu trở về chưa lưu. Desktop 1280px: 3 cột; mobile 390px: 1 cột, body 375px, nút lưu cao 44px. Dữ liệu học thật không dùng cho thử lưu/bỏ lưu. Ảnh ở artifacts/credentials-2026-10-10 bên ngoài repo.
+
+## Tab trình duyệt và dấu chấm thương hiệu — 10/10/2026
+
+Theo yêu cầu của Hải, thêm favicon gốc Beaver Plans từ https://beaverplans.com/favicon.svg vào public/beaverplans-favicon.svg. Đây là tài sản của website tham chiếu, không phải logo do nhóm tự thiết kế. Tiêu đề Explore: uitplans. — Find your path. Plan your week.; các trang khác có lời mô tả phù hợp với chức năng. Meta description dùng tiếng Việt mô tả khám phá hướng nghề nghiệp, nguồn học và kế hoạch tuần. Dấu chấm wordmark ở nav và footer dùng màu cam gạch hiện có. Địa chỉ localhost không đổi; tên miền thực cần cấu hình khi triển khai.
+Kiểm tra: build/check đạt; Explore trên trình duyệt có tiêu đề/mô tả mới, dấu chấm rgb(167, 65, 39). Favicon trả HTTP 200 và được chép vào bản build. Trình duyệt do công cụ điều khiển có thêm huy hiệu tự động lên favicon; file gốc của app giữ nguyên hình hải ly.

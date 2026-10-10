@@ -38,7 +38,17 @@ function AppContent() {
   // v1 remains an immutable migration source. Only the v2 persistence port writes.
   useEffect(()=>{if(workspace)setState(s=>({...s,profileName:workspace.profile.displayName,major:workspace.profile.majorId??'',language:workspace.preferences.resourceLanguage,preferFree:workspace.preferences.preferFree}));},[workspace?.profile.displayName,workspace?.profile.majorId,workspace?.preferences.resourceLanguage,workspace?.preferences.preferFree]);
   useEffect(() => { if (!message) return; const timer = setTimeout(() => setMessage(''), 3500); return () => clearTimeout(timer); }, [message]);
-  useEffect(() => { window.scrollTo({ top: 0 }); document.title = `uitplans. — ${location.pathname === '/profile' ? 'Profile' : location.pathname === '/plan' ? 'My plan' : location.pathname === '/roadmap' ? 'My roadmap' : location.pathname === '/path' ? 'Path detail' : 'Explore'}`; }, [location.pathname]);
+  useEffect(() => {
+    window.scrollTo({ top: 0 });
+    const pageTitles: Record<string, string> = {
+      '/explore': 'Find your path. Plan your week.',
+      '/path': 'Path detail — Discover what to learn.',
+      '/roadmap': 'My roadmap — Turn goals into steps.',
+      '/plan': 'My plan — Make this week count.',
+      '/profile': 'Profile — See how far you’ve come.',
+    };
+    document.title = `uitplans. — ${pageTitles[location.pathname] || pageTitles['/explore']}`;
+  }, [location.pathname]);
   const steps = [{ to: '/explore', label: 'Explore', desc: 'Khám phá hướng học', icon: Compass }, { to: '/path', label: 'Path detail', desc: 'Kỹ năng & nguồn học', icon: BookOpen }, { to: '/roadmap', label: 'My roadmap', desc: 'Lộ trình của bạn', icon: RouteIcon }, { to: '/plan', label: 'My plan', desc: 'Một tuần một bước', icon: CalendarDays }, { to: '/profile', label: 'Profile', desc: 'Hồ sơ & nhịp học', icon: UserRound }];
   const newStage = moduleId ? contentPacks.flatMap(p=>p.stages).find(s=>s.id===moduleId) : undefined;
   const oldModule = moduleId ? modules.find(m=>m.id===moduleId) : undefined;
@@ -50,7 +60,7 @@ function AppContent() {
     </header>
     <div className="workspace">
       <main id="main-content"><Routes><Route path="/explore" element={<Explore />} /><Route path="/path" element={<PathDetail />} /><Route path="/roadmap" element={<MyRoadmap />} /><Route path="/plan" element={<WorkspacePlan />} /><Route path="/profile" element={<WorkspaceProfile />} /><Route path="*" element={<Navigate to="/explore" replace />} /></Routes></main>
-      <footer className="app-footer"><span className="footer-brand"><strong>uitplans.</strong><span>Explore paths. Build your plan.</span></span><External className="event-flow-link" href="/events.html">Hướng dẫn thao tác</External><span className="footer-storage">Kế hoạch được lưu trên trình duyệt này.</span></footer>
+      <footer className="app-footer"><span className="footer-brand"><strong>uitplans<span className="brand-dot">.</span></strong><span>Explore paths. Build your plan.</span></span><External className="event-flow-link" href="/events.html">Hướng dẫn thao tác</External><span className="footer-storage">Kế hoạch được lưu trên trình duyệt này.</span></footer>
     </div>
   </div>{newStage && selectedTrackId ? <StageDrawer key={`${selectedTrackId}/${moduleId}`} stage={newStage} trackId={selectedTrackId} onClose={()=>setModuleId(null)}/> : oldModule ? <ModuleDrawer module={oldModule} onClose={()=>setModuleId(null)}/> : null}
     {showAbout && <Dialog title="A small beginning." eyebrow="uitplans. · MINI PROJECT" onClose={() => setShowAbout(false)}><div className="dialog-body"><p>Danh mục có 18 hướng và 50 cấu hình kế hoạch. Bạn có thể chọn nhánh, nguồn học, chỉnh roadmap, tạo kế hoạch tuần và lưu tiến độ.</p><p>Mỗi hướng có chặng, nguồn học và bài thực hành trong danh mục. Danh sách ngành được gộp theo ngành gốc; liên hệ với hướng học là gợi ý để khám phá.</p><p>Dữ liệu của bạn được lưu trên trình duyệt này. Sau khi học ở nguồn bên ngoài, bạn tự đánh dấu hoàn thành tại My plan.</p><div className="source-note">Ngày đối chiếu và điều kiện truy cập được ghi ở từng nguồn học. Thời gian học là ước lượng do nhóm biên soạn cho một dự án nhỏ.</div><div className="about-links"><External href="https://tuyensinh.uit.edu.vn/nganh-dao-tao/">Ngành đào tạo UIT</External><External href="https://roadmap.sh/backend">Tham khảo roadmap.sh</External><External href="https://beaverplans.com/">Cảm hứng giao diện Beaver Plans</External></div></div></Dialog>}

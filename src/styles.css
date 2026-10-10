@@ -126,7 +126,7 @@ dialog{padding:0;border:1px solid var(--line);border-radius:7px;background:var(-
 .top-nav{height:76px;position:sticky;top:0;z-index:30;padding:0 32px;display:flex;flex-direction:row;align-items:center;gap:32px;border-right:0;border-bottom:1px solid var(--line);background:var(--bg)}
 .top-nav .brand{margin:0;flex-shrink:0}
 .top-nav .brand.brand-wordmark>span{font-family:'Be Vietnam Pro',sans-serif;font-size:24px;font-weight:700;font-style:normal;line-height:1.3;letter-spacing:-.03em;white-space:nowrap;color:var(--ink)}
-.brand-wordmark .brand-dot{color:inherit}
+.brand-wordmark .brand-dot,.footer-brand .brand-dot{color:var(--rust)}
 .top-nav .brand small,.top-nav .sidebar-label,.top-nav .nav-number,.top-nav .nav-item small,.top-nav .sidebar-project,.top-nav .tiny-seed{display:none}
 .top-nav nav{display:flex;flex-direction:row;gap:6px;flex:1}
 .top-nav .nav-item{padding:10px 14px;gap:8px;border-radius:8px;white-space:nowrap}
