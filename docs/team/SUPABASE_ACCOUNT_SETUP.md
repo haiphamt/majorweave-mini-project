@@ -104,3 +104,29 @@ node scripts/check-account.mjs
 - Trên hosting hoặc máy khác, cấu hình cùng hai biến môi trường rồi build/chạy lại. `.env.local` không được commit; clone repository không tự có cấu hình trên máy Hải.
 
 Không cần cung cấp password database, service_role hay SMTP secret cho cuộc trò chuyện này.
+
+## Thiết lập SMTP từ đầu
+
+Hải xác nhận ngày 11/10/2026 **chưa có dịch vụ SMTP**. Chưa cấu hình nhà cung cấp hoặc gửi thư thật.
+
+Một cách triển khai là **Resend**, có hướng dẫn tích hợp Supabase trực tiếp. Cần tài khoản Resend và tên miền do nhóm sở hữu, xác minh DNS trước khi gửi tới người dùng. Địa chỉ `*.supabase.co` và địa chỉ hosting miễn phí không phải tên miền gửi thư mà nhóm kiểm soát.
+
+1. Đăng ký/đăng nhập Resend; người dùng tự nhập thông tin tài khoản.
+2. Thêm tên miền gửi thư trong Domains, điền các bản ghi DNS mà Resend yêu cầu, chờ trạng thái Verified. Không thay bản ghi mail hiện có nếu chưa rõ tác động.
+3. Tạo API key dành cho gửi thư; giữ bí mật.
+4. Mở SMTP Settings của uitplans, bật Custom SMTP và điền:
+
+| Trường | Giá trị |
+|---|---|
+| Sender email | Địa chỉ thuộc tên miền đã xác minh |
+| Sender name | `uitplans.` |
+| Host | `smtp.resend.com` |
+| Port | `465` |
+| Username | `resend` |
+| Password | API key Resend, nhập trực tiếp tại Dashboard |
+
+5. Lưu cấu hình, giữ Confirm email bật; thử đăng ký và nhận email với địa chỉ của người dùng. Chỉ ghi PASS sau khi nhận thư và callback hoàn tất.
+
+Nguồn: [Resend với Supabase SMTP](https://resend.com/docs/send-with-supabase-smtp), [xác minh tên miền](https://resend.com/docs/dashboard/domains/introduction).
+
+Nếu chưa có tên miền, có thể thử riêng email chủ project bằng SMTP mặc định. Việc gửi cho người dùng khác vẫn còn chờ cấu hình dịch vụ gửi thư phù hợp; không cần đổi code kế hoạch hoặc bỏ xác nhận email.
