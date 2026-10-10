@@ -149,3 +149,10 @@ Hải yêu cầu 4 cột thay cho khung ngang một cột. Giữ viền gạch 2
 - Profile chia ba mục Activity / Profile / Data. Activity mặc định hiển thị nhịp học; Profile chứa form và chứng nhận; Data chứa xuất/nhập. Nút chọn có trạng thái aria-pressed, liên kết aria-controls, vùng không chọn dùng hidden. Nội dung đang chỉnh được giữ khi chuyển mục. Giữ validation, hủy thay đổi, bảo vệ dữ liệu và preview/xác nhận nhập.
 - Build/check đạt. Detector layout không có findings. Đã thử chuyển ba mục, sửa tên → đổi mục → quay lại (tên đang sửa giữ nguyên) → hủy (trở về tên đã lưu), tìm không khớp → xóa bộ lọc, bảng 12 ngành, responsive và console. Không lưu tên thử, không nhập/xóa/ghi đè kế hoạch.
 - Trạng thái có chứng nhận và lỗi nhập/xung đột dùng code hiện có, kiểm tra nghiệp vụ qua bộ check; không tuyên bố đã chạy lại mọi luồng browser. Bàn giao trên fix/beaver-ui trước merge.
+
+## Thống nhất Path detail và My roadmap — 10/10/2026
+
+- Theo phản hồi của Hải: thông tin/tác vụ bên trái, danh sách chặng bên phải trên cả hai trang. Cùng tỷ lệ 1:2, gap 36px, khung giấy viền gạch 2px và sticky top 88px. Dưới 990px cùng cột trái 240px; dưới 760px cả hai xếp thao tác trước chặng học.
+- Path detail vốn có aside đứng trước danh sách trong DOM; sửa grid areas để thứ tự nhìn và thứ tự đọc thống nhất. Không đổi nội dung hoặc callback.
+- Build/check đạt. Browser desktop 1280: cả hai cột 390.885 / 781.781px; khối trái x=28, danh sách x=454.885. Mobile 390: body 375px, thông tin/thiết lập đứng trước danh sách. Đường dẫn Tùy chỉnh lộ trình mở đúng Backend Node.js, goal và dữ liệu đang lưu được giữ.
+- Ảnh bàn giao: D:/IS207/artifacts/path-layout-2026-10-10. Chưa merge.

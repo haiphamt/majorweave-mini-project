@@ -57,3 +57,5 @@
 - Kết thúc task: liệt kê file đổi, cách thử, kết quả thực tế, giới hạn và việc cần tích hợp. Dừng tại ranh giới task; không tự nhận thêm phần của bạn khác.
 
 - 10/10/2026: Hải bác bộ lọc trong hộp lớn, hai khối cuối Explore cạnh nhau và các khung lớn trong Profile. Dùng thanh lọc gọn trên canvas, bảng ngành thành hàng mở rộng và ghi chú ngắn. Profile chia Activity / Profile / Data, mặc định Activity để nhịp học hiện đầu tiên. Giữ danh mục 4 cột có khung gạch và toàn bộ bảo vệ dữ liệu.
+
+- 10/10/2026: Path detail và My roadmap thống nhất thông tin/thao tác bên trái, chặng học bên phải, cùng tỷ lệ 1:2 và khung giấy viền gạch. Trên mobile cùng thứ tự thao tác trước, chặng sau. Không đảo bên khi chuyển hai trang.
