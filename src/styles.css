@@ -369,3 +369,36 @@ dialog{padding:0;border:1px solid var(--line);border-radius:7px;background:var(-
   .week-stat-row>span:last-child{width:100%}
   .week-overview-row{gap:16px}
 }
+
+/* Profile: learning activity leads; settings follow in normal reading order. */
+.profile-page{max-width:1280px;padding:32px 40px 48px}
+.profile-page>.page-heading{margin-bottom:24px;align-items:center}
+.profile-page>.page-heading h1{font-size:30px;line-height:1.3}
+.profile-page>.study-activity{margin-top:0;padding:24px;border-radius:12px}
+.profile-page .activity-heading h2{margin:0;font-size:22px}
+.profile-page .activity-range,.profile-page .activity-caption,.profile-page .activity-day-detail{font-size:13px;line-height:1.7}
+.profile-page .activity-layout{justify-content:flex-start;gap:64px;margin:24px 0 16px}
+.profile-page .activity-totals{gap:32px}
+.profile-page .activity-totals strong{font:600 28px 'Be Vietnam Pro',sans-serif;font-variant-numeric:tabular-nums}
+.profile-page .activity-totals span,.profile-page .activity-note{font-size:12px;line-height:1.7}
+.profile-page .activity-grid,.profile-page .activity-months{grid-template-columns:repeat(12,20px);gap:6px}
+.profile-page .activity-grid,.profile-page .activity-weekdays{grid-template-rows:repeat(7,20px);gap:6px}
+.profile-page .activity-grid .activity-cell{width:20px;height:20px}
+.profile-page .activity-weekdays,.profile-page .activity-months,.profile-page .activity-legend{font-size:11px}
+.profile-page .profile-paper{padding:24px;border-radius:12px}
+.profile-page .profile-paper input,.profile-page .profile-paper select{min-height:44px;font-size:14px}
+@media(max-width:760px){
+  .profile-page{padding:24px 20px 36px}
+  .profile-page>.page-heading{flex-direction:row;justify-content:space-between;gap:16px}
+  .profile-page>.page-heading h1{font-size:26px}
+  .profile-page>.study-activity{padding:20px}
+  .profile-page .activity-heading{gap:8px}
+  .profile-page .activity-heading h2{font-size:20px}
+  .profile-page .activity-layout{gap:24px}
+  .profile-page .activity-grid,.profile-page .activity-months{grid-template-columns:repeat(12,16px);gap:5px}
+  .profile-page .activity-grid,.profile-page .activity-weekdays{grid-template-rows:repeat(7,16px);gap:5px}
+  .profile-page .activity-grid .activity-cell{width:16px;height:16px}
+  .profile-page .activity-totals{gap:24px}
+  .profile-page .activity-totals strong{font-size:24px}
+  .profile-page .profile-paper input,.profile-page .profile-paper select{font-size:16px}
+}

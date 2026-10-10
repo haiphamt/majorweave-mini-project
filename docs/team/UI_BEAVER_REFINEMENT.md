@@ -65,3 +65,11 @@ Hải yêu cầu bắt đầu theo đề xuất chỉnh phần bên trong. Bư�
 - Ảnh bàn giao: `D:/IS207/artifacts/learning-ui-2026-10-10/path-desktop.jpg`, `plan-desktop.jpg`, `path-mobile.jpg`, `plan-mobile.jpg` và `plan-empty-desktop.jpg`. Ảnh Kế hoạch dùng dữ liệu kiểm tra riêng, không phải kế hoạch của Hải.
 
 Nhánh bàn giao vẫn là `fix/beaver-ui`. Chờ Hải kiểm tra hai trang trước khi triển khai ba trang tiếp theo hoặc merge.
+
+## Điều chỉnh theo phản hồi Hải · 10/10/2026
+
+- Nav và tiêu đề tab trình duyệt giữ tiếng Anh: Explore / Path detail / My roadmap / My plan / Profile. Nội dung học, form và các chế độ xem trong trang giữ tiếng Việt.
+- Profile: Nhịp học của bạn lên đầu, trước form hồ sơ, mục tiêu chứng nhận và sao lưu. Khung hoạt động dùng bố cục gọn, số liệu nằm cạnh lịch ở desktop và xuống dưới ở mobile; giữ điều hướng ngày bằng bàn phím và completion ledger thật.
+- Đã tạo trên trình duyệt Chrome tại 127.0.0.1:5195 một kế hoạch thử Backend Node.js / Express: mục tiêu Xây API quản lý công việc, 5 giờ/tuần, bắt đầu Thứ Hai 12/10/2026; 15 chặng, 39 việc, 12 tuần, 54.5 giờ thực hành. Dữ liệu thử được lưu qua giao diện thật; không đưa vào seed, không đánh dấu hoàn thành giả. Tải lại vẫn giữ kế hoạch.
+- Kiểm tra: build và check đạt; Profile desktop 1280×900 và mobile 390×844 không tràn ngang trang. Lịch/ngày chưa chọn vẫn do người học phân bổ; tạo plan hiện chỉ xếp theo tuần.
+- Minh chứng: D:/IS207/artifacts/profile-backend-2026-10-10/. Branch fix/beaver-ui; chờ Hải duyệt giao diện trước khi merge.

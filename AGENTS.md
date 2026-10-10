@@ -14,7 +14,8 @@
 ## Phạm vi và giao diện
 
 - Quyết định mới nhất ngày 10/10/2026: tên hiển thị là **uitplans.**, viết thường và có dấu chấm cuối. Wordmark chữ sans serif đậm như Beaver Plans, không icon/logo riêng, không chữ nghiêng hay tagline bên dưới. Giữ các khóa lưu dữ liệu, định dạng backup và ID hiện có để dữ liệu cũ tiếp tục dùng được.
-- Quyết định tiếp theo ngày 10/10/2026: Hải duyệt triển khai đề xuất bố cục bên trong; làm **Hướng học và Kế hoạch trước**. Dùng chữ sans serif, danh sách chặng gọn, công việc nhóm theo ngày đã chọn và menu thao tác phụ. Điều hướng Việt hóa; giữ dữ liệu học thật và gửi bản xem trước trước khi làm ba trang còn lại.
+- Quyết định tiếp theo ngày 10/10/2026: Hải duyệt triển khai đề xuất bố cục bên trong; làm **Hướng học và Kế hoạch trước**. Dùng chữ sans serif, danh sách chặng gọn, công việc nhóm theo ngày đã chọn và menu thao tác phụ. Giữ dữ liệu học thật và gửi bản xem trước trước khi làm ba trang còn lại.
+- Điều chỉnh mới nhất ngày 10/10/2026: nav giữ tiếng Anh **Explore / Path detail / My roadmap / My plan / Profile**. Trong Profile, **Nhịp học của bạn** là phần đầu tiên sau tiêu đề, trước form hồ sơ và chứng nhận. Hải yêu cầu tạo một kế hoạch Backend để thử trên trình duyệt; không đưa dữ liệu cá nhân này vào seed của app.
 - Sáu thành viên: nhóm trưởng kiến trúc/thiết kế/tích hợp/duyệt cuối; năm bạn triển khai theo bảng phân công bước 5. Chỉ làm task có mã và phạm vi file được giao; mỗi người làm cả module và nội dung học được chỉ định.
 - Hoàn thiện mọi hướng/nhánh trong danh mục được duyệt; không thu hẹp về Backend. Không nhận placeholder hoặc chỉ liên kết ngoài là một kế hoạch đã hoàn chỉnh.
 - Quyết định mới của Hải ngày 09/10/2026: chuyển app sang top nav, tham chiếu Beaver Plans. Giữ palette kem/gạch và thương hiệu UIT - Path; ưu tiên thao tác học, nội dung gọn và tùy chọn nâng cao thu gọn. `src/prototype/` vẫn là thử nghiệm lịch sử.
