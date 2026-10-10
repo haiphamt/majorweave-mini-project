@@ -1,14 +1,13 @@
 import { contentPacks } from '../../content';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowUpRight, ArrowRight, X, Server, LayoutTemplate, Gamepad2, ChartNoAxesCombined, Database, Brain, ShieldCheck, Cpu, Cloud, PenTool, BriefcaseBusiness, Search, ChevronDown, Leaf } from 'lucide-react';
+import { ArrowUpRight, ArrowRight, X, Search, ChevronDown, Leaf } from 'lucide-react';
 import { majorName } from '../../data';
 import { faculties, paths } from '../../content/catalog';
 import { catalogCheckedAt, catalogScopeNote, majorCoverageNotes, majorProfiles, majorPaths, relationRank } from '../../content/catalog';
 import { ArrowDownRight as ArrowDownRightIcon } from 'lucide-react';
 import { useApp } from '../../app/context';
 import { Badge, External, RoadmapLinks, Dialog } from '../../components/ui';
-const iconMap = { server: Server, layout: LayoutTemplate, game: Gamepad2, chart: ChartNoAxesCombined, database: Database, brain: Brain, shield: ShieldCheck, chip: Cpu, cloud: Cloud, pen: PenTool, business: BriefcaseBusiness };
 export function Explore() {
   const { state, update } = useApp();
   const [preview, setPreview] = useState<(typeof paths)[number] | null>(null);
@@ -47,14 +46,15 @@ export function Explore() {
       <label className="checkbox-label catalog-near"><input type="checkbox" checked={nearOnly} disabled={!state.major} onChange={e => setNearOnly(e.target.checked)}/><span>Liên quan tới ngành của tôi<small>{state.major ? majorName(state.major) : 'Chọn ngành ở phần đầu để dùng bộ lọc này'}</small></span></label>
     </div>
     <div className="catalog-caption"><span><strong>{visiblePaths.length}</strong> hướng phù hợp{visiblePaths.length!==paths.length && ` / ${paths.length} hướng`}</span>{!!visiblePaths.length && (pathQuery || pathCategory!=='all' || nearOnly || state.browseFaculty!=='all') ? <button className="quiet-button" onClick={clearFilters}>Xóa bộ lọc hướng học<X size={14}/></button> : <span>Mở một hướng để xem kỹ năng, nguồn học và chứng nhận.</span>}</div>
-    <div className="path-grid">{visiblePaths.map(path => {
-      const Icon=iconMap[path.icon as keyof typeof iconMap];
+    <div className="path-grid">{visiblePaths.map((path,index) => {
       const pack=contentPacks.find(item=>item.pathId===path.id);
       return <article key={path.id} className="path-card">
-        <div className="card-top"><span className="path-icon"><Icon size={24} strokeWidth={1.6}/></span><span className="card-category">{categoryNames[path.category]}</span>{pack && <Badge tone="green-badge">{pack.tracks.length} nhánh học</Badge>}</div>
-        <h3>{path.name}</h3><p>{path.summary}</p>
-        <div className="tag-list">{path.tags.map(tag=><span key={tag}>{tag}</span>)}</div>
-        <div className="card-reference-links" aria-label={`Nguồn tham khảo cho ${path.name}`}><span>Tham khảo</span>{path.roadmaps.map(link=><External key={link.url} href={link.url}>{link.label}</External>)}</div>
+        <span className="path-frame-number" aria-hidden="true">{index+1}</span>
+        <div className="path-frame-content">
+          <h3>{path.name}</h3><p>{path.summary}</p>
+          <div className="card-top"><span className="card-category">{categoryNames[path.category]}</span>{pack && <Badge tone="green-badge">{pack.tracks.length} nhánh học</Badge>}{path.tags.map(tag=><span className="path-topic" key={tag}>{tag}</span>)}</div>
+          <div className="card-reference-links" aria-label={`Nguồn tham khảo cho ${path.name}`}><span>Tham khảo</span>{path.roadmaps.map(link=><External key={link.url} href={link.url}>{link.label}</External>)}</div>
+        </div>
         {pack ? <Link className="card-action" aria-label={`Xem lộ trình ${path.name}`} to={`/path?id=${path.id}`}>Xem lộ trình<ArrowRight size={18}/></Link> : <button className="card-action" onClick={()=>setPreview(path)}>Xem tổng quan<ArrowRight size={18}/></button>}
       </article>;
     })}</div>

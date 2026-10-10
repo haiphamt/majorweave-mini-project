@@ -129,3 +129,11 @@ Hải yêu cầu xử lý bộ lọc, hướng học và thông tin bên dưới
 - Khởi động lại Vite tại cổng 5195 vì bản xem trước đã dừng; sau reload Chrome đã hiển thị đúng nguồn đang sửa.
 - Kiểm chứng Chrome desktop 1280×900/mobile 390×844: 18 hướng được render; lọc AI còn đúng 3 hướng, tìm không có kết quả có đúng một nút xóa; xóa khôi phục 18. Xem lộ trình Backend mở đúng Path detail. Bảng có 12 hàng; vùng bảng mobile rộng 333px, nội dung 820px cuộn riêng; body 375px trong viewport 390px. Không có console error. Build/check và scan layout đạt.
 - Ảnh: `D:/IS207/artifacts/catalog-refinement-2026-10-10/` gồm danh mục và cuối trang desktop/mobile. Bàn giao trên `fix/beaver-ui`, chưa merge hoặc cập nhật Notion.
+
+### Sửa theo ảnh: khung ngang có viền đỏ hiện sẵn
+
+Hải không duyệt thẻ hai cột với viền trung tính. Thay bằng một cột khung ngang như khung bước trong Beaver Plans: nền giấy, viền gạch 2px luôn hiển thị, bo 14px, ô số 32px bên trái, nội dung giữa và CTA bên phải. Mobile giữ ô số/nội dung, CTA xuống dưới. Số là vị trí đang hiển thị; không dùng làm thứ hạng nghề hoặc tiến độ học.
+
+Bảng ngành và ghi chú cuối đổi sang cùng khung trắng viền gạch. Giữ bộ lọc, số nhánh, nội dung, URL và hành động hiện có; bỏ các icon nghề khỏi danh mục để ô số có đúng vai trò như ảnh.
+
+Kiểm chứng: build/check và scan layout đạt. Chrome 1280×900 render đủ 18 khung trong một cột, mỗi khung rộng khoảng 1209px; border thực tế `2px solid rgb(167, 65, 39)`. Mobile 390×844 giữ viền, body 375px không tràn ngang. Ảnh: `D:/IS207/artifacts/beaver-horizontal-frames-2026-10-10/`. Branch `fix/beaver-ui`, chưa merge.

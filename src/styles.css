@@ -518,7 +518,7 @@ dialog{padding:0;border:1px solid var(--line);border-radius:7px;background:var(-
 .beaver-app .explore-page .profile-intro strong{font-size:14px}
 .beaver-app .explore-page .profile-intro p{font-size:12px;line-height:1.7}
 .beaver-app .explore-page .small-icon{display:none}
-.beaver-app .explore-page .major-matrix{margin:36px 0 24px;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:0;overflow:hidden}
+.beaver-app .explore-page .major-matrix{margin:36px 0 24px;background:var(--paper);border:2px solid var(--rust);border-radius:14px;padding:0;overflow:hidden}
 .beaver-app .explore-page .major-matrix summary{font-size:14px;gap:16px;padding:24px}
 .beaver-app .explore-page .major-matrix summary strong{display:block;font-size:17px;font-weight:600;color:var(--ink)}
 .beaver-app .explore-page .major-matrix .matrix-summary-copy{flex:1;min-width:0;width:auto}
@@ -550,26 +550,25 @@ dialog{padding:0;border:1px solid var(--line);border-radius:7px;background:var(-
 .beaver-app .explore-page .path-catalog-toolbar label{font-size:12px}
 .beaver-app .explore-page .catalog-caption{font-size:12px;line-height:1.7;margin-bottom:20px;min-height:32px}
 .catalog-caption strong{font-weight:600;color:var(--ink)}
-.beaver-app .explore-page .path-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
-.beaver-app .explore-page .path-card{position:relative;display:flex;flex-direction:column;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:24px;transition:border-color .15s ease,background-color .15s ease}
+.beaver-app .explore-page .path-grid{grid-template-columns:minmax(0,1fr);gap:16px}
+.beaver-app .explore-page .path-card{position:relative;display:grid;grid-template-columns:32px minmax(0,1fr) 168px;gap:20px;align-items:start;background:var(--paper);border:2px solid var(--rust);border-radius:14px;padding:20px}
 .beaver-app .explore-page .path-card:is(:hover,:focus-within){transform:none;border-color:var(--rust);outline:0}
-.beaver-app .explore-page .card-top{margin:0 0 18px;justify-content:flex-start;gap:12px}
-.beaver-app .explore-page .path-icon{background:var(--green-soft);color:var(--green);width:40px;height:40px;border-radius:10px}
-.beaver-app .explore-page .path-icon>svg{width:22px;height:22px}
-.card-category{font-size:12px;color:var(--muted);flex:1;min-width:0;line-height:1.6}
+.path-frame-number{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border:1px solid var(--rust);border-radius:8px;background:var(--rust-soft);color:var(--rust);font:400 14px/1 var(--mono)}
+.path-frame-content{min-width:0}
+.beaver-app .explore-page .card-top{margin:12px 0 0;justify-content:flex-start;gap:8px 12px;flex-wrap:wrap}
+.card-category{font-size:12px;color:var(--muted);line-height:1.6}
 .beaver-app .explore-page .badge{font-size:11px;padding:4px 8px;white-space:nowrap}
 .beaver-app .explore-page .path-card h3{font-size:21px;line-height:1.5;font-weight:600}
-.beaver-app .explore-page .path-card>p{font-size:13px;line-height:1.8;margin-top:8px;max-width:65ch;min-height:48px}
-.beaver-app .explore-page .tag-list{margin:16px 0 20px;gap:8px}
-.beaver-app .explore-page .tag-list>span{font:400 11px/1.6 'Be Vietnam Pro',sans-serif;padding:2px 6px}
-.card-reference-links{display:flex;align-items:baseline;flex-wrap:wrap;gap:8px 14px;font-size:12px;line-height:1.7;margin-top:auto;padding-bottom:16px}
+.path-frame-content>p{font-size:13px;line-height:1.8;margin-top:6px;max-width:75ch;color:var(--muted)}
+.path-topic{font:400 11px/1.6 'Be Vietnam Pro',sans-serif;padding:2px 6px;background:var(--bg);color:var(--muted);border-radius:4px}
+.card-reference-links{display:flex;align-items:baseline;flex-wrap:wrap;gap:8px 14px;font-size:12px;line-height:1.7;margin-top:12px}
 .card-reference-links>span{font-size:11px;color:var(--muted)}
 .card-reference-links>a{display:inline-flex;align-items:center;gap:5px;color:var(--muted);overflow-wrap:anywhere}
 .card-reference-links>a:hover{color:var(--rust);text-decoration:underline;text-underline-offset:3px}
-.beaver-app .explore-page .card-action{border:1px solid transparent;border-radius:8px;background:var(--rust-soft);justify-content:space-between;gap:12px;width:100%;margin:0;padding:12px 14px;min-height:44px;font-size:14px;font-weight:500;color:var(--rust)}
+.beaver-app .explore-page .card-action{align-self:center;border:1px solid transparent;border-radius:8px;background:var(--rust-soft);justify-content:space-between;gap:12px;width:100%;margin:0;padding:12px 14px;min-height:44px;font-size:14px;font-weight:500;color:var(--rust)}
 .beaver-app .explore-page .path-card:hover .card-action{color:var(--rust)}
 .beaver-app .explore-page .overview-roadmap-links{font-size:12px}
-.beaver-app .explore-page .explore-note{display:flex;align-items:center;justify-content:space-between;gap:32px;border:1px dashed var(--line);border-radius:14px;background:var(--green-soft);padding:24px;margin:24px 0 0}
+.beaver-app .explore-page .explore-note{display:flex;align-items:center;justify-content:space-between;gap:32px;border:2px solid var(--rust);border-radius:14px;background:var(--paper);padding:24px;margin:24px 0 0}
 .explore-note-copy{display:flex;align-items:flex-start;gap:16px;min-width:0;color:var(--green)}
 .explore-note-copy>svg{margin-top:4px}
 .beaver-app .explore-page .explore-note h2{font-size:20px;color:var(--ink);margin:0 0 8px}
@@ -675,9 +674,10 @@ dialog{padding:0;border:1px solid var(--line);border-radius:7px;background:var(-
  .beaver-app .explore-page .catalog-heading h2{font-size:24px}
  .catalog-caption>span:last-child{font-size:11px}
  .beaver-app .explore-page .path-grid{grid-template-columns:1fr}
- .beaver-app .explore-page .path-card{padding:20px}
- .beaver-app .explore-page .path-card h3{font-size:20px}
- .beaver-app .explore-page .path-card>p{min-height:0}
+ .beaver-app .explore-page .path-card{grid-template-columns:28px minmax(0,1fr);gap:12px;padding:16px}
+ .path-frame-number{width:28px;height:30px;font-size:12px}
+ .beaver-app .explore-page .path-card h3{font-size:18px}
+ .beaver-app .explore-page .path-card>.card-action{grid-column:2}
  .beaver-app .roadmap-page .roadmap-editor{grid-template-columns:1fr;gap:32px}
  .beaver-app .roadmap-page .plan-builder{position:static;padding:20px}
  .beaver-app .roadmap-page .browse-select{width:100%}
