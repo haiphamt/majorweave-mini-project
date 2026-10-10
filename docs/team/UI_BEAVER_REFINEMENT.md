@@ -40,3 +40,28 @@ Nhánh `fix/beaver-ui`; gửi bản local để Hải kiểm tra trước khi me
 Theo ảnh Beaver Plans Hải cung cấp: tên dùng Be Vietnam Pro 700, 24px desktop / 22px mobile, tracking −0.03em, chữ đứng và dấu chấm cùng màu chữ. Giữ palette kem/gạch; bỏ icon của các mục điều hướng, dùng nhãn chữ gọn. Không thêm font hoặc dependency. Tên browser/tab và trang hướng dẫn thống nhất với wordmark; khóa dữ liệu/format backup cũ giữ nguyên.
 
 Kiểm chứng: `npm run check` và `npm run build` đạt. Scan typography của Impeccable không có finding. Chrome 1280px và 390px: wordmark không có ảnh, computed font là Be Vietnam Pro 700 / normal, đúng 24px và 22px; body không tràn ngang. Ảnh thực tế nằm trong `D:/IS207/artifacts/uitplans-2026-10-10`.
+
+
+### Bố cục Hướng học và Kế hoạch — bước được Hải duyệt ngày 10/10/2026
+
+Hải yêu cầu bắt đầu theo đề xuất chỉnh phần bên trong. Bước này triển khai hai màn hình trước để duyệt; Khám phá, Lộ trình của tôi và Hồ sơ sẽ làm sau.
+
+- Hướng học: đầu trang gọn, bộ chọn hướng/nhánh cùng nhóm; roadmap tham khảo là liên kết nhỏ; lưu lựa chọn nằm ở hàng riêng. Ba tab Lộ trình / Nguồn học / Chứng nhận giữ đầy đủ dữ liệu.
+- Các chặng là hàng có số thứ tự, tiêu đề, mô tả, nguồn và thời lượng; không còn thẻ lồng trong timeline. Phần tóm tắt tính từ chặng được chọn và chưa biết, không coi tổng thời gian này là thời lượng toàn khóa.
+- Trên điện thoại, tóm tắt và nút Tùy chỉnh xuất hiện trước danh sách. Trên desktop, tóm tắt nằm bên phải. Cửa sổ chặng dùng cùng kiểu chữ và vẫn có Áp dụng / Hủy.
+- Kế hoạch: chọn kế hoạch ngay đầu trang; mục tiêu xuất hiện một lần. Việc học / Thống kê / Các tuần là ba chế độ xem. Thanh tuần cuộn ngang trong vùng riêng.
+- Công việc nhóm theo dayIndex đang có; việc chưa gán ngày nằm trong Chưa chọn ngày. Không tự gán ngày cho lịch sinh ra. Menu dấu ba chấm chứa sửa và chuyển về chưa xếp lịch; tiêu chí mở bằng native details.
+- Trạng thái chưa có kế hoạch có nút tạo kế hoạch đầu tiên. Thống kê, danh sách tuần, trạng thái chỉ đọc, lưu lỗi/thử lại và hủy chốt tuần vẫn dùng callback/controller hiện có.
+- Điều hướng và tiêu đề tab trình duyệt Việt hóa. Giữ tên uitplans., palette kem/gạch, wordmark và kho dữ liệu cũ. Không thêm dependency, đổi nội dung học, reset dữ liệu hay cập nhật Notion.
+
+#### Kiểm chứng của bước này
+
+- Build và kiểm tra dự án đạt. Bộ kiểm tra MW-TEAM-03 đạt 41/41; fixture render được bổ sung lịch sử thật khi kiểm tra bộ chọn phiên bản, và kiểm tra mỗi việc chỉ xuất hiện một lần khi nhóm theo ngày. Không bỏ assertion.
+- Impeccable layout scan trước và sau chỉnh sửa đều không có finding.
+- Chrome 1280×900 và 390×844; kiểm tra thêm độ rộng 900px: body không tràn ngang. Kiểu chữ, nội dung dài, tab, menu và nút chính đã xem trực tiếp.
+- Dữ liệu QA dùng database riêng `uitplans-layout-qa-20261010`, entry trong thư mục artifacts bị Git bỏ qua; không ghi vào workspace của người dùng. Tạo kế hoạch React từ nội dung thật: 17 việc, 11 chặng.
+- Thử lọc nguồn không có kết quả và xóa bộ lọc; xem đủ 3 chứng nhận; đổi trạng thái trong cửa sổ chặng rồi Hủy giữ bản nháp. Sửa ngày một việc thành Thứ Hai, hoàn thành, tải lại: nhóm ngày và kết quả 1/17 vẫn được giữ.
+- Xem Thống kê, mở Các tuần → tuần 2; quay lại tuần 1, mở Chốt tuần → Hủy: tuần vẫn mở. Chưa thử lại lỗi quota/hai tab trực tiếp trong bước UI; các kiểm tra domain/controller hiện có vẫn đạt.
+- Ảnh bàn giao: `D:/IS207/artifacts/learning-ui-2026-10-10/path-desktop.jpg`, `plan-desktop.jpg`, `path-mobile.jpg`, `plan-mobile.jpg` và `plan-empty-desktop.jpg`. Ảnh Kế hoạch dùng dữ liệu kiểm tra riêng, không phải kế hoạch của Hải.
+
+Nhánh bàn giao vẫn là `fix/beaver-ui`. Chờ Hải kiểm tra hai trang trước khi triển khai ba trang tiếp theo hoặc merge.

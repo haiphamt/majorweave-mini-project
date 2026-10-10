@@ -433,9 +433,15 @@ test('UI05 server render empty/loading/load-error and missing selection states',
  assert.match(ui.renderMyPlan({...props,activePlanId:'missing'}),/lựa chọn cũ có thể không còn tồn tại/);
 });
 test('UI06 server render controlled plan, navigation, overtime and source snapshot', () => {
- const p=fixture(); p.current.hoursPerWeek=0.5;
+ const p=fixture();
+ assert.ok(!ui.renderMyPlan(uiProps(p)).includes('Phiên bản kế hoạch'), 'Hide version selector until history exists');
+ p.history.push({...structuredClone(p.current),id:uuid(80)});
+ p.current.hoursPerWeek=0.5;
+ p.current.tasks[0].dayIndex=0; p.current.tasks[1].dayIndex=null;
  const html=ui.renderMyPlan(uiProps(p));
- for(const text of ['Kế hoạch đang xem','Phiên bản kế hoạch','Stats','Weeks','Backlog','Vượt quỹ giờ','Có kết quả','https://example.org/resource']) assert.ok(html.includes(text),text);
+ for(const text of ['Kế hoạch đang xem','Phiên bản kế hoạch','Thống kê','Các tuần','Chưa xếp lịch','Vượt quỹ giờ','Có kết quả','https://example.org/resource']) assert.ok(html.includes(text),text);
+ assert.ok(html.includes('aria-label="Thứ Hai"') && html.includes('aria-label="Chưa chọn ngày"'));
+ assert.equal((html.match(/type="checkbox"/g)||[]).length,2,'Show each task in the week once; do not include backlog tasks');
  assert.equal(p.current.tasks.length,3);
 });
 test('UI07 archived render hides mutation buttons and disables completion', () => {

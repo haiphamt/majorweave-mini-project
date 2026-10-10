@@ -4,7 +4,7 @@ Cập nhật 09/10/2026. Áp dụng cho mọi hướng học đã tích hợp.
 
 ## EF01 — Chọn ngành học
 
-**Trang:** Explore
+**Trang:** Khám phá
 
 **Điều kiện:** Trang đã tải dữ liệu; thao tác ghi cần bản hiện tại và không có lần lưu đang chờ.
 
@@ -22,7 +22,7 @@ Cập nhật 09/10/2026. Áp dụng cho mọi hướng học đã tích hợp.
 
 ## EF02 — Khám phá khoa khác
 
-**Trang:** Explore
+**Trang:** Khám phá
 
 **Điều kiện:** Trang đã tải dữ liệu; thao tác ghi cần bản hiện tại và không có lần lưu đang chờ.
 
@@ -40,7 +40,7 @@ Cập nhật 09/10/2026. Áp dụng cho mọi hướng học đã tích hợp.
 
 ## EF03 — Tìm hướng học
 
-**Trang:** Explore
+**Trang:** Khám phá
 
 **Điều kiện:** Trang đã tải dữ liệu; thao tác ghi cần bản hiện tại và không có lần lưu đang chờ.
 
@@ -58,7 +58,7 @@ Cập nhật 09/10/2026. Áp dụng cho mọi hướng học đã tích hợp.
 
 ## EF04 — Xem bảng ngành và hướng
 
-**Trang:** Explore
+**Trang:** Khám phá
 
 **Điều kiện:** Trang đã tải dữ liệu; thao tác ghi cần bản hiện tại và không có lần lưu đang chờ.
 
@@ -76,7 +76,7 @@ Cập nhật 09/10/2026. Áp dụng cho mọi hướng học đã tích hợp.
 
 ## EF05 — Mở hướng học
 
-**Trang:** Explore → Path detail
+**Trang:** Khám phá → Hướng học
 
 **Điều kiện:** Trang đã tải dữ liệu; thao tác ghi cần bản hiện tại và không có lần lưu đang chờ.
 
@@ -90,11 +90,11 @@ Cập nhật 09/10/2026. Áp dụng cho mọi hướng học đã tích hợp.
 
 ### Hủy, thay thế và lỗi
 
-- Nhánh lỗi: báo lỗi, có thể về Explore.
+- Nhánh lỗi: báo lỗi, có thể về Khám phá.
 
 ## EF06 — Đổi hướng và nhánh
 
-**Trang:** Path detail
+**Trang:** Hướng học
 
 **Điều kiện:** Trang đã tải dữ liệu; thao tác ghi cần bản hiện tại và không có lần lưu đang chờ.
 
@@ -112,7 +112,7 @@ Cập nhật 09/10/2026. Áp dụng cho mọi hướng học đã tích hợp.
 
 ## EF07 — Mở roadmap tham khảo
 
-**Trang:** Path detail
+**Trang:** Hướng học
 
 **Điều kiện:** Trang đã tải dữ liệu; thao tác ghi cần bản hiện tại và không có lần lưu đang chờ.
 
@@ -130,11 +130,11 @@ Cập nhật 09/10/2026. Áp dụng cho mọi hướng học đã tích hợp.
 
 ## EF08 — Xem một chặng
 
-**Trang:** Path detail
+**Trang:** Hướng học
 
 **Điều kiện:** Trang đã tải dữ liệu; thao tác ghi cần bản hiện tại và không có lần lưu đang chờ.
 
-**Bắt đầu:** Mở chặng trong Roadmap
+**Bắt đầu:** Mở chặng trong Lộ trình
 
 ### Luồng chính
 
@@ -202,7 +202,7 @@ Cập nhật 09/10/2026. Áp dụng cho mọi hướng học đã tích hợp.
 
 ## EF12 — Lưu lựa chọn nhánh
 
-**Trang:** Path detail
+**Trang:** Hướng học
 
 **Điều kiện:** Trang đã tải dữ liệu; thao tác ghi cần bản hiện tại và không có lần lưu đang chờ.
 
@@ -220,7 +220,7 @@ Cập nhật 09/10/2026. Áp dụng cho mọi hướng học đã tích hợp.
 
 ## EF13 — Tìm nguồn học
 
-**Trang:** Path detail · Nguồn học
+**Trang:** Hướng học · Nguồn học
 
 **Điều kiện:** Trang đã tải dữ liệu; thao tác ghi cần bản hiện tại và không có lần lưu đang chờ.
 
@@ -238,7 +238,7 @@ Cập nhật 09/10/2026. Áp dụng cho mọi hướng học đã tích hợp.
 
 ## EF14 — Lưu mục tiêu chứng nhận
 
-**Trang:** Path detail · Chứng nhận
+**Trang:** Hướng học · Chứng nhận
 
 **Điều kiện:** Trang đã tải dữ liệu; thao tác ghi cần bản hiện tại và không có lần lưu đang chờ.
 
@@ -248,7 +248,7 @@ Cập nhật 09/10/2026. Áp dụng cho mọi hướng học đã tích hợp.
 
 1. Đổi trạng thái mục tiêu. Thao tác của người học.
 2. Lưu trên thiết bị. Phản hồi của hệ thống.
-3. Cập nhật mục đã lưu ở Profile. Kết quả có thể quan sát trên giao diện.
+3. Cập nhật mục đã lưu ở Hồ sơ. Kết quả có thể quan sát trên giao diện.
 
 ### Hủy, thay thế và lỗi
 
@@ -256,7 +256,7 @@ Cập nhật 09/10/2026. Áp dụng cho mọi hướng học đã tích hợp.
 
 ## EF15 — Tùy chỉnh roadmap
 
-**Trang:** My roadmap
+**Trang:** Lộ trình của tôi
 
 **Điều kiện:** Trang đã tải dữ liệu; thao tác ghi cần bản hiện tại và không có lần lưu đang chờ.
 
@@ -274,7 +274,7 @@ Cập nhật 09/10/2026. Áp dụng cho mọi hướng học đã tích hợp.
 
 ## EF16 — Đánh dấu kỹ năng đã biết
 
-**Trang:** My roadmap
+**Trang:** Lộ trình của tôi
 
 **Điều kiện:** Trang đã tải dữ liệu; thao tác ghi cần bản hiện tại và không có lần lưu đang chờ.
 
@@ -292,7 +292,7 @@ Cập nhật 09/10/2026. Áp dụng cho mọi hướng học đã tích hợp.
 
 ## EF17 — Lưu bản nháp
 
-**Trang:** My roadmap
+**Trang:** Lộ trình của tôi
 
 **Điều kiện:** Trang đã tải dữ liệu; thao tác ghi cần bản hiện tại và không có lần lưu đang chờ.
 
@@ -310,7 +310,7 @@ Cập nhật 09/10/2026. Áp dụng cho mọi hướng học đã tích hợp.
 
 ## EF18 — Chọn ngày bắt đầu
 
-**Trang:** My roadmap
+**Trang:** Lộ trình của tôi
 
 **Điều kiện:** Trang đã tải dữ liệu; thao tác ghi cần bản hiện tại và không có lần lưu đang chờ.
 
@@ -328,7 +328,7 @@ Cập nhật 09/10/2026. Áp dụng cho mọi hướng học đã tích hợp.
 
 ## EF19 — Chọn kế hoạch đang xem
 
-**Trang:** My Plan
+**Trang:** Kế hoạch
 
 **Điều kiện:** Trang đã tải dữ liệu; thao tác ghi cần bản hiện tại và không có lần lưu đang chờ.
 
@@ -344,18 +344,18 @@ Cập nhật 09/10/2026. Áp dụng cho mọi hướng học đã tích hợp.
 
 - Có bản lưu lỗi: xử lý trước khi đổi.
 
-## EF20 — Xem tuần hoặc Backlog
+## EF20 — Xem tuần hoặc việc chưa xếp lịch
 
-**Trang:** My Plan · Plan
+**Trang:** Kế hoạch · Việc học
 
 **Điều kiện:** Trang đã tải dữ liệu; thao tác ghi cần bản hiện tại và không có lần lưu đang chờ.
 
-**Bắt đầu:** Chọn tuần hoặc Backlog
+**Bắt đầu:** Chọn tuần hoặc Chưa xếp lịch
 
 ### Luồng chính
 
-1. Đọc việc của tuần. Thao tác của người học.
-2. Đọc bản chốt nếu có. Phản hồi của hệ thống.
+1. Nhóm theo ngày đã chọn. Thao tác của người học.
+2. Việc chưa chọn ngày có nhóm riêng. Phản hồi của hệ thống.
 3. Hiển thị tiến độ và nguồn. Kết quả có thể quan sát trên giao diện.
 
 ### Hủy, thay thế và lỗi
@@ -364,11 +364,11 @@ Cập nhật 09/10/2026. Áp dụng cho mọi hướng học đã tích hợp.
 
 ## EF21 — Thêm công việc
 
-**Trang:** My Plan · Plan
+**Trang:** Kế hoạch · Việc học
 
 **Điều kiện:** Trang đã tải dữ liệu; thao tác ghi cần bản hiện tại và không có lần lưu đang chờ.
 
-**Bắt đầu:** Thêm việc
+**Bắt đầu:** Thêm việc học
 
 ### Luồng chính
 
@@ -382,11 +382,11 @@ Cập nhật 09/10/2026. Áp dụng cho mọi hướng học đã tích hợp.
 
 ## EF22 — Chỉnh công việc
 
-**Trang:** My Plan · Plan
+**Trang:** Kế hoạch · Việc học
 
 **Điều kiện:** Trang đã tải dữ liệu; thao tác ghi cần bản hiện tại và không có lần lưu đang chờ.
 
-**Bắt đầu:** Sửa một công việc
+**Bắt đầu:** Mở menu công việc → Sửa
 
 ### Luồng chính
 
@@ -398,13 +398,13 @@ Cập nhật 09/10/2026. Áp dụng cho mọi hướng học đã tích hợp.
 
 - Lưu lỗi giữ bản sửa; tuần chốt không sửa.
 
-## EF23 — Đưa việc vào Backlog
+## EF23 — Chuyển việc về chưa xếp lịch
 
-**Trang:** My Plan · Plan
+**Trang:** Kế hoạch · Việc học
 
 **Điều kiện:** Trang đã tải dữ liệu; thao tác ghi cần bản hiện tại và không có lần lưu đang chờ.
 
-**Bắt đầu:** Đưa vào backlog
+**Bắt đầu:** Mở menu → Chuyển về chưa xếp lịch
 
 ### Luồng chính
 
@@ -418,11 +418,11 @@ Cập nhật 09/10/2026. Áp dụng cho mọi hướng học đã tích hợp.
 
 ## EF24 — Xem thống kê
 
-**Trang:** My Plan · Stats
+**Trang:** Kế hoạch · Thống kê
 
 **Điều kiện:** Trang đã tải dữ liệu; thao tác ghi cần bản hiện tại và không có lần lưu đang chờ.
 
-**Bắt đầu:** Mở Stats
+**Bắt đầu:** Mở Thống kê
 
 ### Luồng chính
 
@@ -436,11 +436,11 @@ Cập nhật 09/10/2026. Áp dụng cho mọi hướng học đã tích hợp.
 
 ## EF25 — Xem tuần và lịch sử
 
-**Trang:** My Plan · Weeks
+**Trang:** Kế hoạch · Các tuần
 
 **Điều kiện:** Trang đã tải dữ liệu; thao tác ghi cần bản hiện tại và không có lần lưu đang chờ.
 
-**Bắt đầu:** Mở Weeks hoặc bản cũ
+**Bắt đầu:** Mở Các tuần hoặc phiên bản cũ
 
 ### Luồng chính
 
@@ -454,7 +454,7 @@ Cập nhật 09/10/2026. Áp dụng cho mọi hướng học đã tích hợp.
 
 ## EF26 — Xem nhịp học
 
-**Trang:** Profile
+**Trang:** Hồ sơ
 
 **Điều kiện:** Trang đã tải dữ liệu; thao tác ghi cần bản hiện tại và không có lần lưu đang chờ.
 
@@ -472,7 +472,7 @@ Cập nhật 09/10/2026. Áp dụng cho mọi hướng học đã tích hợp.
 
 ## EF27 — Hủy chỉnh hồ sơ
 
-**Trang:** Profile
+**Trang:** Hồ sơ
 
 **Điều kiện:** Trang đã tải dữ liệu; thao tác ghi cần bản hiện tại và không có lần lưu đang chờ.
 
@@ -490,7 +490,7 @@ Cập nhật 09/10/2026. Áp dụng cho mọi hướng học đã tích hợp.
 
 ## EF28 — Mở sao lưu và khôi phục
 
-**Trang:** Profile
+**Trang:** Hồ sơ
 
 **Điều kiện:** Trang đã tải dữ liệu; thao tác ghi cần bản hiện tại và không có lần lưu đang chờ.
 
@@ -508,7 +508,7 @@ Cập nhật 09/10/2026. Áp dụng cho mọi hướng học đã tích hợp.
 
 ## EF29 — Chọn nhánh và tạo plan v2
 
-**Trang:** My roadmap
+**Trang:** Lộ trình của tôi
 
 **Điều kiện:** Workspace đã tải; draft hợp lệ.
 
@@ -519,7 +519,7 @@ Cập nhật 09/10/2026. Áp dụng cho mọi hướng học đã tích hợp.
 1. Chọn nhánh, chặng và nguồn. 18 hướng / 50 cấu hình.
 2. Kiểm tra draft và sinh lịch. Tiên quyết, giờ/tuần, ngày.
 3. Chờ transaction hoàn tất. Tạo ID mới, giữ plan cũ.
-4. Plan mới được lưu. Mở My Plan để tiếp tục.
+4. Plan mới được lưu. Mở Kế hoạch để tiếp tục.
 
 ### Hủy, thay thế và lỗi
 
@@ -528,7 +528,7 @@ Cập nhật 09/10/2026. Áp dụng cho mọi hướng học đã tích hợp.
 
 ## EF30 — Tạo lại có preview/history
 
-**Trang:** My roadmap
+**Trang:** Lộ trình của tôi
 
 **Điều kiện:** Có active plan và draft hợp lệ.
 
@@ -548,7 +548,7 @@ Cập nhật 09/10/2026. Áp dụng cho mọi hướng học đã tích hợp.
 
 ## EF31 — Hoàn thành và undo v2
 
-**Trang:** My Plan
+**Trang:** Kế hoạch
 
 **Điều kiện:** Plan đang xem và tuần còn mở.
 
@@ -568,7 +568,7 @@ Cập nhật 09/10/2026. Áp dụng cho mọi hướng học đã tích hợp.
 
 ## EF32 — Chốt tuần và giữ snapshot
 
-**Trang:** My Plan
+**Trang:** Kế hoạch
 
 **Điều kiện:** Tuần mở, chưa có candidate chờ.
 
@@ -579,7 +579,7 @@ Cập nhật 09/10/2026. Áp dụng cho mọi hướng học đã tích hợp.
 1. Xem việc xong/chưa xong. Snapshot trước xử lý.
 2. Chọn xử lý việc chưa xong. Dời tuần / backlog / skip.
 3. Xác nhận và lưu plan. Hủy giữ tuần mở.
-4. Tuần đã chốt chỉ đọc. Stats/Weeks đọc snapshot.
+4. Tuần đã chốt chỉ đọc. Thống kê / Các tuần đọc kết quả chốt.
 
 ### Hủy, thay thế và lỗi
 
@@ -588,7 +588,7 @@ Cập nhật 09/10/2026. Áp dụng cho mọi hướng học đã tích hợp.
 
 ## EF33 — Lưu Profile và timezone
 
-**Trang:** Profile
+**Trang:** Hồ sơ
 
 **Điều kiện:** Workspace đã tải.
 
@@ -608,7 +608,7 @@ Cập nhật 09/10/2026. Áp dụng cho mọi hướng học đã tích hợp.
 
 ## EF34 — Xuất và nhập backup v2
 
-**Trang:** Profile
+**Trang:** Hồ sơ
 
 **Điều kiện:** Workspace đã tải; chọn JSON hợp lệ.
 
@@ -629,7 +629,7 @@ Cập nhật 09/10/2026. Áp dụng cho mọi hướng học đã tích hợp.
 
 ## EF35 — Chuyển dữ liệu v1 an toàn
 
-**Trang:** Profile
+**Trang:** Hồ sơ
 
 **Điều kiện:** Đọc được raw v1; draft đã lưu/bỏ.
 
