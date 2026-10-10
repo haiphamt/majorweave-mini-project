@@ -117,3 +117,15 @@ Theo phản hồi tiếp theo của Hải: đầu Explore quá trống và thu�
 - Chrome 1280×900 và 390×844: đã xem đầu Explore; không tràn ngang body, chữ tiêu đề mobile 32px. Danh mục desktop bắt đầu khoảng y=780 trong màn 900px; nút khám phá cuộn đến danh mục. Tìm không có kết quả rồi Xóa bộ lọc khôi phục đủ 18 hướng.
 - My roadmap trên kế hoạch Backend thật: không còn trạng thái “bản nháp” khi sạch; mở phần thu gọn → xem trước tạo lại → đóng giữ nguyên kế hoạch. Không xác nhận tạo lại, không tạo dữ liệu hoàn thành.
 - Build/check và scan layout đạt. Ảnh thực tế: `D:/IS207/artifacts/explore-refresh-2026-10-10/`. Branch vẫn `fix/beaver-ui`, chờ Hải kiểm tra trước merge; chưa cập nhật Notion.
+
+### Danh mục và thông tin cuối Explore
+
+Hải yêu cầu xử lý bộ lọc, hướng học và thông tin bên dưới trong hai ảnh, theo style Beaver Plans.
+
+- Bộ lọc gom trong một khung: tìm kiếm ở trên, khoa/nhóm/liên hệ ngành ở dưới. Số kết quả và nút xóa bộ lọc tách ra ở hàng riêng. Bộ lọc “Liên quan tới ngành của tôi” vẫn bao gồm hướng gần và mở rộng theo quan hệ hiện có.
+- Mỗi hướng có nền giấy, viền bo 14px, nhóm nghề và số nhánh lấy từ content pack thật; nút Xem lộ trình màu gạch nhạt. Hover hoặc focus bên trong làm nổi viền gạch; nguồn tham khảo là hành động phụ, giữ URL hiện có. Nguồn IIBA không bị gọi chung là roadmap.sh trong danh mục mới.
+- Bảng ngành thu gọn có tiêu đề và mô tả; khi mở có chú giải hai nhóm, lưu ý phạm vi và bảng 12 ngành. Trên mobile, bảng cuộn ngang trong vùng riêng có thể focus bằng bàn phím; body không tràn.
+- Ghi chú cuối dùng nền xanh nhạt và nút Quay lại hướng học. Footer dùng chữ sans serif, wordmark, hướng dẫn thao tác và thông tin lưu trên trình duyệt; bỏ dòng Mini project/nhánh đang chọn khỏi footer sản phẩm. Phần đầu Explore và nghiệp vụ kế hoạch được giữ.
+- Khởi động lại Vite tại cổng 5195 vì bản xem trước đã dừng; sau reload Chrome đã hiển thị đúng nguồn đang sửa.
+- Kiểm chứng Chrome desktop 1280×900/mobile 390×844: 18 hướng được render; lọc AI còn đúng 3 hướng, tìm không có kết quả có đúng một nút xóa; xóa khôi phục 18. Xem lộ trình Backend mở đúng Path detail. Bảng có 12 hàng; vùng bảng mobile rộng 333px, nội dung 820px cuộn riêng; body 375px trong viewport 390px. Không có console error. Build/check và scan layout đạt.
+- Ảnh: `D:/IS207/artifacts/catalog-refinement-2026-10-10/` gồm danh mục và cuối trang desktop/mobile. Bàn giao trên `fix/beaver-ui`, chưa merge hoặc cập nhật Notion.
