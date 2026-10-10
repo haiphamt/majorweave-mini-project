@@ -44,7 +44,7 @@
 
 ## Chưa chạy và giới hạn
 
-- Tạo Supabase project, migration trên hosted project, SMTP/Gmail thật, CAPTCHA nếu bật, xác nhận email thật, đổi mật khẩu thật: **CHƯA CHẠY — chưa có project**.
+- Trạng thái ngày 10/10: chưa có project. Cập nhật hosted ngày 11/10 nằm ở mục dưới; SMTP/Gmail thật, CAPTCHA nếu bật, xác nhận email thật và đổi mật khẩu thật vẫn **CHƯA CHẠY**.
 - Đồng bộ giữa hai máy vật lý và kiểm tra hiệu năng tải lớn: **CHƯA CHẠY**.
 - Postgres/PGlite kiểm tra RLS/SQL thực; không thay thế nghiệm thu Supabase Auth hoặc HTTP gateway hosted.
 - Không thay AI Log/bằng chứng cá nhân của năm bạn trong nhóm. Không merge vào main hoặc cập nhật Notion.
@@ -65,3 +65,18 @@
 - npm run build: PASS. SDK Supabase tách thành chunk tải khi project được bật; Guest chưa cấu hình không tải SDK. App target ES2022 cho trình duyệt hiện đại. Bundle app khoảng 516 KB (gzip 133 KB), Vite còn cảnh báo ngưỡng 500 KB; không đổi ngưỡng để che cảnh báo. Đây chưa phải báo cáo đo hiệu năng trên thiết bị thật.
 - git diff --check: không có lỗi whitespace; cảnh báo chuẩn hóa LF/CRLF trên Windows không thay nội dung.
 - Bản chính có ảnh signin-main-unconfigured.png; ảnh signin-qa-preview.png là bản giao diện QA có cấu hình giả. QA được cách ly và không triển khai ra ngoài.
+
+## Nối project thật — 11/10/2026
+
+- Hải cung cấp URL/key công khai và yêu cầu cấu hình project `uitplans` (`svhbrhzedxohgnuoopir`). Plugin xác nhận project ACTIVE_HEALTHY, Postgres 17.11, schema public/migration ban đầu trống.
+- Áp dụng migration hiện có bằng Supabase plugin, tên hosted `account_workspaces`. Không thay SQL sản phẩm, không xóa dữ liệu hoặc tạo project khác.
+- `.env.local` trên máy Hải chứa URL/publishable key; Git xác nhận file bị bỏ qua. Không thêm secret/service_role vào frontend. Server chính chạy lại cổng 5195.
+- Dashboard: Site URL và Redirect URLs `http://127.0.0.1:5195/` đã lưu thành công. Email provider, đăng ký và Confirm email được giữ bật. Đặt minimum password length = 8; Dashboard báo lưu thành công.
+- Public Auth settings trả Email=true, disable_signup=false, mailer_autoconfirm=false: PASS.
+- Hosted SQL xác nhận RLS bật, authenticated chỉ SELECT bảng của mình; anon không có quyền RPC ghi, authenticated có quyền RPC: PASS.
+- Kiểm tra production function trên hosted Postgres trong **transaction rollback**: lần ghi đầu revision 1, retry cùng request ID vẫn revision 1, revision cũ bị PT409, ghi bảng trực tiếp bị từ chối, tài khoản B không đọc A, owner giả bị PT401: PASS. Chỉ dùng UUID tổng hợp, không tạo mật khẩu/phiên đăng nhập, không gửi thư. Sau rollback: 0 workspace và 0 user thử còn lại.
+- Hosted HTTP Data API với publishable key, chưa đăng nhập: SELECT bảng và RPC ghi đều bị 401: PASS. Đây kiểm tra quyền Guest, không phải nghiệm thu lưu bằng JWT thật.
+- Browser chính: dialog Sign in bật, trường Email nhập được, không còn banner chưa cấu hình: PASS. Không nhập mật khẩu hoặc tạo tài khoản thay người dùng. Ảnh `D:/IS207/artifacts/supabase-2026-10-11/signin-configured.png` và `redirect-configured.png`.
+- Security Advisor có một WARN: authenticated được gọi SECURITY DEFINER RPC. Đây là quyền có chủ đích để ghi qua CAS khi client không có INSERT/UPDATE trực tiếp. Đã kiểm tra `auth.uid()`/owner, search_path rỗng, EXECUTE chỉ authenticated, owner mismatch và RLS. Không đổi sang INVOKER để làm mất cảnh báo và mở quyền ghi trực tiếp. [Giải thích linter](https://supabase.com/docs/guides/database/database-linter?lint=0029_authenticated_security_definer_function_executable).
+- `npm run check` và `npm run build`: PASS sau cấu hình thật; cảnh báo bundle >500 KB vẫn còn như trước.
+- Dashboard xác nhận Custom SMTP **tắt**. Chưa gửi/nhận Gmail, xác nhận signup, đặt lại mật khẩu hoặc đồng bộ tài khoản trên hai máy thật. Cần SMTP và người dùng tự nhập thông tin tài khoản để nghiệm thu các bước này; không tắt Confirm email để vượt giới hạn SMTP mặc định.

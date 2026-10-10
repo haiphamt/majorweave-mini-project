@@ -5,8 +5,10 @@ Ngày 10/10/2026, Hải yêu cầu luồng tương tự Beaver Plans: **Guest �
 ## Trạng thái bàn giao
 
 - Code, migration SQL và kiểm thử đã có trên nhánh `fix/beaver-ui`.
-- Nhóm **chưa tạo project Supabase**. Bản chính vẫn dùng Guest; form báo đăng nhập chưa bật, không nhận mật khẩu hoặc giả báo gửi thư.
-- Chưa gửi thư đến Gmail thật hoặc kiểm thử trên Supabase hosted. Các kiểm thử online hiện dùng Postgres/PGlite và gateway QA riêng với tài khoản giả.
+- Ngày 11/10/2026, Hải đã tạo project **uitplans**, ref `svhbrhzedxohgnuoopir`, và cung cấp publishable key. App trên máy đã nối bằng `.env.local` (Git bỏ qua), khởi động ở `http://127.0.0.1:5195/`; form tài khoản đã bật.
+- Migration `account_workspaces` đã áp dụng trên hosted project. RLS, quyền đọc/ghi, retry và chống ghi đè đã kiểm tra bằng SQL thật trong transaction rollback; API Guest bị từ chối đọc/ghi.
+- Site URL và Redirect URLs đã đặt `http://127.0.0.1:5195/`. Email provider/đăng ký/xác nhận email bật; mật khẩu tối thiểu 8 ký tự.
+- **Custom SMTP chưa cấu hình**. Chưa nghiệm thu gửi thư Gmail, xác nhận email, đăng nhập tài khoản thật hoặc đồng bộ hai thiết bị thật. SMTP mặc định chỉ gửi được tới email thành viên tổ chức Supabase.
 - Không dùng project/key, dữ liệu hoặc tài khoản của Beaver Plans.
 
 ## 1. Tạo project của nhóm
@@ -93,11 +95,12 @@ node scripts/check-account.mjs
 
 `check-account` chạy production SQL bằng Postgres/PGlite: RLS, quyền ghi, revision, retry mất phản hồi, mất mạng, dữ liệu sai và đổi tài khoản giữa lần kiểm tra phiên/ghi dữ liệu. PGlite chỉ là dependency kiểm thử, không nằm trong app.
 
-## Những thông tin Hải cần cung cấp để nối thật
+## Phần còn lại sau khi nối project
 
-- Project URL.
-- Publishable/anon key.
-- Địa chỉ site khi triển khai; trước mắt có thể dùng localhost.
-- Xác nhận migration, Confirm email và SMTP đã được cấu hình trong project.
+- Cấu hình SMTP riêng tại [Emails → SMTP Settings của uitplans](https://supabase.com/dashboard/project/svhbrhzedxohgnuoopir/auth/smtp): địa chỉ người gửi được nhà cung cấp cho phép, tên người gửi `uitplans.`, host/port/user/password. Nhập thông tin bí mật trực tiếp trong Dashboard, không gửi vào chat.
+- Nếu thử với email chủ project, SMTP mặc định có thể dùng cho demo với giới hạn hiện tại 2 thư/giờ. Không đủ cho các thành viên/người dùng Gmail khác nếu họ không thuộc tổ chức Supabase.
+- Người dùng tự tạo tài khoản và nhập mật khẩu trong app, mở link trong email rồi kiểm tra theo mục 5. Chưa có bằng chứng thư được gửi/nhận thực tế.
+- Khi có địa chỉ triển khai thật, đặt Site URL và thêm Redirect URL tương ứng. Callback hiện dùng localhost trên máy của Hải; mở từ điện thoại sẽ quay về localhost của điện thoại, nên cần URL hosting để thử đa thiết bị.
+- Trên hosting hoặc máy khác, cấu hình cùng hai biến môi trường rồi build/chạy lại. `.env.local` không được commit; clone repository không tự có cấu hình trên máy Hải.
 
 Không cần cung cấp password database, service_role hay SMTP secret cho cuộc trò chuyện này.

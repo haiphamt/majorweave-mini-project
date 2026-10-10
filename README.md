@@ -13,7 +13,7 @@ Mini Project môn **Phát triển ứng dụng web — IS207.R11**, nhóm **PHP 
 - My Plan có Plan / Stats / Weeks, thêm/sửa việc, hoàn thành/undo, backlog và chốt tuần.
 - Profile lưu tên/ngành/múi giờ; nhịp học tổng hợp completion của mọi plan. Đổi múi giờ giữ ngày hoàn thành cũ.
 - **IndexedDB** lưu workspace trên thiết bị. Xuất/nhập JSON có preview, bỏ qua ID trùng hoặc nhập bản sao; chuyển v1 có xác nhận và chống nhập trùng.
-- Guest dùng ngay, giữ dữ liệu trên thiết bị. Đã thêm luồng tài khoản email/mật khẩu, xác nhận email, khôi phục mật khẩu và kho online qua Supabase; cần cấu hình project của nhóm để bật. Chưa có Google OAuth.
+- Guest dùng ngay, giữ dữ liệu trên thiết bị. Có tài khoản email/mật khẩu, xác nhận email, khôi phục mật khẩu và kho online qua Supabase. Project uitplans đã nối trên máy Hải; máy khác/hosting cần cấu hình môi trường. Chưa có Google OAuth.
 
 Số phút là ước lượng bài thực hành; tiến độ do người học tự ghi nhận. App không cấp/xác minh chứng chỉ hoặc đọc tiến độ khóa học bên ngoài. Các content pack vẫn mang trạng thái `review`: kiểm tra code không chứng minh mọi học phí, điều kiện thi hay chất lượng khóa học đã được xác minh.
 
@@ -57,7 +57,7 @@ UI dùng callback, không tự ghi storage. Domain độc lập React/storage. D
 
 ## Tài khoản và dữ liệu online — 10/10/2026
 
-Giữ Guest như hiện tại. Để bật đăng ký/đăng nhập và dữ liệu nhiều thiết bị, làm theo [hướng dẫn Supabase](docs/team/SUPABASE_ACCOUNT_SETUP.md). Cấu hình hai biến công khai trong .env.example, áp dụng migration SQL và bật xác nhận email/SMTP. Project chưa được tạo nên bản chính chưa gửi email hoặc đăng nhập thật.
+Project **uitplans** đã cấu hình database và callback phát triển ngày 11/10/2026. Trên máy Hải, chạy cổng **5195** để khớp URL xác nhận email. Máy khác/hosting làm theo [hướng dẫn Supabase](docs/team/SUPABASE_ACCOUNT_SETUP.md), điền hai biến công khai theo `.env.example`; `.env.local` không nằm trong Git. **SMTP riêng còn thiếu**: SMTP mặc định chỉ gửi tới email thành viên tổ chức Supabase. Chưa nghiệm thu Gmail/xác nhận/đăng nhập thật hoặc đồng bộ hai máy.
 
 Các kiểm thử SQL/RLS/revision dùng Postgres/PGlite được chạy trong npm run check; xem [QA/AI Log tài khoản](docs/team/ACCOUNT_QA_AI_LOG.md). Tài khoản online cần mạng; app giữ bản sửa thất bại để retry/xuất, chưa có hàng đợi offline bền vững.
 
