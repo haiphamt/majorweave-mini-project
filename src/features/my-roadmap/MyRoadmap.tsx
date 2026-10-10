@@ -52,7 +52,7 @@ export function MyRoadmap() {
   const draftResult = actions.getDraft(selectedTrackId);
   if (!resolved.ok || !draftResult) {
     return <div className="page roadmap-page"><div className="form-error" role="alert">
-      {!resolved.ok ? resolved.issues.map(issue => <p key={issue.code}>{issue.message}</p>) : <p>Không tìm thấy bản nháp lộ trình.</p>}
+      {!resolved.ok ? resolved.issues.map(issue => <p key={issue.code}>{issue.message}</p>) : <p>Không tìm thấy lựa chọn lộ trình đã lưu.</p>}
       <button className="secondary-button" disabled={busy} onClick={() => reload()}>Thử tải lại</button>
     </div></div>;
   }
@@ -78,7 +78,7 @@ export function MyRoadmap() {
       setIssues(['Chọn ngày bắt đầu có thật.']);
       return;
     }
-    if (report(await actions.saveDraft())) setNotice('Đã lưu bản nháp lộ trình.');
+    if (report(await actions.saveDraft())) setNotice('Đã lưu lựa chọn học.');
   }
 
   async function perform(action: PlanAction) {
@@ -175,11 +175,10 @@ export function MyRoadmap() {
         <p className="builder-note">{activeStages.length} chặng · {hoursText(minutes)} thực hành. Mỗi tuần bắt đầu vào Thứ Hai.</p>
         <button className="primary-button full-width" disabled={blocked} onClick={() => request('create')}>{status === 'saving' ? 'Đang lưu…' : 'Tạo kế hoạch mới'}</button>
         <div className="dialog-actions">
-          <button className="secondary-button" disabled={blocked || !dirty} onClick={saveDraft}>Lưu bản nháp</button>
-          {sameTrackPlan && <button className="secondary-button" disabled={blocked} onClick={() => request('regenerate')}>Xem trước tạo lại</button>}
+          <button className="secondary-button" disabled={blocked || !dirty} onClick={saveDraft}>Lưu lựa chọn</button>
         </div>
-        <p className="builder-note" role="status">{status === 'saving' ? 'Đang lưu thay đổi…' : unsavedWorkspace ? 'Có thay đổi chưa lưu được.' : dirty ? 'Bản nháp có thay đổi chưa lưu.' : 'Bản nháp không có thay đổi chưa lưu.'}</p>
-        {sameTrackPlan && <p className="builder-note">Tạo lại áp dụng cho “{sameTrackPlan.name}”.</p>}
+        {(status === 'saving' || unsavedWorkspace || dirty) && <p className="builder-note" role="status">{status === 'saving' ? 'Đang lưu thay đổi…' : unsavedWorkspace ? 'Có thay đổi chưa lưu được.' : 'Có thay đổi chưa lưu.'}</p>}
+        {sameTrackPlan && <details className="plan-options"><summary>Điều chỉnh kế hoạch đã tạo</summary><p className="builder-note">Tạo lại từ các lựa chọn trên cho “{sameTrackPlan.name}”. Bạn sẽ xem trước trước khi xác nhận.</p><button className="secondary-button" disabled={blocked} onClick={() => request('regenerate')}>Xem trước tạo lại</button></details>}
       </aside>
       <section className="roadmap-paper" aria-label="Chặng học">
         <div className="paper-heading"><h2>Chặng học</h2></div>
@@ -249,7 +248,7 @@ export function MyRoadmap() {
     </Dialog>}
     {confirmDiscard && <Dialog className="roadmap-dialog" title="Bỏ thay đổi chưa lưu?" onClose={() => { if (!busy) setConfirmDiscard(false); }}>
       <div className="dialog-body">
-        <p>Tải bản đã lưu sẽ bỏ bản nháp và kế hoạch chưa lưu trên màn này.</p>
+        <p>Tải bản đã lưu sẽ bỏ các lựa chọn và thay đổi kế hoạch chưa lưu trên màn này.</p>
         <div className="dialog-actions">
           <button className="secondary-button" disabled={busy} onClick={() => setConfirmDiscard(false)}>Giữ thay đổi</button>
           <button className="primary-button" disabled={busy} onClick={() => reload(true)}>Bỏ thay đổi và tải lại</button>

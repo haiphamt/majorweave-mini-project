@@ -105,3 +105,15 @@ Bàn giao trên nhánh `fix/beaver-ui`, xem local tại http://127.0.0.1:5195/#/
 - Khung cần nhấn mạnh dùng viền gạch 2px, bo góc 14px, nền giấy sáng. My Plan đánh dấu việc chưa hoàn thành đầu tiên trong danh sách đang xem bằng khung này và `aria-current="step"`; số thứ tự nằm trong ô nhỏ. Đây là chỉ dẫn việc học tiếp theo, không phải kết quả hoàn thành. Khi lọc/đổi tuần, khung theo danh sách hiện tại.
 - My roadmap có khung đỏ quanh form thiết lập kế hoạch; Plan chưa có dữ liệu cũng dùng khung đỏ cho bước tạo đầu tiên. Các hàng chặng ở Path detail hiện viền khi hover/focus; Explore, editor chặng và hồ sơ có khung khi tương tác bằng bàn phím.
 - Đã xem Plan và My roadmap tại 1280×900 và 390×844: viền thực tế 2px, màu `rgb(167, 65, 39)`, không tràn ngang body. Ảnh: `D:/IS207/artifacts/beaver-red-frame-2026-10-10/`. Giữ nguyên dữ liệu Backend, chưa merge.
+
+### Explore rõ cách bắt đầu và bỏ thuật ngữ bản nháp trên giao diện
+
+Theo phản hồi tiếp theo của Hải: đầu Explore quá trống và thuật ngữ bản nháp gây khó hiểu.
+
+- Explore: tiêu đề hai dòng, màu gạch ở dòng thứ hai, CTA cuộn đến hướng học và liên kết My plan. Phía phải là bộ chọn khoa/ngành thật trong khung đỏ, tiếp theo là bước chọn kỹ năng và lên kế hoạch. Số ngành/hướng/nhánh lấy từ danh mục hiện có (12/18/50), không thêm số liệu giả.
+- Bộ lọc gọn trong một hàng desktop; bảng ngành → hướng vẫn mở được ở dưới danh mục, giúp hướng học xuất hiện sớm hơn. Không thay ngành hay nhánh của người dùng để tạo minh họa.
+- My roadmap: “Lưu bản nháp” đổi thành “Lưu lựa chọn”; chỉ báo trạng thái khi đang lưu, chưa lưu hoặc có lỗi. Phần “Điều chỉnh kế hoạch đã tạo” mặc định đóng, mở ra mới thấy Xem trước tạo lại. Nhãn nhập backup đổi thành “Nhập lựa chọn lộ trình”. Schema/draft/controller và cơ chế tạo lại không đổi.
+- Các bước kiểm thử UI hiện có cập nhật tên nút và thao tác mở phần thu gọn, giữ nguyên assertion; không tuyên bố đã chạy lại toàn bộ browser harness trong lượt này.
+- Chrome 1280×900 và 390×844: đã xem đầu Explore; không tràn ngang body, chữ tiêu đề mobile 32px. Danh mục desktop bắt đầu khoảng y=780 trong màn 900px; nút khám phá cuộn đến danh mục. Tìm không có kết quả rồi Xóa bộ lọc khôi phục đủ 18 hướng.
+- My roadmap trên kế hoạch Backend thật: không còn trạng thái “bản nháp” khi sạch; mở phần thu gọn → xem trước tạo lại → đóng giữ nguyên kế hoạch. Không xác nhận tạo lại, không tạo dữ liệu hoàn thành.
+- Build/check và scan layout đạt. Ảnh thực tế: `D:/IS207/artifacts/explore-refresh-2026-10-10/`. Branch vẫn `fix/beaver-ui`, chờ Hải kiểm tra trước merge; chưa cập nhật Notion.

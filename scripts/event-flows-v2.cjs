@@ -2,7 +2,7 @@ const flow=(id,name,page,condition,trigger,steps,end,alternatives)=>({id,name,gr
 module.exports=[
   flow('EF29','Chọn nhánh và tạo plan v2','My roadmap','Workspace đã tải; draft hợp lệ.','Tạo kế hoạch mới',[
     ['Chọn nhánh, chặng và nguồn','18 hướng / 50 cấu hình'],['Kiểm tra draft và sinh lịch','Tiên quyết, giờ/tuần, ngày'],['Chờ transaction hoàn tất','Tạo ID mới, giữ plan cũ']],['Plan mới được lưu','Mở My plan để tiếp tục'],['Draft lỗi: hiển thị lỗi, không ghi.','Save lỗi: giữ candidate để retry hoặc xuất.']),
-  flow('EF30','Tạo lại có preview/history','My roadmap','Có active plan và draft hợp lệ.','Xem trước tạo lại',[
+  flow('EF30','Tạo lại có preview/history','My roadmap','Có active plan và draft hợp lệ.','Mở Điều chỉnh kế hoạch đã tạo → Xem trước tạo lại',[
     ['Sinh preview và đối chiếu','Chưa sửa plan đã lưu'],['Chọn xác nhận hoặc hủy','Hủy không ghi'],['Lưu bản mới và history','Chỉ cập nhật sau commit']],['Plan được tạo lại','Giữ completion phù hợp'],['Plan/draft thay đổi: báo conflict, xem lại preview.','Lưu lỗi: giữ proposal, không báo success.']),
   flow('EF31','Hoàn thành và undo v2','My plan','Plan đang xem và tuần còn mở.','Đổi dấu hoàn thành',[
     ['Tạo completion hoặc undo','Giữ ngày/timezone lần ghi'],['Lưu với expected revision','Không ghi đè tab mới'],['Cập nhật plan và nhịp học','Chờ lưu xong trước reload']],['Tiến độ được cập nhật','Completion ledger giữ lịch sử'],['Save lỗi: giữ candidate, retry hoặc bỏ có xác nhận.','Snapshot tuần chốt chỉ đọc.']),

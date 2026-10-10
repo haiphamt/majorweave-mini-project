@@ -20,6 +20,11 @@ export async function runRoadmapUITests() {
     catch (error) { results.push({ name, status: 'fail', error: error.message }); throw error; }
   };
   const create = () => page.getByRole('button', { name: 'Tạo kế hoạch mới', exact: true });
+  const regenerate = async () => {
+    const options = page.locator('.plan-options');
+    if (await options.getAttribute('open') === null) await options.locator('summary').click();
+    await page.getByRole('button', { name: 'Xem trước tạo lại' }).click();
+  };
   const ready = async () => {
     await create().waitFor();
     await page.waitForFunction(() => {
@@ -92,12 +97,12 @@ export async function runRoadmapUITests() {
     await check('Preview cancel is read-only; confirm keeps generation history', async () => {
       const before = await stored();
       await page.getByLabel('Số giờ học mỗi tuần').fill('2');
-      await page.getByRole('button', { name: 'Xem trước tạo lại' }).click();
+      await regenerate();
       await page.getByRole('dialog').waitFor();
       assert.deepEqual(await stored(), before);
       await page.keyboard.press('Escape');
       assert.deepEqual(await stored(), before);
-      await page.getByRole('button', { name: 'Xem trước tạo lại' }).click();
+      await regenerate();
       await page.getByRole('button', { name: 'Xác nhận tạo lại' }).click(); await savedNotice();
       const after = await stored();
       assert.equal(after.plans.length, 2);
@@ -118,7 +123,7 @@ export async function runRoadmapUITests() {
       await source.selectOption(choices[1]);
       const known = page.getByRole('checkbox', { name: /^Đã biết:/ }).first();
       await known.check();
-      await page.getByRole('button', { name: 'Lưu bản nháp' }).click(); await savedNotice();
+      await page.getByRole('button', { name: 'Lưu lựa chọn' }).click(); await savedNotice();
       await page.reload(); await ready();
       assert.ok(await page.getByRole('checkbox', { name: label, exact: true }).isChecked());
       assert.ok(await page.getByRole('checkbox', { name: /^Đã biết:/ }).first().isChecked());
@@ -155,7 +160,7 @@ export async function runRoadmapUITests() {
       await page.screenshot({ path: `${evidence}/v2-roadmap-mobile.png`, fullPage: true });
       assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
       await page.getByLabel('Ngày bắt đầu').fill('2026-10-20');
-      await page.getByRole('button', { name: 'Xem trước tạo lại' }).click();
+      await regenerate();
       const dialog = page.getByRole('dialog'); await dialog.waitFor();
       const bounds = await dialog.boundingBox(); assert.ok(bounds.x >= 0 && bounds.x + bounds.width <= 390);
       await page.screenshot({ path: `${evidence}/v2-monday-mobile.png` });
@@ -188,7 +193,7 @@ export async function runRoadmapUITests() {
       other.on('pageerror', error => errors.push(error.message));
       await other.goto(`${baseUrl}/#/roadmap`);
       await other.getByLabel('Mục tiêu của bạn').fill('Second tab revision');
-      await other.getByRole('button', { name: 'Lưu bản nháp' }).click();
+      await other.getByRole('button', { name: 'Lưu lựa chọn' }).click();
       await other.getByRole('status').filter({ hasText: /^Đã lưu/ }).waitFor();
       const before = await stored();
       await create().click();

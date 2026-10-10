@@ -193,7 +193,7 @@ Cập nhật 09/10/2026. Áp dụng cho mọi hướng học đã tích hợp.
 ### Luồng chính
 
 1. Áp dụng chặng, nguồn, đã biết. Thao tác của người học.
-2. Lưu bản nháp và chờ kết quả. Phản hồi của hệ thống.
+2. Lưu lựa chọn và chờ kết quả. Phản hồi của hệ thống.
 3. Đóng sau khi lưu thành công. Kết quả có thể quan sát trên giao diện.
 
 ### Hủy, thay thế và lỗi
@@ -290,13 +290,13 @@ Cập nhật 09/10/2026. Áp dụng cho mọi hướng học đã tích hợp.
 
 - Đã biết không tạo lịch sử hoàn thành giả.
 
-## EF17 — Lưu bản nháp
+## EF17 — Lưu lựa chọn học
 
 **Trang:** My roadmap
 
 **Điều kiện:** Trang đã tải dữ liệu; thao tác ghi cần bản hiện tại và không có lần lưu đang chờ.
 
-**Bắt đầu:** Lưu bản nháp
+**Bắt đầu:** Lưu lựa chọn
 
 ### Luồng chính
 
@@ -532,7 +532,7 @@ Cập nhật 09/10/2026. Áp dụng cho mọi hướng học đã tích hợp.
 
 **Điều kiện:** Có active plan và draft hợp lệ.
 
-**Bắt đầu:** Xem trước tạo lại
+**Bắt đầu:** Mở Điều chỉnh kế hoạch đã tạo → Xem trước tạo lại
 
 ### Luồng chính
 

@@ -54,7 +54,7 @@ export function ProfileV2(){
   const candidate=transfer?.value.candidate;
   const legacy=actions.getLegacyRaw();
   const knownCredentials=new Map(contentPacks.flatMap(p=>p.credentials).map(c=>[c.id,c]));
-  const choices=[{checked:importProfile,set:setImportProfile,label:'Nhập hồ sơ từ nguồn'},{checked:importPreferences,set:setImportPreferences,label:'Nhập tùy chọn nguồn học'},{checked:importDrafts,set:setImportDrafts,label:'Nhập bản nháp roadmap'},{checked:importCredentials,set:setImportCredentials,label:'Nhập mục tiêu chứng nhận'}];
+  const choices=[{checked:importProfile,set:setImportProfile,label:'Nhập hồ sơ từ nguồn'},{checked:importPreferences,set:setImportPreferences,label:'Nhập tùy chọn nguồn học'},{checked:importDrafts,set:setImportDrafts,label:'Nhập lựa chọn lộ trình'},{checked:importCredentials,set:setImportCredentials,label:'Nhập mục tiêu chứng nhận'}];
   return <div className="page profile-page">
     <div className="page-heading"><h1>Profile</h1><span className="heading-tag">{workspace.profile.displayName||'Người học'}</span></div>
     {(message||error)&&<p className="form-error" role="alert">{message||error?.issues.map(i=>i.message).join(' ')}</p>}

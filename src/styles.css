@@ -490,7 +490,26 @@ dialog{padding:0;border:1px solid var(--line);border-radius:7px;background:var(-
 .beaver-app .learning-plan .week-overview-row{border-radius:12px;background:var(--paper);border:1px solid var(--line);margin-top:12px;padding:20px}
 
 /* Explore is a working catalogue, with compact rows instead of large tiles. */
+.explore-hero{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(340px,1fr);gap:64px;align-items:center;padding:12px 0 32px}
+.beaver-app .explore-intro h1{font-size:46px;line-height:1.15;letter-spacing:-.035em;max-width:20ch;text-wrap:balance}
+.explore-intro h1>span{color:var(--rust)}
+.explore-intro>p{max-width:48ch;margin-top:20px;font-size:15px;line-height:1.85;color:var(--muted)}
+.explore-hero-actions{display:flex;gap:24px;align-items:center;flex-wrap:wrap;margin-top:28px}
+.explore-hero-actions>.text-link{display:inline-flex;align-items:center;gap:8px;color:var(--muted)}
+.explore-intro>.explore-scope{font-size:12px;margin-top:24px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.explore-start{min-width:0}
+.explore-step{display:inline-flex;align-items:center;justify-content:center;flex:none;width:32px;height:32px;border:1px solid var(--rust);border-radius:8px;color:var(--rust);background:var(--rust-soft);font:400 14px/1 var(--mono)}
 .beaver-app .explore-page .profile-strip{background:transparent;border:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);border-radius:0;padding:20px 0;grid-template-columns:minmax(200px,1fr) minmax(0,2fr);gap:32px}
+.beaver-app .explore-hero .profile-strip{display:block;border:2px solid var(--rust);border-radius:14px;background:var(--paper);padding:20px;margin:0}
+.beaver-app .explore-hero .profile-intro{display:flex;align-items:flex-start;gap:14px;margin:0}
+.beaver-app .explore-hero .profile-intro h2{font-size:17px;margin:2px 0 6px}
+.beaver-app .explore-hero .profile-intro p{font-size:12px;line-height:1.7}
+.beaver-app .explore-hero .profile-fields{display:grid;grid-template-columns:1fr;gap:12px;margin:16px 0 0 46px}
+.explore-next-steps{list-style:none;counter-reset:explore-step 1;padding:0 20px;margin:12px 0 0}
+.explore-next-steps>li{counter-increment:explore-step;position:relative;padding:10px 0 10px 46px;line-height:1.6}
+.explore-next-steps>li:before{content:counter(explore-step);position:absolute;left:0;top:10px;display:flex;align-items:center;justify-content:center;width:32px;height:32px;border:1px solid var(--line);border-radius:8px;color:var(--muted);font:400 14px/1 var(--mono)}
+.explore-next-steps span{display:block;font-size:14px;font-weight:500}
+.explore-next-steps small{display:block;font-size:12px;color:var(--muted);margin-top:2px}
 .beaver-app .explore-page .profile-fields{gap:20px}
 .beaver-app .explore-page .profile-intro strong{font-size:14px}
 .beaver-app .explore-page .profile-intro p{font-size:12px;line-height:1.7}
@@ -501,7 +520,8 @@ dialog{padding:0;border:1px solid var(--line);border-radius:7px;background:var(-
 .beaver-app .explore-page .section-heading{margin:32px 0 20px;align-items:center}
 .beaver-app .explore-page .section-heading h2{margin:0}
 .beaver-app .explore-page .browse-select{width:320px}
-.beaver-app .explore-page .path-catalog-toolbar{background:transparent;border:0;padding:0;gap:20px;margin:0 0 20px}
+.beaver-app .explore-page .path-catalog-toolbar{display:grid;grid-template-columns:minmax(0,1fr) 220px minmax(180px,auto);align-items:center;background:transparent;border:0;padding:0;gap:20px;margin:0 0 20px}
+.beaver-app .explore-page .path-catalog-toolbar>.checkbox-label{grid-column:auto;font-size:12px}
 .beaver-app .explore-page .path-catalog-toolbar label{font-size:12px}
 .beaver-app .explore-page .catalog-caption{font-size:12px;line-height:1.7;margin-bottom:8px}
 .beaver-app .explore-page .path-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:0 36px}
@@ -527,6 +547,9 @@ dialog{padding:0;border:1px solid var(--line);border-radius:7px;background:var(-
 .beaver-app .roadmap-page .plan-builder>label{font-size:13px;margin-top:20px}
 .beaver-app .roadmap-page .plan-builder .dialog-actions{gap:8px;flex-wrap:wrap;margin-top:12px}
 .beaver-app .roadmap-page .builder-note{font-size:13px;line-height:1.8;color:var(--muted)}
+.plan-options{margin-top:20px;border-top:1px solid var(--line);padding-top:16px}
+.plan-options>summary{font-size:12px;color:var(--muted);cursor:pointer;min-height:32px}
+.plan-options>.secondary-button{margin-top:12px}
 .beaver-app .roadmap-page .selected-module{padding:20px 0}
 .beaver-app .roadmap-page .selected-module>.checkbox-label{gap:12px;min-height:44px}
 .beaver-app .roadmap-page .roadmap-course-title{font-size:15px;font-weight:500}
@@ -551,11 +574,21 @@ dialog{padding:0;border:1px solid var(--line);border-radius:7px;background:var(-
 .beaver-app .profile-page .week-paper{background:transparent;border:0;border-top:1px solid var(--line);border-radius:0;padding:24px 0;margin-top:8px}
 
 @media(max-width:990px){
+ .explore-hero{gap:32px;grid-template-columns:minmax(0,1fr) minmax(300px,1fr)}
+ .beaver-app .explore-intro h1{font-size:38px}
  .beaver-app .learning-plan .planner-layout,.beaver-app .roadmap-page .roadmap-editor{grid-template-columns:240px minmax(0,1fr);gap:24px}
  .plan-week-toolbar{gap:16px}
  .beaver-app .top-nav{padding-inline:20px;gap:16px}
 }
 @media(max-width:760px){
+ .explore-hero{grid-template-columns:1fr;gap:28px;padding:4px 0 12px}
+ .beaver-app .explore-page .explore-intro h1{font-size:32px;line-height:1.2;max-width:18ch}
+ .explore-intro>p{font-size:14px;margin-top:16px}
+ .explore-hero-actions{gap:16px;margin-top:20px}
+ .explore-intro>.explore-scope{font-size:11px;gap:8px;margin-top:16px}
+ .beaver-app .explore-hero .profile-strip{padding:16px}
+ .beaver-app .explore-hero .profile-fields{margin-left:0}
+ .explore-next-steps{padding-inline:16px}
  .beaver-app .top-nav{height:auto;min-height:100px;padding:14px 16px 8px;gap:10px}
  .beaver-app .page{padding:24px 20px 36px}
  .beaver-app .page h1{font-size:24px}
@@ -596,7 +629,7 @@ dialog{padding:0;border:1px solid var(--line);border-radius:7px;background:var(-
  .beaver-app .explore-page .major-matrix summary{flex-wrap:wrap;justify-content:flex-start}
  .beaver-app .explore-page .section-heading{gap:16px;align-items:stretch}
  .beaver-app .explore-page .browse-select{width:100%}
- .beaver-app .explore-page .path-catalog-toolbar{flex-direction:column;align-items:stretch;gap:12px}
+ .beaver-app .explore-page .path-catalog-toolbar{display:flex;flex-direction:column;align-items:stretch;gap:12px}
  .beaver-app .explore-page .path-grid{grid-template-columns:1fr}
  .beaver-app .explore-page .path-card{padding:20px 0}
  .beaver-app .explore-page .path-card>p{min-height:0}
