@@ -99,3 +99,9 @@ Hải yêu cầu Plan giống style trong ảnh và áp dụng tương tự cho 
 - Ảnh thực tế: `D:/IS207/artifacts/beaver-workspace-2026-10-10/` gồm Plan, Explore, My roadmap, Path detail và Profile, mỗi trang có desktop/mobile. Ảnh Plan bàn giao dùng kế hoạch Backend của Hải, chưa có việc hoàn thành.
 
 Bàn giao trên nhánh `fix/beaver-ui`, xem local tại http://127.0.0.1:5195/#/plan. Chờ Hải kiểm tra trước merge; chưa cập nhật Notion hoặc bản Netlify.
+
+### Bổ sung khung đỏ theo phản hồi ảnh
+
+- Khung cần nhấn mạnh dùng viền gạch 2px, bo góc 14px, nền giấy sáng. My Plan đánh dấu việc chưa hoàn thành đầu tiên trong danh sách đang xem bằng khung này và `aria-current="step"`; số thứ tự nằm trong ô nhỏ. Đây là chỉ dẫn việc học tiếp theo, không phải kết quả hoàn thành. Khi lọc/đổi tuần, khung theo danh sách hiện tại.
+- My roadmap có khung đỏ quanh form thiết lập kế hoạch; Plan chưa có dữ liệu cũng dùng khung đỏ cho bước tạo đầu tiên. Các hàng chặng ở Path detail hiện viền khi hover/focus; Explore, editor chặng và hồ sơ có khung khi tương tác bằng bàn phím.
+- Đã xem Plan và My roadmap tại 1280×900 và 390×844: viền thực tế 2px, màu `rgb(167, 65, 39)`, không tràn ngang body. Ảnh: `D:/IS207/artifacts/beaver-red-frame-2026-10-10/`. Giữ nguyên dữ liệu Backend, chưa merge.

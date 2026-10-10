@@ -473,8 +473,14 @@ dialog{padding:0;border:1px solid var(--line);border-radius:7px;background:var(-
 .beaver-app .learning-plan .week-heading p{max-width:none;font-size:13px;line-height:1.8}
 .beaver-app .learning-plan .task-day{margin-top:16px}
 .beaver-app .learning-plan .task-day-heading{padding-bottom:12px;border-bottom:1px solid var(--line)}
-.beaver-app .learning-plan .task-row{padding:20px 12px;gap:12px;grid-template-columns:32px minmax(0,1fr) 36px}
+.beaver-app .learning-plan .task-row{padding:20px 16px;gap:12px;grid-template-columns:32px minmax(0,1fr) 36px;border:2px solid transparent;border-bottom-color:var(--line);border-radius:14px;margin-bottom:12px}
 .beaver-app .learning-plan .task-row:hover{background:var(--paper);border-radius:12px}
+.beaver-app .learning-plan .task-row:is(.is-next,:focus-within){border-color:var(--rust);background:var(--paper)}
+.task-title-row{display:flex;align-items:flex-start;gap:14px}
+.task-step-number{display:inline-flex;align-items:center;justify-content:center;flex:none;min-width:32px;height:32px;border:1px solid var(--line);border-radius:8px;font:400 14px/1 var(--mono);color:var(--muted)}
+.is-next .task-step-number{border-color:var(--rust);background:var(--rust-soft);color:var(--rust)}
+.beaver-app .learning-plan .task-title-row h4{padding-top:4px}
+.beaver-app .learning-plan .plan-empty-state{border:2px solid var(--rust);border-radius:14px}
 .beaver-app .learning-plan .task-checkbox,.beaver-app .learning-plan .task-checkbox input{width:32px;height:44px}
 .beaver-app .learning-plan .task-content h4{font-size:15px;font-weight:500}
 .beaver-app .learning-plan .task-topline{font-size:12px;gap:8px;margin-top:4px}
@@ -515,7 +521,7 @@ dialog{padding:0;border:1px solid var(--line);border-radius:7px;background:var(-
 
 /* Roadmap setup stays on the left; stage choices use the open canvas on the right. */
 .beaver-app .roadmap-page .roadmap-editor{display:grid;grid-template-columns:minmax(260px,1fr) minmax(0,2fr);gap:36px;align-items:start;margin-top:28px}
-.beaver-app .roadmap-page .plan-builder{padding:0 24px 0 0;border:0;border-right:1px solid var(--line);border-radius:0;background:transparent;position:sticky;top:88px;max-width:none}
+.beaver-app .roadmap-page .plan-builder{border:2px solid var(--rust);border-radius:14px;background:var(--paper);padding:20px;position:sticky;top:88px;max-width:none}
 .beaver-app .roadmap-page .roadmap-paper{background:transparent;border:0;padding:0;border-radius:0;min-width:0}
 .beaver-app .roadmap-page .plan-builder h2,.beaver-app .roadmap-page .paper-heading h2{font-size:20px;margin:0 0 16px}
 .beaver-app .roadmap-page .plan-builder>label{font-size:13px;margin-top:20px}
@@ -535,7 +541,9 @@ dialog{padding:0;border:1px solid var(--line);border-radius:7px;background:var(-
 /* Paths and profile keep the same surfaces, measure, and controls. */
 .beaver-app .learning-path .path-controls{margin-top:24px}
 .beaver-app .learning-path .path-plan-summary{background:transparent;border:0;border-left:1px solid var(--line);border-radius:0;padding:0 0 0 24px;top:88px}
-.beaver-app .learning-path .stage-row{padding:22px 0}
+.beaver-app .learning-path .stage-row{border:2px solid transparent;border-bottom-color:var(--line);border-radius:14px;padding:20px 16px;margin-bottom:12px}
+.beaver-app .learning-path .stage-row:is(:hover,:focus-visible){border-color:var(--rust);background:var(--paper)}
+.beaver-app .explore-page .path-card:focus-within,.beaver-app .roadmap-page .selected-module:focus-within,.beaver-app .profile-page .profile-paper:focus-within{outline:2px solid var(--rust);outline-offset:8px;border-radius:8px}
 .beaver-app .learning-path .resource-card,.beaver-app .learning-path .credential-card{background:transparent;border:0;border-bottom:1px solid var(--line);border-radius:0;padding:20px 0}
 .beaver-app .profile-page>.study-activity{background:transparent;border:0;border-bottom:1px solid var(--line);border-radius:0;padding:0 0 24px}
 .beaver-app .profile-page .profile-paper{background:transparent;border:0;border-top:1px solid var(--line);border-radius:0;padding:24px 0}
@@ -579,7 +587,10 @@ dialog{padding:0;border:1px solid var(--line);border-radius:7px;background:var(-
  .plan-sidebar-goal>span{margin-top:4px}
  .plan-customize-link{margin-top:12px}
  .beaver-app .learning-plan .week-paper{width:100%}
- .beaver-app .learning-plan .task-row{grid-template-columns:32px minmax(0,1fr) 32px;padding:16px 0;gap:8px}
+ .beaver-app .learning-plan .task-row{grid-template-columns:24px minmax(0,1fr) 24px;padding:16px 10px;gap:8px}
+ .beaver-app .learning-plan .task-checkbox,.beaver-app .learning-plan .task-checkbox input{width:24px}
+ .task-title-row{gap:8px}
+ .task-step-number{min-width:26px;height:28px;font-size:12px}
  .beaver-app .explore-page .profile-strip{grid-template-columns:1fr;gap:16px}
  .beaver-app .explore-page .profile-fields{grid-template-columns:1fr;gap:12px}
  .beaver-app .explore-page .major-matrix summary{flex-wrap:wrap;justify-content:flex-start}
@@ -590,7 +601,7 @@ dialog{padding:0;border:1px solid var(--line);border-radius:7px;background:var(-
  .beaver-app .explore-page .path-card{padding:20px 0}
  .beaver-app .explore-page .path-card>p{min-height:0}
  .beaver-app .roadmap-page .roadmap-editor{grid-template-columns:1fr;gap:32px}
- .beaver-app .roadmap-page .plan-builder{position:static;border:0;border-bottom:1px solid var(--line);padding:0 0 24px}
+ .beaver-app .roadmap-page .plan-builder{position:static;padding:20px}
  .beaver-app .roadmap-page .browse-select{width:100%}
  .beaver-app .roadmap-page .selected-module-bottom{flex-wrap:wrap;gap:8px}
  .beaver-app .roadmap-page .source-select{flex-basis:100%}
