@@ -60,3 +60,16 @@ SHA kiểm tra cuối: `52d9e1583cf2c53ef6bdb19c0d68be74a4859dd7`. Xem FEEDBACK_
 Lỗi save UI được chèn trước transaction; không ghi nhận thử quota thật. IndexedDB test dùng adapter thật và đọc/ghi/reload thật trong database riêng, RAM được ghi tách biệt. Dữ liệu người dùng không bị reset/xóa. JSON/DOM/ảnh/log nằm trong evidence/*20261009*.
 
 AI log lượt feedback: đọc phản hồi nhóm trưởng; đối chiếu và giữ patch Chung Hiếu 1ce77b1; bổ sung callback hủy có kiểm tra candidate và trạng thái; nối feature/local/shared, giữ success sau persistence; viết regression không hạ assertion; tạo harness tích hợp thật có lỗi có kiểm soát; chạy RAM riêng và IndexedDB riêng rồi toàn bộ 17 nhánh app thật; ghi SHA/bằng chứng và cập nhật PR. Chưa xác nhận Hải/Chung Hiếu đã duyệt hợp đồng, chưa tự đánh Done hoặc merge main.
+
+## Bổ sung bộ sơ đồ — 10/10/2026
+
+PR #5 đã được Hải merge tại `5800838` ngày 09/10. Sơ đồ đối chiếu main tích hợp PR #8, SHA code `1e9bff4db59e75a6b90aa44f6b614a6ca5b73ee3`, trên branch docs `codex/mw-team-01-diagrams`. Không thay kết quả lịch sử ngày 08–09/10 hoặc tự đánh dấu nghiệm thu của reviewer.
+
+| Test tài liệu | Steps / expected | Actual |
+|---|---|---|
+| DT-01 Bao phủ và truy vết | Đủ 6 nhóm task; mỗi hành động có story/AC/input/precondition/postcondition, S/A/E/C, test và hình; retry/discard giữ feedback | Đã đối chiếu code: 16 hình = 14 hành động task + 2 feedback. Mã hình/bảng/Mermaid cùng nhau; danh mục trong FLOW.md |
+| DT-02 Định dạng/hình | HTML accessible/static, SVG export XML hợp lệ, geometry/skin không lỗi; PNG đủ font/không cắt chữ | PASS 16 HTML, 16 SVG và 16 PNG @2; xem DIAGRAMS_20261010.md và diagrams/render-check.json |
+| DT-03 Mobile/print | Trang 390×844 không tràn ngang; cuộn SVG trong wrapper; print hiển thị trọn | PASS 16/16 theo render-check.json; đây là UI tài liệu, không phải UI app |
+| DT-04 Check/build | Chạy check/build, không sửa code/assertion để né lỗi | PASS; 18 pack/59 module, 50 track controller RAM. Build sandbox EPERM, chạy lại ngoài sandbox PASS |
+
+Không chạy lại 17 vòng UI hoặc giá/URL học liệu hôm nay. TC-01…12 trong FLOW liên kết kết quả cũ theo ngày/SHA gốc, không tuyên bố mọi nhánh UI đã được kiểm tra lại. [DIAGRAMS_20261010.md](DIAGRAMS_20261010.md) có AI log, giới hạn và bàn giao chi tiết. Hai hình sequence minh họa chưa commit được thay bằng bộ flowchart; không sửa code sản phẩm/ID/CSS hoặc tự merge main.
