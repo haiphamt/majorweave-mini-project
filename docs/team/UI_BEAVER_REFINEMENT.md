@@ -156,3 +156,9 @@ Hải yêu cầu 4 cột thay cho khung ngang một cột. Giữ viền gạch 2
 - Path detail vốn có aside đứng trước danh sách trong DOM; sửa grid areas để thứ tự nhìn và thứ tự đọc thống nhất. Không đổi nội dung hoặc callback.
 - Build/check đạt. Browser desktop 1280: cả hai cột 390.885 / 781.781px; khối trái x=28, danh sách x=454.885. Mobile 390: body 375px, thông tin/thiết lập đứng trước danh sách. Đường dẫn Tùy chỉnh lộ trình mở đúng Backend Node.js, goal và dữ liệu đang lưu được giữ.
 - Ảnh bàn giao: D:/IS207/artifacts/path-layout-2026-10-10. Chưa merge.
+
+## Nguồn học — 10/10/2026
+
+Theo yêu cầu của Hải, tab Nguồn học thay ngày đối chiếu bằng tên website hoặc đơn vị cung cấp lấy từ provider. Loại tài liệu (khóa học, bài viết, video, bài tập, thực hành) lấy từ format hiện có. Bỏ nhãn provider bị ẩn ở đầu mục; giữ checkedAt trong dữ liệu, không đổi nội dung/URL hoặc dữ liệu học đã lưu. Sửa cách gọi draft thành lựa chọn học.
+
+Kiểm tra: build và check đạt; trình duyệt Backend hiển thị 25 tên nhà cung cấp, loại tài liệu đúng dữ liệu; không còn ngày đối chiếu trong tab Nguồn học. Màn hình 390px: nội dung 375px, không tràn ngang.
