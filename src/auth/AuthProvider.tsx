@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from 'react';
 import type { Session } from '@supabase/supabase-js';
-import { supabase, authMessage, recoveryRequested } from './supabase';
+import { supabase, authMessage, recoveryRequested, initialOAuthError } from './supabase';
 
 type AuthState = {
   session: Session | null;
@@ -19,7 +19,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [session, setSession] = useState<Session | null>(null);
   const [loading, setLoading] = useState(!!supabase);
   const [recovering, setRecovering] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState(initialOAuthError);
   async function retry() {
     if (!supabase) return;
     setLoading(true);
@@ -39,7 +39,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       eventReceived = true;
       setSession(next);
       setLoading(false);
-      setError('');
+      setError(event === 'INITIAL_SESSION' && !next ? initialOAuthError : '');
       if (event === 'PASSWORD_RECOVERY' || event === 'INITIAL_SESSION' && recoveryRequested && next) setRecovering(true);
       if (event === 'SIGNED_OUT') setRecovering(false);
     });
@@ -47,7 +47,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     void supabase.auth.getSession().then(result => {
       if (!alive || eventReceived) return;
       if (!result.error) { setSession(result.data.session); if (recoveryRequested && result.data.session) setRecovering(true); }
-      setError(authMessage(result.error));
+      setError(authMessage(result.error) || initialOAuthError);
       setLoading(false);
     }).catch(() => { if (alive && !eventReceived) { setError('Chưa kiểm tra được phiên đăng nhập.'); setLoading(false); } });
     return () => { alive = false; subscription.unsubscribe(); };

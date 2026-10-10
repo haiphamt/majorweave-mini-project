@@ -80,3 +80,14 @@
 - Security Advisor có một WARN: authenticated được gọi SECURITY DEFINER RPC. Đây là quyền có chủ đích để ghi qua CAS khi client không có INSERT/UPDATE trực tiếp. Đã kiểm tra `auth.uid()`/owner, search_path rỗng, EXECUTE chỉ authenticated, owner mismatch và RLS. Không đổi sang INVOKER để làm mất cảnh báo và mở quyền ghi trực tiếp. [Giải thích linter](https://supabase.com/docs/guides/database/database-linter?lint=0029_authenticated_security_definer_function_executable).
 - `npm run check` và `npm run build`: PASS sau cấu hình thật; cảnh báo bundle >500 KB vẫn còn như trước.
 - Dashboard xác nhận Custom SMTP **tắt**. Chưa gửi/nhận Gmail, xác nhận signup, đặt lại mật khẩu hoặc đồng bộ tài khoản trên hai máy thật. Cần SMTP và người dùng tự nhập thông tin tài khoản để nghiệm thu các bước này; không tắt Confirm email để vượt giới hạn SMTP mặc định.
+
+## Guest + Google — 11/10/2026
+
+- Hải chọn phương án hosting miễn phí/Guest/Google, email qua SMTP để sau. Dùng Supabase SDK/kho hiện có; không thêm SDK Google hoặc server mới.
+- `prepareGoogleSignIn` từ chối OAuth khi còn phần đang sửa (bao gồm controller cloud hết phiên), chỉ yêu cầu provider Google/choose account/basic identity và truyền callback về origin app.
+- Check bổ sung: phần đang sửa không gọi OAuth, URL callback truyền đúng, không xin scope dữ liệu Gmail/Drive, lỗi mạng/API trả lỗi an toàn, callback hủy có thông báo và không phản chiếu error_description: PASS.
+- Kiểm tra dialog trên QA origin 5196: form email mặc định ẩn; Google provider đang tắt thì nút bị khóa/báo cấu hình; Keep planning as a guest trở lại Explore: PASS.
+- Desktop và mobile 390×844: dialog 352px, không tràn ngang; Google asset lấy từ branding chính thức. Ảnh tại `D:/IS207/artifacts/google-2026-10-11/signin-desktop.png` và `signin-mobile.png`.
+- Callback `access_denied` được kiểm tra ở tab QA mới, tự mở thông báo; không tạo phiên/đăng nhập thật: PASS. Không sửa dữ liệu ở origin 5195.
+- `npm run check`/`npm run build`: PASS sau thay đổi Google. Bundle còn cảnh báo >500KB như trước.
+- Hải tự hoàn tất điều khoản Google Cloud và onboarding Netlify. Project Google `uitplans` đã tạo riêng, không sửa project môn khác. OAuth client và deploy thực tế đang cấu hình; chưa nghiệm thu Google/đồng bộ đa thiết bị thật.

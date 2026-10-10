@@ -1,4 +1,5 @@
 import type { SupabaseClient } from '@supabase/supabase-js';
+import { googleCallbackMessage } from './google';
 
 const url = import.meta.env.VITE_SUPABASE_URL?.trim();
 const key = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY?.trim();
@@ -16,6 +17,18 @@ function validURL(value: string | undefined) {
   } catch { return false; }
 }
 const configured = validURL(url) && publicKey(key);
+export const emailAuthEnabled = import.meta.env.VITE_EMAIL_AUTH_ENABLED === 'true';
+export const initialOAuthError = typeof window === 'undefined' ? '' : googleCallbackMessage(window.location.hash);
+if (initialOAuthError) window.history.replaceState(null, '', `${window.location.pathname}${window.location.search}`);
+
+export async function googleProviderAvailable(): Promise<boolean> {
+  if (!configured) return false;
+  const response = await fetch(`${url}/auth/v1/settings`, { headers: { apikey: key! }, signal: AbortSignal.timeout(10000) });
+  if (!response.ok) throw new Error('Auth settings unavailable');
+  const settings: unknown = await response.json();
+  return typeof settings === 'object' && settings !== null && 'external' in settings &&
+    typeof settings.external === 'object' && settings.external !== null && 'google' in settings.external && settings.external.google === true;
+}
 
 // Capture the recovery intent before Supabase consumes the email callback fragment.
 export const recoveryRequested = typeof window !== 'undefined' && new URLSearchParams(window.location.hash.slice(1)).get('type') === 'recovery';

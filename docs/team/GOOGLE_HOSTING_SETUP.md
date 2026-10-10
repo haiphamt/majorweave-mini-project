@@ -1,0 +1,69 @@
+# Guest + Google và hosting miễn phí
+
+## Quyết định và trạng thái
+
+Ngày 11/10/2026, Hải chọn Guest/Google trước, email/mật khẩu qua SMTP làm sau. Không mua tên miền, không bật gói trả phí, không merge `main`.
+
+- App đã có nút Continue with Google; dùng SDK Supabase hiện có và kho tài khoản đã cấu hình.
+- Chỉ mở OAuth sau khi kiểm tra Google provider bật; nếu chưa bật/mất mạng, báo rõ và Guest vẫn dùng được.
+- OAuth rời trang nên mọi phần đang sửa, kể cả tài khoản hết phiên, phải xử lý trước. Dữ liệu Guest chỉ đưa vào tài khoản qua preview/xác nhận.
+- Form email mặc định ẩn (`VITE_EMAIL_AUTH_ENABLED=false`). Luồng recovery cho tài khoản email cũ vẫn giữ; SMTP chưa bật.
+- **Chưa triển khai online và chưa đăng nhập Google thật.** Hải đã hoàn tất đăng nhập Netlify và điều khoản Google Cloud. Đã tạo project Google riêng `uitplans` (project number `557080586465`); OAuth client chưa tạo. Không bật Free trial/gói trả phí hoặc tự tạo secret thay Hải.
+
+## 1. Hosting Netlify
+
+Sau khi đăng nhập, ưu tiên cập nhật site hiện có của nhóm. Chọn repository `haiphamt/majorweave-mini-project`, branch `fix/beaver-ui`; không cần merge vào main để triển khai.
+
+`netlify.toml` đã đặt build `npm run build`, thư mục `dist`, Node 22. App dùng hash route, không cần rewrite mọi request thành index.html.
+
+Đặt biến môi trường cho build:
+
+| Biến | Giá trị |
+|---|---|
+| VITE_SUPABASE_URL | `https://svhbrhzedxohgnuoopir.supabase.co` |
+| VITE_SUPABASE_PUBLISHABLE_KEY | Publishable key project uitplans |
+| VITE_EMAIL_AUTH_ENABLED | `false` |
+
+Client key là public; Google Client Secret chỉ đặt ở Supabase. Không đưa Google secret hoặc service_role vào build frontend. Build lại khi đổi biến VITE.
+
+Chỉ ghi URL bản mới sau khi deploy thành công và kiểm tra site. Link demo Netlify cũ trong README chưa phải bằng chứng đã triển khai thay đổi này.
+
+## 2. Google Auth Platform
+
+Người dùng tự hoàn tất điều khoản Google Cloud, không cần kích hoạt thử nghiệm có billing. Tạo hoặc chọn project riêng cho uitplans; không sửa project NT118-DemoApi đang có của môn khác.
+
+Thiết lập ứng dụng External, tên `uitplans.`, email hỗ trợ/liên hệ do Hải chọn. Chỉ dùng quyền nhận diện `openid`, `email`, `profile`; không yêu cầu Gmail, Drive hoặc scope nhạy cảm.
+
+Tạo OAuth client loại **Web application**:
+
+- Authorized JavaScript origins: origin HTTPS của site triển khai; thêm `http://127.0.0.1:5195` nếu Google chấp nhận địa chỉ phát triển đó. Không có hash/path ở origins.
+- Authorized redirect URI: **`https://svhbrhzedxohgnuoopir.supabase.co/auth/v1/callback`**. Đây là callback của Supabase hosted, kể cả app đang chạy local. Không dùng callback của Supabase local `:54321`.
+- Người dùng tự hoàn tất bước tạo credential và giữ Client Secret tại nơi quản lý bí mật. Không gửi secret vào chat.
+
+Trong Supabase → Authentication → Sign In / Providers → Google, nhập Client ID/Client Secret rồi bật provider. Giữ kiểm tra nonce; không bật quyền liên kết thủ công hoặc quyền khác ngoài yêu cầu.
+
+Với app External còn **Testing**, kiểm tra danh sách người dùng thử. Muốn người ngoài danh sách dùng thì hoàn tất Publishing/Audience phù hợp và các yêu cầu Google hiện tại; không tuyên bố công khai khi còn Testing.
+
+## 3. URL Supabase
+
+Site URL đặt địa chỉ HTTPS đã deploy; Redirect URLs gồm đúng URL gốc của site và `http://127.0.0.1:5195/`. Không cho wildcard toàn bộ internet. App truyền origin/path hiện tại để người dùng quay về đúng nơi bắt đầu.
+
+Đường dẫn quay về app khác với callback Google → Supabase ở mục 2.
+
+## 4. Nghiệm thu
+
+1. Người chưa đăng nhập dùng Guest, tạo/lưu/reload một kế hoạch.
+2. Sign in mở Continue with Google, không hiện form mật khẩu mặc định.
+3. Khi có thay đổi chưa lưu, Google không rời trang; lưu/hủy/xuất trước khi thử lại.
+4. Người dùng tự chọn tài khoản và xác nhận quyền Google. Callback mở được app, có email/tên tài khoản, không còn fragment token hiển thị ở URL.
+5. Kho tài khoản mới không tự lấy Guest. Preview → Hủy giữ nguyên; xác nhận chuyển mới lưu cloud.
+6. Đăng nhập cùng tài khoản ở thiết bị khác; kế hoạch đã lưu tải được. Đăng xuất trở lại Guest; tài khoản khác không thấy dữ liệu trước đó.
+7. Thử hủy Google hoặc callback lỗi: có thông báo an toàn, không phản chiếu nội dung error_description, Guest vẫn hoạt động.
+
+Guest theo origin: localhost và site online là hai kho khác nhau. Muốn mang kế hoạch local sang online, xuất backup ở local rồi nhập có preview tại site. Không xóa kho cũ để demo.
+
+## Nguồn
+
+- [Supabase Google OAuth](https://supabase.com/docs/guides/auth/social-login/auth-google).
+- [Google button branding](https://developers.google.com/identity/branding-guidelines); `public/google-g.png` lấy từ asset chính thức trên trang này.
+- [Netlify deployment](https://docs.netlify.com/deploy/create-deploys/).

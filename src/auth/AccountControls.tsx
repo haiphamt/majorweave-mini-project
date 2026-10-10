@@ -7,14 +7,15 @@ import { useWorkspace } from '../app/WorkspaceProvider';
 import { useAccountScope } from '../app/AccountWorkspace';
 import { readGuestBackup } from '../persistence/guest-backup';
 import { useAuth } from './AuthProvider';
-import { supabase, authMessage } from './supabase';
+import { supabase, authMessage, emailAuthEnabled, googleProviderAvailable, initialOAuthError } from './supabase';
+import { prepareGoogleSignIn } from './google';
 
 type Mode = 'account' | 'signin' | 'signup' | 'forgot' | 'recover' | 'verify' | null;
 export function AccountControls() {
   const auth = useAuth();
   const scope = useAccountScope();
   const { workspace, dirty, status, transfer, unsavedWorkspace, preview, actions } = useWorkspace();
-  const [mode, setMode] = useState<Mode>(null);
+  const [mode, setMode] = useState<Mode>(initialOAuthError ? 'signin' : null);
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
@@ -29,12 +30,24 @@ export function AccountControls() {
   const [ownPreview, setOwnPreview] = useState(false);
   const [includeProfile, setIncludeProfile] = useState(false);
   const [includeChoices, setIncludeChoices] = useState(false);
+  const [googleReady, setGoogleReady] = useState<boolean | null>(null);
+  const [googleCheckFailed, setGoogleCheckFailed] = useState(false);
   const busy = working || status === 'saving' || status === 'loading';
   const pending = scope.formDirty || dirty || !!unsavedWorkspace || !!transfer || !!preview;
   const user = auth.session?.user;
-  const metadataName = typeof user?.user_metadata?.username === 'string' ? user.user_metadata.username.slice(0, 80) : '';
+  const rawName = user?.user_metadata?.username ?? user?.user_metadata?.full_name;
+  const metadataName = typeof rawName === 'string' ? rawName.slice(0, 80) : '';
   const accountName = workspace?.profile.displayName || metadataName || 'Account';
   useEffect(() => { if (auth.recovering) { setMode('recover'); setPassword(''); setConfirmPassword(''); setError(''); } }, [auth.recovering]);
+  useEffect(() => {
+    if (mode !== 'signin') return;
+    let alive = true;
+    setGoogleReady(null); setGoogleCheckFailed(false);
+    void googleProviderAvailable().then(ready => { if (alive) setGoogleReady(ready); }).catch(() => {
+      if (alive) { setGoogleReady(false); setGoogleCheckFailed(true); }
+    });
+    return () => { alive = false; };
+  }, [mode]);
   const cooldown = mode === 'forgot' ? resetAt : resendAt;
   useEffect(() => {
     const tick = () => setSeconds(Math.max(0, Math.ceil((cooldown - Date.now()) / 1000)));
@@ -81,6 +94,13 @@ export function AccountControls() {
       }
     } catch { setError('Chưa kết nối được. Vui lòng thử lại.'); }
     finally { setPassword(''); setConfirmPassword(''); setWorking(false); }
+  }
+  async function signInGoogle() {
+    if (!supabase || busy || !googleReady) return;
+    setWorking(true); setError('');
+    const result = await prepareGoogleSignIn(supabase, `${window.location.origin}${window.location.pathname}`, pending);
+    if (result.ok) window.location.assign(result.url);
+    else { setError(result.message); setWorking(false); }
   }
   async function resend() {
     if (!supabase || seconds || busy) return;
@@ -171,9 +191,15 @@ export function AccountControls() {
           <button className="secondary-button" disabled={busy || seconds > 0} onClick={() => void resend()}>{seconds ? `Gửi lại sau ${seconds}s` : 'Gửi lại email xác nhận'}</button>
           <button className="text-link auth-back" onClick={() => open('signin')}>Quay lại đăng nhập</button>
         </> : <>
-          <p className="account-description">{mode === 'signup' ? 'Tạo tài khoản để giữ kế hoạch và tiếp tục học ở thiết bị khác.' : mode === 'forgot' ? 'Nhập email đã đăng ký. Chúng tôi sẽ gửi liên kết đặt lại mật khẩu.' : mode === 'recover' ? 'Đặt mật khẩu mới cho tài khoản vừa được xác nhận qua email.' : 'Tiếp tục kế hoạch của bạn.'}</p>
+          <p className="account-description">{mode === 'signup' ? 'Tạo tài khoản để giữ kế hoạch và tiếp tục học ở thiết bị khác.' : mode === 'forgot' ? 'Nhập email đã đăng ký. Chúng tôi sẽ gửi liên kết đặt lại mật khẩu.' : mode === 'recover' ? 'Đặt mật khẩu mới cho tài khoản vừa được xác nhận qua email.' : 'Đăng nhập bằng Google để giữ kế hoạch và tiếp tục học trên thiết bị khác.'}</p>
           {!auth.configured && <p className="auth-feedback" role="status">Đăng nhập chưa được bật cho bản này. Bạn vẫn có thể dùng Guest và lưu kế hoạch trên thiết bị.</p>}
-          <form onSubmit={e => void submit(e)}><fieldset disabled={busy || !auth.configured}>
+          {mode === 'signin' && <div className="google-signin">
+            <button className="secondary-button full-width google-button" disabled={busy || !googleReady} onClick={() => void signInGoogle()}><img src="/google-g.png" width="20" height="20" alt=""/>{working ? 'Đang mở Google…' : 'Continue with Google'}</button>
+            {auth.configured && googleReady === null && <p className="source-note" role="status">Đang kiểm tra đăng nhập Google…</p>}
+            {auth.configured && googleReady === false && <p className="source-note" role="status">{googleCheckFailed ? 'Chưa kiểm tra được kết nối Google. Đóng và mở lại Sign in để thử lại.' : 'Đăng nhập Google đang được cấu hình. Bạn vẫn có thể dùng Guest.'}</p>}
+            <p className="source-note">Chỉ dùng tên, email và ảnh đại diện để nhận diện tài khoản. Kế hoạch Guest chỉ được chuyển khi bạn xác nhận.</p>
+          </div>}
+          {(emailAuthEnabled || mode === 'recover') && <><form onSubmit={e => void submit(e)}><fieldset disabled={busy || !auth.configured}>
             {mode === 'signup' && <label>Tên hiển thị<input autoComplete="nickname" value={name} maxLength={80} onChange={e => setName(e.target.value)} placeholder="Bạn muốn được gọi là gì?"/></label>}
             {mode !== 'recover' && <label>Email<input type="email" autoComplete="email" value={email} required maxLength={254} onChange={e => setEmail(e.target.value)} placeholder="you@example.com"/></label>}
             {mode !== 'forgot' && <><label>{mode === 'recover' ? 'Mật khẩu mới' : 'Mật khẩu'}<span className="password-field"><input type={showPassword ? 'text' : 'password'} autoComplete={mode === 'signin' ? 'current-password' : 'new-password'} value={password} required minLength={mode === 'signin' ? undefined : 8} maxLength={128} onChange={e => setPassword(e.target.value)}/><button className="icon-button" type="button" aria-label={showPassword ? 'Ẩn mật khẩu' : 'Hiện mật khẩu'} onClick={() => setShowPassword(!showPassword)}>{showPassword ? <EyeOff size={18}/> : <Eye size={18}/>}</button></span></label>
@@ -182,7 +208,7 @@ export function AccountControls() {
             {mode === 'signin' && <button className="text-link auth-forgot" type="button" onClick={() => open('forgot')}>Forgot password?</button>}
             <button className="primary-button full-width" disabled={mode === 'forgot' && seconds > 0} type="submit">{working ? 'Đang xử lý…' : mode === 'signup' ? 'Create account' : mode === 'forgot' ? seconds ? `Gửi lại sau ${seconds}s` : 'Gửi liên kết đặt lại' : mode === 'recover' ? 'Lưu mật khẩu mới' : 'Sign in'}</button>
           </fieldset></form>
-          <p className="auth-switch">{mode === 'signin' ? <>Chưa có tài khoản? <button className="text-link" disabled={busy} onClick={() => open('signup')}>Create one</button></> : mode !== 'recover' ? <button className="text-link" disabled={busy} onClick={() => open('signin')}>Quay lại đăng nhập</button> : null}</p>
+          <p className="auth-switch">{mode === 'signin' ? <>Chưa có tài khoản? <button className="text-link" disabled={busy} onClick={() => open('signup')}>Create one</button></> : mode !== 'recover' ? <button className="text-link" disabled={busy} onClick={() => open('signin')}>Quay lại đăng nhập</button> : null}</p></>}
         </>}
         {mode !== 'account' && <button className="auth-guest" disabled={busy} onClick={close}>{user ? 'Quay lại kế hoạch' : 'Keep planning as a guest'}</button>}
       </div>

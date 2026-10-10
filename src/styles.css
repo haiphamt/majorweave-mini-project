@@ -870,3 +870,6 @@ dialog{padding:0;border:1px solid var(--line);border-radius:7px;background:var(-
 .account-notice .checkbox-label{margin:16px 0}
 @media(max-width:990px){.beaver-app .nav-actions .save-state{display:none}.account-pill{max-width:120px}}
 @media(max-width:760px){.beaver-app .nav-actions{gap:8px}.account-pill{font-size:11px;padding:8px 10px;max-width:110px}.beaver-app .nav-signin{font-size:12px;padding:8px 12px}.account-dialog .dialog-head{padding:24px 20px 0}.account-dialog .dialog-body{padding:18px 20px 24px}.account-notice{margin:12px 16px}.account-dialog input:not([type=checkbox]){font-size:16px}}
+.google-signin { display: grid; gap: 16px; margin-top: 24px; }
+.account-dialog .google-button { display: flex; align-items: center; justify-content: center; gap: 12px; min-height: 48px; background: #fff; color: #1f1f1f; border: 1px solid #747775; }
+.google-button img { flex: none; object-fit: contain; }

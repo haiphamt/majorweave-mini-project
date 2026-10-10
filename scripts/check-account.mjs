@@ -8,8 +8,29 @@ const built = await build({ stdin: { contents: `
   export { createCloudWorkspace } from './src/persistence/cloud-workspace';
   export { createWorkspaceController } from './src/app/workspace-controller';
   export { contentPacks } from './src/content';
+  export { prepareGoogleSignIn, googleCallbackMessage } from './src/auth/google';
 `, resolveDir: process.cwd(), loader: 'ts' }, bundle: true, write: false, platform: 'node', format: 'esm' });
-const { createCloudWorkspace, createWorkspaceController, contentPacks } = await import(`data:text/javascript;base64,${Buffer.from(built.outputFiles[0].text).toString('base64')}`);
+const { createCloudWorkspace, createWorkspaceController, contentPacks, prepareGoogleSignIn, googleCallbackMessage } = await import(`data:text/javascript;base64,${Buffer.from(built.outputFiles[0].text).toString('base64')}`);
+let oauthCalls = 0;
+const oauthClient = { auth: { async signInWithOAuth(options) {
+  oauthCalls++;
+  assert.equal(options.provider, 'google');
+  assert.equal(options.options.redirectTo, 'https://uitplans.example/');
+  assert.equal(options.options.skipBrowserRedirect, true);
+  assert.deepEqual(options.options.queryParams, { prompt: 'select_account' });
+  assert.equal(options.options.scopes, undefined); // SDK provider uses basic Google identity only.
+  return { data: { url: 'https://auth.example/authorize' }, error: null };
+} } };
+assert.equal((await prepareGoogleSignIn(oauthClient, 'https://uitplans.example/', true)).ok, false);
+assert.equal(oauthCalls, 0);
+assert.equal((await prepareGoogleSignIn(oauthClient, 'https://uitplans.example/', false)).ok, true);
+assert.equal(oauthCalls, 1);
+assert.equal((await prepareGoogleSignIn({ auth: { async signInWithOAuth() { throw new Error('offline'); } } }, 'https://uitplans.example/', false)).ok, false);
+assert.equal((await prepareGoogleSignIn({ auth: { async signInWithOAuth() { return { data: { url: null }, error: { message: 'disabled' } }; } } }, 'https://uitplans.example/', false)).ok, false);
+assert.equal(googleCallbackMessage('#/plan'), '');
+assert.ok(googleCallbackMessage('#error=access_denied'));
+assert.ok(!googleCallbackMessage('#error=server_error&error_description=%3Cscript%3E').includes('<script>'));
+console.log('PASS Google OAuth: pending edits prevent navigation; basic identity, explicit callback, cancel and network errors handled');
 const db = new PGlite();
 const uidA = '11111111-1111-4111-8111-111111111111';
 const uidB = '22222222-2222-4222-8222-222222222222';

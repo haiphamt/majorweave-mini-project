@@ -4,6 +4,8 @@ Ngày 10/10/2026, Hải yêu cầu luồng tương tự Beaver Plans: **Guest �
 
 ## Trạng thái bàn giao
 
+**Quyết định mới nhất 11/10/2026:** Hải chọn Guest + Google và hosting miễn phí trước. Xem [GOOGLE_HOSTING_SETUP](GOOGLE_HOSTING_SETUP.md). Các mục email/SMTP dưới đây dành cho giai đoạn sau; form email mặc định ẩn và chỉ bật lại bằng `VITE_EMAIL_AUTH_ENABLED=true` khi đã cấu hình gửi thư.
+
 - Code, migration SQL và kiểm thử đã có trên nhánh `fix/beaver-ui`.
 - Ngày 11/10/2026, Hải đã tạo project **uitplans**, ref `svhbrhzedxohgnuoopir`, và cung cấp publishable key. App trên máy đã nối bằng `.env.local` (Git bỏ qua), khởi động ở `http://127.0.0.1:5195/`; form tài khoản đã bật.
 - Migration `account_workspaces` đã áp dụng trên hosted project. RLS, quyền đọc/ghi, retry và chống ghi đè đã kiểm tra bằng SQL thật trong transaction rollback; API Guest bị từ chối đọc/ghi.

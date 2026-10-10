@@ -61,3 +61,5 @@
 - 10/10/2026: Path detail và My roadmap thống nhất thông tin/thao tác bên trái, chặng học bên phải, cùng tỷ lệ 1:2 và khung giấy viền gạch. Trên mobile cùng thứ tự thao tác trước, chặng sau. Không đảo bên khi chuyển hai trang.
 
 - 10/10/2026: Hải yêu cầu luồng tài khoản như Beaver Plans, thay quyết định chỉ Guest trước đó. Giữ Guest/IndexedDB, thêm email + mật khẩu, email xác nhận đăng ký và khôi phục mật khẩu qua Supabase. Workspace tài khoản dùng kho cloud riêng; dữ liệu Guest chỉ đưa vào sau xem trước/xác nhận, không tự ghi đè. Chỉ bật online khi project của nhóm được cấu hình. Không dùng project/key của Beaver Plans. Bàn giao trên fix/beaver-ui để Hải kiểm tra trước merge.
+
+- 11/10/2026: Hải chọn hosting miễn phí + Guest/Google trước; email như Beaver Plans chờ tên miền/SMTP. Triển khai Google OAuth với thông tin cơ bản (openid/email/profile), dùng kho Supabase hiện có; không yêu cầu quyền Gmail/Drive. Form email mặc định ẩn qua VITE_EMAIL_AUTH_ENABLED=false, giữ recovery cho tài khoản cũ. Được phép triển khai bản online để mọi người dùng; không merge main tự động. Không mua tên miền hoặc bật gói trả phí.
