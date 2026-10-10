@@ -1,0 +1,358 @@
+{
+  "date": "2026-10-10",
+  "browser": "Chrome headless via bundled Node Playwright",
+  "results": [
+    {
+      "id": "FL-MW-TEAM-01-01-A",
+      "file": "fl-01-a.png",
+      "png": "2560x1440",
+      "titleFont": "Newsreader, Georgia, serif",
+      "labelFont": "\"Be Vietnam Pro\", system-ui, sans-serif",
+      "newsreaderLoaded": true,
+      "vietnameseLoaded": true,
+      "textOutsideCanvas": [],
+      "textOutsideNodes": [],
+      "mobile": {
+        "pageWidth": 390,
+        "scrollWidth": 390,
+        "canvasMinWidth": "1280px",
+        "localScroller": true
+      },
+      "print": {
+        "minWidth": "0px",
+        "overflow": "visible"
+      },
+      "errors": []
+    },
+    {
+      "id": "FL-MW-TEAM-01-01-B",
+      "file": "fl-01-b.png",
+      "png": "2560x1440",
+      "titleFont": "Newsreader, Georgia, serif",
+      "labelFont": "\"Be Vietnam Pro\", system-ui, sans-serif",
+      "newsreaderLoaded": true,
+      "vietnameseLoaded": true,
+      "textOutsideCanvas": [],
+      "textOutsideNodes": [],
+      "mobile": {
+        "pageWidth": 390,
+        "scrollWidth": 390,
+        "canvasMinWidth": "1280px",
+        "localScroller": true
+      },
+      "print": {
+        "minWidth": "0px",
+        "overflow": "visible"
+      },
+      "errors": []
+    },
+    {
+      "id": "FL-MW-TEAM-01-02-A",
+      "file": "fl-02-a.png",
+      "png": "2560x1440",
+      "titleFont": "Newsreader, Georgia, serif",
+      "labelFont": "\"Be Vietnam Pro\", system-ui, sans-serif",
+      "newsreaderLoaded": true,
+      "vietnameseLoaded": true,
+      "textOutsideCanvas": [],
+      "textOutsideNodes": [],
+      "mobile": {
+        "pageWidth": 390,
+        "scrollWidth": 390,
+        "canvasMinWidth": "1280px",
+        "localScroller": true
+      },
+      "print": {
+        "minWidth": "0px",
+        "overflow": "visible"
+      },
+      "errors": []
+    },
+    {
+      "id": "FL-MW-TEAM-01-02-B",
+      "file": "fl-02-b.png",
+      "png": "2560x1440",
+      "titleFont": "Newsreader, Georgia, serif",
+      "labelFont": "\"Be Vietnam Pro\", system-ui, sans-serif",
+      "newsreaderLoaded": true,
+      "vietnameseLoaded": true,
+      "textOutsideCanvas": [],
+      "textOutsideNodes": [],
+      "mobile": {
+        "pageWidth": 390,
+        "scrollWidth": 390,
+        "canvasMinWidth": "1280px",
+        "localScroller": true
+      },
+      "print": {
+        "minWidth": "0px",
+        "overflow": "visible"
+      },
+      "errors": []
+    },
+    {
+      "id": "FL-MW-TEAM-01-03-A",
+      "file": "fl-03-a.png",
+      "png": "2560x1440",
+      "titleFont": "Newsreader, Georgia, serif",
+      "labelFont": "\"Be Vietnam Pro\", system-ui, sans-serif",
+      "newsreaderLoaded": true,
+      "vietnameseLoaded": true,
+      "textOutsideCanvas": [],
+      "textOutsideNodes": [],
+      "mobile": {
+        "pageWidth": 390,
+        "scrollWidth": 390,
+        "canvasMinWidth": "1280px",
+        "localScroller": true
+      },
+      "print": {
+        "minWidth": "0px",
+        "overflow": "visible"
+      },
+      "errors": []
+    },
+    {
+      "id": "FL-MW-TEAM-01-03-B",
+      "file": "fl-03-b.png",
+      "png": "2560x1440",
+      "titleFont": "Newsreader, Georgia, serif",
+      "labelFont": "\"Be Vietnam Pro\", system-ui, sans-serif",
+      "newsreaderLoaded": true,
+      "vietnameseLoaded": true,
+      "textOutsideCanvas": [],
+      "textOutsideNodes": [],
+      "mobile": {
+        "pageWidth": 390,
+        "scrollWidth": 390,
+        "canvasMinWidth": "1280px",
+        "localScroller": true
+      },
+      "print": {
+        "minWidth": "0px",
+        "overflow": "visible"
+      },
+      "errors": []
+    },
+    {
+      "id": "FL-MW-TEAM-01-04-A",
+      "file": "fl-04-a.png",
+      "png": "2560x1440",
+      "titleFont": "Newsreader, Georgia, serif",
+      "labelFont": "\"Be Vietnam Pro\", system-ui, sans-serif",
+      "newsreaderLoaded": true,
+      "vietnameseLoaded": true,
+      "textOutsideCanvas": [],
+      "textOutsideNodes": [],
+      "mobile": {
+        "pageWidth": 390,
+        "scrollWidth": 390,
+        "canvasMinWidth": "1280px",
+        "localScroller": true
+      },
+      "print": {
+        "minWidth": "0px",
+        "overflow": "visible"
+      },
+      "errors": []
+    },
+    {
+      "id": "FL-MW-TEAM-01-04-B",
+      "file": "fl-04-b.png",
+      "png": "2560x1440",
+      "titleFont": "Newsreader, Georgia, serif",
+      "labelFont": "\"Be Vietnam Pro\", system-ui, sans-serif",
+      "newsreaderLoaded": true,
+      "vietnameseLoaded": true,
+      "textOutsideCanvas": [],
+      "textOutsideNodes": [],
+      "mobile": {
+        "pageWidth": 390,
+        "scrollWidth": 390,
+        "canvasMinWidth": "1280px",
+        "localScroller": true
+      },
+      "print": {
+        "minWidth": "0px",
+        "overflow": "visible"
+      },
+      "errors": []
+    },
+    {
+      "id": "FL-MW-TEAM-01-04-C",
+      "file": "fl-04-c.png",
+      "png": "2560x1440",
+      "titleFont": "Newsreader, Georgia, serif",
+      "labelFont": "\"Be Vietnam Pro\", system-ui, sans-serif",
+      "newsreaderLoaded": true,
+      "vietnameseLoaded": true,
+      "textOutsideCanvas": [],
+      "textOutsideNodes": [],
+      "mobile": {
+        "pageWidth": 390,
+        "scrollWidth": 390,
+        "canvasMinWidth": "1280px",
+        "localScroller": true
+      },
+      "print": {
+        "minWidth": "0px",
+        "overflow": "visible"
+      },
+      "errors": []
+    },
+    {
+      "id": "FL-MW-TEAM-01-04-D",
+      "file": "fl-04-d.png",
+      "png": "2560x1440",
+      "titleFont": "Newsreader, Georgia, serif",
+      "labelFont": "\"Be Vietnam Pro\", system-ui, sans-serif",
+      "newsreaderLoaded": true,
+      "vietnameseLoaded": true,
+      "textOutsideCanvas": [],
+      "textOutsideNodes": [],
+      "mobile": {
+        "pageWidth": 390,
+        "scrollWidth": 390,
+        "canvasMinWidth": "1280px",
+        "localScroller": true
+      },
+      "print": {
+        "minWidth": "0px",
+        "overflow": "visible"
+      },
+      "errors": []
+    },
+    {
+      "id": "FL-MW-TEAM-01-05",
+      "file": "fl-05.png",
+      "png": "2560x1440",
+      "titleFont": "Newsreader, Georgia, serif",
+      "labelFont": "\"Be Vietnam Pro\", system-ui, sans-serif",
+      "newsreaderLoaded": true,
+      "vietnameseLoaded": true,
+      "textOutsideCanvas": [],
+      "textOutsideNodes": [],
+      "mobile": {
+        "pageWidth": 390,
+        "scrollWidth": 390,
+        "canvasMinWidth": "1280px",
+        "localScroller": true
+      },
+      "print": {
+        "minWidth": "0px",
+        "overflow": "visible"
+      },
+      "errors": []
+    },
+    {
+      "id": "FL-MW-TEAM-01-06-A",
+      "file": "fl-06-a.png",
+      "png": "2560x1440",
+      "titleFont": "Newsreader, Georgia, serif",
+      "labelFont": "\"Be Vietnam Pro\", system-ui, sans-serif",
+      "newsreaderLoaded": true,
+      "vietnameseLoaded": true,
+      "textOutsideCanvas": [],
+      "textOutsideNodes": [],
+      "mobile": {
+        "pageWidth": 390,
+        "scrollWidth": 390,
+        "canvasMinWidth": "1280px",
+        "localScroller": true
+      },
+      "print": {
+        "minWidth": "0px",
+        "overflow": "visible"
+      },
+      "errors": []
+    },
+    {
+      "id": "FL-MW-TEAM-01-06-B",
+      "file": "fl-06-b.png",
+      "png": "2560x1440",
+      "titleFont": "Newsreader, Georgia, serif",
+      "labelFont": "\"Be Vietnam Pro\", system-ui, sans-serif",
+      "newsreaderLoaded": true,
+      "vietnameseLoaded": true,
+      "textOutsideCanvas": [],
+      "textOutsideNodes": [],
+      "mobile": {
+        "pageWidth": 390,
+        "scrollWidth": 390,
+        "canvasMinWidth": "1280px",
+        "localScroller": true
+      },
+      "print": {
+        "minWidth": "0px",
+        "overflow": "visible"
+      },
+      "errors": []
+    },
+    {
+      "id": "FL-MW-TEAM-01-06-C",
+      "file": "fl-06-c.png",
+      "png": "2560x1440",
+      "titleFont": "Newsreader, Georgia, serif",
+      "labelFont": "\"Be Vietnam Pro\", system-ui, sans-serif",
+      "newsreaderLoaded": true,
+      "vietnameseLoaded": true,
+      "textOutsideCanvas": [],
+      "textOutsideNodes": [],
+      "mobile": {
+        "pageWidth": 390,
+        "scrollWidth": 390,
+        "canvasMinWidth": "1280px",
+        "localScroller": true
+      },
+      "print": {
+        "minWidth": "0px",
+        "overflow": "visible"
+      },
+      "errors": []
+    },
+    {
+      "id": "FL-MW-TEAM-01-07-A",
+      "file": "fl-07-a.png",
+      "png": "2560x1440",
+      "titleFont": "Newsreader, Georgia, serif",
+      "labelFont": "\"Be Vietnam Pro\", system-ui, sans-serif",
+      "newsreaderLoaded": true,
+      "vietnameseLoaded": true,
+      "textOutsideCanvas": [],
+      "textOutsideNodes": [],
+      "mobile": {
+        "pageWidth": 390,
+        "scrollWidth": 390,
+        "canvasMinWidth": "1280px",
+        "localScroller": true
+      },
+      "print": {
+        "minWidth": "0px",
+        "overflow": "visible"
+      },
+      "errors": []
+    },
+    {
+      "id": "FL-MW-TEAM-01-07-B",
+      "file": "fl-07-b.png",
+      "png": "2560x1440",
+      "titleFont": "Newsreader, Georgia, serif",
+      "labelFont": "\"Be Vietnam Pro\", system-ui, sans-serif",
+      "newsreaderLoaded": true,
+      "vietnameseLoaded": true,
+      "textOutsideCanvas": [],
+      "textOutsideNodes": [],
+      "mobile": {
+        "pageWidth": 390,
+        "scrollWidth": 390,
+        "canvasMinWidth": "1280px",
+        "localScroller": true
+      },
+      "print": {
+        "minWidth": "0px",
+        "overflow": "visible"
+      },
+      "errors": []
+    }
+  ]
+}

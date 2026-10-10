@@ -104,3 +104,30 @@ Copy mẫu [QA và AI log](../../templates/QA_AI_LOG.md) thành `QA_AI_LOG.md`. 
 - [ ] Review chéo và Hải nghiệm thu cuối; sửa feedback xong trước khi đánh Done.
 
 Không cập nhật Notion, không tự merge/push main và không giao lại toàn bộ kiểm thử cho một thành viên.
+
+## Story theo hành động — bổ sung sơ đồ 10/10
+
+PR #5 đã được Hải merge ngày 09/10 tại `5800838`; `main` hiện có bản tích hợp PR #8, baseline `1e9bff4db59e75a6b90aa44f6b614a6ca5b73ee3`. Các trạng thái review ngày 09/10 ở đầu file và checklist trên là lịch sử bàn giao code, không phải kết luận mới về toàn bộ nghiệm thu. Lượt này chỉ hoàn thiện sơ đồ/tài liệu trong allowlist; không thay acceptance hoặc hợp đồng, không tự đánh dấu reviewer đã nghiệm thu.
+
+Sáu mã nhóm FL ở §6 được giữ nguyên. Tách các hành động bằng hậu tố A/B/C/D theo quy định “mỗi hành động một mã/sơ đồ”; retry/discard là hai luồng bổ sung từ feedback 09/10. **16 sơ đồ: 14 hành động task + 2 hành động feedback.** Mỗi story dưới kế thừa US-MW-TEAM-01-01; mở nguồn còn liên quan US-MW-TEAM-01-02. Xem [FLOW.md](FLOW.md) cho bảng bước, input/precondition/postcondition, dữ liệu giữ khi lỗi/hủy, hình và test. Đây là mô tả triển khai hiện tại, không yêu cầu xây lại module của thành viên khác.
+
+| Story riêng | Là sinh viên, tôi muốn… | Để… | FL | AC / test |
+|---|---|---|---|---|
+| US-MW-TEAM-01-01-A | Chọn ngành đang học | Ưu tiên gợi ý và lưu hồ sơ qua v2 | 01-A | AC-01/05; TC-01/07 |
+| US-MW-TEAM-01-01-B | Khám phá theo khoa khác | Xem hướng khác mà giữ ngành hồ sơ | 01-B | AC-01; TC-01/08 |
+| US-MW-TEAM-01-02-A | Tìm/lọc hướng, xử lý kết quả rỗng | Chọn hướng phù hợp mà không đổi kế hoạch | 02-A | AC-01/03; TC-08/09 |
+| US-MW-TEAM-01-02-B | Mở hướng chi tiết hoặc tổng quan | Đọc đúng nội dung đã đăng ký | 02-B | AC-01/02/05; TC-02/08/09 |
+| US-MW-TEAM-01-03-A | Chọn/đổi track, gồm cặp Full-stack | Xem đúng chặng/nguồn, giữ plan cũ | 03-A | AC-02/04/05; TC-02/03/05/08 |
+| US-MW-TEAM-01-03-B | Lưu draft lựa chọn | Reload giữ lựa chọn, biết khi lưu thất bại | 03-B | AC-05; TC-05/07/11b |
+| US-MW-TEAM-01-04-A | Mở thông tin chặng | Đọc đầu ra, nguồn và bài thực hành | 04-A | AC-02/03; TC-04/09 |
+| US-MW-TEAM-01-04-B | Lọc nguồn theo ngôn ngữ/chi phí | Nới bộ lọc khi rỗng, giữ nguồn đã chọn | 04-B | AC-03/05; TC-04/09 |
+| US-MW-TEAM-01-04-C | Chọn nguồn/chặng/đã biết rồi áp dụng | Chỉ nhận thông báo thành công sau lưu | 04-C | AC-03/05; TC-04/05/07 |
+| US-MW-TEAM-01-04-D | Hủy/đóng drawer | Bỏ lựa chọn tạm trước Apply, phân biệt pending chung | 04-D | AC-03/05; TC-04/09/07 |
+| US-MW-TEAM-01-05 | Mở roadmap/nguồn ở tab mới | Xem điều kiện nhà cung cấp và giữ dữ liệu học | 05 | AC-03; TC-10/09 |
+| US-MW-TEAM-01-06-A | Lưu mục tiêu chứng nhận | Theo dõi mục tiêu ở Profile | 06-A | AC-03/05; TC-06/07 |
+| US-MW-TEAM-01-06-B | Bỏ lưu mục tiêu chứng nhận | Chỉ bỏ bookmark đó, giữ lịch sử học | 06-B | AC-03/05; TC-06/07 |
+| US-MW-TEAM-01-06-C | Chuyển My roadmap theo track | Tiếp tục tùy chỉnh draft chung trước khi tạo plan | 06-C | AC-02/05; TC-05/08 |
+| US-MW-TEAM-01-07-A | Retry candidate khi save thất bại | Lưu lại đúng bản, không nhân đôi mutation | 07-A | AC-05/feedback; TC-07/11b/11c |
+| US-MW-TEAM-01-07-B | Xác nhận bỏ candidate My Plan | Dọn local/shared, giữ committed/history, không hồi sinh qua retry | 07-B | AC-05/feedback; TC-11/11b/11c |
+
+Tài liệu/sơ đồ mới được gửi qua branch `codex/mw-team-01-diagrams` để review độc lập vì PR #5 đã đóng sau merge. Căn cứ thay đổi mô tả: AppShell main lưu `majorId` qua `saveProfile` v2; v1 chỉ đọc. Không đổi mã ID dữ liệu. [Bàn giao sơ đồ](DIAGRAMS_20261010.md) ghi kiểm tra thực tế và việc còn cần Hải duyệt.

@@ -1,0 +1,34 @@
+{
+  "date": "2026-10-10",
+  "sourceCodeSha": "1e9bff4db59e75a6b90aa44f6b614a6ca5b73ee3",
+  "diagramRepoSha": "246d6d71d752245403d2bf28d27f124192584d18",
+  "profile": "majorweave",
+  "sourceFiles": [
+    "src/styles.css",
+    "index.html"
+  ],
+  "type": "flowchart",
+  "semanticPattern": "none; ordinary branching actions",
+  "size": "doc-wide 1280x720",
+  "format": "HTML + SVG + PNG 2x + Mermaid in FLOW.md",
+  "diagramCount": 16,
+  "requiredGroups": 6,
+  "taskActions": 14,
+  "feedbackActions": 2,
+  "fonts": {
+    "title": "Newsreader 400",
+    "labels": "Be Vietnam Pro 600",
+    "technical": "system monospace; explicit fallback"
+  },
+  "tokens": {
+    "paper": "#f4f1ea",
+    "paper2": "#fbfaf6",
+    "ink": "#1c1a17",
+    "muted": "#736d64",
+    "accent": "#a74127",
+    "rule": "#ded9cf"
+  },
+  "maxNodes": 8,
+  "maxEdges": 7,
+  "oldDiagrams": "Two untracked sequence illustrations replaced by complete per-action flowcharts; FL-07-B retains discard semantics"
+}

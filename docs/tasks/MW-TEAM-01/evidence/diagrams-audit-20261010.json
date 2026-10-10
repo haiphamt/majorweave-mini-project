@@ -1,0 +1,990 @@
+{
+  "date": "2026-10-10",
+  "sourceCodeSha": "1e9bff4db59e75a6b90aa44f6b614a6ca5b73ee3",
+  "checks": {
+    "flowCount": 16,
+    "requiredGroups": 6,
+    "taskActions": 14,
+    "feedbackActions": 2,
+    "uniqueIds": true,
+    "codeTableImageParity": true,
+    "htmlSvgPngPresent": true,
+    "pngDimensions": "2560x1440",
+    "localLinks": 182,
+    "brokenLinks": 0,
+    "oldIllustrationsRemaining": 0,
+    "scope": "docs/tasks/MW-TEAM-01 only"
+  },
+  "artifactHashes": [
+    {
+      "path": "diagrams/fl-01-a.html",
+      "bytes": 7544,
+      "sha256": "bc7bb11586669d4f6033e43bdb43921322f842b6dca7f6aa8faf14dbce972cd0"
+    },
+    {
+      "path": "diagrams/fl-01-a.svg",
+      "bytes": 6505,
+      "sha256": "7c63ceb9175ba38bdb96ac8d24436f62bb83786e5b1897637d7a27b8e141b116"
+    },
+    {
+      "path": "diagrams/fl-01-a.png",
+      "bytes": 92977,
+      "sha256": "75abc1fc914994077c7af76bbf7f1eda6be66f694585223b5f0fbfceba032d4c"
+    },
+    {
+      "path": "diagrams/fl-01-b.html",
+      "bytes": 6030,
+      "sha256": "e40dadf87d54884d3215e93cba257278d3a657161658d177b7fcd6c285ec137b"
+    },
+    {
+      "path": "diagrams/fl-01-b.svg",
+      "bytes": 5130,
+      "sha256": "e408ca6fbf8e6b87457f039209a3a89ccf389bb478c7299be03942ca59f94a74"
+    },
+    {
+      "path": "diagrams/fl-01-b.png",
+      "bytes": 82035,
+      "sha256": "9031dfb4bc59c2b59972579cd18decc5e361b480994f4b8c977f6978a45cffda"
+    },
+    {
+      "path": "diagrams/fl-02-a.html",
+      "bytes": 6024,
+      "sha256": "63d57c83f1ff404a451b8e1b1468ca7eb4e078d2333db29bbd613c99b2fe350d"
+    },
+    {
+      "path": "diagrams/fl-02-a.svg",
+      "bytes": 5135,
+      "sha256": "bbac46689aa69f78e57d29bed16f1b6ec503e447c11013f1280185180e6ba090"
+    },
+    {
+      "path": "diagrams/fl-02-a.png",
+      "bytes": 78850,
+      "sha256": "378159d47b5b57a5aae0efccf26ea855f4f676c2bc4e10c4329b653b517c38d6"
+    },
+    {
+      "path": "diagrams/fl-02-b.html",
+      "bytes": 7127,
+      "sha256": "90db9af51e1e0eba46f957266df856781cbc731f4f02184da7d0bde6aaa70820"
+    },
+    {
+      "path": "diagrams/fl-02-b.svg",
+      "bytes": 6089,
+      "sha256": "482172c6dc9a83ad10ef7a8de099dc4f01b5f5068483baf11ef55bc5b35eec99"
+    },
+    {
+      "path": "diagrams/fl-02-b.png",
+      "bytes": 94282,
+      "sha256": "251943964546dfa7ffa754cf87f8e7578d7aa7adeed5cbde7d5ddb025e12c5b9"
+    },
+    {
+      "path": "diagrams/fl-03-a.html",
+      "bytes": 7584,
+      "sha256": "576153bc2d5b61f97c0e87945d60d93f9a8a06595e8f84b7c82653fa77df0720"
+    },
+    {
+      "path": "diagrams/fl-03-a.svg",
+      "bytes": 6589,
+      "sha256": "545ede052ceacd5521c709814772bfc2c6cf7ec3460941e3431ebfd4be862b19"
+    },
+    {
+      "path": "diagrams/fl-03-a.png",
+      "bytes": 97635,
+      "sha256": "7cedcf7f5aa72dcb3e8acce528023f81ee5e859c2289e206d8db16cb6f6415d7"
+    },
+    {
+      "path": "diagrams/fl-03-b.html",
+      "bytes": 7453,
+      "sha256": "69cdd1a9200fc010b2b38259b8b702072ed020180c2f067df06dd85adf1d70ad"
+    },
+    {
+      "path": "diagrams/fl-03-b.svg",
+      "bytes": 6513,
+      "sha256": "6e7481d6ce25d8193611021c8757067403076405eb77aa132df72ddc3e6fa8d6"
+    },
+    {
+      "path": "diagrams/fl-03-b.png",
+      "bytes": 93273,
+      "sha256": "b21e9608e0278f2edd5830bfa95a42b0ecea209a756dab5cb226677d08e3389a"
+    },
+    {
+      "path": "diagrams/fl-04-a.html",
+      "bytes": 6079,
+      "sha256": "891095a6817dc27f3ab3ad48383fa6b50a3c5b0416059c475ce5920d5b20a25c"
+    },
+    {
+      "path": "diagrams/fl-04-a.svg",
+      "bytes": 5170,
+      "sha256": "634fbb077f226044d837fa6365b33e6f3937d9a4becee055f4d36e272977b1c7"
+    },
+    {
+      "path": "diagrams/fl-04-a.png",
+      "bytes": 82522,
+      "sha256": "a0b536ca223edd1c7b6ddd386fa0ea209bd000f81f6125026736fb50e3bc80b0"
+    },
+    {
+      "path": "diagrams/fl-04-b.html",
+      "bytes": 6103,
+      "sha256": "187b6667778e9b049332149ec3e52b098287e4422ba2daf7192cd7f64908a529"
+    },
+    {
+      "path": "diagrams/fl-04-b.svg",
+      "bytes": 5171,
+      "sha256": "dcc19c5d1888b60986030ff8dfc84b0d2adf49e8ba2149fe657024169376470f"
+    },
+    {
+      "path": "diagrams/fl-04-b.png",
+      "bytes": 82681,
+      "sha256": "93365ed9c5ffe55c1720fa8a2c79b72ed1b2731a0e9ad948bdc332a5cea38a53"
+    },
+    {
+      "path": "diagrams/fl-04-c.html",
+      "bytes": 7577,
+      "sha256": "a09f52f95110876866b7aa266f353b3c81828d72f7b7a559ddf33ca9cc320906"
+    },
+    {
+      "path": "diagrams/fl-04-c.svg",
+      "bytes": 6488,
+      "sha256": "25693dafafbaf5efc1c4a356ee64828233486b621b33cfbc4240b46ef8edd42f"
+    },
+    {
+      "path": "diagrams/fl-04-c.png",
+      "bytes": 95270,
+      "sha256": "004898ab1a7cf5a31334ce2c46c86cd97879970a65f0ff52b584be84cac3ef01"
+    },
+    {
+      "path": "diagrams/fl-04-d.html",
+      "bytes": 7625,
+      "sha256": "064cb6c5cc189ef9f2aece4e5a8ca8380169c778688ca6f4c7afffe0d2323f2e"
+    },
+    {
+      "path": "diagrams/fl-04-d.svg",
+      "bytes": 6623,
+      "sha256": "be275bc4da5a4ac6c4f4c10dc9a813af2bccf23a5af9a7e4916cbc4c06108c56"
+    },
+    {
+      "path": "diagrams/fl-04-d.png",
+      "bytes": 108604,
+      "sha256": "00d09efdf547f94dfaf4244c2ca8c8519587d2de37b5c9b6f3f4a107e1428bf5"
+    },
+    {
+      "path": "diagrams/fl-05.html",
+      "bytes": 5336,
+      "sha256": "e90d3ba447675664727c2341d694cf625861f3d1ce7c8b7fc717f1377b54ae29"
+    },
+    {
+      "path": "diagrams/fl-05.svg",
+      "bytes": 4251,
+      "sha256": "710efc548feb67709a9aea7a10b5bf670e4e71f84df8bb643f744b607814e6b4"
+    },
+    {
+      "path": "diagrams/fl-05.png",
+      "bytes": 78366,
+      "sha256": "07a8be84daefd60c9013c3fcb1cee8358332b8d5b3a9d27e31c55bd6e87f521b"
+    },
+    {
+      "path": "diagrams/fl-06-a.html",
+      "bytes": 7429,
+      "sha256": "9eeb204082bb2de7d2df49516d5991703631c6dff0a7fc0a0bdeeea3894b5ec8"
+    },
+    {
+      "path": "diagrams/fl-06-a.svg",
+      "bytes": 6476,
+      "sha256": "2fda0d136e0a04f5148738a253510cc0ceb7a00ce77f7056b6fe7badb88de21b"
+    },
+    {
+      "path": "diagrams/fl-06-a.png",
+      "bytes": 89846,
+      "sha256": "ff06cdf6ffb50e44e546760cbc7c33059a7fb270ae2bc2732b569716da4a3a06"
+    },
+    {
+      "path": "diagrams/fl-06-b.html",
+      "bytes": 7419,
+      "sha256": "b41efbad7f4af3276b1be17edc6a292b51613fd26083446613bb58a9f214887e"
+    },
+    {
+      "path": "diagrams/fl-06-b.svg",
+      "bytes": 6501,
+      "sha256": "21b36eb03ec5e00f3deb85a5b097a9838a8f1912610f8ffad9363eac7ea7a1ec"
+    },
+    {
+      "path": "diagrams/fl-06-b.png",
+      "bytes": 93724,
+      "sha256": "21827c4b086969ef7019594ca75fb0b3d26ff1db69c9421dd00b19672fa01c6a"
+    },
+    {
+      "path": "diagrams/fl-06-c.html",
+      "bytes": 7120,
+      "sha256": "67cd5481c1087dc1efb2539a9b2a58ffd1a7baa2b3a6f9dec7c5c851f0b3e09e"
+    },
+    {
+      "path": "diagrams/fl-06-c.svg",
+      "bytes": 6117,
+      "sha256": "acbd28be3251bbb572e893195b51e7ab27e24079c4bac85bbf464b6dc5e98b4a"
+    },
+    {
+      "path": "diagrams/fl-06-c.png",
+      "bytes": 96665,
+      "sha256": "1ab455495dafa9ed3b85be4fbcde314cae02fc2412a6bbb3ff643d3a506607c6"
+    },
+    {
+      "path": "diagrams/fl-07-a.html",
+      "bytes": 7665,
+      "sha256": "e126cfe78b2eb4ffce7fa43bc278c5e2397b00c49824f448b51de81e920d834b"
+    },
+    {
+      "path": "diagrams/fl-07-a.svg",
+      "bytes": 6562,
+      "sha256": "a3f781b64283312f595fa611bbafa9afd8d7ffe0c9ba8ff80527ede56d103e0a"
+    },
+    {
+      "path": "diagrams/fl-07-a.png",
+      "bytes": 99173,
+      "sha256": "82bbd733234915f8c5d954cbfbc11bfb85a242b8435c0f9f561e3df64dba4833"
+    },
+    {
+      "path": "diagrams/fl-07-b.html",
+      "bytes": 8637,
+      "sha256": "f89b48aff507658e9eb6ed87e35698e20fcb151fbb9ec221dcb56db1dbbe33ec"
+    },
+    {
+      "path": "diagrams/fl-07-b.svg",
+      "bytes": 7486,
+      "sha256": "c41cd64096e8b55439d78e8607bdca30473a3d6699ae71941b808aade5e6ab28"
+    },
+    {
+      "path": "diagrams/fl-07-b.png",
+      "bytes": 113092,
+      "sha256": "485fcb8721f54fdf40f0466e583f67fc3609299c3366edb6bc65b13b09e7dad4"
+    }
+  ],
+  "links": [
+    {
+      "from": "FLOW.md",
+      "to": "TASK.md#6-luồng-riêng-và-test-case-phải-viết"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "../../team/PHAN_CONG_MINI_PROJECT.md#6-mỗi-bạn-phải-nộp-đủ-code-nội-dung-và-bằng-chứng"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "../../templates/FLOW.md"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "FEEDBACK_20261009.md"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "QA_AI_LOG.md"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "QA_AI_LOG.md"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "QA_AI_LOG.md"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "QA_AI_LOG.md"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "QA_AI_LOG.md"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "QA_AI_LOG.md"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "QA_AI_LOG.md"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "QA_AI_LOG.md"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "QA_AI_LOG.md"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "QA_AI_LOG.md"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "QA_AI_LOG.md"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "QA_AI_LOG.md"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "QA_AI_LOG.md"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "QA_AI_LOG.md"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "QA_AI_LOG.md"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "QA_AI_LOG.md"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "TASK.md#story-theo-hành-động--bổ-sung-sơ-đồ-1010"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "QA_AI_LOG.md"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "DIAGRAMS_20261010.md"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "diagrams/fl-01-a.png"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "diagrams/fl-01-a.html"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "diagrams/fl-01-a.svg"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "TASK.md#story-theo-hành-động--bổ-sung-sơ-đồ-1010"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "QA_AI_LOG.md"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "DIAGRAMS_20261010.md"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "diagrams/fl-01-b.png"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "diagrams/fl-01-b.html"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "diagrams/fl-01-b.svg"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "TASK.md#story-theo-hành-động--bổ-sung-sơ-đồ-1010"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "QA_AI_LOG.md"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "DIAGRAMS_20261010.md"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "diagrams/fl-02-a.png"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "diagrams/fl-02-a.html"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "diagrams/fl-02-a.svg"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "TASK.md#story-theo-hành-động--bổ-sung-sơ-đồ-1010"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "QA_AI_LOG.md"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "DIAGRAMS_20261010.md"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "diagrams/fl-02-b.png"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "diagrams/fl-02-b.html"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "diagrams/fl-02-b.svg"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "TASK.md#story-theo-hành-động--bổ-sung-sơ-đồ-1010"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "QA_AI_LOG.md"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "DIAGRAMS_20261010.md"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "diagrams/fl-03-a.png"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "diagrams/fl-03-a.html"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "diagrams/fl-03-a.svg"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "TASK.md#story-theo-hành-động--bổ-sung-sơ-đồ-1010"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "QA_AI_LOG.md"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "DIAGRAMS_20261010.md"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "diagrams/fl-03-b.png"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "diagrams/fl-03-b.html"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "diagrams/fl-03-b.svg"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "TASK.md#story-theo-hành-động--bổ-sung-sơ-đồ-1010"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "QA_AI_LOG.md"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "DIAGRAMS_20261010.md"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "diagrams/fl-04-a.png"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "diagrams/fl-04-a.html"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "diagrams/fl-04-a.svg"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "TASK.md#story-theo-hành-động--bổ-sung-sơ-đồ-1010"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "QA_AI_LOG.md"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "DIAGRAMS_20261010.md"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "diagrams/fl-04-b.png"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "diagrams/fl-04-b.html"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "diagrams/fl-04-b.svg"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "TASK.md#story-theo-hành-động--bổ-sung-sơ-đồ-1010"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "QA_AI_LOG.md"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "DIAGRAMS_20261010.md"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "diagrams/fl-04-c.png"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "diagrams/fl-04-c.html"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "diagrams/fl-04-c.svg"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "TASK.md#story-theo-hành-động--bổ-sung-sơ-đồ-1010"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "QA_AI_LOG.md"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "DIAGRAMS_20261010.md"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "diagrams/fl-04-d.png"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "diagrams/fl-04-d.html"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "diagrams/fl-04-d.svg"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "TASK.md#story-theo-hành-động--bổ-sung-sơ-đồ-1010"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "QA_AI_LOG.md"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "DIAGRAMS_20261010.md"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "diagrams/fl-05.png"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "diagrams/fl-05.html"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "diagrams/fl-05.svg"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "TASK.md#story-theo-hành-động--bổ-sung-sơ-đồ-1010"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "QA_AI_LOG.md"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "DIAGRAMS_20261010.md"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "diagrams/fl-06-a.png"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "diagrams/fl-06-a.html"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "diagrams/fl-06-a.svg"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "TASK.md#story-theo-hành-động--bổ-sung-sơ-đồ-1010"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "QA_AI_LOG.md"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "DIAGRAMS_20261010.md"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "diagrams/fl-06-b.png"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "diagrams/fl-06-b.html"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "diagrams/fl-06-b.svg"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "TASK.md#story-theo-hành-động--bổ-sung-sơ-đồ-1010"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "QA_AI_LOG.md"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "DIAGRAMS_20261010.md"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "diagrams/fl-06-c.png"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "diagrams/fl-06-c.html"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "diagrams/fl-06-c.svg"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "TASK.md#story-theo-hành-động--bổ-sung-sơ-đồ-1010"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "QA_AI_LOG.md"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "DIAGRAMS_20261010.md"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "diagrams/fl-07-a.png"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "diagrams/fl-07-a.html"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "diagrams/fl-07-a.svg"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "TASK.md#story-theo-hành-động--bổ-sung-sơ-đồ-1010"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "QA_AI_LOG.md"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "DIAGRAMS_20261010.md"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "diagrams/fl-07-b.png"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "diagrams/fl-07-b.html"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "diagrams/fl-07-b.svg"
+    },
+    {
+      "from": "FLOW.md",
+      "to": "FEEDBACK_20261009.md"
+    },
+    {
+      "from": "TASK.md",
+      "to": "../../team/PHAN_CONG_MINI_PROJECT.md"
+    },
+    {
+      "from": "TASK.md",
+      "to": "../../team/QUY_TRINH_ANTIGRAVITY.md"
+    },
+    {
+      "from": "TASK.md",
+      "to": "../../KIEN_TRUC_MAJORWEAVE.md"
+    },
+    {
+      "from": "TASK.md",
+      "to": "../../architecture/HUONG_DAN_DU_LIEU.md"
+    },
+    {
+      "from": "TASK.md",
+      "to": "../../templates/FLOW.md"
+    },
+    {
+      "from": "TASK.md",
+      "to": "../../templates/QA_AI_LOG.md"
+    },
+    {
+      "from": "TASK.md",
+      "to": "FLOW.md"
+    },
+    {
+      "from": "TASK.md",
+      "to": "DIAGRAMS_20261010.md"
+    },
+    {
+      "from": "DIAGRAMS_20261010.md",
+      "to": "diagrams/render-check.json"
+    },
+    {
+      "from": "DIAGRAMS_20261010.md",
+      "to": "diagrams/design-receipt.json"
+    },
+    {
+      "from": "DIAGRAMS_20261010.md",
+      "to": "diagrams/flows.json"
+    },
+    {
+      "from": "DIAGRAMS_20261010.md",
+      "to": "diagrams/README.md"
+    },
+    {
+      "from": "diagrams/README.md",
+      "to": "../FLOW.md"
+    },
+    {
+      "from": "diagrams/README.md",
+      "to": "../TASK.md"
+    },
+    {
+      "from": "diagrams/README.md",
+      "to": "../DIAGRAMS_20261010.md"
+    },
+    {
+      "from": "diagrams/README.md",
+      "to": "fl-01-a.html"
+    },
+    {
+      "from": "diagrams/README.md",
+      "to": "fl-01-a.svg"
+    },
+    {
+      "from": "diagrams/README.md",
+      "to": "fl-01-a.png"
+    },
+    {
+      "from": "diagrams/README.md",
+      "to": "fl-01-b.html"
+    },
+    {
+      "from": "diagrams/README.md",
+      "to": "fl-01-b.svg"
+    },
+    {
+      "from": "diagrams/README.md",
+      "to": "fl-01-b.png"
+    },
+    {
+      "from": "diagrams/README.md",
+      "to": "fl-02-a.html"
+    },
+    {
+      "from": "diagrams/README.md",
+      "to": "fl-02-a.svg"
+    },
+    {
+      "from": "diagrams/README.md",
+      "to": "fl-02-a.png"
+    },
+    {
+      "from": "diagrams/README.md",
+      "to": "fl-02-b.html"
+    },
+    {
+      "from": "diagrams/README.md",
+      "to": "fl-02-b.svg"
+    },
+    {
+      "from": "diagrams/README.md",
+      "to": "fl-02-b.png"
+    },
+    {
+      "from": "diagrams/README.md",
+      "to": "fl-03-a.html"
+    },
+    {
+      "from": "diagrams/README.md",
+      "to": "fl-03-a.svg"
+    },
+    {
+      "from": "diagrams/README.md",
+      "to": "fl-03-a.png"
+    },
+    {
+      "from": "diagrams/README.md",
+      "to": "fl-03-b.html"
+    },
+    {
+      "from": "diagrams/README.md",
+      "to": "fl-03-b.svg"
+    },
+    {
+      "from": "diagrams/README.md",
+      "to": "fl-03-b.png"
+    },
+    {
+      "from": "diagrams/README.md",
+      "to": "fl-04-a.html"
+    },
+    {
+      "from": "diagrams/README.md",
+      "to": "fl-04-a.svg"
+    },
+    {
+      "from": "diagrams/README.md",
+      "to": "fl-04-a.png"
+    },
+    {
+      "from": "diagrams/README.md",
+      "to": "fl-04-b.html"
+    },
+    {
+      "from": "diagrams/README.md",
+      "to": "fl-04-b.svg"
+    },
+    {
+      "from": "diagrams/README.md",
+      "to": "fl-04-b.png"
+    },
+    {
+      "from": "diagrams/README.md",
+      "to": "fl-04-c.html"
+    },
+    {
+      "from": "diagrams/README.md",
+      "to": "fl-04-c.svg"
+    },
+    {
+      "from": "diagrams/README.md",
+      "to": "fl-04-c.png"
+    },
+    {
+      "from": "diagrams/README.md",
+      "to": "fl-04-d.html"
+    },
+    {
+      "from": "diagrams/README.md",
+      "to": "fl-04-d.svg"
+    },
+    {
+      "from": "diagrams/README.md",
+      "to": "fl-04-d.png"
+    },
+    {
+      "from": "diagrams/README.md",
+      "to": "fl-05.html"
+    },
+    {
+      "from": "diagrams/README.md",
+      "to": "fl-05.svg"
+    },
+    {
+      "from": "diagrams/README.md",
+      "to": "fl-05.png"
+    },
+    {
+      "from": "diagrams/README.md",
+      "to": "fl-06-a.html"
+    },
+    {
+      "from": "diagrams/README.md",
+      "to": "fl-06-a.svg"
+    },
+    {
+      "from": "diagrams/README.md",
+      "to": "fl-06-a.png"
+    },
+    {
+      "from": "diagrams/README.md",
+      "to": "fl-06-b.html"
+    },
+    {
+      "from": "diagrams/README.md",
+      "to": "fl-06-b.svg"
+    },
+    {
+      "from": "diagrams/README.md",
+      "to": "fl-06-b.png"
+    },
+    {
+      "from": "diagrams/README.md",
+      "to": "fl-06-c.html"
+    },
+    {
+      "from": "diagrams/README.md",
+      "to": "fl-06-c.svg"
+    },
+    {
+      "from": "diagrams/README.md",
+      "to": "fl-06-c.png"
+    },
+    {
+      "from": "diagrams/README.md",
+      "to": "fl-07-a.html"
+    },
+    {
+      "from": "diagrams/README.md",
+      "to": "fl-07-a.svg"
+    },
+    {
+      "from": "diagrams/README.md",
+      "to": "fl-07-a.png"
+    },
+    {
+      "from": "diagrams/README.md",
+      "to": "fl-07-b.html"
+    },
+    {
+      "from": "diagrams/README.md",
+      "to": "fl-07-b.svg"
+    },
+    {
+      "from": "diagrams/README.md",
+      "to": "fl-07-b.png"
+    },
+    {
+      "from": "diagrams/README.md",
+      "to": "flows.json"
+    },
+    {
+      "from": "diagrams/README.md",
+      "to": "majorweave-style-guide.md"
+    }
+  ]
+}

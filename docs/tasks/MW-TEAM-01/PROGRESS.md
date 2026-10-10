@@ -1,4 +1,8 @@
-# Tiến độ MW-TEAM-01 — 09/10/2026
+# Tiến độ MW-TEAM-01 — 10/10/2026
+
+PR #5 đã được Hải merge ngày 09/10 tại `5800838`; main đã có PR #8 tích hợp. Lượt 10/10 bổ sung bộ 16 sơ đồ theo task/feedback trên branch `codex/mw-team-01-diagrams`, baseline code main `1e9bff4db59e75a6b90aa44f6b614a6ca5b73ee3`. Xem [FLOW.md](FLOW.md), [danh mục ảnh](diagrams/README.md) và [bàn giao/validation](DIAGRAMS_20261010.md). Check/build và kiểm tra render 16 hình PASS; không chạy lại 17 vòng UI trong lượt docs, không tự xác nhận nghiệm thu toàn task. PR tài liệu cần Hải duyệt/merge.
+
+## Lịch sử bàn giao feedback — 09/10
 
 Đã sửa feedback của nhóm trưởng trong PR #5: https://github.com/haiphamt/majorweave-mini-project/pull/5. Chờ Hải review/tích hợp, chưa đánh Done thay người duyệt.
 
