@@ -42,7 +42,7 @@ export function MyRoadmap() {
     return <div className="page roadmap-page">
       <div className="page-heading"><h1>My roadmap</h1></div>
       {status === 'loading' ? <p role="status">Đang tải lộ trình…</p> : <div className="form-error" role="alert">
-        <p>{messages.join(' ') || 'Không tải được lộ trình trên thiết bị này.'}</p>
+        <p>{messages.join(' ') || 'Không tải được lộ trình đã lưu.'}</p>
         <button className="secondary-button" onClick={() => reload()}>Thử tải lại</button>
       </div>}
     </div>;

@@ -145,3 +145,4 @@ await import('./tasks/MW-CONTEXT-V2.mjs'); // Context/callback regressions also 
 
 await import('./tasks/MW-TEAM-01.mjs'); // Own resolver/content regressions must run in CI.
 await import('./check-integration.mjs'); // Shared product and persistence boundary regressions.
+await import('./check-account.mjs'); // Cloud revision, account isolation and SQL/RLS regressions.

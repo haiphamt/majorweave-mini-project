@@ -173,3 +173,7 @@ Kiểm tra: build/check đạt; Backend hiện đủ 6 mục. Trên bản QA dù
 
 Theo yêu cầu của Hải, thêm favicon gốc Beaver Plans từ https://beaverplans.com/favicon.svg vào public/beaverplans-favicon.svg. Đây là tài sản của website tham chiếu, không phải logo do nhóm tự thiết kế. Tiêu đề Explore: uitplans. — Find your path. Plan your week.; các trang khác có lời mô tả phù hợp với chức năng. Meta description dùng tiếng Việt mô tả khám phá hướng nghề nghiệp, nguồn học và kế hoạch tuần. Dấu chấm wordmark ở nav và footer dùng màu cam gạch hiện có. Địa chỉ localhost không đổi; tên miền thực cần cấu hình khi triển khai.
 Kiểm tra: build/check đạt; Explore trên trình duyệt có tiêu đề/mô tả mới, dấu chấm rgb(167, 65, 39). Favicon trả HTTP 200 và được chép vào bản build. Trình duyệt do công cụ điều khiển có thêm huy hiệu tự động lên favicon; file gốc của app giữ nguyên hình hải ly.
+
+## Guest và tài khoản — 10/10/2026
+
+Hải yêu cầu luồng tài khoản như Beaver Plans, thay phạm vi chỉ Guest trước đó. Thêm Guest pill/Sign in trên nav; form đăng nhập, đăng ký/xác nhận email, gửi lại, quên mật khẩu và recovery cùng style giấy/kem/gạch. Email/mật khẩu qua SDK Supabase, không Google OAuth/OTP. Menu tài khoản có hồ sơ, xuất backup, xem trước/xác nhận đưa dữ liệu Guest vào tài khoản và đăng xuất. Giữ các trang học, brand và dữ liệu Guest hiện có. Chưa có project nên bản chính hiển thị trạng thái chưa bật; xem SUPABASE_ACCOUNT_SETUP.md và ACCOUNT_QA_AI_LOG.md.

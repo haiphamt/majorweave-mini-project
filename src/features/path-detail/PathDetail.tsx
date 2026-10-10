@@ -39,7 +39,7 @@ export function PathDetail() {
   const resources = resolved.resources.filter(r => `${r.title} ${r.provider} ${r.accessNote}`.toLocaleLowerCase().includes(query.trim().toLocaleLowerCase()) && (language === 'all' || r.language === language) && (!freeOnly || r.cost === 'free'));
   async function save() {
     const saved = unsavedWorkspace ? await actions.retrySave() : await actions.saveDraft();
-    if (saved.ok) toast('Đã lưu lựa chọn trên thiết bị');
+    if (saved.ok) toast('Đã lưu lựa chọn');
   }
   function choose(id: string, nextPath = pathId) {
     if (busy) return;

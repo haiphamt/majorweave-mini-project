@@ -59,3 +59,5 @@
 - 10/10/2026: Hải bác bộ lọc trong hộp lớn, hai khối cuối Explore cạnh nhau và các khung lớn trong Profile. Dùng thanh lọc gọn trên canvas, bảng ngành thành hàng mở rộng và ghi chú ngắn. Profile chia Activity / Profile / Data, mặc định Activity để nhịp học hiện đầu tiên. Giữ danh mục 4 cột có khung gạch và toàn bộ bảo vệ dữ liệu.
 
 - 10/10/2026: Path detail và My roadmap thống nhất thông tin/thao tác bên trái, chặng học bên phải, cùng tỷ lệ 1:2 và khung giấy viền gạch. Trên mobile cùng thứ tự thao tác trước, chặng sau. Không đảo bên khi chuyển hai trang.
+
+- 10/10/2026: Hải yêu cầu luồng tài khoản như Beaver Plans, thay quyết định chỉ Guest trước đó. Giữ Guest/IndexedDB, thêm email + mật khẩu, email xác nhận đăng ký và khôi phục mật khẩu qua Supabase. Workspace tài khoản dùng kho cloud riêng; dữ liệu Guest chỉ đưa vào sau xem trước/xác nhận, không tự ghi đè. Chỉ bật online khi project của nhóm được cấu hình. Không dùng project/key của Beaver Plans. Bàn giao trên fix/beaver-ui để Hải kiểm tra trước merge.

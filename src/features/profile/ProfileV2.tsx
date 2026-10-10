@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Download } from 'lucide-react';
 
 import { useApp, useWorkspace } from '../../app/context';
+import { useAccountScope, useAccountDraftProtection } from '../../app/AccountWorkspace';
 import { faculties } from '../../content/catalog';
 import { contentPacks } from '../../content';
 
@@ -19,6 +20,7 @@ function download(name:string,text:string){
   setTimeout(()=>URL.revokeObjectURL(url),1000);
 }
 export function ProfileV2(){
+  const {cloud}=useAccountScope();
   const {workspace,status,error,dirty,unsavedWorkspace,transfer,actions}=useWorkspace();
   const {toast}=useApp();
   const [form,setForm]=useState<Workspace['profile']>({displayName:'',majorId:null,timeZone:'UTC'});
@@ -30,6 +32,7 @@ export function ProfileV2(){
   const [metadata,setMetadata]=useState<PlanMeta>({stack:'node',goal:'Kế hoạch cũ',hours:5,startDate:'2026-10-05'});
   const [discardOpen,setDiscardOpen]=useState(false);
   const [section,setSection]=useState<'activity'|'profile'|'data'>('activity');
+  useAccountDraftProtection(!!workspace && (form.displayName!==workspace.profile.displayName || form.majorId!==workspace.profile.majorId || form.timeZone!==workspace.profile.timeZone));
   useEffect(()=>{if(workspace)setForm({...workspace.profile});},[workspace?.profile.displayName,workspace?.profile.majorId,workspace?.profile.timeZone]);
   const busy=status==='loading'||status==='saving';
   const blocked=busy||!!transfer||!!unsavedWorkspace;
@@ -42,7 +45,7 @@ export function ProfileV2(){
   async function save(){
     const checked=validateProfile({...form,displayName:form.displayName.trim()},faculties.flatMap(f=>f.majors.map(m=>m.id)));
     if(!report(checked)||!checked.ok)return;
-    const result=await actions.saveProfile(checked.value);if(report(result)&&result.ok)toast('Đã lưu hồ sơ trên thiết bị');
+    const result=await actions.saveProfile(checked.value);if(report(result)&&result.ok)toast(cloud?'Đã lưu hồ sơ trong tài khoản':'Đã lưu hồ sơ trên thiết bị');
   }
   function exportFile(){const result=actions.exportBackupFile();if(report(result)&&result.ok){download(`uitplans-${todayKey}.json`,result.value.json);toast(result.value.containsUnsavedChanges?'Đã xuất bản sao gồm thay đổi chưa lưu':'Đã xuất bản sao workspace');}}
   function exportLegacy(){const result=actions.getLegacyRaw();if(report(result)&&result.ok){if(result.value===null){setMessage('Không có dữ liệu v1 trên trình duyệt này.');return;}download(`uitplans-v1-${todayKey}.json`,result.value);}}
@@ -72,7 +75,7 @@ export function ProfileV2(){
     </form>
     <section className="profile-credentials"><div className="profile-section-heading"><h2>Mục tiêu chứng nhận</h2><span className="catalog-total">{workspace.savedCredentialIds.length} đã lưu</span></div>{workspace.savedCredentialIds.length?<ul className="profile-credential-list">{workspace.savedCredentialIds.map(id=>{const c=knownCredentials.get(id);return <li key={id}>{c?<External href={c.url}>{c.name}<small>{c.provider}</small></External>:`${id} — nguồn không còn trong danh mục; mục tiêu vẫn được giữ.`}</li>})}</ul>:<p className="profile-credential-empty">Chưa lưu chứng nhận. Xem điều kiện và chọn mục tiêu phù hợp với hướng học của bạn.</p>}<Link className="text-link" to="/path">Khám phá chứng nhận<ArrowRight size={16}/></Link></section>
     </div></section>
-    <section id="profile-data" className="profile-panel profile-backup" aria-label="Data" hidden={section!=='data'}><header className="profile-data-heading"><h2>Sao lưu & chuyển thiết bị</h2><p>Dữ liệu lưu trên trình duyệt này. Giữ một bản sao để tiếp tục ở nơi khác.</p></header><div className="backup-body"><section className="backup-export"><Download size={22} aria-hidden="true"/><h3>Giữ một bản sao</h3><p>Tải hồ sơ và kế hoạch hiện tại thành file JSON.</p><button className="secondary-button" onClick={exportFile}>Xuất file sao lưu</button></section>
+    <section id="profile-data" className="profile-panel profile-backup" aria-label="Data" hidden={section!=='data'}><header className="profile-data-heading"><h2>Sao lưu & chuyển thiết bị</h2><p>{cloud?'Dữ liệu được lưu trong tài khoản. Bạn có thể giữ thêm một bản sao hoặc nhập kế hoạch khác.':'Dữ liệu lưu trên trình duyệt này. Giữ một bản sao để tiếp tục ở nơi khác.'}</p></header><div className="backup-body"><section className="backup-export"><Download size={22} aria-hidden="true"/><h3>Giữ một bản sao</h3><p>Tải hồ sơ và kế hoạch hiện tại thành file JSON.</p><button className="secondary-button" onClick={exportFile}>Xuất file sao lưu</button></section>
       <fieldset className="backup-import" disabled={blocked} style={{border:0,padding:0}}><legend>Nhập bản sao lưu</legend><p>Chọn file, xem trước rồi xác nhận. Kế hoạch hiện tại được giữ.</p>
       <label>File sao lưu JSON<input aria-label="File sao lưu JSON" type="file" accept="application/json,.json" onChange={e=>void chooseFile(e.target.files?.[0])}/></label>
       {file&&<><p>{file.name}: {file.file.workspace.plans.length} kế hoạch.</p>{file.file.workspace.plans.map(p=><label key={p.id}>{p.name}<select aria-label={`Cách nhập ${p.name}`} value={planActions[p.id]??''} onChange={e=>{const next={...planActions};if(e.target.value)next[p.id]=e.target.value==='copy'?'copy':'skip';else delete next[p.id];setPlanActions(next);}}><option value="">Mặc định: thêm mới, bỏ qua ID trùng</option><option value="copy">Nhập thành bản sao với ID mới</option><option value="skip">Bỏ qua kế hoạch này</option></select></label>)}<button className="secondary-button" onClick={()=>void previewImport()}>Xem trước nhập file</button></>}

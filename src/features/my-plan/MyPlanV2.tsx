@@ -18,6 +18,7 @@ export type MyPlanV2Props = Pick<Workspace, 'plans' | 'activePlanId'> & {
   loading?: boolean;
   loadError?: string;
   onReload?: () => void;
+  onDraftStateChange?: (dirty: boolean) => void;
 };
 const describe = (result: Extract<OperationResult<unknown>, { ok: false }>) => result.issues.map(i => i.message).join(' ') || 'Không thực hiện được thao tác.';
 const dayNames = ['Thứ Hai', 'Thứ Ba', 'Thứ Tư', 'Thứ Năm', 'Thứ Sáu', 'Thứ Bảy', 'Chủ nhật'];
@@ -59,6 +60,7 @@ function PlanView({ plan, selecting, onBlockedChange, ...props }: MyPlanV2Props 
   const [confirmDiscard, setConfirmDiscard] = useState(false);
   const [error, setError] = useState('');
   const [notice, setNotice] = useState('');
+  useEffect(() => { props.onDraftStateChange?.(!!form || preview); return () => props.onDraftStateChange?.(false); }, [form, preview, props.onDraftStateChange]);
   const lock = useRef(false);
   const errorRef = useRef<HTMLParagraphElement>(null);
   useEffect(() => { if (error) errorRef.current?.focus(); }, [error]);

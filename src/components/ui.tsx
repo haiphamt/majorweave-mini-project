@@ -1,5 +1,8 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useId } from 'react';
 import { ArrowUpRight, X } from 'lucide-react';
+
+let openDialogs = 0;
+let previousOverflow = '';
 
 export function Badge({ children, tone = '' }: { children: React.ReactNode; tone?: string }) { return <span className={`badge ${tone}`}>{children}</span>; }
 
@@ -11,8 +14,9 @@ export function RoadmapLinks({ links, compact = false }: { links: { label: strin
 
 export function Dialog({ title, eyebrow, children, onClose, className = '' }: { title: string; eyebrow?: string; children: React.ReactNode; onClose: () => void; className?: string }) {
   const ref = useRef<HTMLDialogElement>(null);
-  useEffect(() => { const d = ref.current!; const previous = document.activeElement; d.showModal(); document.body.style.overflow = 'hidden'; return () => { d.close(); document.body.style.overflow = ''; if (previous instanceof HTMLElement && previous.isConnected) previous.focus(); }; }, []);
-  return <dialog ref={ref} className={className} aria-labelledby="dialog-title" onCancel={e => { e.preventDefault(); onClose(); }} onClick={e => { if (e.target === e.currentTarget) { const box = ref.current!.getBoundingClientRect(); if (e.clientX < box.left || e.clientX > box.right || e.clientY < box.top || e.clientY > box.bottom) onClose(); } }}>
-    <div className="dialog-head"><div>{eyebrow && <div className="eyebrow">{eyebrow}</div>}<h2 id="dialog-title">{title}</h2></div><button className="icon-button" onClick={onClose} aria-label="Đóng"><X size={20} /></button></div>{children}
+  const titleId = useId();
+  useEffect(() => { const d = ref.current!; const previous = document.activeElement; d.showModal(); if (openDialogs++ === 0) previousOverflow = document.body.style.overflow; document.body.style.overflow = 'hidden'; return () => { d.close(); if (--openDialogs === 0) document.body.style.overflow = previousOverflow; if (previous instanceof HTMLElement && previous.isConnected) previous.focus(); }; }, []);
+  return <dialog ref={ref} className={className} aria-labelledby={titleId} onCancel={e => { e.preventDefault(); onClose(); }} onClick={e => { if (e.target === e.currentTarget) { const box = ref.current!.getBoundingClientRect(); if (e.clientX < box.left || e.clientX > box.right || e.clientY < box.top || e.clientY > box.bottom) onClose(); } }}>
+    <div className="dialog-head"><div>{eyebrow && <div className="eyebrow">{eyebrow}</div>}<h2 id={titleId}>{title}</h2></div><button className="icon-button" onClick={onClose} aria-label="Đóng"><X size={20} /></button></div>{children}
   </dialog>;
 }
