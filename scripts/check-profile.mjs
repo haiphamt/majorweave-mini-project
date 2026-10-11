@@ -299,4 +299,3 @@ const report = { executedAt: new Date().toISOString(), baseline: execFileSync('g
 fs.mkdirSync('artifacts/tests/profile', { recursive: true });
 fs.writeFileSync('artifacts/tests/profile/unit-content.json', JSON.stringify(report, null, 2) + '\n');
 console.log(`PASS ${tests.length} groups; ${tracks.size} tracks, ${report.content.stages} owned stages, ${report.content.work} exercises. V2 integration is not tested.`);
-

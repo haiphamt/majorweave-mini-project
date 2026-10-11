@@ -282,4 +282,3 @@ const sequences=[
   ['src/app/AccountWorkspace.tsx','src/auth/AuthProvider.tsx','src/persistence/cloud-workspace.ts'])
 ];
 module.exports={activities,sequences};
-
