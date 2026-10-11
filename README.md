@@ -13,7 +13,7 @@ Mini Project môn **Phát triển ứng dụng web — IS207.R11**, nhóm **PHP 
 - My Plan có Plan / Stats / Weeks, thêm/sửa việc, hoàn thành/undo, backlog và chốt tuần.
 - Profile lưu tên/ngành/múi giờ; nhịp học tổng hợp completion của mọi plan. Đổi múi giờ giữ ngày hoàn thành cũ.
 - **IndexedDB** lưu workspace trên thiết bị. Xuất/nhập JSON có preview, bỏ qua ID trùng hoặc nhập bản sao; chuyển v1 có xác nhận và chống nhập trùng.
-- Guest dùng ngay, giữ dữ liệu trên thiết bị. Đã thêm code đăng nhập Google và kho tài khoản qua Supabase; Google provider/hosting đang chờ hoàn tất cấu hình. Form email mặc định ẩn đến khi có SMTP. Xem [Guest + Google/hosting](docs/team/GOOGLE_HOSTING_SETUP.md).
+- Guest dùng ngay, giữ dữ liệu trên thiết bị. Đã thêm code đăng nhập Google và kho tài khoản qua Supabase; website đã online, Google provider đang chờ hoàn tất cấu hình. Form email mặc định ẩn đến khi có SMTP. Xem [Guest + Google/hosting](docs/team/GOOGLE_HOSTING_SETUP.md).
 
 Số phút là ước lượng bài thực hành; tiến độ do người học tự ghi nhận. App không cấp/xác minh chứng chỉ hoặc đọc tiến độ khóa học bên ngoài. Các content pack vẫn mang trạng thái `review`: kiểm tra code không chứng minh mọi học phí, điều kiện thi hay chất lượng khóa học đã được xác minh.
 
@@ -31,7 +31,7 @@ npm run dev
 
 Mở `http://127.0.0.1:5173/#/explore`. Nếu cổng đã được dùng: `npm run dev -- --port 5195`. Xem bản build bằng `npm run preview`. Deploy static thư mục `dist`; ứng dụng dùng hash route. Đổi domain/cổng tạo kho khác theo origin: xuất backup trước khi chuyển nơi chạy.
 
-**Demo Netlify cũ:** [bản triển khai 07/10](https://cheery-dusk-9602b2.netlify.app/) ở commit `685435047a58f05d1bb3a90ae901425bdcb31074`. Link này chưa cập nhật bản v2 trong đợt tích hợp này.
+**Bản online hiện tại:** [uitplans.netlify.app](https://uitplans.netlify.app/) — triển khai công khai ngày 11/10/2026, source `fcd9dbb`, manual deploy. Guest dùng được; Google còn chờ hoàn tất OAuth client/provider. Bản [demo 07/10](https://cheery-dusk-9602b2.netlify.app/) là lịch sử, chưa cập nhật bản v2.
 
 ## Thử một hành trình
 
@@ -57,7 +57,7 @@ UI dùng callback, không tự ghi storage. Domain độc lập React/storage. D
 
 ## Tài khoản và dữ liệu online — 10/10/2026
 
-Project **uitplans** đã cấu hình database và callback phát triển ngày 11/10/2026. Hải chọn **Guest + Google trước**, email qua SMTP làm sau. Xem [cấu hình Google và hosting](docs/team/GOOGLE_HOSTING_SETUP.md). `netlify.toml` đã có build/publish/Node; triển khai và OAuth thật còn chờ bước tài khoản của Hải. Code không giả báo đăng nhập khi Google provider chưa bật. `.env.local` không nằm trong Git; máy khác/hosting cần điền biến theo `.env.example`. [Hướng dẫn email/SMTP](docs/team/SUPABASE_ACCOUNT_SETUP.md) giữ cho giai đoạn sau.
+Project **uitplans** đã cấu hình database/callback local và online ngày 11/10/2026. Hải chọn **Guest + Google trước**, email qua SMTP làm sau. Xem [cấu hình Google và hosting](docs/team/GOOGLE_HOSTING_SETUP.md). Netlify đã deploy công khai; OAuth thật còn chờ tạo/nhập credential Google. Code không giả báo đăng nhập khi Google provider chưa bật. `.env.local` không nằm trong Git; máy khác/hosting cần điền biến theo `.env.example`. [Hướng dẫn email/SMTP](docs/team/SUPABASE_ACCOUNT_SETUP.md) giữ cho giai đoạn sau.
 
 Các kiểm thử SQL/RLS/revision dùng Postgres/PGlite được chạy trong npm run check; xem [QA/AI Log tài khoản](docs/team/ACCOUNT_QA_AI_LOG.md). Tài khoản online cần mạng; app giữ bản sửa thất bại để retry/xuất, chưa có hàng đợi offline bền vững.
 

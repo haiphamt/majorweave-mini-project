@@ -8,11 +8,15 @@ Ngày 11/10/2026, Hải chọn Guest/Google trước, email/mật khẩu qua SMT
 - Chỉ mở OAuth sau khi kiểm tra Google provider bật; nếu chưa bật/mất mạng, báo rõ và Guest vẫn dùng được.
 - OAuth rời trang nên mọi phần đang sửa, kể cả tài khoản hết phiên, phải xử lý trước. Dữ liệu Guest chỉ đưa vào tài khoản qua preview/xác nhận.
 - Form email mặc định ẩn (`VITE_EMAIL_AUTH_ENABLED=false`). Luồng recovery cho tài khoản email cũ vẫn giữ; SMTP chưa bật.
-- **Chưa triển khai online và chưa đăng nhập Google thật.** Hải đã hoàn tất đăng nhập Netlify và điều khoản Google Cloud. Đã tạo project Google riêng `uitplans` (project number `557080586465`); OAuth client chưa tạo. Không bật Free trial/gói trả phí hoặc tự tạo secret thay Hải.
+- **Đã triển khai công khai:** [uitplans.netlify.app](https://uitplans.netlify.app/). Netlify project `uitplans`, ID `cc498549-9113-4a2b-8348-c86977e55eb7`, deploy `6acad08f07a5512ec02306a1`. Upload bản build của commit `fcd9dbba344d06f19dd8a96b9e4538856f28c9c1`; HTTP không có phiên đăng nhập trả 200 và đúng bundle `app-BDlLdjkO.js`.
+- Đã đặt Supabase Site URL/Redirect URL cho site online, giữ callback local 5195.
+- **Google OAuth chưa nghiệm thu:** đã tạo project Google riêng `uitplans` (project number `557080586465`), Hải tự chấp nhận điều khoản/chính sách dữ liệu. OAuth client đã điền sẵn origin/callback, đang chờ Hải hoàn tất Create và nhập Client ID/Secret tại Supabase. Không bật Free trial/gói trả phí hoặc tự nhập secret thay Hải.
 
 ## 1. Hosting Netlify
 
-Sau khi đăng nhập, ưu tiên cập nhật site hiện có của nhóm. Chọn repository `haiphamt/majorweave-mini-project`, branch `fix/beaver-ui`; không cần merge vào main để triển khai.
+Bản đầu đang dùng **manual deploy** bằng zip chứa `dist`, chưa liên kết Git để tự deploy. Cập nhật đúng project [uitplans](https://app.netlify.com/projects/uitplans); không tạo site mới mỗi lần sửa.
+
+Khi nối Git sau này, chọn repository `haiphamt/majorweave-mini-project`, branch `fix/beaver-ui`; không cần merge vào main để triển khai.
 
 `netlify.toml` đã đặt build `npm run build`, thư mục `dist`, Node 22. App dùng hash route, không cần rewrite mọi request thành index.html.
 
@@ -36,7 +40,7 @@ Thiết lập ứng dụng External, tên `uitplans.`, email hỗ trợ/liên h�
 
 Tạo OAuth client loại **Web application**:
 
-- Authorized JavaScript origins: origin HTTPS của site triển khai; thêm `http://127.0.0.1:5195` nếu Google chấp nhận địa chỉ phát triển đó. Không có hash/path ở origins.
+- Authorized JavaScript origins đã chuẩn bị: `https://uitplans.netlify.app` và `http://localhost:5195`. Không có hash/path ở origins. Local app vẫn có thể quay về `127.0.0.1:5195` qua server OAuth callback của Supabase.
 - Authorized redirect URI: **`https://svhbrhzedxohgnuoopir.supabase.co/auth/v1/callback`**. Đây là callback của Supabase hosted, kể cả app đang chạy local. Không dùng callback của Supabase local `:54321`.
 - Người dùng tự hoàn tất bước tạo credential và giữ Client Secret tại nơi quản lý bí mật. Không gửi secret vào chat.
 
@@ -46,7 +50,7 @@ Với app External còn **Testing**, kiểm tra danh sách người dùng thử.
 
 ## 3. URL Supabase
 
-Site URL đặt địa chỉ HTTPS đã deploy; Redirect URLs gồm đúng URL gốc của site và `http://127.0.0.1:5195/`. Không cho wildcard toàn bộ internet. App truyền origin/path hiện tại để người dùng quay về đúng nơi bắt đầu.
+Site URL đã đặt `https://uitplans.netlify.app/`; Redirect URLs gồm `https://uitplans.netlify.app/` và `http://127.0.0.1:5195/`. Không có wildcard. App truyền origin/path hiện tại để người dùng quay về đúng nơi bắt đầu.
 
 Đường dẫn quay về app khác với callback Google → Supabase ở mục 2.
 

@@ -9,7 +9,7 @@ Ngày 10/10/2026, Hải yêu cầu luồng tương tự Beaver Plans: **Guest �
 - Code, migration SQL và kiểm thử đã có trên nhánh `fix/beaver-ui`.
 - Ngày 11/10/2026, Hải đã tạo project **uitplans**, ref `svhbrhzedxohgnuoopir`, và cung cấp publishable key. App trên máy đã nối bằng `.env.local` (Git bỏ qua), khởi động ở `http://127.0.0.1:5195/`; form tài khoản đã bật.
 - Migration `account_workspaces` đã áp dụng trên hosted project. RLS, quyền đọc/ghi, retry và chống ghi đè đã kiểm tra bằng SQL thật trong transaction rollback; API Guest bị từ chối đọc/ghi.
-- Site URL và Redirect URLs đã đặt `http://127.0.0.1:5195/`. Email provider/đăng ký/xác nhận email bật; mật khẩu tối thiểu 8 ký tự.
+- Site URL hiện là `https://uitplans.netlify.app/`; Redirect URLs cho site online và `http://127.0.0.1:5195/`. Email provider/đăng ký/xác nhận email vẫn bật; form email đã ẩn theo quyết định Guest/Google, mật khẩu tối thiểu 8 ký tự.
 - **Custom SMTP chưa cấu hình**. Chưa nghiệm thu gửi thư Gmail, xác nhận email, đăng nhập tài khoản thật hoặc đồng bộ hai thiết bị thật. SMTP mặc định chỉ gửi được tới email thành viên tổ chức Supabase.
 - Không dùng project/key, dữ liệu hoặc tài khoản của Beaver Plans.
 

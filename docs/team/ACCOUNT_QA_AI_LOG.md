@@ -91,3 +91,13 @@
 - Callback `access_denied` được kiểm tra ở tab QA mới, tự mở thông báo; không tạo phiên/đăng nhập thật: PASS. Không sửa dữ liệu ở origin 5195.
 - `npm run check`/`npm run build`: PASS sau thay đổi Google. Bundle còn cảnh báo >500KB như trước.
 - Hải tự hoàn tất điều khoản Google Cloud và onboarding Netlify. Project Google `uitplans` đã tạo riêng, không sửa project môn khác. OAuth client và deploy thực tế đang cấu hình; chưa nghiệm thu Google/đồng bộ đa thiết bị thật.
+
+### Triển khai Netlify
+
+- Bản source `fcd9dbba344d06f19dd8a96b9e4538856f28c9c1` đã push trước build/upload. Archive `uitplans-netlify.zip` chứa build `dist` (401914 bytes), SHA256 `87998E1D84A150DB361FD3CB59C2F9A1757E6825349311B19DE7EED720E1B536`.
+- Chrome ban đầu từ chối upload vì thiếu quyền file URLs. Hải tự bật quyền, extension nối lại; upload bằng API file chooser được hỗ trợ, không dùng cách điều khiển khác để vượt chặn.
+- Netlify project mới `cc498549-9113-4a2b-8348-c86977e55eb7`, deploy `6acad08f07a5512ec02306a1`, tên cuối `uitplans`, URL `https://uitplans.netlify.app`. Đã chuyển từ private mặc định sang Public theo yêu cầu mọi người dùng.
+- Truy cập HTTP không có cookie/session trả 200, bundle khớp `app-BDlLdjkO.js`: PASS. Browser online mở Explore và dialog Google; provider chưa bật thì báo cấu hình/khóa nút: PASS.
+- Đã lưu Supabase Site URL `https://uitplans.netlify.app/` và thêm Redirect URL đó, giữ local `http://127.0.0.1:5195/`.
+- Đã điền sẵn OAuth client Web application/origins/callback. Hải tự hoàn tất chính sách dữ liệu. Tạo credential/nhập Google Secret/đăng nhập thật và Audience Production còn chờ, chưa ghi PASS.
+- Chưa nối Git tự deploy; đây là manual deploy. Không merge main, không mua tên miền hoặc bật gói trả phí.
