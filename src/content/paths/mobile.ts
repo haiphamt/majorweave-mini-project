@@ -1,7 +1,7 @@
 // src/content/paths/mobile.ts
 // ContentPack cho hướng Mobile Developer — 4 track: Android, iOS, Flutter, React Native.
-// reviewStatus='review': đã rà nguồn và bài ngày 07/10/2026; chờ Hải nghiệm thu.
-// Bằng chứng theo từng nguồn: docs/tasks/MW-TEAM-02/CONTENT_REVIEW.md.
+// reviewStatus='review': đã rà nguồn và bài ngày 07/10/2026; vẫn cần review nội dung.
+// Review provider terms before publishing changes to learning resources.
 // Ghi chú iOS: nội dung để học Swift/SwiftUI; không yêu cầu website MajorWeave chạy Swift.
 
 import type { ContentPack } from '../../domain/contracts';

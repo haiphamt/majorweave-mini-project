@@ -2,7 +2,7 @@
 
 Cập nhật 04/10/2026 (baseline phạm vi nhóm): 6 khoa, 12 ngành gốc, 18 hướng. Các chương trình tiếng Anh, tài năng, Việt–Nhật được gộp về ngành gốc.
 
-Danh mục được phân công gồm 18 hướng. Business Analyst dùng nguồn nghề nghiệp IIBA; các mối liên hệ ngành–hướng là gợi ý biên soạn của nhóm.
+Danh mục gồm 18 hướng học. Business Analyst dùng nguồn nghề nghiệp IIBA; các mối liên hệ ngành–hướng là gợi ý biên soạn của nhóm.
 
 **Gần nền tảng ngành** là nhóm có nhiều kiến thức chung. **Hướng mở rộng** cần học thêm kiến thức chuyên môn. Đây là các liên hệ do nhóm đề xuất dựa trên nền tảng đào tạo, không phải kết luận cá nhân hoặc danh sách chuyên ngành chính thức. Sinh viên vẫn được khám phá mọi hướng, kể cả hướng không được gắn với ngành hiện tại.
 

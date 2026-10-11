@@ -1,8 +1,8 @@
 # Chuẩn dữ liệu nội dung và mẫu triển khai
 
-**Ngày:** 04/10/2026 · **Trạng thái:** hợp đồng đề xuất để Hải duyệt, chưa phải phân công.
+Hướng dẫn định dạng và kiểm tra content pack của uitplans.
 
-Đọc [kiến trúc](../KIEN_TRUC_MAJORWEAVE.md) → [contracts.ts](contracts.ts) → [backend.example.ts](backend.example.ts). Các file ví dụ ở `docs/architecture` không được app import; chỉ chuyển sang `src` sau khi Hải duyệt và có bộ khung chung.
+Đọc [kiến trúc](../architecture.md), [contracts chính](../../src/domain/contracts.ts) và [Backend pack](../../src/content/paths/backend.ts). Ví dụ trong thư mục này dùng để kiểm tra hợp đồng; ứng dụng lấy nội dung từ `src/content/paths`.
 
 ## 1. Mẫu đang có và việc còn phải làm
 
@@ -139,4 +139,4 @@ npx --no-install tsc --strict --noEmit --target es2022 --module esnext --moduleR
 
 Kết quả đã chạy ngày 04/10/2026: cả hai lệnh pass. Script kiểm tra ba nhánh, thứ tự/tiên quyết không vòng, ID duy nhất, nguồn áp dụng đúng, default source tồn tại, phút/acceptance và legacy maps. Phân tích URL chỉ xác nhận cấu trúc/protocol; không xác nhận URL còn hoạt động hoặc phí/điều kiện chứng nhận.
 
-Khi triển khai, bổ sung kiểm tra planner, IndexedDB/migration/import và giao diện theo [mục 9 của kiến trúc](../KIEN_TRUC_MAJORWEAVE.md#9-luồng-cần-mở-rộng-và-tiêu-chí-kiểm-tra). Không ghi Pass cho các chức năng chưa chạy.
+Khi triển khai, bổ sung kiểm tra planner, IndexedDB/migration/import và giao diện theo [hướng dẫn kiểm thử](../testing.md). Không ghi Pass cho các chức năng chưa chạy.

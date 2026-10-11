@@ -1,0 +1,507 @@
+{
+  "checkedAt": "2026-10-11",
+  "activityCount": 15,
+  "sequenceCount": 8,
+  "skin": {
+    "paper": "#f4f1ea",
+    "surface": "#fbfaf6",
+    "ink": "#1c1a17",
+    "muted": "#736d64",
+    "rule": "#d2ccbe",
+    "boundary": "#736d64",
+    "accent": "#a74127",
+    "tint": "#f0e1d7",
+    "link": "#2e5aa8"
+  },
+  "flows": {
+    "EF01": [
+      "AD01",
+      "SQ03"
+    ],
+    "EF02": [
+      "AD01"
+    ],
+    "EF03": [
+      "AD01"
+    ],
+    "EF04": [
+      "AD01"
+    ],
+    "EF05": [
+      "AD01"
+    ],
+    "EF06": [
+      "AD02"
+    ],
+    "EF07": [
+      "AD02"
+    ],
+    "EF08": [
+      "AD02"
+    ],
+    "EF09": [
+      "AD02"
+    ],
+    "EF10": [
+      "AD02"
+    ],
+    "EF11": [
+      "AD02",
+      "SQ03"
+    ],
+    "EF12": [
+      "AD02"
+    ],
+    "EF13": [
+      "AD02"
+    ],
+    "EF14": [
+      "AD03",
+      "SQ03"
+    ],
+    "EF15": [
+      "AD02"
+    ],
+    "EF16": [
+      "AD02"
+    ],
+    "EF17": [
+      "AD02",
+      "SQ03"
+    ],
+    "EF18": [
+      "AD04"
+    ],
+    "EF19": [
+      "AD06"
+    ],
+    "EF20": [
+      "AD06"
+    ],
+    "EF21": [
+      "AD07"
+    ],
+    "EF22": [
+      "AD07"
+    ],
+    "EF23": [
+      "AD07"
+    ],
+    "EF24": [
+      "AD06"
+    ],
+    "EF25": [
+      "AD06"
+    ],
+    "EF26": [
+      "AD11"
+    ],
+    "EF27": [
+      "AD11"
+    ],
+    "EF28": [
+      "AD12"
+    ],
+    "EF29": [
+      "AD04",
+      "SQ03",
+      "SQ04"
+    ],
+    "EF30": [
+      "AD05",
+      "SQ04"
+    ],
+    "EF31": [
+      "AD08",
+      "SQ03",
+      "SQ04"
+    ],
+    "EF32": [
+      "AD09",
+      "AD10"
+    ],
+    "EF33": [
+      "AD11",
+      "SQ03",
+      "SQ04"
+    ],
+    "EF34": [
+      "AD12",
+      "SQ03",
+      "SQ04"
+    ],
+    "EF35": [
+      "AD13"
+    ],
+    "EF36": [
+      "AD14",
+      "SQ03",
+      "SQ04",
+      "SQ05"
+    ],
+    "EF37": [
+      "SQ02"
+    ],
+    "EF38": [
+      "SQ01"
+    ],
+    "EF39": [
+      "SQ01"
+    ],
+    "EF40": [
+      "SQ02"
+    ],
+    "EF41": [
+      "AD15"
+    ],
+    "EF42": [
+      "SQ06"
+    ],
+    "EF43": [
+      "SQ07",
+      "SQ08"
+    ],
+    "EF44": [
+      "SQ04",
+      "SQ05"
+    ]
+  },
+  "diagrams": [
+    {
+      "id": "AD01",
+      "title": "Khám phá hướng học",
+      "type": "activity",
+      "refs": [
+        "EF01",
+        "EF02",
+        "EF03",
+        "EF04",
+        "EF05"
+      ],
+      "sources": [
+        "src/features/explore/Explore.tsx",
+        "src/app/context.ts"
+      ]
+    },
+    {
+      "id": "AD02",
+      "title": "Chọn chặng và nguồn học",
+      "type": "activity",
+      "refs": [
+        "EF06",
+        "EF07",
+        "EF08",
+        "EF09",
+        "EF10",
+        "EF11",
+        "EF12",
+        "EF13",
+        "EF15",
+        "EF16",
+        "EF17"
+      ],
+      "sources": [
+        "src/features/path-detail/",
+        "src/features/my-roadmap/",
+        "src/app/workspace-controller.ts"
+      ]
+    },
+    {
+      "id": "AD03",
+      "title": "Lưu mục tiêu chứng nhận",
+      "type": "activity",
+      "refs": [
+        "EF14"
+      ],
+      "sources": [
+        "src/features/path-detail/",
+        "src/features/profile/",
+        "src/app/workspace-controller.ts"
+      ]
+    },
+    {
+      "id": "AD04",
+      "title": "Tạo kế hoạch học mới",
+      "type": "activity",
+      "refs": [
+        "EF18",
+        "EF29"
+      ],
+      "sources": [
+        "src/features/my-roadmap/",
+        "src/domain/planner.ts",
+        "src/app/workspace-controller.ts"
+      ]
+    },
+    {
+      "id": "AD05",
+      "title": "Tạo lại kế hoạch có xem trước",
+      "type": "activity",
+      "refs": [
+        "EF30"
+      ],
+      "sources": [
+        "src/features/my-roadmap/",
+        "src/app/workspace-controller.ts",
+        "src/domain/"
+      ]
+    },
+    {
+      "id": "AD06",
+      "title": "Xem kế hoạch tuần và lịch sử",
+      "type": "activity",
+      "refs": [
+        "EF19",
+        "EF20",
+        "EF24",
+        "EF25"
+      ],
+      "sources": [
+        "src/features/my-plan/MyPlanV2.tsx",
+        "src/app/workspace-controller.ts"
+      ]
+    },
+    {
+      "id": "AD07",
+      "title": "Thêm sửa và xếp lịch công việc",
+      "type": "activity",
+      "refs": [
+        "EF21",
+        "EF22",
+        "EF23"
+      ],
+      "sources": [
+        "src/features/my-plan/MyPlanV2.tsx",
+        "src/domain/",
+        "src/app/workspace-controller.ts"
+      ]
+    },
+    {
+      "id": "AD08",
+      "title": "Hoàn thành và bỏ hoàn thành",
+      "type": "activity",
+      "refs": [
+        "EF31"
+      ],
+      "sources": [
+        "src/features/my-plan/MyPlanV2.tsx",
+        "src/features/profile/",
+        "src/domain/"
+      ]
+    },
+    {
+      "id": "AD09",
+      "title": "Xem trước và xác nhận chốt tuần",
+      "type": "activity",
+      "refs": [
+        "EF32"
+      ],
+      "sources": [
+        "src/features/my-plan/MyPlanV2.tsx",
+        "src/domain/",
+        "src/app/workspace-controller.ts"
+      ]
+    },
+    {
+      "id": "AD10",
+      "title": "Ba cách xử lý việc chưa hoàn thành",
+      "type": "activity",
+      "refs": [
+        "EF32"
+      ],
+      "sources": [
+        "src/domain/",
+        "src/features/my-plan/MyPlanV2.tsx"
+      ]
+    },
+    {
+      "id": "AD11",
+      "title": "Nhịp học và chỉnh hồ sơ",
+      "type": "activity",
+      "refs": [
+        "EF26",
+        "EF27",
+        "EF33"
+      ],
+      "sources": [
+        "src/features/profile/",
+        "src/domain/",
+        "src/app/workspace-controller.ts"
+      ]
+    },
+    {
+      "id": "AD12",
+      "title": "Xuất và nhập file sao lưu",
+      "type": "activity",
+      "refs": [
+        "EF28",
+        "EF34"
+      ],
+      "sources": [
+        "src/persistence/backup.ts",
+        "src/app/workspace-controller.ts",
+        "src/features/profile/"
+      ]
+    },
+    {
+      "id": "AD13",
+      "title": "Chuyển dữ liệu cũ trong Guest",
+      "type": "activity",
+      "refs": [
+        "EF35"
+      ],
+      "sources": [
+        "src/persistence/migration.ts",
+        "src/app/AccountWorkspace.tsx",
+        "src/features/profile/"
+      ]
+    },
+    {
+      "id": "AD14",
+      "title": "Xử lý bản chưa lưu và xung đột",
+      "type": "activity",
+      "refs": [
+        "EF36"
+      ],
+      "sources": [
+        "src/app/workspace-controller.ts",
+        "src/persistence/cloud-workspace.ts",
+        "src/auth/AccountControls.tsx"
+      ]
+    },
+    {
+      "id": "AD15",
+      "title": "Đưa dữ liệu Guest vào tài khoản",
+      "type": "activity",
+      "refs": [
+        "EF41"
+      ],
+      "sources": [
+        "src/auth/AccountControls.tsx",
+        "src/persistence/guest-backup.ts",
+        "src/persistence/backup.ts"
+      ]
+    },
+    {
+      "id": "SQ01",
+      "title": "Đăng nhập Google và nhận phiên",
+      "type": "sequence",
+      "refs": [
+        "EF38",
+        "EF39"
+      ],
+      "sources": [
+        "src/auth/google.ts",
+        "src/auth/supabase.ts",
+        "src/auth/AuthProvider.tsx",
+        "src/auth/AccountControls.tsx"
+      ]
+    },
+    {
+      "id": "SQ02",
+      "title": "Tải workspace theo tài khoản",
+      "type": "sequence",
+      "refs": [
+        "EF37",
+        "EF40"
+      ],
+      "sources": [
+        "src/persistence/cloud-workspace.ts",
+        "src/app/AccountWorkspace.tsx",
+        "src/app/workspace-controller.ts"
+      ]
+    },
+    {
+      "id": "SQ03",
+      "title": "Lưu Guest trong IndexedDB",
+      "type": "sequence",
+      "refs": [
+        "EF01",
+        "EF11",
+        "EF14",
+        "EF17",
+        "EF29",
+        "EF31",
+        "EF33",
+        "EF34",
+        "EF36"
+      ],
+      "sources": [
+        "src/persistence/roadmap-store.ts",
+        "src/app/workspace-controller.ts"
+      ]
+    },
+    {
+      "id": "SQ04",
+      "title": "Lưu cloud và ngăn ghi đè",
+      "type": "sequence",
+      "refs": [
+        "EF29",
+        "EF30",
+        "EF31",
+        "EF33",
+        "EF34",
+        "EF36",
+        "EF44"
+      ],
+      "sources": [
+        "src/persistence/cloud-workspace.ts",
+        "src/app/workspace-controller.ts",
+        "supabase/migrations/"
+      ]
+    },
+    {
+      "id": "SQ05",
+      "title": "Thử lại khi mất phản hồi lưu",
+      "type": "sequence",
+      "refs": [
+        "EF36",
+        "EF44"
+      ],
+      "sources": [
+        "src/persistence/cloud-workspace.ts",
+        "supabase/migrations/",
+        "src/app/workspace-controller.ts"
+      ]
+    },
+    {
+      "id": "SQ06",
+      "title": "Nhận cập nhật từ phiên khác",
+      "type": "sequence",
+      "refs": [
+        "EF42"
+      ],
+      "sources": [
+        "src/app/AccountWorkspace.tsx",
+        "src/auth/AccountControls.tsx",
+        "src/persistence/cloud-workspace.ts"
+      ]
+    },
+    {
+      "id": "SQ07",
+      "title": "Đăng xuất cục bộ về Guest",
+      "type": "sequence",
+      "refs": [
+        "EF43"
+      ],
+      "sources": [
+        "src/auth/AccountControls.tsx",
+        "src/auth/AuthProvider.tsx",
+        "src/app/AccountWorkspace.tsx"
+      ]
+    },
+    {
+      "id": "SQ08",
+      "title": "Đổi phiên khi còn chỉnh sửa",
+      "type": "sequence",
+      "refs": [
+        "EF43"
+      ],
+      "sources": [
+        "src/app/AccountWorkspace.tsx",
+        "src/auth/AuthProvider.tsx",
+        "src/persistence/cloud-workspace.ts"
+      ]
+    }
+  ]
+}

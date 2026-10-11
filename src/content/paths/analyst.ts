@@ -1,6 +1,6 @@
 import type { ContentPack } from '../../domain/contracts';
 
-// Shared Data stages/resources are defined here once; see MW-TEAM-04 inventory.
+// Shared Data stages/resources are defined here once.
 export const analystPack: ContentPack = {
   "schemaVersion": 1,
   "contentVersion": "2026-10-07.mw-team-04.1",

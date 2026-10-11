@@ -1,6 +1,6 @@
 import type { ContentPack } from '../../domain/contracts';
 
-// Sources verified in docs/tasks/MW-TEAM-03/SOURCES.json.
+// Sources verified in tests/fixtures/plan-sources.json.
 // Cross-pack IDs resolve through the single integrated registry.
 export const aiEngineerPack: ContentPack = {
   "schemaVersion": 1,

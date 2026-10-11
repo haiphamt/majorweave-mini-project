@@ -1,29 +1,18 @@
-## Task liên quan
+## Summary
 
-- TASK-ID và link `docs/tasks/<TASK-ID>/TASK.md` hoặc GitHub issue:
-- Người làm / reviewer / hướng và mọi nhánh được giao:
-- File allowlist / file chung đã thống nhất:
+Describe the change and why it is needed.
 
-## Thay đổi
+## Verification
 
--
+- [ ] `npm run check`
+- [ ] `npm run check:features`
+- [ ] `npm run build`
+- [ ] Desktop/mobile and keyboard checks, if the interface changed
 
-## Kiểm tra
+## Screenshots
 
-- Tình huống / stack đã kiểm tra:
-- Kết quả và link minh chứng:
-- Ảnh UI nếu thay đổi giao diện:
-- User story, luồng chi tiết, test case và AI log trong thư mục task:
-- `npm run check` / `npm run build`, SHA và kết quả thực:
-- Module đã tích hợp vào app chính hay mới bàn giao độc lập:
-- Giới hạn hoặc việc còn lại:
+Include screenshots for visible changes. Remove credentials and personal account data.
 
-## Review
+## Compatibility
 
-- Người kiểm tra:
-- [ ] Đúng phạm vi và tiêu chí của task.
-- [ ] Giữ sidebar/style cũ, không thêm đăng nhập trong giai đoạn này.
-- [ ] Không mất dữ liệu cũ; không xóa storage hoặc test để né lỗi.
-- [ ] Kiểm tra đủ mọi nhánh được giao, kể cả lỗi/hủy; không ghi Pass cho test chưa chạy.
-- [ ] Ghi nguồn và AI Development Log nếu phù hợp.
-- [ ] Không chứa secret hoặc thông tin đăng nhập thật.
+Mention any effect on persisted IDs, backup formats, account isolation or deployment configuration.

@@ -1,7 +1,6 @@
 import type { LearningPlan, OperationResult, PlanGeneration, PlanTask, RoadmapDraft, Workspace, WorkspacePersistence } from '../domain/contracts';
 
-// Bootstrap adapter for the shared context. MW-TEAM-05 owns migration/backup;
-// MW-TEAM-04 adds the complete semantic validator through validate below.
+// Guest persistence adapter. Semantic validation runs before committing a workspace.
 const record = (value: unknown): value is Record<string, unknown> => typeof value === 'object' && value !== null && !Array.isArray(value);
 const text = (value: unknown): value is string => typeof value === 'string';
 const strings = (value: unknown): value is string[] => Array.isArray(value) && value.every(text);

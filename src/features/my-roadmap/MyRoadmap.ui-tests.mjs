@@ -10,7 +10,7 @@ export async function runRoadmapUITests() {
   const context = await browser.newContext({ viewport: { width: 1440, height: 1000 } });
   const page = await context.newPage();
   const baseUrl = process.env.MAJORWEAVE_TEST_URL || 'http://127.0.0.1:5174';
-  const evidence = 'docs/tasks/MW-TEAM-02/evidence';
+  const evidence = 'artifacts/tests/roadmap';
   fs.mkdirSync(evidence, { recursive: true });
   const results = [];
   const errors = [];

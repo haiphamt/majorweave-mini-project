@@ -1,7 +1,7 @@
 // src/content/paths/game.ts
 // ContentPack cho hướng Game Developer — 3 track: Unity/C#, Unreal/C++, Godot/GDScript.
-// reviewStatus='review': đã rà nguồn và bài ngày 07/10/2026; chờ Hải nghiệm thu.
-// Bằng chứng theo từng nguồn: docs/tasks/MW-TEAM-02/CONTENT_REVIEW.md.
+// reviewStatus='review': đã rà nguồn và bài ngày 07/10/2026; vẫn cần review nội dung.
+// Review provider terms before publishing changes to learning resources.
 
 import type { ContentPack } from '../../domain/contracts';
 

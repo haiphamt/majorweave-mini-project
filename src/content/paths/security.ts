@@ -1,6 +1,6 @@
 import type { ContentPack } from '../../domain/contracts';
 
-// MW-TEAM-05: nội dung chờ review; registry/app do Hải tích hợp.
+// Content remains subject to editorial review.
 export const securityPack: ContentPack = {
   "schemaVersion": 1,
   "contentVersion": "2026-10-09.team05-review",

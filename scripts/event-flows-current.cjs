@@ -1,6 +1,6 @@
 // Observable actions in the integrated UI; old prototype records stay historical.
 const rows=[
-['Chọn ngành học','Explore','Chọn khoa và ngành','Cập nhật hồ sơ','Ưu tiên hướng liên quan','Lưu ngành đã chọn','Lưu lỗi: giữ lựa chọn và báo lỗi.'],
+['Chọn ngành học','Explore','Chọn khoa và ngành','Cập nhật ngành trong hồ sơ','Ưu tiên hướng liên quan','Lưu ngành đã chọn','Bỏ ngành vẫn giữ khoa đang chọn trong phiên Explore; khoa riêng này chưa lưu qua reload. Chủ động bỏ khoa mới xóa ngành. Lưu lỗi: giữ lựa chọn và báo lỗi.'],
 ['Khám phá khoa khác','Explore','Đổi bộ lọc khoa','Giữ ngành trong hồ sơ','Lọc hướng theo khoa','Mở hướng muốn tìm hiểu','Bộ lọc không thay kế hoạch đang học.'],
 ['Tìm hướng học','Explore','Tìm kiếm hoặc đổi nhóm','Kết hợp các bộ lọc','Hiển thị hướng phù hợp','Mở chi tiết hướng','Không có kết quả: xóa hoặc nới bộ lọc.'],
 ['Xem bảng ngành và hướng','Explore','Mở bảng ngành → hướng','Xem 12 ngành và liên hệ','Chọn ngành để khám phá','Danh sách được ưu tiên','Đóng bảng giữ các lựa chọn.'],
@@ -13,10 +13,10 @@ const rows=[
 ['Lưu lựa chọn chặng','Chi tiết chặng','Áp dụng và lưu','Áp dụng chặng, nguồn, đã biết','Lưu lựa chọn và chờ kết quả','Đóng sau khi lưu thành công','Lỗi: giữ bản đang sửa để thử lại.'],
 ['Lưu lựa chọn nhánh','Path detail','Lưu lựa chọn','Giữ bản nháp của nhánh','Lưu và đợi hoàn tất','Thông báo đã lưu','Lỗi: giữ bản đang sửa, không báo thành công.'],
 ['Tìm nguồn học','Path detail · Nguồn học','Tìm kiếm và lọc nguồn','Kết hợp từ khóa và ngôn ngữ','Lọc miễn phí nếu được chọn','Mở tài liệu ở tab mới','Bộ lọc không tự đổi nguồn trong bản nháp.'],
-['Lưu mục tiêu chứng nhận','Path detail · Chứng nhận','Lưu hoặc bỏ lưu chứng nhận','Đổi trạng thái mục tiêu','Lưu trên thiết bị','Cập nhật mục đã lưu ở Hồ sơ','Lưu mục tiêu không có nghĩa đã được cấp chứng nhận.'],
+['Lưu mục tiêu chứng nhận','Path detail · Chứng nhận','Lưu hoặc bỏ lưu chứng nhận','Đổi trạng thái mục tiêu','Lưu vào kho đang sử dụng','Cập nhật mục đã lưu ở Hồ sơ','Lưu mục tiêu không có nghĩa đã được cấp chứng nhận. Guest lưu IndexedDB; tài khoản lưu Supabase.'],
 ['Tùy chỉnh roadmap','My roadmap','Chọn chặng cần học','Cập nhật bản nháp riêng','Kiểm tra chặng tiên quyết','Chờ lưu hoặc tạo kế hoạch','Thiếu nền tảng: chọn chặng cần học hoặc xác nhận đã biết.'],
 ['Đánh dấu kỹ năng đã biết','My roadmap','Đổi dấu Đã biết','Giữ kỹ năng trong nền tảng','Bỏ bài tương ứng khi sinh lịch','Cập nhật giờ thực hành','Đã biết không tạo lịch sử hoàn thành giả.'],
-['Lưu lựa chọn học','My roadmap','Lưu lựa chọn','Kiểm tra lựa chọn đang sửa','Lưu trên thiết bị','Giữ kế hoạch đã tạo','Lỗi: thử lại hoặc bỏ bản chưa lưu có xác nhận.'],
+['Lưu lựa chọn học','My roadmap','Lưu lựa chọn','Kiểm tra lựa chọn đang sửa','Lưu vào kho đang sử dụng','Giữ kế hoạch đã tạo','Lỗi: thử lại hoặc bỏ bản chưa lưu có xác nhận. Lưu lựa chọn không tự tạo hoặc thay kế hoạch.'],
 ['Chọn ngày bắt đầu','My roadmap','Chọn ngày và tạo lịch','Kiểm tra ngày bắt đầu','Đề nghị Thứ Hai nếu cần','Chờ đồng ý hoặc quay lại','Hủy đề nghị không tạo kế hoạch.'],
 ['Chọn kế hoạch đang xem','My plan','Đổi Kế hoạch đang xem','Tìm kế hoạch đã lưu','Lưu lựa chọn đang xem','Hiển thị việc của kế hoạch','Có bản lưu lỗi: xử lý trước khi đổi.'],
 ['Xem tuần hoặc việc chưa xếp lịch','My plan · Việc học','Chọn tuần, mũi tên, Today hoặc Chưa xếp lịch','Đọc khoảng ngày và tiến độ của tuần','Lọc theo chặng rồi nhóm theo ngày','Hiển thị việc và nguồn tương ứng','Today chỉ dùng khi ngày hiện tại thuộc kế hoạch; bộ lọc chặng không thay dữ liệu hoặc phạm vi chốt tuần. Tuần chốt hoặc phiên bản cũ chỉ đọc.'],
@@ -27,6 +27,6 @@ const rows=[
 ['Xem tuần và lịch sử','My plan · Các tuần','Mở Các tuần hoặc phiên bản cũ','Chọn tuần muốn xem','Đọc kết quả phiên bản','Quay lại bản hiện tại','Phiên bản lịch sử không được sửa.'],
 ['Xem nhịp học','Profile','Mở nhịp học','Đọc lần hoàn thành mọi plan','Tổng hợp theo ngày ghi nhận','Xem ngày đã học','Không đếm lại bản lịch sử; dữ liệu thiếu ngày không bịa ngày.'],
 ['Hủy chỉnh hồ sơ','Profile','Hủy thay đổi','Bỏ chỉnh sửa trong form','Đọc hồ sơ đã lưu','Khôi phục tên, ngành, múi giờ','Không xóa kế hoạch hoặc nhịp học.'],
-['Mở sao lưu và khôi phục','Profile','Mở Sao lưu & chuyển thiết bị','Chọn xuất hoặc file để nhập','Hiện tùy chọn khi có file','Xem trước rồi xác nhận','Không có dữ liệu cũ thì ẩn khôi phục bản cũ.']
+['Mở sao lưu và khôi phục','Profile · Data','Mở phần dữ liệu','Chọn xuất hoặc file để nhập','Hiện tùy chọn khi có file','Xem trước rồi xác nhận','Xuất/nhập dùng workspace đang mở. Dữ liệu v1 chỉ được đọc trong kho Guest; tài khoản không tự đọc dữ liệu cũ của Guest.']
 ];
-module.exports=rows.map((r,i)=>({id:`EF${String(i+1).padStart(2,'0')}`,name:r[0],group:r[1],page:r[1],condition:'Trang đã tải dữ liệu; thao tác ghi cần bản hiện tại và không có lần lưu đang chờ.',trigger:r[2],steps:[[r[3],'Thao tác của người học'],[r[4],'Phản hồi của hệ thống']],end:[r[5],'Kết quả có thể quan sát trên giao diện'],alternatives:[r[6]],kind:'linear'}));
+module.exports=rows.map((r,i)=>({id:`EF${String(i+1).padStart(2,'0')}`,name:r[0],group:r[1],page:r[1],condition:'Workspace đang mở là Guest hoặc tài khoản. Các thao tác ghi cần dữ liệu đã tải, không có lần lưu hay bản chờ xử lý; chỉ báo thành công sau khi kho đang dùng xác nhận.',trigger:r[2],steps:[[r[3],'Bước xử lý'],[r[4],'Bước tiếp theo']],end:[r[5],'Kết quả có thể quan sát trên giao diện'],alternatives:[r[6]],kind:'linear'}));
