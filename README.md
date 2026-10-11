@@ -13,7 +13,7 @@ Mini Project môn **Phát triển ứng dụng web — IS207.R11**, nhóm **PHP 
 - My Plan có Plan / Stats / Weeks, thêm/sửa việc, hoàn thành/undo, backlog và chốt tuần.
 - Profile lưu tên/ngành/múi giờ; nhịp học tổng hợp completion của mọi plan. Đổi múi giờ giữ ngày hoàn thành cũ.
 - **IndexedDB** lưu workspace trên thiết bị. Xuất/nhập JSON có preview, bỏ qua ID trùng hoặc nhập bản sao; chuyển v1 có xác nhận và chống nhập trùng.
-- Guest dùng ngay, giữ dữ liệu trên thiết bị. Đã thêm đăng nhập Google và kho tài khoản qua Supabase; website đã online, Google provider đã bật và mở được màn hình chọn tài khoản. Callback/lưu cloud bằng Google đang nghiệm thu. Form email mặc định ẩn đến khi có SMTP. Xem [Guest + Google/hosting](docs/team/GOOGLE_HOSTING_SETUP.md).
+- Guest dùng ngay, giữ dữ liệu trên thiết bị. Website đã online; đăng nhập Google, lưu kế hoạch vào Supabase và tải lại sau reload đã kiểm tra bằng tài khoản thật. Form email mặc định ẩn đến khi có SMTP. Xem [Guest + Google/hosting](docs/team/GOOGLE_HOSTING_SETUP.md).
 
 Số phút là ước lượng bài thực hành; tiến độ do người học tự ghi nhận. App không cấp/xác minh chứng chỉ hoặc đọc tiến độ khóa học bên ngoài. Các content pack vẫn mang trạng thái `review`: kiểm tra code không chứng minh mọi học phí, điều kiện thi hay chất lượng khóa học đã được xác minh.
 
@@ -31,7 +31,7 @@ npm run dev
 
 Mở `http://127.0.0.1:5173/#/explore`. Nếu cổng đã được dùng: `npm run dev -- --port 5195`. Xem bản build bằng `npm run preview`. Deploy static thư mục `dist`; ứng dụng dùng hash route. Đổi domain/cổng tạo kho khác theo origin: xuất backup trước khi chuyển nơi chạy.
 
-**Bản online hiện tại:** [uitplans.netlify.app](https://uitplans.netlify.app/) — triển khai công khai ngày 11/10/2026, source `fcd9dbb`, manual deploy. Guest dùng được; Google đã bật, đang nghiệm thu đăng nhập và lưu dữ liệu thật. Bản [demo 07/10](https://cheery-dusk-9602b2.netlify.app/) là lịch sử, chưa cập nhật bản v2.
+**Bản online hiện tại:** [uitplans.netlify.app](https://uitplans.netlify.app/) — triển khai công khai ngày 11/10/2026, source `fcd9dbb`, manual deploy. Guest dùng được; Google đã đăng nhập và lưu/tải kế hoạch thật thành công. Chưa thử trên hai thiết bị vật lý. Bản [demo 07/10](https://cheery-dusk-9602b2.netlify.app/) là lịch sử, chưa cập nhật bản v2.
 
 ## Thử một hành trình
 

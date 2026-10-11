@@ -103,3 +103,12 @@
 - Trên site online, Continue with Google bật và chuyển được tới `accounts.google.com`, màn hình Choose an account; scope của request là `email profile`, không có Gmail/Drive: PASS bước khởi tạo OAuth. Ảnh `D:/IS207/artifacts/google-2026-10-11/google-account-chooser.png`. Chờ Hải tự chọn tài khoản/xác nhận quyền; callback, tạo phiên và lưu/tải workspace thật chưa chạy.
 - Google công bố ngoại lệ Testing cho scope nhận diện cơ bản; không coi chuyển Production là điều kiện bắt buộc để thử Google của uitplans. Chưa xác minh branding, Google hiển thị domain Supabase ở màn hình chọn tài khoản.
 - Chưa nối Git tự deploy; đây là manual deploy. Không merge main, không mua tên miền hoặc bật gói trả phí.
+
+### Google thật và lưu/tải workspace — 11/10/2026
+
+- Hải tự chọn tài khoản/xác nhận quyền Google. Callback trở về `https://uitplans.netlify.app/#/explore`, hiển thị tên tài khoản và Online; URL không còn fragment token: PASS.
+- Kho tài khoản mới hiển thị Chưa có kế hoạch; không tự nhập Guest: PASS trạng thái đầu tiên, chưa nghiệm thu chuyển Guest thật.
+- Theo yêu cầu trước đó của Hải, tạo một kế hoạch sử dụng thật: Backend Node.js / Express, mục tiêu xây API quản lý công việc, 5 giờ/tuần, bắt đầu Thứ Hai 12/10/2026. Giữ 15 chặng mặc định, 54.5 giờ thực hành, 39 việc/12 tuần; không đánh dấu hoàn thành giả.
+- UI báo Đã lưu online. Truy vấn chỉ đọc đối chiếu kế hoạch vừa tạo tại hosted Supabase: schemaVersion 2, revision 1, 1 plan, track backend.node, 39 tasks, startDate 2026-10-12, hoursPerWeek 5: PASS. Không đọc/in token hay Secret.
+- Reload site và chờ dữ liệu tải xong: tên tài khoản còn, mục tiêu và 5 giờ/tuần · 0/39 việc đã xong còn; app báo Đã lưu online: PASS. Ảnh `D:/IS207/artifacts/google-2026-10-11/backend-cloud-reloaded.png`.
+- Giới hạn: chưa đăng nhập cùng tài khoản trên hai thiết bị vật lý; chưa thử chuyển Guest thật, đăng nhập tài khoản Google thứ hai hoặc roundtrip mất mạng thật. Kiểm thử SQL/các tình huống mô phỏng trước đó vẫn được ghi riêng, không coi là bằng chứng những luồng thật này đã chạy.
