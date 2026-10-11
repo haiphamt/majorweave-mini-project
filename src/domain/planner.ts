@@ -199,10 +199,10 @@ export function validateDraft(
         issues.push({
           code: 'MISSING_PREREQUISITE',
           field: 'selectedStageIds',
-          message: `Chặng "${sid}" yêu cầu tiên quyết "${prereqId}" nhưng chặng này không được chọn và không có trong danh sách đã biết.`,
+          message: `Để học "${stage.title}", hãy chọn học "${stageMap.get(prereqId)?.title ?? prereqId}" hoặc đánh dấu chặng đó là đã biết.`,
         });
       } else if (!draft.knownStageIds.includes(prereqId) && draft.selectedStageIds.indexOf(prereqId) >= draft.selectedStageIds.indexOf(sid)) {
-        issues.push({ code: 'INVALID_PREREQUISITE_ORDER', field: 'selectedStageIds', message: `Chặng "${prereqId}" phải được học trước "${sid}".` });
+        issues.push({ code: 'INVALID_PREREQUISITE_ORDER', field: 'selectedStageIds', message: `Cần học "${stageMap.get(prereqId)?.title ?? prereqId}" trước "${stage.title}".` });
       }
     }
   }

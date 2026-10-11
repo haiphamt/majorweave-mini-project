@@ -1,7 +1,7 @@
 # Domain
 
-`contracts.ts` là nguồn chuẩn cho dữ liệu v2, đã chuyển từ tài liệu bước 3. Chưa thay `State` v1 của UI đang chạy.
+Pure TypeScript contracts and operations for learning plans, content resolution, validation, progress and activity. This layer does not depend on React, browser storage or Supabase.
 
-Các task sau sẽ tạo `content.ts`, `planner.ts`, `progress.ts`, `validate.ts` theo [kiến trúc](../../docs/KIEN_TRUC_MAJORWEAVE.md). Chưa có hàm giả trả thành công hoặc plan mẫu cho những phần ấy.
+Use `contracts.ts` as the data boundary. Mutations return results without writing persistence; the workspace controller decides when to commit them. Keep existing identifiers and backup-compatible structures stable.
 
-Quy tắc: hàm xử lý thuần; không import React, feature, persistence hoặc Prototype 02. Clock/ID truyền vào khi cần; kiểm tra dữ liệu ngoài app ở runtime. Thay chữ ký/kiểu cần ghi change request trong task và được nhóm trưởng thống nhất trước khi tích hợp.
+See [architecture](../../docs/architecture.md) and [testing](../../docs/testing.md).

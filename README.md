@@ -1,87 +1,89 @@
-# MajorWeave
+# uitplans.
 
-Mini Project môn **Phát triển ứng dụng web — IS207.R11**, nhóm **PHP Is Awesome**. Khám phá hướng học, chọn nguồn phù hợp và biến roadmap thành kế hoạch tự học theo tuần.
+**Find your path. Plan your week.**
 
-## Bản tích hợp v2 — 09/10/2026
+A learning planner for students exploring careers in technology. Discover a direction, choose the skills and resources you need, and turn a roadmap into a weekly plan.
 
-- Giữ giao diện sidebar, màu sắc và style đã chọn.
-- **6 khoa, 12 ngành, 18 hướng, 50 cấu hình kế hoạch**, nối vào cùng bộ tạo lịch và kho dữ liệu.
-- Nguồn học, roadmap tham khảo, mục tiêu portfolio và chứng nhận theo nhánh. BA dùng nguồn nghề ngoài roadmap.sh.
-- Nhiều kế hoạch độc lập; draft không tự sửa plan đang học. Tạo lại có preview, xác nhận và lịch sử.
-- My Plan có Plan / Stats / Weeks, thêm/sửa việc, hoàn thành/undo, backlog và chốt tuần.
-- Profile lưu tên/ngành/múi giờ; nhịp học tổng hợp completion của mọi plan. Đổi múi giờ giữ ngày hoàn thành cũ.
-- **IndexedDB** lưu workspace trên thiết bị. Xuất/nhập JSON có preview, bỏ qua ID trùng hoặc nhập bản sao; chuyển v1 có xác nhận và chống nhập trùng.
-- Không cần đăng nhập; chưa có Google login, server tài khoản hoặc đồng bộ giữa thiết bị.
+[Live application](https://uitplans.netlify.app/) · [System diagrams](https://uitplans.netlify.app/events.html) · [Learning catalogue](https://uitplans.netlify.app/catalog.html)
 
-Số phút là ước lượng bài thực hành; tiến độ do người học tự ghi nhận. App không cấp/xác minh chứng chỉ hoặc đọc tiến độ khóa học bên ngoài. Các content pack vẫn mang trạng thái `review`: kiểm tra code không chứng minh mọi học phí, điều kiện thi hay chất lượng khóa học đã được xác minh.
+## Features
 
-## Chạy trên máy
+- **Explore:** 6 faculties, 12 majors, 18 career directions and 50 learning tracks. Your major helps prioritize suggestions without limiting your choices.
+- **Path detail:** stages, learning resources, reference roadmaps and optional certification goals.
+- **My roadmap:** choose stages, skip skills you already know, select resources and set your weekly study time.
+- **My plan:** independent plans, daily tasks, notes, backlog, progress, week closing and read-only history. Regeneration includes a preview before replacing a schedule.
+- **Profile:** learning activity, study preferences, time zone, JSON backup and recovery.
+- **Guest or Google:** use Guest immediately, or sign in with Google to save an account workspace through Supabase. Guest import is explicit and previewed.
+- **Diagrams:** 15 Activity, 8 Sequence and 44 Flowchart diagrams in one viewer, with direct links, zoom and printing.
 
-Yêu cầu Node.js **22.12+** và npm. Không cần API key hay CSDL ngoài.
+Learning times are estimates and completion is self-reported. Certification goals link to external providers; uitplans does not issue certificates. Content packs retain their editorial review status.
 
-```powershell
+![Unified Activity, Sequence and Flowchart viewer](docs/assets/diagram-viewer.png)
+
+## Quick start
+
+Use Node.js **22.12 or newer** and npm.
+
+```sh
 npm ci
-npm run check
-npm run check:team
-npm run build
 npm run dev
 ```
 
-Mở `http://127.0.0.1:5173/#/explore`. Nếu cổng đã được dùng: `npm run dev -- --port 5195`. Xem bản build bằng `npm run preview`. Deploy static thư mục `dist`; ứng dụng dùng hash route. Đổi domain/cổng tạo kho khác theo origin: xuất backup trước khi chuyển nơi chạy.
+Open `http://127.0.0.1:5173/#/explore`. Guest works without a Supabase project. If the port is occupied, use `npm run dev -- --port 5195`.
 
-**Demo Netlify cũ:** [bản triển khai 07/10](https://cheery-dusk-9602b2.netlify.app/) ở commit `685435047a58f05d1bb3a90ae901425bdcb31074`. Link này chưa cập nhật bản v2 trong đợt tích hợp này.
+To enable account features, copy `.env.example` to `.env.local` and supply your Supabase URL and publishable key. See [deployment and Google setup](docs/deployment.md). Never put an OAuth client secret or a Supabase service role key in frontend variables.
 
-## Thử một hành trình
-
-1. **Explore:** chọn ngành, khám phá hướng; ngành không khóa các lựa chọn.
-2. **Path detail:** chọn nhánh, mở roadmap tham khảo, xem chặng/nguồn/chứng nhận. Lưu chứng nhận là lưu mục tiêu bổ trợ.
-3. **My roadmap:** chọn chặng/đã biết/nguồn, mục tiêu, giờ/tuần và ngày bắt đầu. Lưu draft hoặc tạo plan mới.
-4. **My Plan:** chọn plan, hoàn thành/sửa việc, ghi chú/ngày hoặc backlog. Reload kiểm tra dữ liệu còn. Chốt tuần có xác nhận xử lý việc chưa xong.
-5. **Profile:** sửa hồ sơ, xem nhịp học, xuất backup; nhập file/chuyển v1 luôn có preview trước xác nhận ghi.
-
-Đã dùng bản cũ thì vào Profile để chuyển v1. Key `majorweave.prototype.v1` giữ nguyên. Link mở plan v1 chỉ đọc, không tự tạo lại lịch cũ.
-
-## Kiến trúc
-
-```text
-main → AppShell → WorkspaceProvider / shared controller
-                    ├─ features: Explore, Path detail, My roadmap, My Plan, Profile
-                    ├─ content registry: 18 pack / 50 track
-                    ├─ domain: resolver, planner, progress, activity, validation
-                    └─ persistence: IndexedDB, migration, backup/import
+```sh
+npm run check
+npm run check:features
+npm run build
+npm run preview
 ```
 
-UI dùng callback, không tự ghi storage. Domain độc lập React/storage. Dữ liệu đọc/nhập được kiểm tra runtime; transaction hoàn tất mới báo lưu thành công. Lỗi lưu/xung đột giữ bản sửa để retry, xuất hoặc bỏ có xác nhận.
+Deploy the generated `dist/` directory to a static host. The application uses hash routes. Guest data belongs to the current browser origin, so export a backup before changing a domain or port.
 
-## Tài liệu
+## Architecture
 
-- [Trạng thái tích hợp và xử lý conflict](docs/team/INTEGRATION_V2.md).
-- [Hướng dẫn kiểm thử, minh chứng và AI Log](docs/team/HUONG_DAN_KIEM_THU_VA_AI_LOG.md).
-- [Báo cáo kiểm thử thực tế](docs/tasks/MW-INTEGRATION/QA_AI_LOG.md).
-- [Context/callback v2](docs/team/HANDOFF_CONTEXT_V2.md).
-- [Hợp đồng dữ liệu](src/domain/contracts.ts), [biên soạn nội dung](docs/architecture/HUONG_DAN_DU_LIEU.md).
-- [Danh mục ngành/hướng](docs/Danh_muc_nganh_huong_hoc.md), [phạm vi](docs/PHAM_VI_MAJORWEAVE.md).
-- [Quy tắc AI/PR](AGENTS.md), [quy trình Antigravity](docs/team/QUY_TRINH_ANTIGRAVITY.md).
+React 19 · TypeScript · Vite · Supabase Auth/Postgres · IndexedDB
 
-Tài liệu bước 3/4 và `src/prototype/` là lịch sử; INTEGRATION_V2 là trạng thái hiện tại. `events.html` giữ luồng nền trước đây và bổ sung luồng v2, không phải báo cáo chạy test.
+```text
+Google ↔ Supabase Auth → account session
+                              │
+App shell → workspace controller → feature callbacks
+                              │
+                    domain + content packs
+                              │
+             Guest: IndexedDB │ Account: Supabase RPC
+```
 
-## Đóng góp
+The domain layer is independent of React and storage. A mutation is acknowledged only after persistence confirms it. Account writes check the owner, expected revision and request ID; conflicts preserve the pending changes. Remote updates are polled while the page is visible. See [architecture](docs/architecture.md).
 
-| Thành viên | Phần được tích hợp |
-|---|---|
-| Phạm Tuấn Hải | Kiến trúc/style, Context/callback, registry, Profile/transfer UI, sửa lỗi tích hợp, nghiệm thu/README |
-| Nguyễn Thị Quỳnh Hân — MW-TEAM-01 | Explore/Path detail/resolver; Backend/Frontend/Full-stack/UX; sửa discard pending UI chung |
-| Phạm Công Định — MW-TEAM-02 | Planner/tạo lại, My roadmap; Mobile/Game |
-| Chung Minh Hiếu — MW-TEAM-03 | My Plan/progress/chốt tuần; DS/ML/MLOps/AI Engineer |
-| Lê Nguyễn Hữu Hiếu — MW-TEAM-04 | Profile/activity/semantic validation; Analyst/BI/Data Engineer/BA |
-| Triệu Quang Huy — MW-TEAM-05 | IndexedDB/migration/backup/import; DevOps/Network/Security/QA |
+## Repository layout
 
-Giữ commit và tài liệu cá nhân; tích hợp không thay AI Log từng bạn. Sửa tiếp bằng branch + PR cho Hải review; không tự merge/push `main`.
+| Directory | Purpose |
+| --- | --- |
+| `src/app`, `src/auth` | Workspace coordination, routing and account sessions |
+| `src/features` | Explore, Path detail, My roadmap, My plan and Profile |
+| `src/domain` | Contracts, planning, progress and validation |
+| `src/content` | Catalogue and learning content packs |
+| `src/persistence` | Guest/cloud storage, backup and migration |
+| `supabase/migrations` | Database schema, RLS and workspace RPC |
+| `scripts`, `tests` | Build helpers, regression checks and isolated browser fixtures |
+| `public` | Static catalogue, diagrams and brand assets |
+| `docs` | Architecture, setup, testing and content authoring |
 
-## Kiểm thử và giới hạn
+## Documentation
 
-`check` kiểm tra registry/module/resolver/Context và hồi quy tích hợp 50 cấu hình. `check:team` chạy suite thuần của năm bạn. `build` kiểm tra TypeScript/đóng gói. UI cần thử riêng theo hướng dẫn, không suy ra từ CI xanh.
+- [Architecture and data lifecycle](docs/architecture.md)
+- [Deployment and authentication](docs/deployment.md)
+- [Testing and verification](docs/testing.md)
+- [Content authoring](docs/architecture/HUONG_DAN_DU_LIEU.md)
+- [Detailed event flows](docs/Luong_su_kien_chi_tiet.md)
+- [Diagram sources and coverage](docs/diagrams/uml-20261011/README.md)
+- [Contributing](CONTRIBUTING.md)
 
-Kho QA cách ly: `/tests/integration-browser.html?session=<UUID>#/roadmap` khi chạy dev. Harness dùng cùng AppShell/controller nhưng DB `majorweave.qa.integration.<UUID>` và fixture v1 riêng; không sửa kho người dùng, không có trong bản build.
+## Project context
 
-Trình duyệt chặn IndexedDB hoặc hết dung lượng có thể làm lưu thất bại. Xuất backup định kỳ. Chưa có khảo sát người dùng diện rộng, xác minh toàn bộ nội dung nguồn hoặc đo khả năng chịu tải.
+Built as a mini project for **IS207 — Web Application Development**, University of Information Technology, VNU-HCM. Interface styling was inspired by Beaver Plans; learning resources and certifications remain owned by their respective providers. The browser favicon originates from the Beaver Plans reference and is not claimed as an original uitplans asset.
+
+This repository contains the application and its technical documentation. Internal planning and presentation drafts are maintained separately.

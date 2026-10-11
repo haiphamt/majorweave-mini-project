@@ -35,3 +35,19 @@ export function readOnly(plan: LearningPlan, generation: PlanGeneration, week: n
 export function safeSourceUrl(url: string): boolean {
   try { return ['https:', 'http:'].includes(new URL(url).protocol); } catch { return false; }
 }
+
+/** UTC date-only arithmetic keeps week labels stable across browser time zones. */
+export function weekRange(startDate: string, week: number): string | null {
+  const start = new Date(`${startDate}T00:00:00Z`);
+  if (!Number.isFinite(start.getTime()) || !Number.isSafeInteger(week) || week < 0) return null;
+  const end = new Date(start);
+  start.setUTCDate(start.getUTCDate() + week * 7);
+  end.setUTCDate(end.getUTCDate() + week * 7 + 6);
+  if (!Number.isFinite(start.getTime()) || !Number.isFinite(end.getTime())) return null;
+  const format = (date: Date) => date.toLocaleDateString('en-US', { month: 'short', day: '2-digit', timeZone: 'UTC' });
+  return `${format(start)} – ${format(end)}`;
+}
+export function currentWeek(startDate: string, today: string, weeks: readonly number[]): number | null {
+  const index = Math.floor((Date.parse(`${today}T00:00:00Z`) - Date.parse(`${startDate}T00:00:00Z`)) / 604800000);
+  return weeks.includes(index) ? index : null;
+}

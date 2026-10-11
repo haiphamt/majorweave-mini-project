@@ -112,7 +112,7 @@ export const paths: LearningPath[] = CAREER_PATHS.map(p => {
   const presentation = [...legacyPaths,...additions].find(item => item.id === p.id)!;
   return { ...presentation, majors: MAJORS.filter(m => near[m.id].includes(p.id)).map(m => m.id), relatedMajors: MAJORS.filter(m => extending[m.id].includes(p.id)).map(m => m.id) };
 });
-export const catalogScopeNote = 'Danh mục được phân công gồm 18 hướng. Business Analyst dùng nguồn nghề nghiệp IIBA; các mối liên hệ ngành–hướng là gợi ý biên soạn của nhóm.';
+export const catalogScopeNote = 'Danh mục gồm 18 hướng học. Business Analyst dùng nguồn nghề nghiệp IIBA; các mối liên hệ ngành–hướng là gợi ý biên soạn của nhóm.';
 export const majorCoverageNotes: Record<string,string> = { computer:'KTMT / Thiết kế Vi mạch cùng nhóm khám phá phần mềm và hạ tầng; đây không phải lộ trình đào tạo vi mạch.', chip:'Giữ ngành Thiết kế Vi mạch trong hồ sơ. Các hướng này là phần mềm/hạ tầng mở rộng, không thay thế chương trình VLSI/FPGA/Embedded.' };
 export const catalogCheckedAt = '04/10/2026 (baseline phạm vi nhóm)';
 export const relationRank = (p: LearningPath, major: string) => p.majors.includes(major) ? 2 : p.relatedMajors.includes(major) ? 1 : 0;

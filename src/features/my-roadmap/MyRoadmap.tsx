@@ -42,7 +42,7 @@ export function MyRoadmap() {
     return <div className="page roadmap-page">
       <div className="page-heading"><h1>My roadmap</h1></div>
       {status === 'loading' ? <p role="status">Đang tải lộ trình…</p> : <div className="form-error" role="alert">
-        <p>{messages.join(' ') || 'Không tải được lộ trình trên thiết bị này.'}</p>
+        <p>{messages.join(' ') || 'Không tải được lộ trình đã lưu.'}</p>
         <button className="secondary-button" onClick={() => reload()}>Thử tải lại</button>
       </div>}
     </div>;
@@ -52,7 +52,7 @@ export function MyRoadmap() {
   const draftResult = actions.getDraft(selectedTrackId);
   if (!resolved.ok || !draftResult) {
     return <div className="page roadmap-page"><div className="form-error" role="alert">
-      {!resolved.ok ? resolved.issues.map(issue => <p key={issue.code}>{issue.message}</p>) : <p>Không tìm thấy bản nháp lộ trình.</p>}
+      {!resolved.ok ? resolved.issues.map(issue => <p key={issue.code}>{issue.message}</p>) : <p>Không tìm thấy lựa chọn lộ trình đã lưu.</p>}
       <button className="secondary-button" disabled={busy} onClick={() => reload()}>Thử tải lại</button>
     </div></div>;
   }
@@ -78,7 +78,7 @@ export function MyRoadmap() {
       setIssues(['Chọn ngày bắt đầu có thật.']);
       return;
     }
-    if (report(await actions.saveDraft())) setNotice('Đã lưu bản nháp lộ trình.');
+    if (report(await actions.saveDraft())) setNotice('Đã lưu lựa chọn học để tiếp tục chỉnh sau. Chưa tạo hoặc thay đổi kế hoạch.');
   }
 
   async function perform(action: PlanAction) {
@@ -161,48 +161,6 @@ export function MyRoadmap() {
       </div>
     </div>}
     <div className="roadmap-editor">
-      <section className="roadmap-paper" aria-label="Chặng học">
-        <div className="paper-heading"><h2>Chặng học</h2></div>
-        <p className="builder-note">Chọn chặng để học; đánh dấu “Đã biết” để bỏ qua. Các chặng giữ thứ tự nền tảng trước, chuyên sâu sau.</p>
-        <div className="selected-modules">
-          {stages.map(stage => {
-            const selected = draft.selectedStageIds.includes(stage.id);
-            const known = draft.knownStageIds.includes(stage.id);
-            const source = resources.find(resource => resource.id === (draft.resourceByStage[stage.id] || stage.defaultResourceId));
-            const missing = stage.prerequisiteIds.filter(id => !draft.selectedStageIds.includes(id) && !draft.knownStageIds.includes(id));
-            return <article key={stage.id} className={`selected-module ${known ? 'is-known' : ''}`}>
-              <label className="checkbox-label">
-                <input type="checkbox" aria-label={`Học: ${stage.title}`} disabled={blocked} checked={selected} onChange={event => edit({ selectedStageIds: event.target.checked ? [...draft.selectedStageIds, stage.id] : draft.selectedStageIds.filter(id => id !== stage.id) })} />
-                <span className="roadmap-course-title">{stage.title}</span>
-              </label>
-              {selected && <>
-                <div className="selected-module-bottom" style={{ paddingLeft: 0 }}>
-                  <label className="checkbox-label">
-                    <input type="checkbox" aria-label={`Đã biết: ${stage.title}`} disabled={blocked} checked={known} onChange={event => edit({ knownStageIds: event.target.checked ? [...draft.knownStageIds, stage.id] : draft.knownStageIds.filter(id => id !== stage.id) })} />
-                    Đã biết
-                  </label>
-                  {!known && stage.resourceIds.length > 1 && <label className="source-select">
-                    <select aria-label={`Nguồn học cho ${stage.title}`} disabled={blocked} value={draft.resourceByStage[stage.id] || stage.defaultResourceId} onChange={event => edit({ resourceByStage: { ...draft.resourceByStage, [stage.id]: event.target.value } })}>
-                      {stage.resourceIds.map(id => {
-                        const resource = resources.find(item => item.id === id);
-                        return resource && <option key={id} value={id}>{resource.provider} · {resource.title}</option>;
-                      })}
-                    </select>
-                  </label>}
-                </div>
-                {!known && missing.length > 0 && <p className="form-error">Cần chọn hoặc xác nhận đã biết: {missing.map(id => stages.find(item => item.id === id)?.title ?? id).join(', ')}.</p>}
-                <details>
-                  <summary className="module-duration">Nội dung & bài thực hành · {hoursText(stage.work.reduce((total, work) => total + work.minutes, 0))}</summary>
-                  <p className="builder-note">{stage.description}</p>
-                  <p className="builder-note">{stage.outcome}</p>
-                  {source && <p className="builder-note"><External href={source.url}>Mở nguồn: <strong>{source.title}</strong></External>{source.accessNote && <span> · {source.accessNote}</span>}</p>}
-                  <ul>{stage.work.map(work => <li key={work.id} className="builder-note">{work.title} · {work.minutes} phút</li>)}</ul>
-                </details>
-              </>}
-            </article>;
-          })}
-        </div>
-      </section>
       <aside className="plan-builder" style={{ display: 'block' }} aria-label="Thiết lập kế hoạch">
         <h2>Kế hoạch học</h2>
         <label>Mục tiêu của bạn
@@ -217,12 +175,55 @@ export function MyRoadmap() {
         <p className="builder-note">{activeStages.length} chặng · {hoursText(minutes)} thực hành. Mỗi tuần bắt đầu vào Thứ Hai.</p>
         <button className="primary-button full-width" disabled={blocked} onClick={() => request('create')}>{status === 'saving' ? 'Đang lưu…' : 'Tạo kế hoạch mới'}</button>
         <div className="dialog-actions">
-          <button className="secondary-button" disabled={blocked || !dirty} onClick={saveDraft}>Lưu bản nháp</button>
-          {sameTrackPlan && <button className="secondary-button" disabled={blocked} onClick={() => request('regenerate')}>Xem trước tạo lại</button>}
+          <button className="secondary-button" disabled={blocked || !dirty} onClick={saveDraft}>Lưu lựa chọn</button>
         </div>
-        <p className="builder-note" role="status">{status === 'saving' ? 'Đang lưu thay đổi…' : unsavedWorkspace ? 'Có thay đổi chưa lưu được.' : dirty ? 'Bản nháp có thay đổi chưa lưu.' : 'Bản nháp không có thay đổi chưa lưu.'}</p>
-        {sameTrackPlan && <p className="builder-note">Tạo lại áp dụng cho “{sameTrackPlan.name}”.</p>}
+        {(status === 'saving' || unsavedWorkspace || dirty) && <p className="builder-note" role="status">{status === 'saving' ? 'Đang lưu thay đổi…' : unsavedWorkspace ? 'Có thay đổi chưa lưu được.' : 'Có thay đổi chưa lưu.'}</p>}
+        <p className="builder-note">Lưu lựa chọn để chỉnh tiếp sau. Tạo kế hoạch mới để xếp việc học theo tuần trong My Plan.</p>
+        {sameTrackPlan && <details className="plan-options"><summary>Điều chỉnh kế hoạch đã tạo</summary><p className="builder-note">Xếp lại lịch cho “{sameTrackPlan.name}” theo chặng và quỹ giờ bạn vừa chọn. Kế hoạch chỉ thay đổi khi bạn xác nhận ở bước tiếp theo.</p><button className="secondary-button" disabled={blocked} onClick={() => request('regenerate')}>Xem lịch mới trước khi áp dụng</button></details>}
       </aside>
+      <section className="roadmap-paper" aria-label="Chặng học">
+        <div className="paper-heading"><h2>Chặng học</h2></div>
+        <p className="builder-note">Chọn chặng cần học. Nếu đã có nền tảng, đánh dấu “Đã biết” để bỏ bài học nhưng vẫn đáp ứng điều kiện của chặng sau.</p>
+        <div className="selected-modules">
+          {stages.map(stage => {
+            const selected = draft.selectedStageIds.includes(stage.id);
+            const known = draft.knownStageIds.includes(stage.id);
+            const source = resources.find(resource => resource.id === (draft.resourceByStage[stage.id] || stage.defaultResourceId));
+            const missing = stage.prerequisiteIds.filter(id => !draft.selectedStageIds.includes(id) && !draft.knownStageIds.includes(id));
+            return <article key={stage.id} className={`selected-module ${known ? 'is-known' : ''}`}>
+              <label className="checkbox-label">
+                <input type="checkbox" aria-label={`Học: ${stage.title}`} disabled={blocked} checked={selected} onChange={event => edit({ selectedStageIds: event.target.checked ? [...draft.selectedStageIds, stage.id] : draft.selectedStageIds.filter(id => id !== stage.id) })} />
+                <span className="roadmap-course-title">{stage.title}</span>
+              </label>
+                <div className="selected-module-bottom" style={{ paddingLeft: 0 }}>
+                  <label className="checkbox-label">
+                    <input type="checkbox" aria-label={`Đã biết: ${stage.title}`} disabled={blocked} checked={known} onChange={event => edit({ knownStageIds: event.target.checked ? [...draft.knownStageIds, stage.id] : draft.knownStageIds.filter(id => id !== stage.id) })} />
+                    Đã biết — bỏ qua bài học
+                  </label>
+                  {selected && !known && stage.resourceIds.length > 1 && <label className="source-select">
+                    <select aria-label={`Nguồn học cho ${stage.title}`} disabled={blocked} value={draft.resourceByStage[stage.id] || stage.defaultResourceId} onChange={event => edit({ resourceByStage: { ...draft.resourceByStage, [stage.id]: event.target.value } })}>
+                      {stage.resourceIds.map(id => {
+                        const resource = resources.find(item => item.id === id);
+                        return resource && <option key={id} value={id}>{resource.provider} · {resource.title}</option>;
+                      })}
+                    </select>
+                  </label>}
+                </div>
+              {selected && <>
+                {!known && missing.length > 0 && <p className="form-error">Cần chọn hoặc xác nhận đã biết: {missing.map(id => stages.find(item => item.id === id)?.title ?? id).join(', ')}.</p>}
+                <details>
+                  <summary className="module-duration">Xem nội dung & bài thực hành · {hoursText(stage.work.reduce((total, work) => total + work.minutes, 0))}</summary>
+                  <p className="builder-note">{stage.description}</p>
+                  <p className="builder-note">{stage.outcome}</p>
+                  {source && <p className="builder-note"><External href={source.url}>Mở nguồn: <strong>{source.title}</strong></External>{source.accessNote && <span> · {source.accessNote}</span>}</p>}
+                  <ul>{stage.work.map(work => <li key={work.id} className="builder-note">{work.title} · {work.minutes} phút</li>)}</ul>
+                </details>
+              </>}
+            </article>;
+          })}
+        </div>
+      </section>
+
     </div>
     {proposedDate && <Dialog className="roadmap-dialog" title="Bắt đầu vào Thứ Hai?" onClose={() => { if (!busy) setProposedDate(null); }}>
       <div className="dialog-body">
@@ -248,7 +249,7 @@ export function MyRoadmap() {
     </Dialog>}
     {confirmDiscard && <Dialog className="roadmap-dialog" title="Bỏ thay đổi chưa lưu?" onClose={() => { if (!busy) setConfirmDiscard(false); }}>
       <div className="dialog-body">
-        <p>Tải bản đã lưu sẽ bỏ bản nháp và kế hoạch chưa lưu trên màn này.</p>
+        <p>Tải bản đã lưu sẽ bỏ các lựa chọn và thay đổi kế hoạch chưa lưu trên màn này.</p>
         <div className="dialog-actions">
           <button className="secondary-button" disabled={busy} onClick={() => setConfirmDiscard(false)}>Giữ thay đổi</button>
           <button className="primary-button" disabled={busy} onClick={() => reload(true)}>Bỏ thay đổi và tải lại</button>

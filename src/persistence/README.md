@@ -1,16 +1,17 @@
 # Persistence
 
-API và kiểu dữ liệu dùng `src/domain/contracts.ts`. Chỉ lớp persistence đọc/ghi storage; feature dùng callback/Context chung.
+Features interact with persistence through the shared workspace controller. Data contracts live in `src/domain/contracts.ts`.
 
-| Module | Vai trò |
+| Module | Purpose |
 | --- | --- |
-| `legacy.ts` | Ghi v1 đang được UI cũ sử dụng; đọc v1 còn ở `src/state.ts` |
-| `roadmap-store.ts` | IndexedDB native: `majorweave`, version 1, store `workspace`, key `local`; revision CAS trong một transaction |
-| `migration-source.ts` | Đọc/kiểm raw v1 và fingerprint; không ghi/xóa nguồn |
-| `migration-preview.ts` | Ánh xạ Backend, giữ dữ liệu, cảnh báo và vấn đề chặn |
-| `migration.ts` | Preview riêng, confirm/cancel, fingerprint, retry và conflict |
-| `backup.ts` | Export snapshot, validate file, preview/import, skip/copy/remap |
+| `roadmap-store.ts` | Native IndexedDB workspace transactions and revision checks |
+| `cloud-workspace.ts` | Supabase workspace read/save gateway |
+| `guest-backup.ts` | Explicit Guest-to-account import |
+| `backup.ts` | Validated export, preview and import with duplicate handling |
+| `migration-source.ts` | Read and fingerprint the unchanged legacy source |
+| `migration-preview.ts`, `migration.ts` | Preview and confirm a migration without deleting the source |
+| `legacy.ts` | Compatibility with the original persisted format |
 
-Chỉ báo lưu thành công sau transaction complete. Lỗi/conflict giữ proposal để retry hoặc xuất; không reset defaults, không xóa kho cũ. Validators semantic và UI/registry được Hải/Hữu Hiếu tích hợp; các trang QA độc lập không chứng minh app chính đã chuyển sang v2.
+A mutation succeeds only after a transaction/cloud acknowledgement. Failures preserve the candidate for retry/export/discard; stale revisions are rejected. Guest and account workspaces remain separate.
 
-Đọc [hub MW-TEAM-05](../../docs/tasks/MW-TEAM-05/README.md) để chạy test, xem kết quả thực và phần cần nghiệm thu.
+See [architecture](../../docs/architecture.md), [deployment](../../docs/deployment.md) and [testing](../../docs/testing.md).

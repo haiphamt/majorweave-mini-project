@@ -8,7 +8,7 @@ import { LEGACY_V1_KEY } from '../persistence/migration-source';
 
 const WorkspaceContext = createContext<WorkspaceController | null>(null);
 
-function browserOptions(): WorkspaceOptions {
+export function browserOptions(): WorkspaceOptions {
   return {
     packs: contentPacks,
     persistence: createRoadmapStore({ timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone, validate:validateWorkspace }),

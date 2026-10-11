@@ -45,6 +45,6 @@ export function StudyActivity({ tasks, completionDays, undatedCount, todayKey }:
     <div className="activity-footer"><p className="activity-day-detail" role="status">{dateLabel(chosenDay.date)} · <strong>{countLabel(chosenDay.key)}</strong></p><div className="activity-legend"><span>0</span>{[0, 1, 2, 3, 4].map(level => <span key={level} className={`activity-cell level-${level}`} title={level === 4 ? '4 việc trở lên' : `${level} việc`} />)}<span>4+ việc</span></div></div>
     {completions === 0 && <p className="activity-caption">Đánh dấu một việc hoàn thành để bắt đầu ghi nhận nhịp học của bạn.</p>}
     {undated > 0 && <p className="activity-caption">{undated} việc đã hoàn thành chưa có ngày ghi nhận; tiến độ vẫn được giữ, biểu đồ chỉ tính những việc có ngày.</p>}
-    <p className="activity-note">Số việc do bạn tự ghi nhận, không xác minh thời gian học hoặc tiến độ tại website bên ngoài. Dùng phím mũi tên để xem các ngày.</p>
+    <details className="activity-help"><summary>Cách tính nhịp học</summary><p className="activity-note">Số việc do bạn tự ghi nhận, không xác minh thời gian học hoặc tiến độ tại website bên ngoài. Dùng phím mũi tên để xem các ngày.</p></details>
   </section>;
 }
