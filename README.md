@@ -6,6 +6,8 @@ A learning planner for students exploring careers in technology. Discover a dire
 
 [Live application](https://uitplans.netlify.app/) · [System diagrams](https://uitplans.netlify.app/events.html) · [Learning catalogue](https://uitplans.netlify.app/catalog.html)
 
+![uitplans Explore — discover learning paths and build a weekly plan](docs/assets/explore.png)
+
 ## Features
 
 - **Explore:** 6 faculties, 12 majors, 18 career directions and 50 learning tracks. Your major helps prioritize suggestions without limiting your choices.
@@ -17,8 +19,6 @@ A learning planner for students exploring careers in technology. Discover a dire
 - **Diagrams:** 15 Activity, 8 Sequence and 44 Flowchart diagrams in one viewer, with direct links, zoom and printing.
 
 Learning times are estimates and completion is self-reported. Certification goals link to external providers; uitplans does not issue certificates. Content packs retain their editorial review status.
-
-![Unified Activity, Sequence and Flowchart viewer](docs/assets/diagram-viewer.png)
 
 ## Quick start
 
