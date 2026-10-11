@@ -10,7 +10,7 @@ Ngày 11/10/2026, Hải chọn Guest/Google trước, email/mật khẩu qua SMT
 - Form email mặc định ẩn (`VITE_EMAIL_AUTH_ENABLED=false`). Luồng recovery cho tài khoản email cũ vẫn giữ; SMTP chưa bật.
 - **Đã triển khai công khai:** [uitplans.netlify.app](https://uitplans.netlify.app/). Netlify project `uitplans`, ID `cc498549-9113-4a2b-8348-c86977e55eb7`, deploy `6acad08f07a5512ec02306a1`. Upload bản build của commit `fcd9dbba344d06f19dd8a96b9e4538856f28c9c1`; HTTP không có phiên đăng nhập trả 200 và đúng bundle `app-BDlLdjkO.js`.
 - Đã đặt Supabase Site URL/Redirect URL cho site online, giữ callback local 5195.
-- **Google OAuth chưa nghiệm thu:** đã tạo project Google riêng `uitplans` (project number `557080586465`), Hải tự chấp nhận điều khoản/chính sách dữ liệu. OAuth client đã điền sẵn origin/callback, đang chờ Hải hoàn tất Create và nhập Client ID/Secret tại Supabase. Không bật Free trial/gói trả phí hoặc tự nhập secret thay Hải.
+- **Google OAuth chưa nghiệm thu:** đã tạo project Google riêng `uitplans` (project number `557080586465`), Hải tự chấp nhận điều khoản/chính sách dữ liệu và tạo client `uitplans web`. Client ID là `557080586465-e2mequ1i7hsmpvsvd6q3e1atkk6f3vj3.apps.googleusercontent.com`. Đang chờ Hải nhập Client ID/Secret tại Supabase; kiểm tra cấu hình công khai ngày 11/10/2026 vẫn trả Google provider tắt. Không bật Free trial/gói trả phí hoặc tự nhập secret thay Hải.
 
 ## 1. Hosting Netlify
 
@@ -46,7 +46,13 @@ Tạo OAuth client loại **Web application**:
 
 Trong Supabase → Authentication → Sign In / Providers → Google, nhập Client ID/Client Secret rồi bật provider. Giữ kiểm tra nonce; không bật quyền liên kết thủ công hoặc quyền khác ngoài yêu cầu.
 
-Với app External còn **Testing**, kiểm tra danh sách người dùng thử. Muốn người ngoài danh sách dùng thì hoàn tất Publishing/Audience phù hợp và các yêu cầu Google hiện tại; không tuyên bố công khai khi còn Testing.
+### Nếu chỉ còn Client ID, chưa lưu Client Secret
+
+Google chỉ hiển thị/download Secret đầy đủ tại thời điểm tạo. Nếu đã đóng hộp tạo client mà chưa lưu Secret, vào **Clients → uitplans web → Client secrets → Add secret**. Hải tự tạo và lưu Secret mới ở nơi riêng tư, rồi dán trực tiếp vào Google provider của Supabase cùng Client ID hiện có. Bật **Enable Sign in with Google**, giữ **Skip nonce checks** tắt và **Save**. Không gửi Secret qua chat, không đưa vào file frontend hoặc Git. Client ID và callback không cần tạo lại.
+
+Sau khi đăng nhập thử thành công bằng Secret mới, có thể vô hiệu hóa Secret cũ chưa dùng; không xóa/đổi Secret đang phục vụ người dùng khi chưa kiểm tra.
+
+Kiểm tra Audience và các scope thực tế trước nghiệm thu. Google có ngoại lệ cho ứng dụng chỉ yêu cầu `openid`, `email`, `profile`: người dùng không cần nằm trong danh sách test ngay cả khi app còn **Testing**. Vì uitplans chỉ dùng nhận diện cơ bản, không coi Publishing hoặc mua tên miền là điều kiện bắt buộc để thử đăng nhập. Nếu sau này thêm quyền ngoài nhóm này, phải kiểm tra lại giới hạn Testing và yêu cầu xác minh. Chỉ xác nhận Google dùng được sau khi đã thử callback và lưu/tải dữ liệu thành công.
 
 ## 3. URL Supabase
 
@@ -70,4 +76,6 @@ Guest theo origin: localhost và site online là hai kho khác nhau. Muốn mang
 
 - [Supabase Google OAuth](https://supabase.com/docs/guides/auth/social-login/auth-google).
 - [Google button branding](https://developers.google.com/identity/branding-guidelines); `public/google-g.png` lấy từ asset chính thức trên trang này.
+- [Google: quản lý OAuth client và tạo Secret mới](https://support.google.com/cloud/answer/15549257?hl=en).
+- [Google: trạng thái ứng dụng và ngoại lệ cho scope nhận diện cơ bản](https://developers.google.com/identity/protocols/oauth2/production-readiness/overview).
 - [Netlify deployment](https://docs.netlify.com/deploy/create-deploys/).
