@@ -873,3 +873,8 @@ dialog{padding:0;border:1px solid var(--line);border-radius:7px;background:var(-
 .google-signin { display: grid; gap: 16px; margin-top: 24px; }
 .account-dialog .google-button { display: flex; align-items: center; justify-content: center; gap: 12px; min-height: 48px; background: #fff; color: #1f1f1f; border: 1px solid #747775; }
 .google-button img { flex: none; object-fit: contain; }
+
+/* Keep expandable practice content visible as an action. */
+.roadmap-paper summary.module-duration{display:list-item;color:var(--rust);font-size:14px;cursor:pointer;padding:8px 0}
+.activity-help{margin-top:12px;color:var(--muted);font-size:13px}.activity-help summary{cursor:pointer}.explore-next-steps .text-link{font-size:inherit}
+@media(max-width:760px){.selected-module-bottom{flex-wrap:wrap}.selected-module-bottom .source-select{flex-basis:100%;max-width:none}}

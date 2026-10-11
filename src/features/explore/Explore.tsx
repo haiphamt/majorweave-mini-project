@@ -16,6 +16,9 @@ export function Explore() {
   const [nearOnly, setNearOnly] = useState(false);
   useEffect(() => { if (!state.major) setNearOnly(false); }, [state.major]);
   const currentFaculty = faculties.find(f => f.majors.some(m => m.id === state.major));
+  const [facultyId, setFacultyId] = useState(currentFaculty?.id ?? '');
+  useEffect(() => { if (currentFaculty) setFacultyId(currentFaculty.id); }, [currentFaculty?.id]);
+  const selectedFaculty = faculties.find(f => f.id === facultyId);
   const browseMajors = faculties.find(f => f.id === state.browseFaculty)?.majors.map(m => m.id);
   const categoryNames: Record<string, string> = { SOFTWARE: 'Phần mềm', DATA: 'Dữ liệu', AI: 'Trí tuệ nhân tạo', BUSINESS: 'Nghiệp vụ & kinh doanh', INFRASTRUCTURE: 'Hạ tầng', SECURITY: 'An toàn thông tin', HARDWARE: 'Phần cứng', DESIGN: 'Thiết kế & truyền thông', RESEARCH: 'Nghiên cứu' };
   const visiblePaths = paths.filter(p => !browseMajors || [...p.majors, ...p.relatedMajors].some(m => browseMajors.includes(m))).filter(p => !nearOnly || relationRank(p, state.major) > 0).filter(p => pathCategory === 'all' || p.category === pathCategory).filter(p => `${p.name} ${p.summary} ${p.tags.join(' ')} ${p.foundations}`.toLocaleLowerCase().includes(pathQuery.trim().toLocaleLowerCase())).sort((a, b) => relationRank(b, state.major) - relationRank(a, state.major));
@@ -31,14 +34,14 @@ export function Explore() {
       <div className="explore-start">
         <section className="profile-strip" aria-label="Hồ sơ ngành hiện tại">
           <div className="profile-intro"><span className="explore-step" aria-hidden="true">1</span><div><h2>Bạn đang học ngành nào?</h2><p>Để gợi ý gần với nền tảng của bạn. Bạn vẫn có thể khám phá mọi hướng.</p></div></div>
-          <div className="profile-fields"><label>Khoa hiện tại<select value={currentFaculty?.id || ''} onChange={e => update({ major: faculties.find(f => f.id === e.target.value)?.majors[0].id || '' })}><option value="">Chưa chọn / Bỏ qua</option>{faculties.map(f => <option key={f.id} value={f.id}>{f.name}</option>)}</select></label><label>Ngành đang học<select aria-label="Ngành đang học" value={state.major} onChange={e => update({ major: e.target.value })}><option value="">Chưa chọn ngành</option>{(currentFaculty?.majors || []).map(m => <option key={m.id} value={m.id}>{m.name}</option>)}</select></label></div>
+          <div className="profile-fields"><label>Khoa hiện tại<select value={facultyId} onChange={e => { setFacultyId(e.target.value); update({ major: faculties.find(f => f.id === e.target.value)?.majors[0].id || '' }); }}><option value="">Chưa chọn / Bỏ qua</option>{faculties.map(f => <option key={f.id} value={f.id}>{f.name}</option>)}</select></label><label>Ngành đang học<select aria-label="Ngành đang học" value={state.major} onChange={e => update({ major: e.target.value })}><option value="">Chưa chọn ngành</option>{(selectedFaculty?.majors || []).map(m => <option key={m.id} value={m.id}>{m.name}</option>)}</select></label></div>
         </section>
-        <ol className="explore-next-steps" start={2} aria-label="Các bước tiếp theo"><li><span>Chọn hướng & kỹ năng</span><small>Giữ những gì cần học, bỏ qua điều đã biết.</small></li><li><span>Lên kế hoạch mỗi tuần</span><small>Học theo thời gian bạn có, theo dõi việc đã xong.</small></li></ol>
+        <ol className="explore-next-steps" start={2} aria-label="Các bước tiếp theo"><li><button className="text-link" onClick={() => document.getElementById('directions')?.scrollIntoView({behavior:'smooth'})}>Chọn hướng & kỹ năng<ArrowRight size={16}/></button><small>Giữ những gì cần học, bỏ qua điều đã biết.</small></li><li><Link className="text-link" to="/roadmap">Lên kế hoạch mỗi tuần<ArrowRight size={16}/></Link><small>Học theo thời gian bạn có, theo dõi việc đã xong.</small></li></ol>
       </div>
     </section>
     {majorCoverageNotes[state.major] && <div className="soft-note coverage-note"><strong>Phạm vi ngành đang học</strong><p>{majorCoverageNotes[state.major]}</p></div>}
 
-    <div id="directions" className="section-heading catalog-heading"><div><h2>Hướng học</h2><p>Tìm một hướng bạn muốn khám phá. Ngành học không giới hạn lựa chọn của bạn.</p></div><span className="catalog-total">{paths.length} hướng</span></div>
+    <div id="directions" className="section-heading catalog-heading"><div><h2>Hướng học</h2><p>Tìm một hướng bạn muốn khám phá. Ngành học không giới hạn lựa chọn của bạn.</p></div></div>
     <div className="path-catalog-toolbar" role="search" aria-label="Lọc hướng học">
       <label className="search-field"><Search size={18} aria-hidden="true"/><input aria-label="Tìm hướng học" placeholder="Tìm hướng bạn muốn học…" value={pathQuery} onChange={e => setPathQuery(e.target.value)}/></label>
       <label className="browse-select">Khám phá theo khoa<select value={state.browseFaculty} onChange={e => update({ browseFaculty:e.target.value })}><option value="all">Tất cả các khoa</option>{faculties.map(f => <option key={f.id} value={f.id}>{f.name}</option>)}</select></label>

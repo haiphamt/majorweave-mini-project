@@ -57,9 +57,11 @@ UI dùng callback, không tự ghi storage. Domain độc lập React/storage. D
 
 ## Tài khoản và dữ liệu online — 10/10/2026
 
-Project **uitplans** đã cấu hình database/callback local và online ngày 11/10/2026. Hải chọn **Guest + Google trước**, email qua SMTP làm sau. Xem [cấu hình Google và hosting](docs/team/GOOGLE_HOSTING_SETUP.md). Netlify đã deploy công khai; OAuth thật còn chờ tạo/nhập credential Google. Code không giả báo đăng nhập khi Google provider chưa bật. `.env.local` không nằm trong Git; máy khác/hosting cần điền biến theo `.env.example`. [Hướng dẫn email/SMTP](docs/team/SUPABASE_ACCOUNT_SETUP.md) giữ cho giai đoạn sau.
+Project **uitplans** đã cấu hình database/callback local và online ngày 11/10/2026. Hải chọn **Guest + Google trước**, email qua SMTP làm sau. Xem [cấu hình Google và hosting](docs/team/GOOGLE_HOSTING_SETUP.md). Netlify đã deploy công khai; Google đã đăng nhập và lưu/tải kế hoạch bằng tài khoản thật thành công. Code không giả báo đăng nhập khi Google provider chưa bật. `.env.local` không nằm trong Git; máy khác/hosting cần điền biến theo `.env.example`. [Hướng dẫn email/SMTP](docs/team/SUPABASE_ACCOUNT_SETUP.md) giữ cho giai đoạn sau.
 
 Các kiểm thử SQL/RLS/revision dùng Postgres/PGlite được chạy trong npm run check; xem [QA/AI Log tài khoản](docs/team/ACCOUNT_QA_AI_LOG.md). Tài khoản online cần mạng; app giữ bản sửa thất bại để retry/xuất, chưa có hàng đợi offline bền vững.
+
+Đối chiếu báo cáo Công Định và 39 trường hợp giao diện My Plan ngày 11/10: [kết quả, phân loại lỗi/tính năng và cách chạy lại](docs/team/QA_CONG_DINH_MY_PLAN_20261011.md). Kiểm thử lỗi lưu dùng fixture RAM riêng, không gây lỗi hoặc sửa kế hoạch trên tài khoản thật.
 
 ## Tài liệu
 
