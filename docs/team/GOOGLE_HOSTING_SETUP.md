@@ -10,7 +10,7 @@ Ngày 11/10/2026, Hải chọn Guest/Google trước, email/mật khẩu qua SMT
 - Form email mặc định ẩn (`VITE_EMAIL_AUTH_ENABLED=false`). Luồng recovery cho tài khoản email cũ vẫn giữ; SMTP chưa bật.
 - **Đã triển khai công khai:** [uitplans.netlify.app](https://uitplans.netlify.app/). Netlify project `uitplans`, ID `cc498549-9113-4a2b-8348-c86977e55eb7`, deploy `6acad08f07a5512ec02306a1`. Upload bản build của commit `fcd9dbba344d06f19dd8a96b9e4538856f28c9c1`; HTTP không có phiên đăng nhập trả 200 và đúng bundle `app-BDlLdjkO.js`.
 - Đã đặt Supabase Site URL/Redirect URL cho site online, giữ callback local 5195.
-- **Google OAuth chưa nghiệm thu:** đã tạo project Google riêng `uitplans` (project number `557080586465`), Hải tự chấp nhận điều khoản/chính sách dữ liệu và tạo client `uitplans web`. Client ID là `557080586465-e2mequ1i7hsmpvsvd6q3e1atkk6f3vj3.apps.googleusercontent.com`. Đang chờ Hải nhập Client ID/Secret tại Supabase; kiểm tra cấu hình công khai ngày 11/10/2026 vẫn trả Google provider tắt. Không bật Free trial/gói trả phí hoặc tự nhập secret thay Hải.
+- **Google provider đã bật, đang nghiệm thu đăng nhập:** đã tạo project Google riêng `uitplans` (project number `557080586465`), Hải tự chấp nhận điều khoản/chính sách dữ liệu, tạo client `uitplans web` và lưu credentials tại Supabase. Client ID là `557080586465-e2mequ1i7hsmpvsvd6q3e1atkk6f3vj3.apps.googleusercontent.com`. Ngày 11/10/2026, endpoint cấu hình công khai trả Google bật; dashboard xác nhận Skip nonce checks tắt và Allow users without an email tắt. Website chuyển được tới màn hình chọn tài khoản Google với scope `email profile`; chưa nghiệm thu callback/lưu cloud. Không bật Free trial/gói trả phí hoặc tự nhập secret thay Hải.
 
 ## 1. Hosting Netlify
 

@@ -99,5 +99,7 @@
 - Netlify project mới `cc498549-9113-4a2b-8348-c86977e55eb7`, deploy `6acad08f07a5512ec02306a1`, tên cuối `uitplans`, URL `https://uitplans.netlify.app`. Đã chuyển từ private mặc định sang Public theo yêu cầu mọi người dùng.
 - Truy cập HTTP không có cookie/session trả 200, bundle khớp `app-BDlLdjkO.js`: PASS. Browser online mở Explore và dialog Google; provider chưa bật thì báo cấu hình/khóa nút: PASS.
 - Đã lưu Supabase Site URL `https://uitplans.netlify.app/` và thêm Redirect URL đó, giữ local `http://127.0.0.1:5195/`.
-- Đã điền sẵn OAuth client Web application/origins/callback. Hải tự hoàn tất chính sách dữ liệu. Tạo credential/nhập Google Secret/đăng nhập thật và Audience Production còn chờ, chưa ghi PASS.
+- Hải đã tự tạo OAuth client Web application và lưu credentials vào Supabase. Ban đầu lưu credentials nhưng Google vẫn tắt/Skip nonce checks bật; sau khi Hải đổi và Save, endpoint `/auth/v1/settings` trả Google true, dashboard xác nhận Skip nonce checks false và Allow users without an email false: PASS cấu hình.
+- Trên site online, Continue with Google bật và chuyển được tới `accounts.google.com`, màn hình Choose an account; scope của request là `email profile`, không có Gmail/Drive: PASS bước khởi tạo OAuth. Ảnh `D:/IS207/artifacts/google-2026-10-11/google-account-chooser.png`. Chờ Hải tự chọn tài khoản/xác nhận quyền; callback, tạo phiên và lưu/tải workspace thật chưa chạy.
+- Google công bố ngoại lệ Testing cho scope nhận diện cơ bản; không coi chuyển Production là điều kiện bắt buộc để thử Google của uitplans. Chưa xác minh branding, Google hiển thị domain Supabase ở màn hình chọn tài khoản.
 - Chưa nối Git tự deploy; đây là manual deploy. Không merge main, không mua tên miền hoặc bật gói trả phí.
