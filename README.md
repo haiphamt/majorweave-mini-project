@@ -31,7 +31,7 @@ npm run dev
 
 Mở `http://127.0.0.1:5173/#/explore`. Nếu cổng đã được dùng: `npm run dev -- --port 5195`. Xem bản build bằng `npm run preview`. Deploy static thư mục `dist`; ứng dụng dùng hash route. Đổi domain/cổng tạo kho khác theo origin: xuất backup trước khi chuyển nơi chạy.
 
-**Bản online hiện tại:** [uitplans.netlify.app](https://uitplans.netlify.app/) — triển khai công khai ngày 11/10/2026, source `fcd9dbb`, manual deploy. Guest dùng được; Google đã đăng nhập và lưu/tải kế hoạch thật thành công. Chưa thử trên hai thiết bị vật lý. Bản [demo 07/10](https://cheery-dusk-9602b2.netlify.app/) là lịch sử, chưa cập nhật bản v2.
+**Bản online hiện tại:** [uitplans.netlify.app](https://uitplans.netlify.app/) — cập nhật bản sửa QA Công Định ngày 11/10/2026, source `a095de2`, manual deploy. Guest dùng được; Google đã đăng nhập và lưu/tải kế hoạch thật thành công. Chưa thử trên hai thiết bị vật lý. Bản [demo 07/10](https://cheery-dusk-9602b2.netlify.app/) là lịch sử, chưa cập nhật bản v2.
 
 ## Thử một hành trình
 

@@ -108,4 +108,12 @@ Chạy fixture riêng, dùng component/domain thật và lưu giả trong RAM. �
 4. Thử Retry, Bỏ thay đổi, giữ/hủy xác nhận; thử QA shared retry khi pending từ thao tác hoàn thành ngoài dialog.
 5. QA loading/load error/empty/archive/history kiểm tra các trạng thái còn lại. Fixture không lưu dữ liệu qua reload.
 
+## Bản online đã cập nhật
+
+- Source `a095de2`, Netlify deploy `6acb1a471c6d68e39db9c1e3`, URL `https://uitplans.netlify.app/`.
+- Gói `uitplans-qa-fixes.zip`, SHA256 `852AF05E6EB0C15AEC083878AAED371B1C39C17FADE0E83F57E1890D5E257055`.
+- HTTP không đăng nhập trả 200, index trỏ bundle mới `app-CQpqSdAq.js` và không còn bundle cũ.
+- Reload bản online, phiên tài khoản được khôi phục, My Plan báo Đã lưu online; kế hoạch Backend thật vẫn 5 giờ/tuần và 0/39 việc đã xong. QA không tạo/sửa/hoàn thành việc trong tài khoản thật.
+- Không merge main, không đổi schema hoặc credentials Google/Supabase, không triển khai fixture lỗi lên production.
+
 AI hỗ trợ đọc báo cáo, đối chiếu contract/luồng, tái hiện giao diện, sửa phạm vi nhỏ và ghi kết quả. Công Định là người phát hiện/đề xuất các nhận xét gốc. Không ghi các đề xuất biên tập là lỗi thuật toán; không ghi kết quả chưa chạy là đạt.
