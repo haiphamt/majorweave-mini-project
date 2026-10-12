@@ -160,7 +160,7 @@ export function AccountControls() {
   return <>
     <button className="account-pill" onClick={() => open('account')} aria-label={user ? 'Mở tài khoản' : 'Mở menu Guest'}><span className="status-dot"/>{user ? accountName : scope.cloud ? 'Session expired' : 'Guest'}</button>
     {!user && <button className="secondary-button nav-signin" onClick={() => open('signin')}>Sign in</button>}
-    {mode && <Dialog title={titles[mode]} className="account-dialog" onClose={close}>
+    {mode && <Dialog title={titles[mode]} className={`account-dialog${mode === 'account' ? ' account-menu' : ''}`} onClose={close}>
       <div className="dialog-body">
         {error && <p className="auth-feedback auth-error" role="alert">{error}</p>}
         {message && <p className="auth-feedback" role="status">{message}</p>}
